@@ -3,7 +3,7 @@
 ## Lightness: UI/UX
 
 - Minimal amount of elements on the screen
-- Minimaul amount of steps to see the task
+- Minimal amount of steps to see the task
 - Fluid animations
 - Fast to load a task screen
 
