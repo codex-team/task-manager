@@ -17,9 +17,12 @@
 ```thesis```: String *[some short info about task]*  
 
 ```description```: List *[field for text, pictures and other data]*  
-```labels```: List [Label]  
+```labels```: List [Label]
+```start date```: Date  
 ```deadline```: Date  
-```assignee```: List [User]  
+```assignee```: List [User]
+```comments```: List [String]
+```author```: List [User]  
 
 ***
 
