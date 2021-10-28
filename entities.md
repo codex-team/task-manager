@@ -3,9 +3,9 @@
 ## User
 ```id```: Integer  
 ```name```: String  
-```email```: String [Discussion: other services for authorization] 
+```email```: String [Discussion: other services for authorization]  
 ```password```: String   
-```task```: List
+```tasks```: List
   
 ```links_to_other_accounts```: List *[for next integration]*
 
@@ -17,29 +17,28 @@
 ```thesis```: String *[some short info about task]*  
 
 ```description```: List *[field for text, pictures and other data]*  
-```labels```: List [Label]
-```start date```: Date  
-```deadline```: Date  
-```assignee```: List [User]
-```comments```: List [String]
-```author```: List [User]  
+```labels```: List [Label] 
 
 ***
 
-## Workspace
+~~## Workspace  
 ```id```: Integer  
 ```name```: String  
 ```members```: List [User]  
 ```tasks```: List [Task]  
-```views```: List [View]
+```views```: List [View]~~
   
-
-
 ***
 
 ### Label
+```workspace```: String [Discussion: using labels as basis] 
 ```status```: Status [Discussion: states from user]  
 ```priority```: Priority  
+```timesteps```: List[Task]  
+```deadline```: Date  
+```assignee```: List [User]  
+```comments```: List [String]  
+```author```: List [User]  
 
 ***
 
@@ -72,9 +71,3 @@
 * Calendar
 * Timeline
 ```
-
-
-
-
-
-
