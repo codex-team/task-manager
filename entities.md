@@ -1,71 +1,72 @@
 # Entity Types
 
-## User
-```id```: Integer  
-```name```: String  
-```email```: String [Discussion: other services for authorization]  
-```password```: String   
-  
-```links_to_other_accounts```: List *[for next integration]*
+## Workspace
+`WorkspaceSettings`: Workspace Settings  
+`Projects`: List[Project]
+    
+*Create(Project)*  
+*Delete(Project)*
 
-***
+## Workspace Settings 
+`WorkspaceName`: String  
+`Team`: List[Teammate]
+
+*Add a teammate(Teammate)*  
+*Delete a teammate(Teammate)*
+
+## Teammate
+`Name`: String  
+`Photo`: Link  
+`Telegram`: Link  
+`Slack`: Link  
+`Email`: String  
+
+## Project
+`ProjectSettings`: Project Settings  
+`Representation`: Representation  
+`Backlog`: List[Task]
+
+## Representation
+*ListView(Backlog)*  
+*ListSort(Backlog, condition)* 
+
+*BoardView(Backlog)*  
+*BoardSort(Backlog,condition)*  
+*BoardChangeStatus(Task)*
+
+## Project Settings
+`ProjectName`: String  
+`Chat`: Link  
+
+*SetReport()*
 
 ## Task
-```id```: Integer  
-```thesis```: String *[some short info about task]*  
-
-```description```: List *[field for text, pictures and other data]*  
-```labels```: List [Label] 
-
-***
-
-~~## Workspace  
-```id```: Integer  
-```name```: String  
-```members```: List [User]  
-```tasks```: List [Task]  
-```views```: List [View]~~
+`CreateDate`: Date  
+`Text`: JSON  
+`Subtasks`: list[Task]
+`Status`: Status  
+`Assignee`: WorkspaceSettings:Team  
   
-***
+*AddAssignee(WorkspaceSettings:Team): Notification:AssigneeAdded()*  
+*ChangeStatus(Status)*
 
-### Label
-```workspace```: String [Discussion: using labels as basis]  
-```status```: Status [Discussion: states from user]  
-```priority```: Priority  
-```timesteps```: List[Task]  
-```deadline```: Date  
-```assignee```: List [User]  
-```author```: List [User]  
-```comments```: List [String]  
+## Status
+*Unsorted*  
+*ToDo*  
+*InProgress*  
+*OnReview*  
+*Done*  
+*ClodedWithoutChanges*  
+*CustomStatus*  
 
-***
+## Report
+*sendToDoTasks()*  
+*sendOnReviewTasks()*
 
-### Status
-```
-* None - default
-* TODO 
-* In progress
-* Overdue  
-* On review  
-* Finished
-```
-
-***
-
-### Proirity
-```
-* None - default
-* High
-* Medium
-* Low
-```
-
-***
-
-### View
-```
-* Backlog - default
-* Canban Board  
-* Calendar
-* Timeline
-```
+## Notification
+`CodeXBot`: Link  
+  
+*TaskCreated()*  
+*AssigneeAdded()*  
+*TaskClosed()*  
+*TaskStatusChanged()*
