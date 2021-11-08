@@ -45,6 +45,46 @@ We will use MongoDB. WHY?
 + Our database will have little load. MongoDB will be enough for our tasks
 + MongoDB is the best choice for MVP, but later we can change DB for more optimal if necessary
 
+## Database architecture
+
+![](images/db_architecture.jpg)
+
+All entities contain the id and name fields. Some of them may contain description 
+
+### Project
+
+Project may contain tasks. Any project can have from 0 to infinity tasks.
+
++ tasks - array of task_id from Task
+
+### Task 
+
+Task contains executors, status and may contains subtasks
+
++ executors - array of user_id from User. There are as many as we want executors for the Task (?)
+
++ status - status_id from Status. Status can be "ToDo", "InProgress", "Done"
+
++ subTasks - array of subtask_id from Subtask. Any Task can have from 0 to infinity subtasks
+
+### Subtask
+
+The same structure as the Task, but doesn't contain field subtasks and instead of field executors 
+Subtask contains field executor which isn't an array.
+
++ executor - user_id from User. There is only one executor for the subtask (?)
+
+### User
+
+User contains role
+
++ role - role_id from Role. User can be developer, project manager etc.
+
+### Role and Status
+
+These entities are something like Enumeration. 
+For example, Status contains only 3, at first, values: ToDo, InProgress, Done.
+
 
 ## Only web panel user need?
 
