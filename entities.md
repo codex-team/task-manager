@@ -11,8 +11,8 @@
 `WorkspaceName`: String  
 `Team`: List[Teammate]
 
-*Add a teammate(Teammate)*  
-*Delete a teammate(Teammate)*
+*AddTeammate(Teammate)*  
+*DeleteTeammate(Teammate)*
 
 ## Teammate
 `Name`: String  
@@ -23,40 +23,36 @@
 
 ## Project
 `ProjectSettings`: Project Settings  
-`Representation`: Representation  
-`Backlog`: List[Task]
+`Backlog`: List[Task]  
+`CreateDate`: Date
 
-## Representation
-*ListView(Backlog)*  
-*ListSort(Backlog, condition)* 
-
-*BoardView(Backlog)*  
-*BoardSort(Backlog,condition)*  
-*BoardChangeStatus(Task)*
+*Create()*  
+*Delete()*
 
 ## Project Settings
 `ProjectName`: String  
 `Chat`: Link  
 
-*SetReport()*
+*SetReport()*  
 
 ## Task
 `CreateDate`: Date  
 `Text`: JSON  
-`Subtasks`: list[Task]
 `Status`: Status  
-`Assignee`: WorkspaceSettings:Team  
+`Assignee`: WorkspaceSettings:Team 
+`Parent_id`: Integer
   
 *AddAssignee(WorkspaceSettings:Team): Notification:AssigneeAdded()*  
-*ChangeStatus(Status)*
+*ChangeStatus(Status)*  
+*SetParentId()*  
 
 ## Status
-*Unsorted*  
-*ToDo*  
-*InProgress*  
-*OnReview*  
-*Done*  
-*ClodedWithoutChanges*  
+*Unsorted = 0*  
+*ToDo = 1*  
+*InProgress = 2*  
+*OnReview = 3*  
+*Done = 4*  
+*ClodedWithoutChanges = 5*  
 *CustomStatus*  
 
 ## Report
