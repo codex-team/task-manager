@@ -2,17 +2,15 @@ version: '3'
 services:
   app:
     image: node:14
-    command: bash -c "yarn && yarn dev"
+    command: bash -c "yarn && yarn start"
     restart: unless-stopped
     volumes:
     - '.:/usr/src/app'
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
-    links:
-      - mongo
   mongo:
     restart: unless-stopped
-    image: mongo
+    image: mongo:5.0
     ports:
-      - '27017:27017'
+      - '127.0.0.1:27017:27017'

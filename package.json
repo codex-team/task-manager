@@ -1,21 +1,20 @@
 {
   "name": "task-manager",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "ts-node-dev --no-notify index.ts",
-    "start": "node index.ts",
-    "lint": "eslint -c ./.eslintrc.js src/ --ext .ts,.js --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev --no-notify src/index.ts",
+    "start": "node src/index.ts",
+    "lint": "eslint -c ./.eslintrc.js src/ --ext .ts,.js --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/codex-team/task-manager.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "CodeX",
+  "license": "Unlicensed",
   "bugs": {
     "url": "https://github.com/codex-team/task-manager/issues"
   },
@@ -26,11 +25,11 @@
     "eslint-config-codex": "^1.6.4",
     "eslint-plugin-import": "^2.19.1",
     "ts-node": "^8.6.2",
+    "ts-node-dev": "^1.1.8",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3"
   },
   "dependencies": {
-    "express": "^4.16.4",
-    "ts-node-dev": "^1.1.8"
+    "express": "^4.16.4"
   }
 }
