@@ -19,6 +19,10 @@ export interface User extends mongoose.Document{
  */
 export interface Task extends mongoose.Document{
     /**
+     * Task's project id
+     */
+    projectId: mongoose.Schema.Types.ObjectId,
+    /**
      * Task name
      */
     name: String,
@@ -29,15 +33,11 @@ export interface Task extends mongoose.Document{
     /**
      * Task executors, list of users' id
      */
-    executors: Array<mongoose.Schema.Types.ObjectId>,
+    assignees: Array<mongoose.Schema.Types.ObjectId>,
     /**
      * Task status, status's id
      */
     status: mongoose.Schema.Types.ObjectId,
-    /**
-     * Task's subtasks, list of subtasks' id
-     */
-    subTasks: Array<mongoose.Schema.Types.ObjectId>
 }
 
 /**
@@ -55,6 +55,10 @@ export interface Status extends mongoose.Document{
  */
 export interface Subtask extends mongoose.Document{
     /**
+     * Id of task
+     */
+    parentId: mongoose.Schema.Types.ObjectId,
+    /**
      * Subtask name
      */
     name: String,
@@ -65,7 +69,7 @@ export interface Subtask extends mongoose.Document{
     /**
      * Subtask executor, user's id
      */
-    executor: mongoose.Schema.Types.ObjectId,
+    assignee: mongoose.Schema.Types.ObjectId,
     /**
      * Subtask status, status's id
      */
@@ -94,8 +98,4 @@ export interface Project extends mongoose.Document{
      * Project description
      */
     description: String,
-    /**
-     * Project tasks, list of tasks' id
-     */
-    tasks: Array<mongoose.Schema.Types.ObjectId>,
 }
