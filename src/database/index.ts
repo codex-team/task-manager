@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose";
+import {Config} from "../config/config";
 
-mongoose.connect("mongodb://localhost:27017/task-manager", {})
+mongoose.connect(Config.dbUrl, {})
     .then(() => {
         console.log('️[DB]: DB is running');
     })
