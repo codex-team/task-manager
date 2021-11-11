@@ -1,6 +1,5 @@
 module.exports = {
   extends: [
-    'codex',
     'codex/ts',
   ],
   env: {
