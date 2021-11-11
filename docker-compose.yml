@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: node:14
+    image: node:16
     command: bash -c "yarn && yarn start:dev"
     restart: unless-stopped
     volumes:
