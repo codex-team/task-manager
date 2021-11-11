@@ -1,7 +1,10 @@
 module.exports = {
-    extends: ['codex'],
-    env: {
-      'node': true,
-      'jest': true
-    }
-  };
+  extends: [
+    'codex',
+    'codex/ts',
+  ],
+  env: {
+    node: true,
+    jest: true,
+  },
+};
