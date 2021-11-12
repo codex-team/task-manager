@@ -9,8 +9,7 @@ const PORT = 3000;
 const server = fastify();
 
 server.get('/', (_request, reply) => {
-
-    reply.send('Hello, World!');
+  reply.send('Hello, World!');
 });
 
 server.listen(PORT, HOST, (err, address) => {
