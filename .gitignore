@@ -1,4 +1,12 @@
-.idea
+<<<<<<< HEAD
 .DS_Store
-node_modules/
+node_modules
+dist
+.idea
 .env
+=======
+.DS_Store
+node_modules
+dist
+.idea
+>>>>>>> main
