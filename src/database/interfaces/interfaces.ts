@@ -7,7 +7,7 @@ export interface User extends mongoose.Document{
     /**
      * User name
      */
-    name: String,
+    name: string,
     /**
      * User role, role's id
      */
@@ -25,11 +25,11 @@ export interface Task extends mongoose.Document{
     /**
      * Task name
      */
-    name: String,
+    name: string,
     /**
      * Task description
      */
-    description: String,
+    description: string,
     /**
      * Task executors, list of users' id
      */
@@ -47,7 +47,7 @@ export interface Status extends mongoose.Document{
     /**
      * Status name
      */
-    name: String,
+    name: string,
 }
 
 /**
@@ -61,11 +61,11 @@ export interface Subtask extends mongoose.Document{
     /**
      * Subtask name
      */
-    name: String,
+    name: string,
     /**
      * Subtask description
      */
-    description: String,
+    description: string,
     /**
      * Subtask executor, user's id
      */
@@ -83,7 +83,7 @@ export interface Role extends mongoose.Document{
     /**
      * Role name
      */
-    name: String,
+    name: string,
 }
 
 /**
@@ -93,9 +93,9 @@ export interface Project extends mongoose.Document{
     /**
      * Project name
      */
-    name: String,
+    name: string,
     /**
      * Project description
      */
-    description: String,
+    description: string,
 }
