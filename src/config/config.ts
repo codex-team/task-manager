@@ -1,4 +1,6 @@
-import * as dotenv from "dotenv"
+import dotenv from "dotenv"
+import path from 'path';
+dotenv.config({ path: path.join(__dirname, '/../../.env') });
 
 dotenv.config()
 
@@ -6,5 +8,5 @@ export class Config {
     /**
      * Database URL
      */
-    public static dbUrl: string = process.env.DB_URL || 'mongodb://localhost:27017/task-manager';
+    public static dbUrl: string = process.env.DB_URL || 'mongodb://mongo:27017/task-manager';
 }
