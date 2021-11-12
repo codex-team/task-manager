@@ -2,11 +2,11 @@ import fastify from 'fastify'
 
 const server = fastify()
 
-server.get('/', async (request, reply) => {
-  return 'Hello, world!\n'
-})
+server.get('/', (_request, reply) => {
+  reply.send("Hello, World!");
+});
 
-server.listen(3000, (err, address) => {
+server.listen(3000, '0.0.0.0', (err, address) => {
   if (err) {
     console.error(err)
     process.exit(1)
