@@ -7,6 +7,7 @@ services:
     restart: unless-stopped
     volumes:
       - '.:/usr/src/app'
+      - 'node-deps:/usr/src/app/node_modules'
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
@@ -17,3 +18,6 @@ services:
     image: mongo:5.0
     ports:
       - '127.0.0.1:27017:27017'
+
+volumes:
+  node-deps:

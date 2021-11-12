@@ -24,3 +24,13 @@ Container with the app will install or update dependencies
 if it is required and run the `start:dev` script.
 
 App will be restarted automatically on any code changes.
+
+### Remove node deps for containers
+
+If you need to remove `node-deps` volume with `node_modules` directory
+for the app container then put down containers and remove that volume.
+
+```
+docker-compose down
+docker volume rm task-manager_node-deps
+```
