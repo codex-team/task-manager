@@ -1,5 +1,5 @@
 import mongoose from '../index';
-import { IProjectDocument, IProjectModel } from '../interfaces/project';
+import {IProjectDocument, IProjectModel} from "../interfaces/project";
 
 /**
  * Project schema
@@ -20,5 +20,45 @@ const ProjectSchema: mongoose.Schema<IProjectDocument> = new mongoose.Schema ({
   },
 });
 
+/**
+ * Find project document by name
+ *
+ * @param {string} name - project name for searching
+ * @returns {Promise<IProjectDocument>}
+ */
+ProjectSchema.statics.findByName = async function (name){
+  return await this.findOne({name: name}).exec()
+}
+
+/**
+ * Get project id
+ *
+ * @returns {mongoose.Types.ObjectId}
+ */
+ProjectSchema.methods.getId = function (){
+  return this._id
+}
+
+/**
+ * Update project name
+ *
+ * @param {string} name - name for update
+ * @returns {Promise<void>}
+ */
+ProjectSchema.methods.updateName = async function (name){
+  this.name = name
+  return await this.save()
+}
+
+/**
+ * Update project description
+ *
+ * @param {string} description - description for update
+ * @returns {Promise<void>}
+ */
+ProjectSchema.methods.updateDescription = async function (description){
+  this.description = description
+  return await this.save()
+}
 
 export default mongoose.model<IProjectDocument, IProjectModel>('Project', ProjectSchema);
