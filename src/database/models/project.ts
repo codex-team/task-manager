@@ -1,5 +1,5 @@
 import mongoose from '../index';
-import {IProjectDocument, IProjectModel} from "../interfaces/project";
+import { IProjectDocument, IProjectModel } from '../interfaces/project';
 
 /**
  * Project schema
@@ -19,7 +19,6 @@ const ProjectSchema: mongoose.Schema<IProjectDocument> = new mongoose.Schema ({
     type: mongoose.Schema.Types.String,
   },
 });
-
 
 
 export default mongoose.model<IProjectDocument, IProjectModel>('Project', ProjectSchema);

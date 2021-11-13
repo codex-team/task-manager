@@ -1,4 +1,4 @@
-import mongoose from "../index";
+import mongoose from '../index';
 
 /**
  * Interface for status

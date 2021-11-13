@@ -1,4 +1,4 @@
-import mongoose from "../index";
+import mongoose from '../index';
 
 /**
  * Interface for project
@@ -7,11 +7,11 @@ interface IProject{
   /**
    * Project name
    */
-  name: String,
+  name: string,
   /**
    * Project description
    */
-  description: String,
+  description: string,
 }
 
 /**
