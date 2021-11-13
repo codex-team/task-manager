@@ -1,16 +1,16 @@
 import mongoose from '../index';
-import { Role } from '../interfaces/interfaces';
+import { IRoleDocument, IRoleModel } from '../interfaces/role';
 
 /**
  * Role schema
  */
-const RoleSchema: mongoose.Schema = new mongoose.Schema ({
+const RoleSchema: mongoose.Schema<IRoleDocument> = new mongoose.Schema ({
   /**
    * Role name
    */
   name:{
-    type: String,
+    type: mongoose.Schema.Types.String,
   },
 });
 
-export default mongoose.model<Role>('Role', RoleSchema);
+export default mongoose.model<IRoleDocument, IRoleModel>('Role', RoleSchema);

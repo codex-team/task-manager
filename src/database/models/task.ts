@@ -1,10 +1,10 @@
 import mongoose from '../index';
-import { Task } from '../interfaces/interfaces';
+import { ITaskDocument, ITaskModel } from '../interfaces/task';
 
 /**
  * Task schema
  */
-const TaskSchema: mongoose.Schema = new mongoose.Schema ({
+const TaskSchema: mongoose.Schema<ITaskDocument> = new mongoose.Schema ({
   /**
    * Task's project id
    */
@@ -16,7 +16,7 @@ const TaskSchema: mongoose.Schema = new mongoose.Schema ({
    * Task name
    */
   name: {
-    type: String,
+    type: mongoose.Schema.Types.String,
     required: true,
   },
   /**
@@ -41,4 +41,4 @@ const TaskSchema: mongoose.Schema = new mongoose.Schema ({
   },
 });
 
-export default mongoose.model<Task>('Task', TaskSchema);
+export default mongoose.model<ITaskDocument, ITaskModel>('Task', TaskSchema);

@@ -1,16 +1,16 @@
 import mongoose from '../index';
-import { Status } from '../interfaces/interfaces';
+import { IStatusDocument, IStatusModel } from '../interfaces/status';
 
 /**
  * Status schema
  */
-const StatusSchema: mongoose.Schema = new mongoose.Schema ({
+const StatusSchema: mongoose.Schema<IStatusDocument> = new mongoose.Schema ({
   /**
    * Status name
    */
   name: {
-    type: String,
+    type: mongoose.Schema.Types.String,
   },
 });
 
-export default mongoose.model<Status>('Status', StatusSchema);
+export default mongoose.model<IStatusDocument, IStatusModel>('Status', StatusSchema);

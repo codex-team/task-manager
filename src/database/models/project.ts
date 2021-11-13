@@ -1,23 +1,25 @@
 import mongoose from '../index';
-import { Project } from '../interfaces/interfaces';
+import {IProjectDocument, IProjectModel} from "../interfaces/project";
 
 /**
  * Project schema
  */
-const ProjectSchema: mongoose.Schema = new mongoose.Schema ({
+const ProjectSchema: mongoose.Schema<IProjectDocument> = new mongoose.Schema ({
   /**
    * Project name
    */
   name:{
-    type: String,
+    type: mongoose.Schema.Types.String,
     required: true,
   },
   /**
    * Project description
    */
   description: {
-    type: String,
+    type: mongoose.Schema.Types.String,
   },
 });
 
-export default mongoose.model<Project>('Project', ProjectSchema);
+
+
+export default mongoose.model<IProjectDocument, IProjectModel>('Project', ProjectSchema);

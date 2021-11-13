@@ -1,15 +1,15 @@
 import mongoose from '../index';
-import { User } from '../interfaces/interfaces';
+import { IUserDocument, IUserModel } from '../interfaces/user';
 
 /**
  * User schema
  */
-const UserSchema: mongoose.Schema = new mongoose.Schema ({
+const UserSchema: mongoose.Schema<IUserDocument> = new mongoose.Schema ({
   /**
    * User name
    */
   name: {
-    type: String,
+    type: mongoose.Schema.Types.String,
     required: true,
   },
   /**
@@ -21,6 +21,6 @@ const UserSchema: mongoose.Schema = new mongoose.Schema ({
   },
 });
 
-export default mongoose.model<User>('User', UserSchema);
+export default mongoose.model<IUserDocument, IUserModel>('User', UserSchema);
 
 

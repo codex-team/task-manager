@@ -1,10 +1,10 @@
 import mongoose from '../index';
-import { Subtask } from '../interfaces/interfaces';
+import { ISubtaskDocument, ISubtaskModel } from '../interfaces/subtask';
 
 /**
  * Subtask schema
  */
-const SubtaskSchema: mongoose.Schema = new mongoose.Schema ({
+const SubtaskSchema: mongoose.Schema<ISubtaskDocument> = new mongoose.Schema ({
   /**
    *  Task id
    */
@@ -16,14 +16,14 @@ const SubtaskSchema: mongoose.Schema = new mongoose.Schema ({
    * Subtask name
    */
   name: {
-    type: String,
+    type: mongoose.Schema.Types.String,
     required: true,
   },
   /**
    * Subtask description
    */
   description: {
-    type: String,
+    type: mongoose.Schema.Types.String,
   },
   /**
    * Subtask executor, user's id
@@ -41,4 +41,4 @@ const SubtaskSchema: mongoose.Schema = new mongoose.Schema ({
   },
 });
 
-export default mongoose.model<Subtask>('Subtask', SubtaskSchema);
+export default mongoose.model<ISubtaskDocument, ISubtaskModel>('Subtask', SubtaskSchema);
