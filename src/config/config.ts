@@ -2,13 +2,10 @@ import dotenv from 'dotenv';
 import path from 'path';
 dotenv.config({ path: path.join(__dirname, '/../../.env') });
 
-dotenv.config/**
-ddddddddddddd *
-ddddddddddddd */
-();
+dotenv.config();
 
 /**
- *
+ * Config class
  */
 export class Config {
     /**
