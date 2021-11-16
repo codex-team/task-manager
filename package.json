@@ -28,7 +28,9 @@
     "ts-node": "^8.6.2",
     "ts-node-dev": "^1.1.8",
     "tslint": "^5.12.1",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.3",
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.0.13"
   },
   "dependencies": {
     "fastify": "^3.23.1"

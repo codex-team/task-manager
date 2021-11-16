@@ -4,7 +4,7 @@ import { IUserDocument, IUserModel } from '../interfaces/user';
 /**
  * User schema
  */
-const UserSchema: mongoose.Schema<IUserDocument> = new mongoose.Schema ({
+const UserSchema: mongoose.Schema<IUserDocument> = new mongoose.Schema({
   /**
    * User name
    */

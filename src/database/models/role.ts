@@ -4,11 +4,11 @@ import { IRoleDocument, IRoleModel } from '../interfaces/role';
 /**
  * Role schema
  */
-const RoleSchema: mongoose.Schema<IRoleDocument> = new mongoose.Schema ({
+const RoleSchema: mongoose.Schema<IRoleDocument> = new mongoose.Schema({
   /**
    * Role name
    */
-  name:{
+  name: {
     type: mongoose.Schema.Types.String,
   },
 });

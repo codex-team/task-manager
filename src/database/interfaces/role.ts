@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for role
  */
-interface IRole{
+interface IRole {
   /**
    * Role name
    */
@@ -13,11 +13,11 @@ interface IRole{
 /**
  * Interface for role document
  */
-export interface IRoleDocument extends IRole, mongoose.Document{
+export interface IRoleDocument extends IRole, mongoose.Document {
 }
 
 /**
  * Interface for Role model
  */
-export interface IRoleModel extends mongoose.Model<IRoleDocument>{
+export interface IRoleModel extends mongoose.Model<IRoleDocument> {
 }

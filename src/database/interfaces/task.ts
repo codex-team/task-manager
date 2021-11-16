@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for task
  */
-interface ITask{
+interface ITask {
   /**
    * Task's project id
    */
@@ -29,11 +29,11 @@ interface ITask{
 /**
  * Interface for task document
  */
-export interface ITaskDocument extends ITask, mongoose.Document{
+export interface ITaskDocument extends ITask, mongoose.Document {
 }
 
 /**
  * Interface for task model
  */
-export interface ITaskModel extends mongoose.Model<ITaskDocument>{
+export interface ITaskModel extends mongoose.Model<ITaskDocument> {
 }

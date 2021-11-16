@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for status
  */
-interface IStatus{
+interface IStatus {
   /**
    * Status name
    */
@@ -13,11 +13,11 @@ interface IStatus{
 /**
  * Interface for status document
  */
-export interface IStatusDocument extends IStatus, mongoose.Document{
+export interface IStatusDocument extends IStatus, mongoose.Document {
 }
 
 /**
  * Interface for status model
  */
-export interface IStatusModel extends mongoose.Model<IStatusDocument>{
+export interface IStatusModel extends mongoose.Model<IStatusDocument> {
 }

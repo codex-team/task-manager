@@ -4,7 +4,7 @@ import { ISubtaskDocument, ISubtaskModel } from '../interfaces/subtask';
 /**
  * Subtask schema
  */
-const SubtaskSchema: mongoose.Schema<ISubtaskDocument> = new mongoose.Schema ({
+const SubtaskSchema: mongoose.Schema<ISubtaskDocument> = new mongoose.Schema({
   /**
    *  Task id
    */

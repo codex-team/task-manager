@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for project
  */
-interface IProject{
+interface IProject {
   /**
    * Project name
    */
@@ -17,7 +17,7 @@ interface IProject{
 /**
  * Interface for project document
  */
-export interface IProjectDocument extends IProject, mongoose.Document{
+export interface IProjectDocument extends IProject, mongoose.Document {
   /**
    * Get id of project document
    */
@@ -35,7 +35,7 @@ export interface IProjectDocument extends IProject, mongoose.Document{
 /**
  * Interface for project model
  */
-export interface IProjectModel extends mongoose.Model<IProjectDocument>{
+export interface IProjectModel extends mongoose.Model<IProjectDocument> {
   /**
    * Find project document by name
    */

@@ -4,7 +4,7 @@ import { ITaskDocument, ITaskModel } from '../interfaces/task';
 /**
  * Task schema
  */
-const TaskSchema: mongoose.Schema<ITaskDocument> = new mongoose.Schema ({
+const TaskSchema: mongoose.Schema<ITaskDocument> = new mongoose.Schema({
   /**
    * Task's project id
    */

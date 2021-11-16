@@ -4,7 +4,7 @@ import { IStatusDocument, IStatusModel } from '../interfaces/status';
 /**
  * Status schema
  */
-const StatusSchema: mongoose.Schema<IStatusDocument> = new mongoose.Schema ({
+const StatusSchema: mongoose.Schema<IStatusDocument> = new mongoose.Schema({
   /**
    * Status name
    */

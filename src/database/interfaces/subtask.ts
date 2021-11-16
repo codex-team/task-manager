@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for subtask
  */
-interface ISubtask{
+interface ISubtask {
   /**
    * Id of task
    */
@@ -29,11 +29,11 @@ interface ISubtask{
 /**
  * Interface for subtask document
  */
-export interface ISubtaskDocument extends ISubtask, mongoose.Document{
+export interface ISubtaskDocument extends ISubtask, mongoose.Document {
 }
 
 /**
  * Interface for subtask model
  */
-export interface ISubtaskModel extends mongoose.Model<ISubtaskDocument>{
+export interface ISubtaskModel extends mongoose.Model<ISubtaskDocument> {
 }
