@@ -10,6 +10,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "cross-env": "^7.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -17,10 +18,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cross-env PORT=3030 react-scripts start",
+    "build": "cross-env PORT=3030 react-scripts build",
+    "test": "cross-env PORT=3030 react-scripts test",
+    "eject": "cross-env PORT=3030 react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
