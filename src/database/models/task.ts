@@ -6,10 +6,18 @@ import { TaskDocument, TaskModel } from '../interfaces/task';
  */
 const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
   /**
-   * Task's parent id (Project or Task)
+   * task's project id
+   */
+  projectId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+  },
+  /**
+   * subtask's parent id, task id
    */
   parentId: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "Task"
   },
   /**
    * Task name

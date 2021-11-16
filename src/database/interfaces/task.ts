@@ -5,7 +5,11 @@ import mongoose from '../index';
  */
 interface Task{
   /**
-   * Task's project id
+   * task's project id
+   */
+  projectId: mongoose.Schema.Types.ObjectId,
+  /**
+   * subtask's parent id, task id
    */
   parentId: mongoose.Schema.Types.ObjectId,
   /**
