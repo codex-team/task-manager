@@ -33,6 +33,8 @@
     "mongoose": "^6.0.13"
   },
   "dependencies": {
-    "fastify": "^3.23.1"
+    "dotenv": "^10.0.0",
+    "fastify": "^3.23.1",
+    "mongoose": "^6.0.12"
   }
 }
