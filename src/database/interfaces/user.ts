@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for user
  */
-interface User{
+interface User {
   /**
    * User name
    */
@@ -11,17 +11,24 @@ interface User{
   /**
    * User role, role's id
    */
-  roleId: mongoose.Schema.Types.ObjectId
+  roleId: number,
 }
 
 /**
  * Interface for user document
  */
-export interface UserDocument extends User, mongoose.Document{
+export interface UserDocument extends User, mongoose.Document {
+  setName: (name: string) => Promise<void>
+  getName: () => Promise<string>
+
+  setRoleId: (roleId: number) => Promise<void>
+  getRoleId: () => Promise<number>
+
+  getUserId: () => Promise<mongoose.Types.ObjectId>
 }
 
 /**
  * Interface for user model
  */
-export interface UserModel extends mongoose.Model<UserDocument>{
+export interface UserModel extends mongoose.Model<UserDocument> {
 }
