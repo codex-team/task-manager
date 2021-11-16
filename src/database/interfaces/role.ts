@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for user's role
  */
-interface Role{
+interface Role {
   /**
    * Role name
    */
@@ -13,11 +13,11 @@ interface Role{
 /**
  * Interface for role document
  */
-export interface RoleDocument extends Role, mongoose.Document{
+export interface RoleDocument extends Role, mongoose.Document {
 }
 
 /**
  * Interface for Role model
  */
-export interface RoleModel extends mongoose.Model<RoleDocument>{
+export interface RoleModel extends mongoose.Model<RoleDocument> {
 }

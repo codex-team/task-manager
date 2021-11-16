@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for user
  */
-interface User{
+interface User {
   /**
    * User name
    */
@@ -17,11 +17,11 @@ interface User{
 /**
  * Interface for user document
  */
-export interface UserDocument extends User, mongoose.Document{
+export interface UserDocument extends User, mongoose.Document {
 }
 
 /**
  * Interface for user model
  */
-export interface UserModel extends mongoose.Model<UserDocument>{
+export interface UserModel extends mongoose.Model<UserDocument> {
 }
