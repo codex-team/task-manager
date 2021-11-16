@@ -10,14 +10,14 @@ const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
    */
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Project",
+    ref: 'Project',
   },
   /**
    * subtask's parent id, task id
    */
   parentId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Task"
+    ref: 'Task',
   },
   /**
    * Task title
