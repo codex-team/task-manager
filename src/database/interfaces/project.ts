@@ -5,13 +5,17 @@ import mongoose from '../index';
  */
 interface Project{
   /**
-   * Project name
+   * Project title
    */
-  name: string,
+  title: string,
   /**
    * Project description
    */
   description: string,
+  /**
+   * Project creation date
+   */
+  dateCreated: Date,
 }
 
 /**

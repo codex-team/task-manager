@@ -20,9 +20,9 @@ const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
     ref: "Task"
   },
   /**
-   * Task name
+   * Task title
    */
-  name: {
+  title: {
     type: mongoose.Schema.Types.String,
     required: true,
   },

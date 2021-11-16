@@ -1,7 +1,7 @@
 import mongoose from '../index';
 
 /**
- * Interface for task's status
+ * Interface for task's status. Completion degree of the task.
  */
 interface Status{
   /**

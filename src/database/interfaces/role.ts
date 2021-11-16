@@ -1,7 +1,7 @@
 import mongoose from '../index';
 
 /**
- * Interface for user's role
+ * Interface for user's role. Role is the type of user, and type of view for him.
  */
 interface Role{
   /**

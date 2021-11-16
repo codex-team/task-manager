@@ -13,9 +13,9 @@ interface Task{
    */
   parentId: mongoose.Schema.Types.ObjectId,
   /**
-   * Task name
+   * Task title
    */
-  name: string,
+  title: string,
   /**
    * Task description
    */

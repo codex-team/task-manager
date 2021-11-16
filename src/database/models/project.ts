@@ -6,9 +6,9 @@ import { ProjectDocument, ProjectModel } from '../interfaces/project';
  */
 const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
   /**
-   * Project name
+   * Project title
    */
-  name:{
+  title:{
     type: mongoose.Schema.Types.String,
     required: true,
   },
@@ -18,6 +18,11 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
   description: {
     type: mongoose.Schema.Types.String,
   },
+
+  dateCreated: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 
