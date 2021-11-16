@@ -1,16 +1,15 @@
 import mongoose from '../index';
-import { ITaskDocument, ITaskModel } from '../interfaces/task';
+import { TaskDocument, TaskModel } from '../interfaces/task';
 
 /**
  * Task schema
  */
-const TaskSchema: mongoose.Schema<ITaskDocument> = new mongoose.Schema ({
+const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
   /**
-   * Task's project id
+   * Task's parent id (Project or Task)
    */
-  projectId: {
+  parentId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Project',
   },
   /**
    * Task name
@@ -37,8 +36,8 @@ const TaskSchema: mongoose.Schema<ITaskDocument> = new mongoose.Schema ({
    */
   status: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Task',
+    ref: 'Status',
   },
 });
 
-export default mongoose.model<ITaskDocument, ITaskModel>('Task', TaskSchema);
+export default mongoose.model<TaskDocument, TaskModel>('Task', TaskSchema);

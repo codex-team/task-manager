@@ -1,9 +1,9 @@
 import mongoose from '../index';
 
 /**
- * Interface for status
+ * Interface for task's status
  */
-interface IStatus{
+interface Status{
   /**
    * Status name
    */
@@ -13,11 +13,11 @@ interface IStatus{
 /**
  * Interface for status document
  */
-export interface IStatusDocument extends IStatus, mongoose.Document{
+export interface StatusDocument extends Status, mongoose.Document{
 }
 
 /**
  * Interface for status model
  */
-export interface IStatusModel extends mongoose.Model<IStatusDocument>{
+export interface StatusModel extends mongoose.Model<StatusDocument>{
 }
