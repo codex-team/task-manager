@@ -7,10 +7,22 @@ services:
     restart: unless-stopped
     volumes:
       - '.:/usr/src/app'
-      - 'node-deps:/usr/src/app/node_modules'
+      - 'back-node-deps:/usr/src/app/node_modules'
     working_dir: /usr/src/app
     ports:
-      - '3000:3000'
+      - '127.0.0.1:3000:3000'
+    tty: true
+
+  frontend:
+    image: node:16
+    command: bash -c "yarn && yarn start"
+    restart: unless-stopped
+    volumes:
+      - './frontend:/usr/src/app'
+      - 'front-node-deps:/usr/src/app/node_modules'
+    working_dir: /usr/src/app
+    ports:
+      - '127.0.0.1:3030:3030'
     tty: true
 
   mongo:
@@ -20,4 +32,6 @@ services:
       - '127.0.0.1:27017:27017'
 
 volumes:
-  node-deps:
+  back-node-deps:
+  front-node-deps:
+
