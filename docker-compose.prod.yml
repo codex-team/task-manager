@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    image: codexteamuser/task-manager:prod
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:3000:3000'
+
+  mongo:
+    restart: unless-stopped
+    image: mongo:5.0
+
