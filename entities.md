@@ -1,67 +1,71 @@
 # Entity Types
 
 ## Workspace
-`WorkspaceSettings`: Workspace Settings  
-`Projects`: List[Project]
-    
-*Create(Project)*  
-*Delete(Project)*
 
-## Workspace Settings 
-`WorkspaceName`: String  
-`Team`: List[Teammate]
+`Name`: String  
+`Team`: List[Teammate]  
+`Projects`: List[Project]
 
 *AddTeammate(Teammate)*  
 *DeleteTeammate(Teammate)*
 
 ## Teammate
+
 `Name`: String  
 `Photo`: Link  
-`Telegram`: Link  
-`Slack`: Link  
-`Email`: String  
+`Cotacts:` : [ { type: Contact Type,  
+value: 'username'}]
+
+## Contact Type
+
+*Telegram*  
+*Slack*  
+*GitHub*
 
 ## Project
-`ProjectSettings`: Project Settings  
-`Backlog`: List[Task]  
-`CreateDate`: Date
 
-*Create()*  
-*Delete()*
+`Name`: String  
+`MessengerChannelUrl`: Link  
+`Backlog`: Tasks
+`DateCreated`: Date
 
-## Project Settings
-`ProjectName`: String  
-`Chat`: Link  
 
-*SetReport()*  
+## Tasks
+
+`ProjectId`: Integer  
+`TaskList`: List[Task]  
 
 ## Task
-`CreateDate`: Date  
+
+`DateCreated`: Date  
 `Text`: JSON  
 `Status`: Status  
-`Assignee`: WorkspaceSettings:Team 
-`Parent_id`: Integer
-  
+`Assignee`: WorkspaceSettings:Team  
+`ParentId`: Integer
+
 *AddAssignee(WorkspaceSettings:Team): Notification:AssigneeAdded()*  
 *ChangeStatus(Status)*  
-*SetParentId()*  
+*SetParentId()*
 
 ## Status
+
 *Unsorted = 0*  
 *ToDo = 1*  
 *InProgress = 2*  
 *OnReview = 3*  
 *Done = 4*  
 *ClodedWithoutChanges = 5*  
-*CustomStatus*  
+*CustomStatus*
 
 ## Report
+
 *sendToDoTasks()*  
 *sendOnReviewTasks()*
 
 ## Notification
-`CodeXBot`: Link  
-  
+
+`CodeXBot`: Link
+
 *TaskCreated()*  
 *AssigneeAdded()*  
 *TaskClosed()*  
