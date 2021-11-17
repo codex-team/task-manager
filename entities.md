@@ -4,36 +4,29 @@
 
 `Name`: String  
 `Team`: List[Teammate]  
-`Projects`: List[Project]
+`Projects`: List[ProjectId]  
 
 *AddTeammate(Teammate)*  
-*DeleteTeammate(Teammate)*
+*DeleteTeammate(Teammate)*  
 
 ## Teammate
 
 `Name`: String  
 `Photo`: Link  
-`Cotacts:` : [ { type: Contact Type,  
+`Cotacts` : [ { type: Contact Type,  
 value: 'username'}]
 
 ## Contact Type
 
 *Telegram*  
 *Slack*  
-*GitHub*
+*GitHub*  
 
 ## Project
 
 `Name`: String  
 `MessengerChannelUrl`: Link  
-`Backlog`: Tasks
-`DateCreated`: Date
-
-
-## Tasks
-
-`ProjectId`: Integer  
-`TaskList`: List[Task]  
+`DateCreated`: Date  
 
 ## Task
 
@@ -41,7 +34,8 @@ value: 'username'}]
 `Text`: JSON  
 `Status`: Status  
 `Assignee`: WorkspaceSettings:Team  
-`ParentId`: Integer
+`ParentId`: Integer  
+`ProjectId`: Integer  
 
 *AddAssignee(WorkspaceSettings:Team): Notification:AssigneeAdded()*  
 *ChangeStatus(Status)*  
@@ -55,18 +49,17 @@ value: 'username'}]
 *OnReview = 3*  
 *Done = 4*  
 *ClodedWithoutChanges = 5*  
-*CustomStatus*
 
 ## Report
 
 *sendToDoTasks()*  
-*sendOnReviewTasks()*
+*sendOnReviewTasks()*  
 
 ## Notification
 
-`CodeXBot`: Link
+`CodeXBot`: Link  
 
 *TaskCreated()*  
 *AssigneeAdded()*  
 *TaskClosed()*  
-*TaskStatusChanged()*
+*TaskStatusChanged()*  
