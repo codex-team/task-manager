@@ -2,6 +2,7 @@
 
 ## Workspace
 
+`Id`: Integer  
 `Name`: String  
 `Team`: List[Teammate]  
 `Projects`: List[ProjectId]  
@@ -11,6 +12,7 @@
 
 ## Teammate
 
+`Id`: Integer  
 `Name`: String  
 `Photo`: Link  
 `Cotacts` : [ { type: Contact Type,  
@@ -24,20 +26,23 @@ value: 'username'}]
 
 ## Project
 
+`Id`: Integer  
 `Name`: String  
 `MessengerChannelUrl`: Link  
 `DateCreated`: Date  
+`Picture`: Link  
 
 ## Task
 
+`Id`: Integer  
 `DateCreated`: Date  
 `Text`: JSON  
 `Status`: Status  
-`Assignee`: WorkspaceSettings:Team  
+`Assignee`: Teammate:Id
 `ParentId`: Integer  
 `ProjectId`: Integer  
 
-*AddAssignee(WorkspaceSettings:Team): Notification:AssigneeAdded()*  
+*AddAssignee(Teammate:Id): Notification:AssigneeAdded()*  
 *ChangeStatus(Status)*  
 *SetParentId()*
 
