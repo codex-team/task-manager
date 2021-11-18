@@ -1,9 +1,9 @@
 import mongoose from '../index';
 
 /**
- * Interface for role
+ * Interface for user's role. Role is the type of user, and type of view for him.
  */
-interface IRole{
+interface Role{
   /**
    * Role name
    */
@@ -13,11 +13,11 @@ interface IRole{
 /**
  * Interface for role document
  */
-export interface IRoleDocument extends IRole, mongoose.Document{
+export interface RoleDocument extends Role, mongoose.Document{
 }
 
 /**
  * Interface for Role model
  */
-export interface IRoleModel extends mongoose.Model<IRoleDocument>{
+export interface RoleModel extends mongoose.Model<RoleDocument>{
 }

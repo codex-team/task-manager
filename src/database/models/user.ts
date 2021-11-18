@@ -1,10 +1,10 @@
 import mongoose from '../index';
-import { IUserDocument, IUserModel } from '../interfaces/user';
+import { UserDocument, UserModel } from '../interfaces/user';
 
 /**
  * User schema
  */
-const UserSchema: mongoose.Schema<IUserDocument> = new mongoose.Schema ({
+const UserSchema: mongoose.Schema<UserDocument> = new mongoose.Schema ({
   /**
    * User name
    */
@@ -21,6 +21,6 @@ const UserSchema: mongoose.Schema<IUserDocument> = new mongoose.Schema ({
   },
 });
 
-export default mongoose.model<IUserDocument, IUserModel>('User', UserSchema);
+export default mongoose.model<UserDocument, UserModel>('User', UserSchema);
 
 

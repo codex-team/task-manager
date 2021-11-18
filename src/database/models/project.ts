@@ -1,14 +1,14 @@
 import mongoose from '../index';
-import { IProjectDocument, IProjectModel } from '../interfaces/project';
+import { ProjectDocument, ProjectModel } from '../interfaces/project';
 
 /**
  * Project schema
  */
-const ProjectSchema: mongoose.Schema<IProjectDocument> = new mongoose.Schema ({
+const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
   /**
-   * Project name
+   * Project title
    */
-  name:{
+  title:{
     type: mongoose.Schema.Types.String,
     required: true,
   },
@@ -18,13 +18,18 @@ const ProjectSchema: mongoose.Schema<IProjectDocument> = new mongoose.Schema ({
   description: {
     type: mongoose.Schema.Types.String,
   },
+
+  dateCreated: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 /**
  * Find project document by name
  *
  * @param {string} name - project name for searching
- * @returns {Promise<IProjectDocument>}
+ * @returns {Promise<ProjectDocument>}
  */
 ProjectSchema.statics.findByName = async function (name) {
   return await this.findOne({ name: name }).exec();
@@ -46,7 +51,7 @@ ProjectSchema.methods.getId = function () {
  * @returns {Promise<void>}
  */
 ProjectSchema.methods.updateName = async function (name) {
-  this.name = name;
+  this.title = name;
 
   return await this.save();
 };
@@ -63,4 +68,4 @@ ProjectSchema.methods.updateDescription = async function (description) {
   return await this.save();
 };
 
-export default mongoose.model<IProjectDocument, IProjectModel>('Project', ProjectSchema);
+export default mongoose.model<ProjectDocument, ProjectModel>('Project', ProjectSchema);
