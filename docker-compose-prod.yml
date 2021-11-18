@@ -5,6 +5,7 @@ services:
     # build:
     #   context: .
     #   dockerfile: 'docker/Dockerfile'
+    # image for production
     image: codexteamuser/task-manager:prod
     restart: unless-stopped
     ports:
