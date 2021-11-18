@@ -7,14 +7,12 @@ interface Project{
   /**
    * Project title
    */
-  title: string,
-  /**
-   * Project description
-   */
-  description: string,
+  name: String,
   /**
    * Project creation date
    */
+  messengerChannelUrl: String,
+  picture: String,
   dateCreated: Date,
 }
 

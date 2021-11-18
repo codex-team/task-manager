@@ -7,7 +7,8 @@ interface Status{
   /**
    * Status name
    */
-  name: string,
+  projectId: mongoose.Schema.Types.ObjectId,
+  label: string,
 }
 
 /**

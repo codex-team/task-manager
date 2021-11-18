@@ -1,4 +1,5 @@
 import mongoose from '../index';
+import {Teammate} from "./teammate";
 
 /**
  * Interface for task
@@ -28,6 +29,7 @@ interface Task{
    * Task status, status's id
    */
   status: mongoose.Schema.Types.ObjectId,
+  dateCreated: Date,
 }
 
 /**

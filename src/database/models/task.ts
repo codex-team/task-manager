@@ -37,7 +37,6 @@ const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
    */
   assignees: [ {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
   } ],
   /**
    * Task status, task's id
@@ -46,6 +45,10 @@ const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Status',
   },
+  dateCreated: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 export default mongoose.model<TaskDocument, TaskModel>('Task', TaskSchema);

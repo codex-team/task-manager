@@ -8,17 +8,16 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
   /**
    * Project title
    */
-  title:{
+  name:{
     type: mongoose.Schema.Types.String,
     required: true,
   },
-  /**
-   * Project description
-   */
-  description: {
-    type: mongoose.Schema.Types.String,
+  messengerChannelUrl: {
+    type: mongoose.Schema.Types.String
   },
-
+  picture: {
+    type: mongoose.Schema.Types.String
+  },
   dateCreated: {
     type: Date,
     default: Date.now
