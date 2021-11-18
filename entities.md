@@ -2,7 +2,7 @@
 
 ## Workspace
 
-`Id`: Integer  
+`Id`: String  
 `Name`: String  
 `Team`: List[Teammate]  
 `Projects`: List[ProjectId]  
@@ -12,7 +12,7 @@
 
 ## Teammate
 
-`Id`: Integer  
+`Id`: String  
 `Name`: String  
 `Photo`: Link  
 `Cotacts` : [ { type: Contact Type,  
@@ -26,7 +26,7 @@ value: 'username'}]
 
 ## Project
 
-`Id`: Integer  
+`Id`: String  
 `Name`: String  
 `MessengerChannelUrl`: Link  
 `DateCreated`: Date  
@@ -34,7 +34,7 @@ value: 'username'}]
 
 ## Task
 
-`Id`: Integer  
+`Id`: String  
 `DateCreated`: Date  
 `Text`: JSON  
 `Status`: Status  
