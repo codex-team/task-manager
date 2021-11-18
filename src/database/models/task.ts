@@ -43,8 +43,8 @@ const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
    */
   dateCreated: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 export default mongoose.model<TaskDocument, TaskModel>('Task', TaskSchema);

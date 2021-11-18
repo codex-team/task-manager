@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 /**
  *  interface for teammate
@@ -11,11 +11,11 @@ export interface Teammate {
   /**
    * Teammate name
    */
-  name: String,
+  name: string,
   /**
    * Teammate photo
    */
-  photo?: String,
+  photo?: string,
   /**
    * List of contacts
    */
@@ -29,9 +29,9 @@ interface Contact {
   /**
    * Contact type
    */
-  type: String,
+  type: string,
   /**
    * Contact username
    */
-  userName: String,
+  userName: string,
 }

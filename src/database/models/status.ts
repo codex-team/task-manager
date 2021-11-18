@@ -16,15 +16,15 @@ const StatusSchema: mongoose.Schema<StatusDocument> = new mongoose.Schema ({
    */
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Project'
+    ref: 'Project',
   },
   /**
    * Tasks with this status
    */
-  tasks: [{
+  tasks: [ {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Task"
-  }]
+    ref: 'Task',
+  } ],
 });
 
 export default mongoose.model<StatusDocument, StatusModel>('Status', StatusSchema);

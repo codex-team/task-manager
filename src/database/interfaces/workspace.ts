@@ -1,4 +1,4 @@
-import {Teammate} from "./teammate";
+import { Teammate } from './teammate';
 import mongoose from '../index';
 
 /**
@@ -8,7 +8,7 @@ interface Workspace {
   /**
    * Workspace name
    */
-  name: String,
+  name: string,
   /**
    * List of teammates in workspace
    */

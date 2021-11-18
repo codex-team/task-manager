@@ -1,5 +1,5 @@
-import mongoose from "../index"
-import {WorkspaceDocument, WorkspaceModel} from "../interfaces/workspace";
+import mongoose from '../index';
+import { WorkspaceDocument, WorkspaceModel } from '../interfaces/workspace';
 
 /**
  * Workspace schema
@@ -21,7 +21,7 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
      */
     _id: {
       type: mongoose.Schema.Types.ObjectId,
-      default: new mongoose.Types.ObjectId()
+      default: new mongoose.Types.ObjectId(),
     },
     /**
      * Teammate name
@@ -37,23 +37,23 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
        * Contact type
        */
       type: {
-        type: mongoose.Schema.Types.String
+        type: mongoose.Schema.Types.String,
       },
       /**
        * Contact username
        */
       userName: {
-        type: mongoose.Schema.Types.String
-      }
+        type: mongoose.Schema.Types.String,
+      },
     } ],
   } ],
   /**
    * List of projects in workspace
    */
-  projects: [{
+  projects: [ {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Project'
-  }]
-})
+    ref: 'Project',
+  } ],
+});
 
 export default mongoose.model<WorkspaceDocument, WorkspaceModel>('Workspace', WorkspaceSchema);

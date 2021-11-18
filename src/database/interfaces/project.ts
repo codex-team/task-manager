@@ -7,15 +7,15 @@ interface Project{
   /**
    * Project name
    */
-  name: String,
+  name: string,
   /**
    * Url for notions
    */
-  messengerChannelUrl: String,
+  messengerChannelUrl: string,
   /**
    * Project picture
    */
-  picture: String,
+  picture: string,
   /**
    * Project creation date
    */
