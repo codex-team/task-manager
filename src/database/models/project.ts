@@ -8,7 +8,7 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
   /**
    * Project name
    */
-  name:{
+  name: {
     type: mongoose.Schema.Types.String,
     required: true,
   },
