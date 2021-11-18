@@ -34,5 +34,5 @@ export interface Contact {
   /**
    * Contact value(username or email address)
    */
-  value?: string,
+  value: string,
 }
