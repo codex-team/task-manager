@@ -1,3 +1,6 @@
+/**
+ *  List of contact type constants
+ */
 export enum ContactTypes {
   'Telegram',
 }
