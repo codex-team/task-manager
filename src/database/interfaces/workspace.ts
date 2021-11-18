@@ -1,9 +1,21 @@
 import {Teammate} from "./teammate";
 import mongoose from '../index';
 
+/**
+ * Interface for Workspace
+ */
 interface Workspace {
+  /**
+   * Workspace name
+   */
   name: String,
+  /**
+   * List of teammates in workspace
+   */
   team: Array<Teammate>
+  /**
+   * List of projects in workspace
+   */
   projects: Array<mongoose.Types.ObjectId>
 }
 

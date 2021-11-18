@@ -5,10 +5,17 @@ import mongoose from '../index';
  */
 interface Status{
   /**
-   * Status name
+   * Status's project id
    */
   projectId: mongoose.Schema.Types.ObjectId,
+  /**
+   * Status label
+   */
   label: string,
+  /**
+   * Tasks with this status
+   */
+  tasks: Array<mongoose.Schema.Types.ObjectId>
 }
 
 /**

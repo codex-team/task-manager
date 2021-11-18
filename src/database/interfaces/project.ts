@@ -5,14 +5,20 @@ import mongoose from '../index';
  */
 interface Project{
   /**
-   * Project title
+   * Project name
    */
   name: String,
   /**
-   * Project creation date
+   * Url for notions
    */
   messengerChannelUrl: String,
+  /**
+   * Project picture
+   */
   picture: String,
+  /**
+   * Project creation date
+   */
   dateCreated: Date,
 }
 

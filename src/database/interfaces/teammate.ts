@@ -1,13 +1,37 @@
 import mongoose from "mongoose";
 
+/**
+ *  interface for teammate
+ */
 export interface Teammate {
+  /**
+   * Teammate id
+   */
   _id?: mongoose.Types.ObjectId,
+  /**
+   * Teammate name
+   */
   name: String,
+  /**
+   * Teammate photo
+   */
   photo?: String,
-  contacts?: Array<ContactType>
+  /**
+   * List of contacts
+   */
+  contacts?: Array<Contact>
 }
 
-interface ContactType {
+/**
+ * interface for contact
+ */
+interface Contact {
+  /**
+   * Contact type
+   */
   type: String,
+  /**
+   * Contact username
+   */
   userName: String,
 }

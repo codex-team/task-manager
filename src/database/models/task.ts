@@ -33,18 +33,14 @@ const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
     type: String,
   },
   /**
-   * Task executors, list of users' id
+   * Task assignees, list of teammates' id
    */
   assignees: [ {
     type: mongoose.Schema.Types.ObjectId,
   } ],
   /**
-   * Task status, task's id
+   * Task creation date
    */
-  status: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Status',
-  },
   dateCreated: {
     type: Date,
     default: Date.now
