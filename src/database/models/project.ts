@@ -4,11 +4,11 @@ import { ProjectDocument, ProjectModel } from '../interfaces/project';
 /**
  * Project schema
  */
-const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
+const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
   /**
    * Project title
    */
-  title:{
+  name: {
     type: mongoose.Schema.Types.String,
     required: true,
   },
@@ -53,7 +53,7 @@ ProjectSchema.methods.getId = function () {
 ProjectSchema.methods.updateName = async function (name) {
   this.title = name;
 
-  return await this.save();
+  return this.save();
 };
 
 /**
@@ -65,7 +65,7 @@ ProjectSchema.methods.updateName = async function (name) {
 ProjectSchema.methods.updateDescription = async function (description) {
   this.description = description;
 
-  return await this.save();
+  return this.save();
 };
 
 export default mongoose.model<ProjectDocument, ProjectModel>('Project', ProjectSchema);

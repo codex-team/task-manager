@@ -3,7 +3,7 @@ import mongoose from '../index';
 /**
  * Interface for task
  */
-interface Task{
+interface Task {
   /**
    * task's project id
    */
@@ -33,11 +33,11 @@ interface Task{
 /**
  * Interface for task document
  */
-export interface TaskDocument extends Task, mongoose.Document{
+export interface TaskDocument extends Task, mongoose.Document {
 }
 
 /**
  * Interface for task model
  */
-export interface TaskModel extends mongoose.Model<TaskDocument>{
+export interface TaskModel extends mongoose.Model<TaskDocument> {
 }
