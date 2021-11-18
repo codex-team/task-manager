@@ -31,7 +31,9 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "fastify": "^3.23.1",
-    "fastify-static": "^4.5.0"
+    "fastify-static": "^4.5.0",
+    "mongoose": "^6.0.12"
   }
 }
