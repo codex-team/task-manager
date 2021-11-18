@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 
+export enum contactTypes {
+  'Telegram',
+}
+
 /**
  *  interface for teammate
  */
 export interface Teammate {
-  /**
-   * Teammate id
-   */
-  _id?: mongoose.Types.ObjectId,
   /**
    * Teammate name
    */
@@ -19,19 +19,19 @@ export interface Teammate {
   /**
    * List of contacts
    */
-  contacts?: Array<Contact>
+  contacts: Array<Contact>
 }
 
 /**
  * interface for contact
  */
-interface Contact {
+export interface Contact {
   /**
    * Contact type
    */
-  type: string,
+  type?: contactTypes,
   /**
    * Contact username
    */
-  userName: string,
+  userName?: string,
 }

@@ -1,5 +1,6 @@
 import mongoose from '../index';
 import { WorkspaceDocument, WorkspaceModel } from '../interfaces/workspace';
+import {contactTypes} from "../interfaces/teammate";
 
 /**
  * Workspace schema
@@ -17,13 +18,6 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
    */
   team: [ {
     /**
-     * Teammate id
-     */
-    _id: {
-      type: mongoose.Schema.Types.ObjectId,
-      default: new mongoose.Types.ObjectId(),
-    },
-    /**
      * Teammate name
      */
     name: {
@@ -38,6 +32,7 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
        */
       type: {
         type: mongoose.Schema.Types.String,
+        default: contactTypes.Telegram,
       },
       /**
        * Contact username
