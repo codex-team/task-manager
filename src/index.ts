@@ -1,4 +1,6 @@
 import fastify from 'fastify';
+import fastifyStatic from 'fastify-static';
+import path from 'path';
 
 /**
  * Backend server params
@@ -8,8 +10,13 @@ const PORT = 3000;
 
 const server = fastify();
 
-server.get('/', (_request, reply) => {
-  reply.send('Hello, World!');
+server.register(fastifyStatic, {
+  root: path.join(__dirname, '..', 'frontend', 'build'),
+  prefix: '/',
+});
+
+server.get('/api', (_request, reply) => {
+  reply.send('Hello, BACKEND!');
 });
 
 server.listen(PORT, HOST, (err, address) => {
