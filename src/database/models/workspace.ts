@@ -1,6 +1,6 @@
 import mongoose from '../index';
 import { WorkspaceDocument, WorkspaceModel } from '../interfaces/workspace';
-import {ContactTypes} from "../interfaces/teammate";
+import { ContactTypes } from '../interfaces/teammate';
 
 /**
  * Workspace schema
