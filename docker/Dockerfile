@@ -22,6 +22,7 @@ COPY ./package.json yarn.lock ./
 RUN yarn install --prod
 
 COPY . .
+
 COPY --from=frontend /usr/src/app/build ./frontend/build
 
 EXPOSE 3000
