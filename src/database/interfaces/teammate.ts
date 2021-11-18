@@ -1,6 +1,4 @@
-import mongoose from 'mongoose';
-
-export enum contactTypes {
+export enum ContactTypes {
   'Telegram',
 }
 
@@ -29,7 +27,7 @@ export interface Contact {
   /**
    * Contact type
    */
-  type?: contactTypes,
+  type?: ContactTypes,
   /**
    * Contact username
    */

@@ -1,6 +1,6 @@
 import mongoose from '../index';
 import { WorkspaceDocument, WorkspaceModel } from '../interfaces/workspace';
-import {contactTypes} from "../interfaces/teammate";
+import {ContactTypes} from "../interfaces/teammate";
 
 /**
  * Workspace schema
@@ -32,7 +32,7 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
        */
       type: {
         type: mongoose.Schema.Types.String,
-        default: contactTypes.Telegram,
+        default: ContactTypes.Telegram,
       },
       /**
        * Contact username
