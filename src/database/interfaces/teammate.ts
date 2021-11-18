@@ -30,9 +30,9 @@ export interface Contact {
   /**
    * Contact type
    */
-  type?: ContactTypes,
+  type: ContactTypes,
   /**
-   * Contact username
+   * Contact value(username or email address)
    */
-  userName?: string,
+  value?: string,
 }

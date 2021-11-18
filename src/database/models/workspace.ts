@@ -35,9 +35,9 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
         default: ContactTypes.Telegram,
       },
       /**
-       * Contact username
+       * Contact value(username or email address)
        */
-      userName: {
+      value: {
         type: mongoose.Schema.Types.String,
       },
     } ],
