@@ -39,3 +39,31 @@ docker-compose down
 docker volume rm task-manager_back-node-deps
 docker volume rm task-manager_front-node-deps
 ```
+
+## Run for development
+
+### Frontend
+
+Go to frontend directory:
+
+```
+cd frontend
+```
+
+To start frontend node server with hot module reloading use:
+
+```
+yarn start
+```
+
+To create a `build` directory with a production build of the app use:
+
+```
+yarn build
+```
+
+To start storybook's component explorer on port 6006 use:
+
+```
+yarn storybook
+```

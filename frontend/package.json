@@ -22,8 +22,7 @@
     "build": "cross-env PORT=3030 react-scripts build",
     "test": "cross-env PORT=3030 react-scripts test",
     "eject": "cross-env PORT=3030 react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "start-storybook -p 6006 -s public"
   },
   "eslintConfig": {
     "extends": [
