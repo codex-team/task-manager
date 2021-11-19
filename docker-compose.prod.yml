@@ -2,11 +2,14 @@ version: '3'
 
 services:
   app:
+    ## Get the image from hub.docker.com:
+    image: codexteamuser/task-manager:prod
+
+    ## Or build local image:
     # build:
     #   context: .
     #   dockerfile: 'docker/Dockerfile'
-    # image for production
-    image: codexteamuser/task-manager:prod
+
     restart: unless-stopped
     ports:
       - '127.0.0.1:3000:3000'
