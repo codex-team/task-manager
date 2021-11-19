@@ -6,9 +6,9 @@ services:
     image: codexteamuser/task-manager:prod
 
     ## Or build local image:
-    # build:
-    #   context: .
-    #   dockerfile: 'docker/Dockerfile'
+#    build:
+#      context: .
+#      dockerfile: 'docker/Dockerfile'
 
     restart: unless-stopped
     ports:
