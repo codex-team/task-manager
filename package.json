@@ -31,6 +31,7 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
+    "ctproto": "github:codex-team/ctproto",
     "fastify": "^3.23.1",
     "fastify-static": "^4.5.0"
   }
