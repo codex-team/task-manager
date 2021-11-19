@@ -1,12 +1,13 @@
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
+import { CTProtoServer } from 'ctproto/src/server';
 
 /**
  * Backend server params
  */
-const HOST = '0.0.0.0';
-const PORT = 3000;
+const HOST = 'localhost';
+const PORT = 8080;
 
 const server = fastify();
 
@@ -25,4 +26,24 @@ server.listen(PORT, HOST, (err, address) => {
     process.exit(1);
   }
   console.log(`Server listening at ${address}`);
+});
+
+const transport = new CTProtoServer({
+  port: PORT,
+  path: '/client',
+  async onAuth(authRequestPayload){
+    const user = aurhorizeUser(authRequestPayload);
+
+    if (!user) {
+      throw new Error('Wrong auth payload');
+    }
+
+    return {
+      user
+    };
+  },
+
+  async onMessage(message) {
+    // server to something
+  },
 });
