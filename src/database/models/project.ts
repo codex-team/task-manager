@@ -6,19 +6,27 @@ import { ProjectDocument, ProjectModel } from '../interfaces/project';
  */
 const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
   /**
-   * Project title
+   * Project name
    */
   name: {
     type: mongoose.Schema.Types.String,
     required: true,
   },
   /**
-   * Project description
+   * Url for notions
    */
-  description: {
+  messengerChannelUrl: {
     type: mongoose.Schema.Types.String,
   },
-
+  /**
+   * Project picture
+   */
+  picture: {
+    type: mongoose.Schema.Types.String,
+  },
+  /**
+   * Project creation date
+   */
   dateCreated: {
     type: Date,
     default: Date.now,
@@ -51,19 +59,7 @@ ProjectSchema.methods.getId = function () {
  * @returns {Promise<void>}
  */
 ProjectSchema.methods.updateName = async function (name) {
-  this.title = name;
-
-  return this.save();
-};
-
-/**
- * Update project description
- *
- * @param {string} description - description for update
- * @returns {Promise<void>}
- */
-ProjectSchema.methods.updateDescription = async function (description) {
-  this.description = description;
+  this.name = name;
 
   return this.save();
 };

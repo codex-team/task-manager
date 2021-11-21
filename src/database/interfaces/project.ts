@@ -3,15 +3,19 @@ import mongoose from '../index';
 /**
  * Interface for project
  */
-interface Project {
+interface Project{
   /**
-   * Project title
+   * Project name
    */
-  title: string,
+  name: string,
   /**
-   * Project description
+   * Url for notions
    */
-  description: string,
+  messengerChannelUrl: string,
+  /**
+   * Project picture
+   */
+  picture: string,
   /**
    * Project creation date
    */
@@ -30,10 +34,6 @@ export interface ProjectDocument extends Project, mongoose.Document {
    * Update name of project document
    */
   updateName: (name: string) => Promise<void>
-  /**
-   * Update description of project document
-   */
-  updateDescription: (description: string) => Promise<void>
 }
 
 /**

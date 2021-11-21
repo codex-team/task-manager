@@ -3,11 +3,19 @@ import mongoose from '../index';
 /**
  * Interface for task's status. Completion degree of the task.
  */
-interface Status {
+interface Status{
   /**
-   * Status name
+   * Status's project id
    */
-  name: string,
+  projectId: mongoose.Schema.Types.ObjectId,
+  /**
+   * Status label
+   */
+  label: string,
+  /**
+   * Tasks with this status
+   */
+  tasks: Array<mongoose.Schema.Types.ObjectId>
 }
 
 /**

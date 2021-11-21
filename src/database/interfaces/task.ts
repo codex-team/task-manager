@@ -21,13 +21,13 @@ interface Task {
    */
   description: string,
   /**
-   * Task executors, list of users' id
+   * Task assignees, list of teammates' id
    */
   assignees: Array<mongoose.Schema.Types.ObjectId>,
   /**
-   * Task status, status's id
+   * Task creation date
    */
-  status: mongoose.Schema.Types.ObjectId,
+  dateCreated: Date,
 }
 
 /**
