@@ -13,6 +13,8 @@ services:
     restart: unless-stopped
     ports:
       - '127.0.0.1:3000:3000'
+    volumes:
+      - '.env:/usr/app/.env'
 
   mongo:
     restart: unless-stopped
