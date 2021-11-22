@@ -1,13 +1,18 @@
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
+
 import { CTProtoServer } from 'ctproto/src/server';
+import { ApiRequest, ApiResponse, ApiUpdate } from 'ctproto/example/types';
+import { AuthorizeMessagePayload } from 'ctproto/example/types/requests/authorize';
+import { AuthorizeResponsePayload } from 'ctproto/example/types/responses/authorize';
+import { authTokenMock } from "ctproto/example/mocks/authorizeRequestPayload";
 
 /**
  * Backend server params
  */
 const HOST = 'localhost';
-const PORT = 8080;
+const PORT = 3000;
 
 const server = fastify();
 
@@ -28,22 +33,23 @@ server.listen(PORT, HOST, (err, address) => {
   console.log(`Server listening at ${address}`);
 });
 
-const transport = new CTProtoServer({
-  port: PORT,
-  path: '/client',
-  async onAuth(authRequestPayload){
-    const user = aurhorizeUser(authRequestPayload);
-
-    if (!user) {
-      throw new Error('Wrong auth payload');
+/**
+ * Codex tcp protocol
+ */
+const transport = new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
+  host: HOST,
+  port: 8080,
+  async onAuth(authRequestPayload: AuthorizeMessagePayload) : Promise<AuthorizeResponsePayload> {
+    if (authRequestPayload.token == authTokenMock) {
+      return {
+        userId: '123',
+      };
     }
 
-    return {
-      user
-    };
+    throw new Error('Example of unsuccessful auth');
   },
 
-  async onMessage(message) {
-    // server to something
+  async onMessage(message) : Promise<void | ApiResponse['payload']> {
+    console.log(message.payload);
   },
 });
