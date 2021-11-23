@@ -6,7 +6,7 @@ import { CTProtoServer } from 'ctproto/src/server';
 import { ApiRequest, ApiResponse, ApiUpdate } from 'ctproto/example/types';
 import { AuthorizeMessagePayload } from 'ctproto/example/types/requests/authorize';
 import { AuthorizeResponsePayload } from 'ctproto/example/types/responses/authorize';
-import { authTokenMock } from "ctproto/example/mocks/authorizeRequestPayload";
+import { authTokenMock } from 'ctproto/example/mocks/authorizeRequestPayload';
 
 /**
  * Backend server params
@@ -36,6 +36,7 @@ server.listen(PORT, HOST, (err, address) => {
 /**
  * Codex tcp protocol
  */
+// eslint-disable-next-line
 const transport = new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
   host: HOST,
   port: 8080,
