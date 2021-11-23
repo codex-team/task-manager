@@ -17,6 +17,9 @@
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
+  "resolutions": {
+    "babel-loader": "8.1.0"
+  },
   "scripts": {
     "start": "cross-env PORT=3030 react-scripts start",
     "build": "cross-env PORT=3030 react-scripts build",
