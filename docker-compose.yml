@@ -13,6 +13,9 @@ services:
       - '127.0.0.1:3000:3000'
     tty: true
 
+  cypress:
+    image: cypress/base:16.13.0
+
   frontend:
     image: node:16
     command: bash -c "yarn && yarn start"
