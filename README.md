@@ -40,6 +40,7 @@ docker volume rm task-manager_back-node-deps
 docker volume rm task-manager_front-node-deps
 ```
 
+
 ## Run for development
 
 ### Frontend
@@ -67,3 +68,16 @@ To start storybook's component explorer on port 6006 use:
 ```
 yarn storybook
 ```
+
+## Deployment
+
+To deploy a new version of the Task manager, push changes
+(use a created PR from bot) to `prod` or `stage` branches.
+
+On any update for `prod`/`stage` this [workflow](.github/workflows/build-and-push-docker-image.yml)
+will publish an updated container to [hub.docker.com](https://hub.docker.com/r/codexteamuser/task-manager)
+with a tag `prod`/`stage`.
+
+Server runs [docker-compose for production](./docker-compose.prod.yml)
+and will check for an image updates automatically.
+
