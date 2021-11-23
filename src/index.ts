@@ -11,7 +11,7 @@ import { authTokenMock } from "ctproto/example/mocks/authorizeRequestPayload";
 /**
  * Backend server params
  */
-const HOST = 'localhost';
+const HOST = '0.0.0.0';
 const PORT = 3000;
 
 const server = fastify();
