@@ -4,7 +4,7 @@ import styled from 'styled-components';
 /**
  * Interface for button's props
  */
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+interface Props extends React.HTMLProps<HTMLButtonElement> {
 }
 
 /**
@@ -20,7 +20,6 @@ const ButtonStyles = styled.button``;
 const Button: React.FC<Props> = ({ ...props }) => {
   return (
     <ButtonStyles {...props}>
-      {props.children}
     </ButtonStyles>
   );
 };
