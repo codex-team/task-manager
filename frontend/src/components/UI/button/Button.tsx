@@ -17,7 +17,7 @@ const ButtonStyles = styled.button``;
  *
  * @param props - props of component
  */
-const Button: React.FC<Props> = ({...props }) => {
+const Button: React.FC<Props> = ({ ...props }) => {
   return (
     <ButtonStyles {...props}>
       {props.children}
