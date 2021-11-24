@@ -1,16 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {StyledComponent} from 'styled-components';
 
 /**
  * Interface for button's props
  */
-interface Props extends React.HTMLProps<HTMLButtonElement> {
+interface Props extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, 'ref'> {
 }
 
 /**
  * button style
  */
-const ButtonStyles = styled.button``;
+const ButtonStyled = styled.button``;
 
 /**
  * Button component
@@ -19,8 +19,7 @@ const ButtonStyles = styled.button``;
  */
 const Button: React.FC<Props> = ({ ...props }) => {
   return (
-    <ButtonStyles {...props}>
-    </ButtonStyles>
+    <ButtonStyled {...props}/>
   );
 };
 
