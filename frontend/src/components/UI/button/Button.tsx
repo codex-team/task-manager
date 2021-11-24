@@ -1,24 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface Props {
-  children?: React.ReactNode;
-  props?: any;
-  onClick?: any;
+/**
+ * Interface for button's props
+ */
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>{
 }
 
+/**
+ * button style
+ */
 const ButtonStyles = styled.button``;
 
-const Button: React.FC<Props> = ({
-                                   children,
-                                  onClick,
-                                 ...props
-                                 }) => {
+/**
+ * Button component
+ *
+ * @param props - props of component
+ */
+const Button: React.FC<Props> = ({...props }) => {
   return (
-    <ButtonStyles {...props} onClick={onClick}>
-      {children}
+    <ButtonStyles {...props}>
+      {props.children}
     </ButtonStyles>
   );
-}
+};
 
 export default Button;
