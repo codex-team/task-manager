@@ -1,11 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+/**
+ * Types of button style
+ */
 export enum StyleTypes {
   PRIMARY = 'PRIMARY',
   SECONDARY = 'SECONDARY'
 }
 
+/**
+ * Sizes of button content
+ */
 export enum Sizes {
   LARGE = 'LARGE',
   MEDIUM = 'MEDIUM',
@@ -16,7 +22,14 @@ export enum Sizes {
  * Interface for button's props
  */
 interface Props extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, 'ref'> {
+  /**
+   * Button style type
+   */
   styleType?: StyleTypes;
+
+  /**
+   * Size of button text and paddings
+   */
   size?: Sizes;
 }
 
