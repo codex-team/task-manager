@@ -38,8 +38,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "codex/ts"
+      "react-app/jest"
     ],
     "overrides": [
       {
