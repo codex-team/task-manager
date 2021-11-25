@@ -499,10 +499,10 @@ cross-spawn@^7.0.2:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-ctproto@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/ctproto/-/ctproto-0.0.7.tgz#8b92b06a87ff2e02329c3e99e30fa7d9146e0af0"
-  integrity sha512-sM6t+5EalalxsFcjLf1zUK9ZH46FxWMwQg5zDHx59y/IIZx8Oj8WOkbe8HeT6hLiyMJlCed5avM/sXzMwtAlLw==
+ctproto@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/ctproto/-/ctproto-0.0.5.tgz#ca94311bca44f93858273e17ef229b6e0b6e12eb"
+  integrity sha512-dA+iqu6y2NEfXiR6RHpdVKTnWvQuMh1S/vgO4USf9cDnKLfAtkWR+zdbEaVwOweL9llBHP/yg1+J9a0GaNhA4Q==
   dependencies:
     eslint-config-codex "^1.5.2"
     nanoid "^3.1.20"

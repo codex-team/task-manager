@@ -38,7 +38,6 @@ server.listen(PORT, HOST, (err, address) => {
  */
 // eslint-disable-next-line
 const transport = new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
-  host: HOST,
   port: 8080,
   async onAuth(authRequestPayload: AuthorizeMessagePayload) : Promise<AuthorizeResponsePayload> {
     if (authRequestPayload.token == authTokenMock) {
