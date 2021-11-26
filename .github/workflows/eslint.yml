@@ -31,14 +31,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Check backend
-      - run: |
+        run: |
           cd app/backend
           yarn
           yarn lint:no-fix
           cd ../..
 
       - name: Check frontend
-      - run: |
+        run: |
           cd app/frontend
           yarn
           yarn lint:no-fix

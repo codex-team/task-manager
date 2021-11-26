@@ -9,13 +9,15 @@ jobs:
       - uses: actions/checkout@v2
 
       # Install node deps for backend
-      - run: |
+      - name: Set up backend
+        run: |
           cd app/backend
           yarn
           cd ../..
 
       # Install node deps for frontend
-      - run: |
+      - name: Set up and build frontend
+        run: |
           cd app/frontend
           yarn
           yarn build
