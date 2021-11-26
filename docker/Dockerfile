@@ -18,13 +18,13 @@ FROM node:16-alpine
 
 WORKDIR /usr/src/app
 
-COPY ./package.json yarn.lock ./
-RUN yarn install --prod
+COPY ./backend/package.json ./backend/yarn.lock ./backend/
+RUN cd backend && yarn install --prod
 
 COPY . .
-
 COPY --from=frontend /usr/src/app/build ./frontend/build
 
 EXPOSE 3000
 
+WORKDIR /usr/src/app/backend
 CMD ["yarn", "start"]

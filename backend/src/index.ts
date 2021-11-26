@@ -11,7 +11,7 @@ const PORT = 3000;
 const server = fastify();
 
 server.register(fastifyStatic, {
-  root: path.join(__dirname, '..', 'frontend', 'build'),
+  root: path.join(__dirname, '..', '..', 'frontend', 'build'),
   prefix: '/',
 });
 
