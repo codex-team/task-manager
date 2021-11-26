@@ -4,8 +4,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "start:dev": "ts-node-dev --no-notify src/index.ts",
-    "lint": "eslint -c .eslintrc.js backend/src/ --ext .ts,.js --fix",
-    "lint:no-fix": "eslint -c .eslintrc.js backend/src/ --ext .ts,.js",
+    "lint": "eslint -c .eslintrc.js src/ --ext .ts,.js --fix",
+    "lint:no-fix": "eslint -c .eslintrc.js src/ --ext .ts,.js",
     "test:e2e": "../cypress run",
     "test:e2e:open": "../cypress open"
   },
