@@ -12,6 +12,7 @@ jobs:
         with:
           config: video=false
           browser: chrome
+          build: yarn start
 
 #  firefox:
 #    runs-on: ubuntu-latest
