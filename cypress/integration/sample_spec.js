@@ -1,5 +1,7 @@
 describe('Sample test', function () {
-  it('Create project', function () {
-    expect(true).to.equal(true);
+  it('Request', function () {
+    cy.request('http://localhost:3030/')
+      .its('body')
+      .should('have.length.above', 0);
   });
 });
