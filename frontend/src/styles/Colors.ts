@@ -5,7 +5,7 @@ import { createGlobalStyle } from 'styled-components';
  */
 const ColorVariables = createGlobalStyle`
   :root {
-    --color-white: #FFFFFF;
+    --color-bg-main: #FFFFFF;
   }
 `;
 

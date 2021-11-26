@@ -20,7 +20,6 @@ const ContainerStyled = styled.div<Props>`
   top: 0;
   bottom: 0;
   left: 0;
-  background: var(--color-white);
 `;
 
 /**
