@@ -3,30 +3,34 @@ name: ESlint fix and check code style
 on: [pull_request]
 
 jobs:
-  lint:
-    name: Fix code style
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js 15
-        uses: actions/setup-node@v1
-        with:
-          node-version: 15
-
-      - run: cd backend
-      - run: yarn
-      - run: yarn lint
-
-      - uses: EndBug/add-and-commit@v7
-        with:
-          author_name: github-actions
-          author_email: 41898282+github-actions[bot]@users.noreply.github.com
-          message: 'Fix code style'
+#  lint:
+#    name: Fix code style
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Use Node.js 15
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 15
+#
+#      - run: |
+#           cd app/backend
+#           yarn
+#           yarn lint
+#
+#      - uses: EndBug/add-and-commit@v7
+#        with:
+#          author_name: github-actions
+#          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+#          message: 'Fix code style'
 
   lint-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: yarn
-      - run: yarn lint:no-fix
+
+      - run: |
+          cd app/backend
+          yarn
+          yarn lint:no-fix
