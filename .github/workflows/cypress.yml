@@ -11,13 +11,6 @@ jobs:
       # Install node deps for backend
       - run: yarn
 
-      # Install and build frontend
-      - run: |
-          cd frontend
-          yarn
-          yarn build
-          cd ..
-
       # Start server and run tests
       - uses: cypress-io/github-action@v2
         with:
