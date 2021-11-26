@@ -37,6 +37,7 @@
   },
   "eslintConfig": {
     "extends": [
+      "codex/ts",
       "react-app",
       "react-app/jest"
     ],
