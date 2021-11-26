@@ -48,9 +48,9 @@ const ButtonStyled = styled.button<Props>`
   display: inline-block;
 
   ${(props) => {
-  switch (props.styleType) {
-    case StyleTypes.PRIMARY:
-      return css`
+    switch (props.styleType) {
+      case StyleTypes.PRIMARY:
+        return css`
           background-color: #387CE1;
           color: #E9F2FF;
 
@@ -62,9 +62,9 @@ const ButtonStyled = styled.button<Props>`
             background-color: #1B57B1;
           }
         `;
-    case StyleTypes.SECONDARY:
-    default:
-      return css`
+      case StyleTypes.SECONDARY:
+      default:
+        return css`
           color: #1D2331;
           background-color: #F4F4F4;
 
@@ -76,19 +76,19 @@ const ButtonStyled = styled.button<Props>`
             background-color: #D6D6D6;
           }
         `;
-  }
-}};
+    }
+  }};
 
   ${(props) => {
-  switch (props.size) {
-    case Sizes.LARGE:
-    default:
-      return css`
+    switch (props.size) {
+      case Sizes.LARGE:
+      default:
+        return css`
           font-size: 14px;
           padding: 10px 20px;
         `;
-  }
-}};
+    }
+  }};
 `;
 
 /**
