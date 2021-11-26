@@ -13,7 +13,6 @@ jobs:
         with:
           config: video=false
           browser: firefox
-          build: yarn build
   chrome:
     runs-on: ubuntu-20.04
     steps:
@@ -23,7 +22,6 @@ jobs:
         with:
           config: video=false
           browser: chrome
-          build: yarn build
   edge:
     runs-on: windows-latest
     steps:
@@ -33,4 +31,3 @@ jobs:
         with:
           config: video=false
           browser: edge
-          build: yarn build
