@@ -15,7 +15,7 @@ interface Props{
 const ContentStyled = styled.div<Props>`
   padding: 16px;
   width: 100%;
-  background: #FFFFFF;
+  background: var(--color-white);
 `;
 
 /**
