@@ -1,18 +1,8 @@
-name: Tests
+name: Run cypress tests
+
 on: [pull_request]
+
 jobs:
-  firefox:
-    runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node16.5.0-chrome94-ff93
-      options: --user 1001
-    steps:
-      - uses: actions/checkout@v2
-      - run: yarn
-      - uses: cypress-io/github-action@v2
-        with:
-          config: video=false
-          browser: firefox
   chrome:
     runs-on: ubuntu-20.04
     steps:
@@ -22,12 +12,26 @@ jobs:
         with:
           config: video=false
           browser: chrome
-  edge:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: yarn
-      - uses: cypress-io/github-action@v2
-        with:
-          config: video=false
-          browser: edge
+
+#  firefox:
+#    runs-on: ubuntu-latest
+#    container:
+#      image: cypress/browsers:node16.5.0-chrome94-ff93
+#      options: --user 1001
+#    steps:
+#      - uses: actions/checkout@v2
+#      - run: yarn
+#      - uses: cypress-io/github-action@v2
+#        with:
+#          config: video=false
+#          browser: firefox
+#
+#  edge:
+#    runs-on: windows-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - run: yarn
+#      - uses: cypress-io/github-action@v2
+#        with:
+#          config: video=false
+#          browser: edge
