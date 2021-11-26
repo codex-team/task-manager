@@ -26,6 +26,7 @@ jobs:
         with:
           config: video=false
           browser: chrome
+          working-directory: e2e
           start: sh -c "cd app/backend && yarn start"
           wait-on: "http://localhost:3000/api"
 

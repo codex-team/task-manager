@@ -30,12 +30,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Check backend
       - run: |
           cd app/backend
           yarn
           yarn lint:no-fix
           cd ../..
 
+      - name: Check frontend
       - run: |
           cd app/frontend
           yarn
