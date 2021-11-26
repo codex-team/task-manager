@@ -12,7 +12,8 @@ jobs:
         with:
           config: video=false
           browser: chrome
-          build: yarn start
+          start: yarn start
+          wait-on: "http://localhost:3030"
 
 #  firefox:
 #    runs-on: ubuntu-latest
