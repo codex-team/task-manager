@@ -9,7 +9,8 @@ jobs:
       - uses: actions/checkout@v2
 
       # Install node deps for backend
-      - run: cd backend && yarn
+      - run: cd backend
+      - run: yarn
 
       # Start server and run tests
       - uses: cypress-io/github-action@v2
