@@ -5,10 +5,10 @@ FROM node:16-alpine as frontend
 
 WORKDIR /usr/src/app
 
-COPY ./frontend/package.json ./frontend/yarn.lock ./
+COPY ./app/frontend/package.json ./app/frontend/yarn.lock ./
 RUN yarn install --prod
 
-COPY ./frontend ./
+COPY ./app/frontend ./
 RUN yarn build
 
 #
@@ -18,10 +18,10 @@ FROM node:16-alpine
 
 WORKDIR /usr/src/app
 
-COPY ./backend/package.json ./backend/yarn.lock ./backend/
+COPY ./app/backend/package.json ./app/backend/yarn.lock ./backend/
 RUN cd backend && yarn install --prod
 
-COPY . .
+COPY ./app .
 COPY --from=frontend /usr/src/app/build ./frontend/build
 
 EXPOSE 3000

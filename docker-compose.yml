@@ -11,7 +11,7 @@ services:
         yarn
         yarn start:dev
     volumes:
-      - '.:/usr/src/app'
+      - './app:/usr/src/app'
       - 'back-node-deps:/usr/src/app/node_modules'
     working_dir: /usr/src/app
     ports:
@@ -31,7 +31,7 @@ services:
         yarn storybook &
         yarn start
     volumes:
-      - './frontend:/usr/src/app'
+      - './app/frontend:/usr/src/app'
       - 'front-node-deps:/usr/src/app/node_modules'
     working_dir: /usr/src/app
     ports:
