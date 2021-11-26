@@ -5,7 +5,9 @@
     "build": "cross-env PORT=3030 react-scripts build",
     "test": "cross-env PORT=3030 react-scripts test",
     "eject": "cross-env PORT=3030 react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public"
+    "storybook": "start-storybook -p 6006 -s public",
+    "lint": "eslint -c .eslintrc.js src/ --ext .ts,.tsx --fix",
+    "lint:no-fix": "eslint -c .eslintrc.js src/ --ext .ts,.tsx"
   },
   "dependencies": {
     "@storybook/addon-actions": "^6.3.12",

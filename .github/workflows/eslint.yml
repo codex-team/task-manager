@@ -1,4 +1,4 @@
-name: ESlint fix and check code style
+name: ESlint check code style
 
 on: [pull_request]
 
@@ -34,3 +34,10 @@ jobs:
           cd app/backend
           yarn
           yarn lint:no-fix
+          cd ../..
+
+      - run: |
+          cd app/frontend
+          yarn
+          yarn lint:no-fix
+          cd ../..
