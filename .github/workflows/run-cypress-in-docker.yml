@@ -8,14 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build and run the stack
-        run: docker-compose -f docker-compose.test.yml up -d
+      - name: Build the stack
+        run: docker-compose -f docker-compose.prod.yml build
 
-      - run: |
+      - name: Run the stack
+        run: docker-compose -f docker-compose.prod.yml up -d
+
+      - name: Install and run cypress
+        run: |
           cd e2e
-          npm install
-          npx cypress run
-
-
-#      - name: Run tests
-#        run: docker-compose -f docker-compose.test.yml exec -T -e COMPOSE_INTERACTIVE_NO_CLI=1 cypress npx cypress run
+          yarn
+          yarn cypress
