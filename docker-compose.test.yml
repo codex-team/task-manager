@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: 'docker/Dockerfile'
     restart: unless-stopped
+    ports:
+      - 3000:3000
     volumes:
       - '.env:/usr/app/.env'
 
@@ -13,13 +15,13 @@ services:
     restart: unless-stopped
     image: mongo:5.0
 
-  cypress:
-    build: ./e2e
-    depends_on:
-      - app
-    environment:
-      - CYPRESS_baseUrl=http://app:3000
-    command: npx cypress run
-    volumes:
-      - ./e2e/cypress:/app/cypress
-      - ./e2e/cypress.json:/app/cypress.json
+#  cypress:
+#    build: ./e2e
+#    depends_on:
+#      - app
+#    environment:
+#      - CYPRESS_baseUrl=http://app:3000
+#    command: npx cypress run
+#    volumes:
+#      - ./e2e/cypress:/app/cypress
+#      - ./e2e/cypress.json:/app/cypress.json
