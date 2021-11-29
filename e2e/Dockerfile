@@ -1,4 +1,4 @@
-FROM cypress/base:16
+FROM cypress/base:10
 WORKDIR /app
 
 # dependencies will be installed only if the package files change
