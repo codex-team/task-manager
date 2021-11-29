@@ -8,49 +8,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Install node deps for backend
-      - name: Set up backend
-        run: |
-          cd app/backend
-          yarn
-          cd ../..
+      - name: Build and run the stack
+        run: docker-compose -f docker-compose.test.yml up -d
 
-      # Install node deps for frontend
-      - name: Set up and build frontend
-        run: |
-          cd app/frontend
-          yarn
-          yarn build
-          cd ../..
-
-      # Start server and run tests
-      - uses: cypress-io/github-action@v2
-        with:
-          config: video=false
-          browser: chrome
-          working-directory: e2e
-          start: sh -c "cd app/backend && yarn start"
-          wait-on: "http://localhost:3000/api"
-
-#  firefox:
-#    runs-on: ubuntu-latest
-#    container:
-#      image: cypress/browsers:node16.5.0-chrome94-ff93
-#      options: --user 1001
-#    steps:
-#      - uses: actions/checkout@v2
-#      - run: yarn
-#      - uses: cypress-io/github-action@v2
-#        with:
-#          config: video=false
-#          browser: firefox
+#      # Install node deps for backend
+#      - name: Set up backend
+#        run: |
+#          cd app/backend
+#          yarn
+#          cd ../..
 #
-#  edge:
-#    runs-on: windows-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#      - run: yarn
-#      - uses: cypress-io/github-action@v2
-#        with:
-#          config: video=false
-#          browser: edge
+#      # Install node deps for frontend
+#      - name: Set up and build frontend
+#        run: |
+#          cd app/frontend
+#          yarn
+#          yarn build
+#          cd ../..
