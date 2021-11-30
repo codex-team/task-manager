@@ -83,8 +83,9 @@ server.post('/api/updateProjectName', (_request, reply) => {
     response => {
       response.name = obj.newName;
       response.save().then(() => {
-          reply.send('Updated project name');
-        })},
+        reply.send('Updated project name');
+      });
+    },
     error => reply.send(error)
   );
 });
