@@ -1,0 +1,21 @@
+name: Run cypress tests
+
+on: [pull_request]
+
+jobs:
+  cypress:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the stack
+        run: docker-compose -f docker-compose.prod.yml build
+
+      - name: Run the stack
+        run: docker-compose -f docker-compose.prod.yml up -d
+
+      - name: Install and run cypress
+        run: |
+          cd e2e
+          yarn
+          yarn cypress

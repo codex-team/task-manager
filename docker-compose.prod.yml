@@ -2,14 +2,10 @@ version: '3'
 
 services:
   app:
-    ## Get the image from hub.docker.com:
     image: codexteamuser/task-manager:prod
-
-    ## Or build local image:
-#    build:
-#      context: .
-#      dockerfile: 'docker/Dockerfile'
-
+    build:
+      context: .
+      dockerfile: 'docker/Dockerfile'
     restart: unless-stopped
     ports:
       - '127.0.0.1:3000:3000'
@@ -19,3 +15,12 @@ services:
   mongo:
     restart: unless-stopped
     image: mongo:5.0
+    volumes:
+      - mongodata:/data/db
+      - mongoconfig:/data/configdb
+
+volumes:
+  back-node-deps:
+  front-node-deps:
+  mongodata:
+  mongoconfig:
