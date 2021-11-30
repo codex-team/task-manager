@@ -1,12 +1,7 @@
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
-
-import { CTProtoServer } from 'ctproto/src/server';
-import { ApiRequest, ApiResponse, ApiUpdate } from 'ctproto/example/types';
-import { AuthorizeMessagePayload } from 'ctproto/example/types/requests/authorize';
-import { AuthorizeResponsePayload } from 'ctproto/example/types/responses/authorize';
-import { authTokenMock } from 'ctproto/example/mocks/authorizeRequestPayload';
+import { createTransportServer } from './ui/ctproto';
 
 /**
  * Backend server params
@@ -21,10 +16,6 @@ server.register(fastifyStatic, {
   prefix: '/',
 });
 
-server.get('/api', (_request, reply) => {
-  reply.send('Hello, BACKEND!');
-});
-
 server.listen(PORT, HOST, (err, address) => {
   if (err) {
     console.error(err);
@@ -34,22 +25,8 @@ server.listen(PORT, HOST, (err, address) => {
 });
 
 /**
- * Codex tcp protocol
+ * Transport for communication with client
  */
-// eslint-disable-next-line
-const transport = new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
-  port: 8080,
-  async onAuth(authRequestPayload: AuthorizeMessagePayload) : Promise<AuthorizeResponsePayload> {
-    if (authRequestPayload.token == authTokenMock) {
-      return {
-        userId: '123',
-      };
-    }
-
-    throw new Error('Example of unsuccessful auth');
-  },
-
-  async onMessage(message) : Promise<void | ApiResponse['payload']> {
-    console.log(message.payload);
-  },
+createTransportServer({
+  authToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 });
