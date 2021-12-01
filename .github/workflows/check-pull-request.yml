@@ -1,10 +1,10 @@
-name: Check code style and run tests
+name: Lint and Test
 
 on: [pull_request]
 
 jobs:
   fix-code-style:
-    name: Fix backend code style
+    name: Fix code style
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -39,6 +39,7 @@ jobs:
           message: 'Fix ${{ matrix.domain }} code style'
 
   check-code-style:
+    name: Check code style
     if: ${{ always() }}
     runs-on: ubuntu-latest
     needs: [ fix-code-style ]
@@ -60,6 +61,7 @@ jobs:
           cd ../..
 
   run-cypress:
+    name: Run cypress tests
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
