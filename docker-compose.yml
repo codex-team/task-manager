@@ -43,6 +43,8 @@ services:
 
   mongo:
     image: mongo:5.0
+    # Disable mongo logs showing by specifying the following command
+    command: mongod --quiet --logpath /dev/null
     ports:
       - '27017:27017'
     volumes:

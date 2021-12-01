@@ -42,7 +42,7 @@ RUN cd types && yarn install --prod
 
 # Copy sources and bundled frontend build
 COPY ./app .
-COPY --from=frontend /usr/src/app/build ./frontend/build
+COPY --from=frontend /usr/src/app/frontend/build ./frontend/build
 
 # Expose app's port
 EXPOSE 3000
