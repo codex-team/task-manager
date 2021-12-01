@@ -4,6 +4,7 @@ import Sidebar from './components/layouts/base/Sidebar';
 import Content from './components/layouts/base/Content';
 import ColorVariables from './styles/Colors';
 import GlobalStyles from './styles/Global';
+
 /**
  * Makes the main page
  *

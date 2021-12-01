@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 /**
- * CSS color variables
+ * CSS styles globally applied
  */
 const GlobalStyles = createGlobalStyle`
   * {

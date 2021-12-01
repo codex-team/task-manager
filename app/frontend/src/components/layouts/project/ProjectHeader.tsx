@@ -30,7 +30,7 @@ const Container = styled.div`
  *
  * @param props - props of the component
  */
-const ProjectHeader: React.FC<Props> = ({ ...props }) => {
+const ProjectHeader: React.FC<Props> = (props) => {
   return (
     <Container>
       <Title>{props.projectTitle}</Title>
