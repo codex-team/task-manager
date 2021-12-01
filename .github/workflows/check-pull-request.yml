@@ -27,7 +27,7 @@ jobs:
 
       - name: Run linter
         run: |
-          cd ${{ matrix.domain }}
+          cd ${{ matrix.path }}
           yarn
           yarn lint
 
