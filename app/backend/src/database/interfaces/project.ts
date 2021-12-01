@@ -34,8 +34,6 @@ export interface ProjectDocument extends Project, mongoose.Document {
    * Update name of project document
    */
   updateName: (name: string) => Promise<void>
-
-  findById: (id : mongoose.Types.ObjectId) => Promise<ProjectDocument>
 }
 
 /**

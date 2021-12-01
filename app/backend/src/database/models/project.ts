@@ -33,9 +33,6 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
   },
 });
 
-ProjectSchema.statics.findById = async function (id) {
-  return await this.findOne({ _id: id }).exec();
-};
 
 /**
  * Get project id
