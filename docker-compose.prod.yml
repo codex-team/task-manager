@@ -9,6 +9,7 @@ services:
     restart: unless-stopped
     ports:
       - '127.0.0.1:3000:3000'
+      - '127.0.0.1:3080:3080'
     volumes:
       - '.env:/usr/app/.env'
 
