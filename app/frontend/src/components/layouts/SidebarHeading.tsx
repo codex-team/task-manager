@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 /**
- * Interface for sidebar component props
+ * Interface for sidebar heading component props
  */
 interface Props{
 }
 
 /**
- * Styled sidebar component
+ * Styled sidebar heading component
  *
  * @param props - props of component
  */
@@ -17,10 +17,11 @@ const SidebarHeadingStyled = styled.div<Props>`
   justify-content: space-between;
   width: 100%;
   padding: 0;
+  height: 40px;
 `;
 
 /**
- * Sidebar component
+ * Sidebar heading component
  *
  * @param props - props of component
  */

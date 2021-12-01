@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 /**
- * Interface for sidebar component props
+ * Interface for sidebar title props
  */
 interface Props{
 }
 
 /**
- * Styled sidebar component
+ * Styled sidebar title component
  *
  * @param props - props of component
  */
@@ -19,12 +19,12 @@ const HeadingStyled = styled.div<Props>`
   font-weight: bold;
   font-size: 20px;
   line-height: 130%;
-  margin-top: 6px;
-  margin-bottom: 0;
+  align-self: center;
+  top: 6px;
 `;
 
 /**
- * Sidebar component
+ * Sidebar title component
  *
  * @param props - props of component
  */
