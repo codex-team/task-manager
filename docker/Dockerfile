@@ -5,10 +5,11 @@ FROM node:16-alpine as frontend
 
 WORKDIR /usr/src/app
 
-COPY ./app/frontend/package.json ./app/frontend/yarn.lock ./
+COPY ./app/frontend/package.json ./app/frontend/yarn.lock ./frontend/
 RUN yarn install --prod
 
-COPY ./app/frontend ./
+COPY ./app/types ./types
+COPY ./app/frontend ./frontend
 RUN yarn build
 
 #
