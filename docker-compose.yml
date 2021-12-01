@@ -3,17 +3,24 @@ version: '3'
 services:
   backend:
     image: node:16-alpine
-    command: sh -c "yarn && yarn start:dev"
+    command:
+      - sh
+      - -c
+      - |
+        cd types
+        yarn
+        cd ../backend
+        yarn
+        yarn start:dev
     volumes:
-      - '.:/usr/src/app'
-      - 'back-node-deps:/usr/src/app/node_modules'
+      - './app:/usr/src/app'
+      - 'back-node-deps:/usr/src/app/backend/node_modules'
+      - 'types-node-deps:/usr/src/app/types/node_modules'
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
+      - '3080:3080'
     tty: true
-
-  cypress:
-    image: cypress/base:16.13.0
 
   frontend:
     image: node:16-alpine
@@ -21,12 +28,14 @@ services:
       - sh
       - -c
       - |
+        cd frontend
         yarn
         yarn storybook &
         yarn start
     volumes:
-      - './frontend:/usr/src/app'
-      - 'front-node-deps:/usr/src/app/node_modules'
+      - './app:/usr/src/app'
+      - 'front-node-deps:/usr/src/app/frontend/node_modules'
+      - 'types-node-deps:/usr/src/app/types/node_modules'
     working_dir: /usr/src/app
     ports:
       - '3030:3030'
@@ -35,9 +44,17 @@ services:
 
   mongo:
     image: mongo:5.0
+    # Disable mongo logs showing by specifying the following command
+    command: mongod --quiet --logpath /dev/null
     ports:
       - '27017:27017'
+    volumes:
+      - mongodata:/data/db
+      - mongoconfig:/data/configdb
 
 volumes:
   back-node-deps:
   front-node-deps:
+  types-node-deps:
+  mongodata:
+  mongoconfig:

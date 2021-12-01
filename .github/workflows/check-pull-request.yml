@@ -1,0 +1,79 @@
+name: Lint and Test
+
+on: [pull_request]
+
+jobs:
+  fix-code-style:
+    name: Fix code style
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        path:
+          - app/backend
+          - app/frontend
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 15
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15
+
+      - name: Pull types
+        run: |
+          cd app/types
+          yarn
+          cd ../..
+
+      - name: Run linter
+        run: |
+          cd ${{ matrix.path }}
+          yarn
+          yarn lint
+
+      - name: Commit updates
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: github-actions
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: 'Fix ${{ matrix.path }} code style'
+
+  check-code-style:
+    name: Check code style
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    needs: [ fix-code-style ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Check backend
+        run: |
+          cd app/backend
+          yarn
+          yarn lint:no-fix
+          cd ../..
+
+      - name: Check frontend
+        run: |
+          cd app/frontend
+          yarn
+          yarn lint:no-fix
+          cd ../..
+
+  run-cypress:
+    name: Run cypress tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the stack
+        run: docker-compose -f docker-compose.prod.yml build
+
+      - name: Run the stack
+        run: docker-compose -f docker-compose.prod.yml up -d
+
+      - name: Install and run cypress
+        run: |
+          cd e2e
+          yarn
+          yarn cypress
