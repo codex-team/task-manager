@@ -9,6 +9,11 @@ export default {
   component: Container,
 } as ComponentMeta<typeof Container>;
 
-const Template: ComponentStory<typeof Container> = (args) => <Container {...args}><ColorVariables/><Sidebar/><Content/></Container>;
+const Template: ComponentStory<typeof Container> = (args) =>
+  <Container {...args}>
+    <ColorVariables/>
+    <Sidebar/>
+    <Content/>
+  </Container>;
 
 export const Base = Template.bind({});
