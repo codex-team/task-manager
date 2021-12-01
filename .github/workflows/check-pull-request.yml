@@ -36,7 +36,7 @@ jobs:
         with:
           author_name: github-actions
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
-          message: "Fix ${{ matrix.domain }} code style"
+          message: 'Fix ${{ matrix.path }} code style'
 
   check-code-style:
     name: Check code style
