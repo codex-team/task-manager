@@ -1,8 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import SidebarHeading from "./SidebarHeading";
-import Button, {Sizes, StyleTypes} from "../UI/button/Button";
-import React from "react";
-import SidebarTitle from "../UI/SidebarTitle/SidebarTitle";
+import SidebarHeading from './SidebarHeading';
+import Button, { Sizes, StyleTypes } from '../UI/button/Button';
+import React from 'react';
+import SidebarTitle from '../UI/SidebarTitle/SidebarTitle';
 
 export default {
   title: 'Example/SidebarHeading',
