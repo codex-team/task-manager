@@ -2,6 +2,7 @@ import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
 import Project from './database/models/project';
+import mongoose from './database';
 
 /**
  * Backend server params
@@ -29,7 +30,9 @@ server.listen(PORT, HOST, (err, address) => {
 });
 
 interface IProject {
+  projectId: mongoose.Types.ObjectId;
   projectName: string;
+  projectNewName: string;
   projectMessenger: string;
   projectPicture: string;
 }
@@ -44,49 +47,36 @@ server.post('/api/createProject', (_request, reply) => {
   });
 
   newProject.save().then(() => {
-    reply.send('project saved');
+    reply.send('project saved ' + newProject._id);
   });
 });
 
 
-server.get<{
-  Querystring: IProject,
-}>('/api/findProjectByName', (_request, reply) => {
-  const { projectName } = _request.query;
-
-  Project.findByName(projectName).then(
-    response => reply.send(response),
-    error => reply.send(error)
-  );
-});
-
-server.get<{
-  Querystring: IProject,
-}>('/api/getProjectId', (_request, reply) => {
-  const { projectName } = _request.query;
-
-  Project.findByName(projectName).then(
-    response => reply.send(response._id),
-    error => reply.send(error)
-  );
-});
-
-interface IName {
-  projectName: string,
-  newName: string,
-}
-
 server.post('/api/updateProjectName', (_request, reply) => {
-  const obj: IName = _request.body as IName;
+  const obj: IProject = _request.body as IProject;
 
-  Project.findByName(obj.projectName).then(
+  Project.findById(obj.projectId).then(
     response => {
-      response.name = obj.newName;
-      response.save().then(() => {
-        reply.send('Updated project name');
-      });
+      if (response == null) {
+        reply.send('Did not find project');
+      } else {
+        response.updateName(obj.projectNewName).then(() => {
+          reply.send('Updated project name');
+        });
+      }
     },
     error => reply.send(error)
   );
 });
 
+
+server.get<{
+  Querystring: IProject,
+}>('/api/findProjectById', (_request, reply) => {
+  const { projectId } = _request.query;
+
+  Project.findById(projectId).then(
+    response => reply.send(response),
+    error => reply.send(error)
+  );
+});

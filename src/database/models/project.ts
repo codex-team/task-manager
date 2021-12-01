@@ -33,14 +33,8 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
   },
 });
 
-/**
- * Find project document by name
- *
- * @param {string} name - project name for searching
- * @returns {Promise<ProjectDocument>}
- */
-ProjectSchema.statics.findByName = async function (name) {
-  return await this.findOne({ name: name }).exec();
+ProjectSchema.statics.findById = async function (id) {
+  return await this.findOne({ _id: id }).exec();
 };
 
 /**

@@ -34,14 +34,12 @@ export interface ProjectDocument extends Project, mongoose.Document {
    * Update name of project document
    */
   updateName: (name: string) => Promise<void>
+
+  findById: (id : mongoose.Types.ObjectId) => Promise<ProjectDocument>
 }
 
 /**
  * Interface for project model
  */
 export interface ProjectModel extends mongoose.Model<ProjectDocument> {
-  /**
-   * Find project document by name
-   */
-  findByName: (name: string) => Promise<ProjectDocument>
 }
