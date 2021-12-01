@@ -1,6 +1,8 @@
-import Authorize from './requests/authorize';
-import AuthorizeResponse from './responses/authorize';
 import TaskCreatedMessage from './outgoing/task-created';
+import Authorize from './requests/authorize';
+import GetProjectsMessage from './requests/get-projects';
+import AuthorizeResponse from './responses/authorize';
+import GetProjectsResponse from "./responses/get-projects";
 
 /**
  * The type described all available outgoing messages that can be sent by API
@@ -13,6 +15,7 @@ export type ApiUpdate =
  */
 export type ApiRequest =
   | Authorize
+  | GetProjectsMessage
 ;
 
 /**
@@ -20,4 +23,5 @@ export type ApiRequest =
  */
 export type ApiResponse =
   | AuthorizeResponse
+  | GetProjectsResponse
 ;

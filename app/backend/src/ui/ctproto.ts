@@ -1,7 +1,7 @@
 import { CTProtoServer } from 'ctproto';
-import { AuthorizeMessagePayload } from '../types/requests/authorize';
-import { AuthorizeResponsePayload } from '../types/responses/authorize';
-import { ApiRequest, ApiResponse, ApiUpdate } from '../types';
+import { AuthorizeMessagePayload } from '../../../types/transport/requests/authorize';
+import { AuthorizeResponsePayload } from '../../../types/transport/responses/authorize';
+import { ApiRequest, ApiResponse, ApiUpdate } from '../../../types/transport';
 
 /**
  * Available options of CTProto transport
@@ -32,8 +32,25 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
       throw new Error('Example of unsuccessful auth');
     },
 
-    async onMessage(message): Promise<void | ApiResponse['payload']> {
-      console.log(message.payload);
+    async onMessage(message: ApiRequest): Promise<ApiResponse['payload'] | void> {
+      if (message.type === 'get-projects') {
+        return {
+          projects: [
+            {
+              id: 'pj1',
+              title: 'Project 1',
+              picture: 'https://example.com/picture.png',
+              dateCreated: '2014-01-01T08:15:39.736Z',
+            },
+            {
+              id: 'pj2',
+              title: 'Project 2',
+              picture: 'https://example.com/picture.png',
+              dateCreated: '2014-01-01T08:15:39.736Z',
+            },
+          ],
+        };
+      }
     },
   });
 }
