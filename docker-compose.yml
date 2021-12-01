@@ -19,6 +19,7 @@ services:
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
+      - '3080:3080'
     tty: true
 
   frontend:
