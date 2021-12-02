@@ -7,15 +7,19 @@ services:
       - sh
       - -c
       - |
-        cd backend
+        cd types
+        yarn
+        cd ../backend
         yarn
         yarn start:dev
     volumes:
       - './app:/usr/src/app'
-      - 'back-node-deps:/usr/src/app/node_modules'
+      - 'back-node-deps:/usr/src/app/backend/node_modules'
+      - 'types-node-deps:/usr/src/app/types/node_modules'
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
+      - '3080:3080'
     tty: true
 
   frontend:
@@ -24,12 +28,14 @@ services:
       - sh
       - -c
       - |
+        cd frontend
         yarn
         yarn storybook &
         yarn start
     volumes:
-      - './app/frontend:/usr/src/app'
-      - 'front-node-deps:/usr/src/app/node_modules'
+      - './app:/usr/src/app'
+      - 'front-node-deps:/usr/src/app/frontend/node_modules'
+      - 'types-node-deps:/usr/src/app/types/node_modules'
     working_dir: /usr/src/app
     ports:
       - '3030:3030'
@@ -38,6 +44,8 @@ services:
 
   mongo:
     image: mongo:5.0
+    # Disable mongo logs showing by specifying the following command
+    command: mongod --quiet --logpath /dev/null
     ports:
       - '27017:27017'
     volumes:
@@ -47,5 +55,6 @@ services:
 volumes:
   back-node-deps:
   front-node-deps:
+  types-node-deps:
   mongodata:
   mongoconfig:
