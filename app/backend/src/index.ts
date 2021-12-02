@@ -1,6 +1,7 @@
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
+import { createTransportServer } from './ui/ctproto';
 
 /**
  * Backend server params
@@ -15,14 +16,17 @@ server.register(fastifyStatic, {
   prefix: '/',
 });
 
-server.get('/api', (_request, reply) => {
-  reply.send('Hello, BACKEND!');
-});
-
 server.listen(PORT, HOST, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
   }
   console.log(`Server listening at ${address}`);
+});
+
+/**
+ * Transport for communication with client
+ */
+createTransportServer({
+  authToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
 });
