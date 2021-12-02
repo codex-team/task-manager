@@ -2,12 +2,15 @@ import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
 import { createTransportServer } from './ui/ctproto';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 
 /**
  * Backend server params
  */
-const HOST = '0.0.0.0';
-const PORT = 3000;
+const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || '3000';
 
 const server = fastify();
 
