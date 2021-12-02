@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../UI/button/Button';
+import Button from 'components/UI/button/Button';
 
 /**
  * Project header props model
