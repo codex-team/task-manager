@@ -5,6 +5,9 @@ import Button from 'components/UI/button/Button';
  * Project header props model
  */
 interface Props {
+  /**
+   * Title of the project to be displayed
+   */
   projectTitle: string
 }
 
