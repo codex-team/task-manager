@@ -14,7 +14,6 @@ interface Props{
  */
 const HeadingStyled = styled.div<Props>`
   font-family: 'SF UI Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  width: auto;
   font-weight: bold;
   font-size: 20px;
   align-self: center;
