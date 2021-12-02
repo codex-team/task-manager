@@ -6,6 +6,7 @@ import { createGlobalStyle } from 'styled-components';
 const ColorVariables = createGlobalStyle`
   :root {
     --color-bg-main: #FFFFFF;
+    --color-text-dark: #1D2331;
   }
 `;
 
