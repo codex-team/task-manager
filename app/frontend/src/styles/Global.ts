@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'SF Pro Display', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
 
   h1 {
