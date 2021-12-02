@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from 'components/UI/button/Button';
+import PageTitle from 'components/layouts/base/PageTitle';
 
 /**
  * Project header props model
@@ -11,14 +12,9 @@ interface Props {
   projectTitle: string
 }
 
-const Title = styled.h1`
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 40px;
-  color: var(--color-text-dark)
-`;
-
+/**
+ * Styled container component
+ */
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -36,7 +32,7 @@ const Container = styled.div`
 const ProjectHeader: React.FC<Props> = (props) => {
   return (
     <Container>
-      <Title>{props.projectTitle}</Title>
+      <PageTitle>{props.projectTitle}</PageTitle>
       <Button>Project settings</Button>
     </Container>
   );
