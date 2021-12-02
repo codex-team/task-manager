@@ -13,14 +13,11 @@ interface Props{
  * @param props - props of component
  */
 const HeadingStyled = styled.div<Props>`
-  font-family: 'SF UI Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;;
+  font-family: 'SF UI Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: auto;
-  font-style: normal;
   font-weight: bold;
   font-size: 20px;
-  line-height: 130%;
   align-self: center;
-  top: 6px;
 `;
 
 /**
