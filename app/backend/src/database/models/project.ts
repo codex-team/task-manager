@@ -28,8 +28,8 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
    * Project creation date
    */
   dateCreated: {
-    type: Date,
-    default: Date.now,
+    type: mongoose.Schema.Types.Date,
+    default: new Date(),
   },
 });
 
