@@ -1,5 +1,5 @@
 import { ResponseMessage } from 'ctproto';
-import { Project } from '../../entities';
+import { Project } from '../../../entities';
 
 
 

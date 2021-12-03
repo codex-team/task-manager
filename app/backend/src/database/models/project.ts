@@ -8,15 +8,9 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
   /**
    * Project name
    */
-  name: {
+  title: {
     type: mongoose.Schema.Types.String,
     required: true,
-  },
-  /**
-   * Url for notions
-   */
-  messengerChannelUrl: {
-    type: mongoose.Schema.Types.String,
   },
   /**
    * Project picture
@@ -31,28 +25,12 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
     type: mongoose.Schema.Types.Date,
     default: new Date(),
   },
+  /**
+   * Url for notions
+   */
+  messengerChannelUrl: {
+    type: mongoose.Schema.Types.String,
+  },
 });
-
-
-/**
- * Get project id
- *
- * @returns {mongoose.Types.ObjectId}
- */
-ProjectSchema.methods.getId = function () {
-  return this._id;
-};
-
-/**
- * Update project name
- *
- * @param {string} name - name for update
- * @returns {Promise<void>}
- */
-ProjectSchema.methods.updateName = async function (name) {
-  this.name = name;
-
-  return this.save();
-};
 
 export default mongoose.model<ProjectDocument, ProjectModel>('Project', ProjectSchema);
