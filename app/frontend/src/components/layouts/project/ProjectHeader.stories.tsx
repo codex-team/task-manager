@@ -1,4 +1,4 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import ProjectHeader from 'components/layouts/project/ProjectHeader';
 
 export default {
