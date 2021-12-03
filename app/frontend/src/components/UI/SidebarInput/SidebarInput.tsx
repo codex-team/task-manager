@@ -2,31 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 
 /**
- * Interface for sidebar heading component props
+ * Interface for sidebar input component props
  */
 interface Props extends Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'ref'>{
 }
 
 /**
- * Styled sidebar heading component
+ * Styled sidebar input component
  *
  * @param props - props of component
  */
 const InputStyled = styled.input<Props>`
   border: none;
-  font-family: 'SF UI Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   outline: none;
-  width: 120px;
-  border-radius: 12px;
+  width: 75%;
   &:focus::placeholder {
-    color: #1D2331;
+    color: var(--color-text-dark);
   }
 
 `;
 
 /**
- * Sidebar heading component
+ * Sidebar input component
  *
  * @param props - props of component
  */

@@ -1,8 +1,8 @@
-import SidebarHeading from '../SidebarHeading';
+import SidebarHeader from 'components/layouts/sidebar/SidebarHeader';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import SidebarTitle from '../../UI/SidebarTitle/SidebarTitle';
-import Button, { Sizes, StyleTypes } from '../../UI/button/Button';
-import Sidebar from './Sidebar';
+import SidebarTitle from 'components/UI/SidebarTitle/SidebarTitle';
+import Button, { Sizes, StyleTypes } from 'components/UI/button/Button';
+import Sidebar from 'components/layouts/base/Sidebar';
 
 export default {
   title: 'Example/Sidebar',
@@ -12,11 +12,11 @@ export default {
 
 const Template: ComponentStory<typeof Sidebar> = (args) =>
   <Sidebar>
-    <SidebarHeading>
+    <SidebarHeader sidebarTitle={"CodeX App"}>
       <SidebarTitle {...args}>
       </SidebarTitle>
       <Button size={Sizes.SMALL} styleType={StyleTypes.SECONDARY}/>
-    </SidebarHeading>
+    </SidebarHeader>
   </Sidebar>;
 
 export const Heading = Template.bind({});
