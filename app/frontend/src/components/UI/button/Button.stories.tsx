@@ -1,6 +1,5 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Button, { Sizes, StyleTypes } from './Button';
+import Button, { Sizes, StyleTypes } from 'components/UI/button/Button';
 
 export default {
   title: 'Example/Button',
