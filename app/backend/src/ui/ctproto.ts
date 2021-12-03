@@ -1,7 +1,7 @@
-import {CTProtoServer} from 'ctproto';
-import {AuthorizeMessagePayload} from '../../../types/transport/requests/authorize';
-import {AuthorizeResponsePayload} from '../../../types/transport/responses/authorize';
-import {ApiRequest, ApiResponse, ApiUpdate} from '../../../types/transport';
+import { CTProtoServer } from 'ctproto';
+import { AuthorizeMessagePayload } from '../../../types/transport/requests/authorize';
+import { AuthorizeResponsePayload } from '../../../types/transport/responses/authorize';
+import { ApiRequest, ApiResponse, ApiUpdate } from '../../../types/transport';
 import Project from '../database/models/project';
 
 /**
@@ -20,7 +20,7 @@ export interface TransportServerOptions {
  * @param options - available parameters
  * @param options.authToken - token we use to authorize clients
  */
-export function createTransportServer({authToken}: TransportServerOptions): CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate> {
+export function createTransportServer({ authToken }: TransportServerOptions): CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate> {
   return new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
     port: 3080,
     async onAuth(authRequestPayload: AuthorizeMessagePayload): Promise<AuthorizeResponsePayload> {
