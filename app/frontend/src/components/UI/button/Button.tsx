@@ -25,7 +25,6 @@ interface Props extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<
  * @param props - props of component
  */
 const ButtonStyled = styled.button<Props>`
-  font-family: 'SF UI Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   padding: 10px 20px;
   font-weight: 500;
