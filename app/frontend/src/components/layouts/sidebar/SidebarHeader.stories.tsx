@@ -12,5 +12,5 @@ const Template: ComponentStory<typeof SidebarHeader> = (args) =>
 
 export const Header = Template.bind({});
 Header.args = {
-  sidebarTitle: "CodeX App"
+  sidebarTitle: 'CodeX App',
 };

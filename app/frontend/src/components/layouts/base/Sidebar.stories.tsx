@@ -12,7 +12,7 @@ export default {
 
 const Template: ComponentStory<typeof Sidebar> = (args) =>
   <Sidebar>
-    <SidebarHeader sidebarTitle={"CodeX App"}>
+    <SidebarHeader sidebarTitle={'CodeX App'}>
       <SidebarTitle {...args}>
       </SidebarTitle>
       <Button size={Sizes.SMALL} styleType={StyleTypes.SECONDARY}/>
