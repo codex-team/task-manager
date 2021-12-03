@@ -21,5 +21,5 @@ const Template: ComponentStory<typeof Sidebar> = (args) =>
 
 export const Heading = Template.bind({});
 Heading.args = {
-  children: 'Codex Tasks',
+  children: 'CodeX Tasks',
 };
