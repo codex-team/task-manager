@@ -15,7 +15,6 @@ interface Props{
 const HeadingStyled = styled.h1<Props>`
   font-size: 20px;
   align-self: center;
-  color: var(--color-text-dark);
 `;
 
 /**

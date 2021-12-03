@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import SidebarHeader from 'components/layouts/sidebar/SidebarHeader';
+import SidebarHeader from 'components/layouts/base/SidebarHeader';
 
 export default {
   title: 'Example/SidebarHeader',
@@ -12,5 +12,5 @@ const Template: ComponentStory<typeof SidebarHeader> = (args) =>
 
 export const Header = Template.bind({});
 Header.args = {
-  sidebarTitle: "CodeX App"
+  sidebarTitle: 'CodeX App',
 };

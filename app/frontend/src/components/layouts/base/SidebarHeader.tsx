@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SidebarTitle from 'components/UI/SidebarTitle/SidebarTitle';
+import SidebarTitle from 'components/layouts/base/SidebarTitle';
 import Button from 'components/UI/button/Button';
 
 /**

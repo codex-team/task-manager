@@ -1,7 +1,7 @@
-import SidebarHeader from 'components/layouts/sidebar/SidebarHeader';
+import SidebarHeader from 'components/layouts/base/SidebarHeader';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import SidebarTitle from 'components/UI/SidebarTitle/SidebarTitle';
-import Button, { Sizes, StyleTypes } from 'components/UI/button/Button';
+import SidebarTitle from 'components/layouts/base/SidebarTitle';
+import Button from 'components/UI/button/Button';
 import Sidebar from 'components/layouts/base/Sidebar';
 
 export default {
@@ -12,10 +12,10 @@ export default {
 
 const Template: ComponentStory<typeof Sidebar> = (args) =>
   <Sidebar>
-    <SidebarHeader sidebarTitle={"CodeX App"}>
+    <SidebarHeader sidebarTitle={'CodeX App'}>
       <SidebarTitle {...args}>
       </SidebarTitle>
-      <Button size={Sizes.SMALL} styleType={StyleTypes.SECONDARY}/>
+      <Button/>
     </SidebarHeader>
   </Sidebar>;
 
