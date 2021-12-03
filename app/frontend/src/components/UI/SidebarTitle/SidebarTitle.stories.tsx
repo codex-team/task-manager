@@ -10,5 +10,5 @@ const Template: ComponentStory<typeof SidebarTitle> = (args) => <SidebarTitle {.
 
 export const WithText = Template.bind({});
 WithText.args = {
-  children: 'Codex Tasks',
+  children: 'CodeX Tasks',
 };
