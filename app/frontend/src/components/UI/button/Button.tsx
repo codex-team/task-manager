@@ -40,7 +40,7 @@ const ButtonStyled = styled.button<Props>`
       case StyleType.Primary:
         return css`
           background-color: #387CE1;
-          color: #E9F2FF;
+          color: var(--color-text-light);
 
           &:hover {
             background-color: #2068D5;
@@ -53,7 +53,7 @@ const ButtonStyled = styled.button<Props>`
       case StyleType.Secondary:
       default:
         return css`
-          color: #1D2331;
+          color: var(--color-text-dark);
           background-color: #F4F4F4;
 
           &:hover {
