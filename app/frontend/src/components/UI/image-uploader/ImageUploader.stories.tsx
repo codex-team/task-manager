@@ -14,14 +14,6 @@ export default {
       control: 'text',
       defaultValue: '',
     },
-    required: {
-      control: 'boolean',
-      defaultValue: false,
-    },
-    disabled: {
-      control: 'boolean',
-      defaultValue: false,
-    },
     onChange: { action: 'change' },
   },
 } as ComponentMeta<typeof ImageUploader>;
