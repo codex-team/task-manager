@@ -1,16 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Button, { Sizes, StyleTypes } from 'components/UI/button/Button';
+import Button, { StyleType } from 'components/UI/button/Button';
 
 export default {
   title: 'Example/Button',
   component: Button,
   argTypes: {
     styleType: {
-      options: StyleTypes,
-      control: 'select',
-    },
-    size: {
-      options: Sizes,
+      options: StyleType,
       control: 'select',
     },
   },
@@ -21,18 +17,10 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   children: 'Primary button',
-  styleType: StyleTypes.PRIMARY,
-  size: Sizes.LARGE,
+  styleType: StyleType.Primary,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   children: 'Secondary button',
-  size: Sizes.LARGE,
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  children: 'Large button',
-  size: Sizes.LARGE,
 };
