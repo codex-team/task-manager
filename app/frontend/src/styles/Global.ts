@@ -15,6 +15,16 @@ const GlobalStyles = createGlobalStyle`
   h1, p {
     margin: 0
   }
+
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
 `;
 
 export default GlobalStyles;

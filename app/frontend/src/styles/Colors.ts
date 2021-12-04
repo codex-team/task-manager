@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
  */
 const ColorVariables = createGlobalStyle`
   :root {
+    --color-white: #FFFFFF;
     --color-gray-1: #F4F4F4;
     --color-gray-2: #EBEBEB;
     --color-gray-3: #DBDBDB;

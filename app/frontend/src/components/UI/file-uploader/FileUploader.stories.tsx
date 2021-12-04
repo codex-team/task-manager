@@ -1,9 +1,10 @@
+import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Input from 'components/UI/input/Input';
+import FileUploader from 'components/UI/file-uploader/FileUploader';
 
 export default {
-  title: 'Form/Input',
-  component: Input,
+  title: 'Form/FileUploader',
+  component: FileUploader,
   argTypes: {
     placeholder: {
       control: 'text',
@@ -11,20 +12,25 @@ export default {
     },
     label: {
       control: 'text',
-      defaultValue: 'Input label',
+      defaultValue: 'File uploader label',
     },
     required: {
       control: 'boolean',
       defaultValue: false,
     },
     disabled: {
-      control: 'disabled',
+      control: 'boolean',
       defaultValue: false,
     },
+    onChange: { action: 'change' },
   },
-} as ComponentMeta<typeof Input>;
+} as ComponentMeta<typeof FileUploader>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof FileUploader> = (args) => {
+  return (
+    <FileUploader {...args} onChange={action('change')}/>
+  );
+};
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -32,7 +38,7 @@ Primary.args = {
 
 export const HasDescription = Template.bind({});
 HasDescription.args = {
-  children: 'Input description', // Named slots ???
+  children: 'File uploader description', // Named slots ???
 };
 
 export const Required = Template.bind({});
