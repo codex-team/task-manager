@@ -1,10 +1,10 @@
 import mongoose from '../index';
-import { ProjectDocument, ProjectModel } from '../interfaces/project';
+import Project from '../../../../types/entities/project';
 
 /**
  * Project schema
  */
-const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
+const ProjectSchema: mongoose.Schema<Project> = new mongoose.Schema({
   /**
    * Project name
    */
@@ -22,8 +22,8 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
    * Project creation date
    */
   dateCreated: {
-    type: mongoose.Schema.Types.Date,
-    default: new Date(),
+    type: mongoose.Schema.Types.String,
+    default: Date(),
   },
   /**
    * Url for notions
@@ -33,4 +33,4 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema({
   },
 });
 
-export default mongoose.model<ProjectDocument, ProjectModel>('Project', ProjectSchema);
+export default mongoose.model<Project>('Project', ProjectSchema);

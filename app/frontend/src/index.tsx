@@ -36,4 +36,10 @@ client
     console.log('Response for "get-projects": ', responsePayload);
   });
 
-
+client
+  .send('create-project', {
+    title: 'titleAgain',
+  })
+  .then((responsePayload) => {
+    console.log('Response for "create-project": ', responsePayload);
+  });

@@ -1,8 +1,6 @@
 import { ResponseMessage } from 'ctproto';
 import { Project } from '../../../entities';
 
-
-
 /**
  * Response for 'get-projects' message
  * Contains list of Projects in a workspace

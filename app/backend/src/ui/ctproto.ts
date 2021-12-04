@@ -46,7 +46,7 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
         };
       }
 
-      if (message.type === 'update-project-name') {
+      if (message.type === 'update-project-title') {
         await Project.findByIdAndUpdate(message.payload.id,
           { title: message.payload.newTitle });
 
