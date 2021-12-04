@@ -11,14 +11,9 @@ const ACCEPT = 'image/png, image/gif, image/jpeg';
  */
 interface Props {
   /**
-   * Image uploader disabled state
+   * FileUploader label
    */
-  disabled: boolean
-
-  /**
-   * Image uploader required state
-   */
-  required: boolean
+  label: string
 
   /**
    * String that defines the file types the file input should accept
@@ -47,22 +42,48 @@ interface Props {
 }
 
 const Container = styled.div`
+
+`;
+
+const Wrapper = styled.div<{ label: string, description: string }>`
   display: flex;
   align-items: center;
   height: 48px;
   width: 309px;
-  cursor: pointer;
   color: var(--color-gray-5);
   font-size: 14px;
   letter-spacing: -0.005em;
-
+  cursor: pointer;
   &:hover {
     color: var(--color-gray-6);
   }
 
+
   & > *:not(:last-child) {
     margin-right: 12px
   }
+
+  ${props => (props.label || props.children) && `
+    margin-top: 12px;
+  `}
+
+`;
+
+/**
+ * FileUploader description component
+ */
+const Description = styled.p`
+  font-size: 14px;
+  color: var(--color-gray-5);
+  margin-top: 4px;
+`;
+
+/**
+ * Label wrapper component.
+ */
+const LabelWrapper = styled.div`
+  font-size: 14px;
+  font-weight: 600;
 `;
 
 /**
@@ -114,16 +135,19 @@ const FileUploader: React.FC<Props> = (props) => {
   };
 
   return (
-    <Container onClick={handleClick}>
-      <input
-        type="file"
-        accept={props.accept || ACCEPT}
-        disabled={props.disabled}
-        hidden ref={hiddenFileInput}
-        onChange={handleChange}
-      />
-      <ImagePreview imageSrc={previewUrl}/>
-      <p>{ prompt }</p>
+    <Container>
+      { props.label && <LabelWrapper><label htmlFor="input">{props.label}</label></LabelWrapper> }
+      { props.children && <Description>{props.children}</Description> }
+      <Wrapper onClick={handleClick} label={ props.label } description={ props.children as string }>
+        <input
+          type="file"
+          accept={props.accept || ACCEPT}
+          hidden ref={hiddenFileInput}
+          onChange={handleChange}
+        />
+        <ImagePreview imageSrc={previewUrl}/>
+        <p>{ prompt }</p>
+      </Wrapper>
     </Container>
   );
 };

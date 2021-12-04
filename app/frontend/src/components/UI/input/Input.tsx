@@ -43,8 +43,10 @@ interface Props {
 
 /**
  * Input wrapper component
+ *
+ * @param props - props of the component
  */
-const InputWrapper = styled.div`
+const InputWrapper = styled.div<{ label: string, description: string }>`
   height: 38px;
   border: 1px solid var(--color-gray-3);
   border-radius: 12px;
@@ -54,6 +56,10 @@ const InputWrapper = styled.div`
   &:focus-within {
     border: 1px solid var(--color-gray-6);
   }
+  
+  ${props => (props.label || props.children) && `
+    margin-top: 12px;
+  `}
 
   input {
     flex: 1;
@@ -94,19 +100,13 @@ const Container = styled.div`
 `;
 
 /**
- * Component to wrap input label and description
- */
-const LabelAndDescriptionContainer = styled.div`
-  margin-bottom: 12px;
-`;
-
-/**
  * Label wrapper component.
  * Allows to render astersisk for required state on the same line as label
  */
 const LabelWrapper = styled.div`
   display: flex;
   font-size: 14px;
+  font-weight: 600;
 `;
 
 /**
@@ -124,7 +124,6 @@ const Description = styled.p`
  * @param props - props of the component
  */
 const Input: React.FC<Props> = (props) => {
-  const hasLabelOrDescription = props.label || props.children;
   const renderLabel: React.FC | null = () => {
     if (!props.label) {
       return null;
@@ -141,14 +140,9 @@ const Input: React.FC<Props> = (props) => {
 
   return (
     <Container>
-      {
-        hasLabelOrDescription &&
-        <LabelAndDescriptionContainer>
-          { renderLabel({}) }
-          { props.children && <Description>{props.children}</Description> }
-        </LabelAndDescriptionContainer>
-      }
-      <InputWrapper>
+      { renderLabel({}) }
+      { props.children && <Description>{ props.children }</Description> }
+      <InputWrapper label={ props.label } description={ props.children as string }>
         <input
           id="input"
           value={props.value}

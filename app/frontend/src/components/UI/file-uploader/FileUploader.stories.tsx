@@ -12,7 +12,7 @@ export default {
     },
     label: {
       control: 'text',
-      defaultValue: 'File uploader label',
+      defaultValue: '',
     },
     required: {
       control: 'boolean',
@@ -36,17 +36,13 @@ export const Primary = Template.bind({});
 Primary.args = {
 };
 
-export const HasDescription = Template.bind({});
-HasDescription.args = {
+export const HasLabel = Template.bind({});
+HasLabel.args = {
+  label: 'File uploader label',
+};
+
+export const HasLabelAndDescription = Template.bind({});
+HasLabelAndDescription.args = {
+  label: 'File uploader label',
   children: 'File uploader description', // Named slots ???
-};
-
-export const Required = Template.bind({});
-Required.args = {
-  required: true,
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true,
 };
