@@ -7,11 +7,11 @@ const PROMPT_EMPTY = 'Upload picture';
 const ACCEPT = 'image/png, image/gif, image/jpeg';
 
 /**
- * FileUploader component props model
+ * ImageUploader component props model
  */
 interface Props {
   /**
-   * FileUploader label
+   * ImageUploader label
    */
   label: string
 
@@ -70,7 +70,7 @@ const Wrapper = styled.div<{ label: string, description: string }>`
 `;
 
 /**
- * FileUploader description component
+ * ImageUploader description component
  */
 const Description = styled.p`
   font-size: 14px;
@@ -103,11 +103,11 @@ const getFilePreview = async (file: File): Promise<string> => {
 };
 
 /**
- * FileUploader component
+ * ImageUploader component
  *
  * @param props - props of the component
  */
-const FileUploader: React.FC<Props> = (props) => {
+const ImageUploader: React.FC<Props> = (props) => {
   const hiddenFileInput: MutableRefObject<HTMLInputElement | null> = React.useRef(null);
   const [previewUrl, setPreviewUrl] = useState('');
   const prompt = previewUrl
@@ -152,4 +152,4 @@ const FileUploader: React.FC<Props> = (props) => {
   );
 };
 
-export default FileUploader;
+export default ImageUploader;

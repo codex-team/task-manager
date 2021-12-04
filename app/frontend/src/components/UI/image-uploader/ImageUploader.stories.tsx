@@ -1,10 +1,10 @@
 import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import FileUploader from 'components/UI/file-uploader/FileUploader';
+import ImageUploader from 'components/UI/image-uploader/ImageUploader';
 
 export default {
-  title: 'Form/FileUploader',
-  component: FileUploader,
+  title: 'Form/ImageUploader',
+  component: ImageUploader,
   argTypes: {
     placeholder: {
       control: 'text',
@@ -24,11 +24,11 @@ export default {
     },
     onChange: { action: 'change' },
   },
-} as ComponentMeta<typeof FileUploader>;
+} as ComponentMeta<typeof ImageUploader>;
 
-const Template: ComponentStory<typeof FileUploader> = (args) => {
+const Template: ComponentStory<typeof ImageUploader> = (args) => {
   return (
-    <FileUploader {...args} onChange={action('change')}/>
+    <ImageUploader {...args} onChange={action('change')}/>
   );
 };
 
