@@ -2,7 +2,10 @@ import { CTProtoServer } from 'ctproto';
 import { AuthorizeMessagePayload } from '../../../types/transport/requests/authorize';
 import { AuthorizeResponsePayload } from '../../../types/transport/responses/authorize';
 import { ApiRequest, ApiResponse, ApiUpdate } from '../../../types/transport';
-import Project from '../database/models/project';
+import { createProject } from './methods/projects/create';
+import { updateTitle } from './methods/projects/update-title';
+import { updatePicture } from './methods/projects/update-picture';
+import { updateChannel } from './methods/projects/update-channel';
 
 /**
  * Available options of CTProto transport
@@ -35,11 +38,8 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
 
     async onMessage(message: ApiRequest): Promise<ApiResponse['payload'] | void> {
       if (message.type === 'create-project') {
-        const newProject = await Project.create({
-          title: message.payload.title,
-          picture: message.payload.picture,
-          messengerChannelUrl: message.payload.messengerChannelUrl,
-        });
+        const newProject = await createProject(message.payload.title,
+          message.payload.picture, message.payload.messengerChannelUrl);
 
         return {
           message: 'project created: ' + newProject._id,
@@ -47,8 +47,7 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
       }
 
       if (message.type === 'update-project-title') {
-        await Project.findByIdAndUpdate(message.payload.id,
-          { title: message.payload.newTitle });
+        await updateTitle(message.payload.id, message.payload.newTitle);
 
         return {
           message: 'project title updated: ' + message.payload.id,
@@ -56,8 +55,7 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
       }
 
       if (message.type === 'update-project-picture') {
-        await Project.findByIdAndUpdate(message.payload.id,
-          { picture: message.payload.newPicture });
+        await updatePicture(message.payload.id, message.payload.newPicture);
 
         return {
           message: 'project picture updated: ' + message.payload.id,
@@ -65,8 +63,7 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
       }
 
       if (message.type === 'update-project-channel') {
-        await Project.findByIdAndUpdate(message.payload.id,
-          { messengerChannelUrl: message.payload.newChannel });
+        await updateChannel(message.payload.id, message.payload.newChannel);
 
         return {
           message: 'project picture updated: ' + message.payload.id,
