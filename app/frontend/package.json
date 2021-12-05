@@ -26,6 +26,7 @@
     "@types/styled-components": "^5.1.15",
     "cross-env": "^7.0.3",
     "ctproto": "^0.0.13",
+    "dotenv": "^10.0.0",
     "eslint-config-codex": "^1.6.4",
     "eslint-config-react": "^1.1.7",
     "react": "^17.0.2",
