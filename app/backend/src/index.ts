@@ -2,15 +2,13 @@ import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
 import { createTransportServer } from './ui/ctproto';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
+import { Config } from './config/config';
 
 /**
  * Backend server params
  */
-const HOST = process.env.HOST || '0.0.0.0';
-const PORT = process.env.PORT || '3000';
+const HOST = Config.host;
+const PORT = Config.port;
 
 const server = fastify();
 
@@ -25,6 +23,7 @@ server.listen(PORT, HOST, (err, address) => {
     process.exit(1);
   }
   console.log(`Server listening at ${address}`);
+  console.log(process.env.NODE_ENV);
 });
 
 /**
