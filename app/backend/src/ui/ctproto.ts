@@ -2,6 +2,7 @@ import { CTProtoServer } from 'ctproto';
 import { AuthorizeMessagePayload } from '../../../types/transport/requests/authorize';
 import { AuthorizeResponsePayload } from '../../../types/transport/responses/authorize';
 import { ApiRequest, ApiResponse, ApiUpdate } from '../../../types/transport';
+import { Config } from '../config/config';
 
 /**
  * Available options of CTProto transport
@@ -21,7 +22,8 @@ export interface TransportServerOptions {
  */
 export function createTransportServer({ authToken }: TransportServerOptions): CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate> {
   return new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
-    port: 3080,
+    host: Config.ctprotoHost,
+    port: parseInt(Config.ctprotoPort),
     async onAuth(authRequestPayload: AuthorizeMessagePayload): Promise<AuthorizeResponsePayload> {
       if (authRequestPayload.token == authToken) {
         return {
