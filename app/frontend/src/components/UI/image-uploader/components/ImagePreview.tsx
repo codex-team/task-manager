@@ -9,6 +9,11 @@ interface Props {
    * Url to image
    */
   imageSrc: string
+
+  /**
+   * Click handler
+   */
+  onClick: () => void
 }
 
 /**
@@ -58,7 +63,7 @@ const ImagePreviewStyled = styled.button<Props>`
  */
 const ImagePreview: React.FC<Props> = (props) => {
   return (
-    <ImagePreviewStyled { ...props }>
+    <ImagePreviewStyled { ...props } onClick={props.onClick}>
       <PlusIcon fill='currentColor' width='20' height='20'/>
     </ImagePreviewStyled>
   );
