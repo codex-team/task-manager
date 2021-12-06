@@ -1,4 +1,4 @@
-import React, { useState, MutableRefObject, useImperativeHandle, forwardRef, Ref } from 'react';
+import React, { useState, MutableRefObject, useImperativeHandle, forwardRef } from 'react';
 import ImagePreview from './components/ImagePreview';
 
 const ACCEPT = 'image/png, image/gif, image/jpeg';
@@ -47,8 +47,11 @@ export interface Props {
    */
   onChange: (file: File) => void
 
+  /**
+   * Component ref.
+   * Allows to call component method from outside
+   */
   ref: RefType
-
 }
 
 /**
@@ -71,7 +74,7 @@ const getFilePreview = async (file: File): Promise<string> => {
  * ImageUploader component
  *
  * @param props - props of the component
- * @param ref
+ * @param ref - contains ref to component
  */
 const ImageUploader = forwardRef<RefType, Props>((props, ref) => {
   const hiddenFileInput: MutableRefObject<HTMLInputElement | null> = React.useRef(null);

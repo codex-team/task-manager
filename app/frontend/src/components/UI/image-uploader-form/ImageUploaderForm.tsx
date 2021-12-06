@@ -98,7 +98,7 @@ const ImageUploaderForm: React.FC<Props> = (props) => {
       { props.children && <Description>{ props.children }</Description> }
       <Wrapper label={ props.label } description={ props.children as string } hasValue={ hasUploadedFile }>
         <ImageUploader { ...props } onChange={ handleChange } ref={uploader}/>
-        <p onClick={onClick}>{ prompt }</p>
+        <p onClick={ onClick }>{ prompt }</p>
       </Wrapper>
     </div>
   );
