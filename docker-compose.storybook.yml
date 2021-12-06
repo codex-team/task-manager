@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  storybook:
+    image: codexteamuser/task-manager:storybook
+    build:
+      context: .
+      dockerfile: 'docker/storybook.Dockerfile'
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:6006:6006'
