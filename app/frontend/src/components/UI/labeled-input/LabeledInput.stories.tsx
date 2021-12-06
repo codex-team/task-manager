@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Input from 'components/UI/input/Input';
+import LabeledInput from 'components/UI/labeled-input/LabeledInput';
 
 export default {
-  title: 'Form/Input',
-  component: Input,
+  title: 'Form/LabeledInput',
+  component: LabeledInput,
   argTypes: {
     placeholder: {
       control: 'text',
@@ -11,7 +11,7 @@ export default {
     },
     label: {
       control: 'text',
-      defaultValue: 'Input label',
+      defaultValue: 'LabeledInput label',
     },
     required: {
       control: 'boolean',
@@ -22,12 +22,22 @@ export default {
       defaultValue: false,
     },
   },
-} as ComponentMeta<typeof Input>;
+} as ComponentMeta<typeof LabeledInput>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof LabeledInput> = (args) => <LabeledInput {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
+};
+
+export const HasDescription = Template.bind({});
+HasDescription.args = {
+  children: 'LabeledInput description', // Named slots ???
+};
+
+export const Required = Template.bind({});
+Required.args = {
+  required: true,
 };
 
 export const Disabled = Template.bind({});
