@@ -5,13 +5,15 @@ on:
     branches:
       - prod
       - stage
+      - storybook
 
 env:
   DOCKER_REPO: ${{ secrets.DOCKER_USERNAME }}/task-manager
 
 jobs:
-  build:
+  build-image:
     runs-on: ubuntu-20.04
+    if: ${{ endsWith(github.ref, '/stage') || endsWith(github.ref, '/prod') }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -24,4 +26,21 @@ jobs:
           repository: ${{ env.DOCKER_REPO }}
           tag_with_ref: true
           dockerfile: docker/Dockerfile
-          push: ${{ endsWith(github.ref, '/stage') || endsWith(github.ref, '/prod') }}
+          push: true
+
+  build-storybook:
+    runs-on: ubuntu-20.04
+    if: ${{ endsWith(github.ref, '/storybook') }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build and push docker image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ env.DOCKER_REPO }}
+          tag_with_ref: true
+          dockerfile: docker/storybook.Dockerfile
+          push: true
