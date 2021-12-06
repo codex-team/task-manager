@@ -31,11 +31,22 @@ const ImagePreviewStyled = styled.button<Props>`
   background-size: cover;
   position: relative;
   overflow: hidden;
+  transition: border 0.15s;
+
 
   svg {
     z-index: 2;
     position: relative;
   }
+
+  ${props => !props.imageSrc && `
+  
+    &:hover {
+      border: 1px dashed var(--color-gray-5);
+      color: var(--color-gray-5);
+    }
+
+  `}
 
 
   ${props => props.imageSrc && `
