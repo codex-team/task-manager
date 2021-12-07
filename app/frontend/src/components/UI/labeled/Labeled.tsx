@@ -1,18 +1,24 @@
-import Input from 'components/UI/input/Input';
-import { Props as InputProps } from 'components/UI/input/Input';
+import { ComponentType, ReactNode } from 'react';
 import styled from 'styled-components';
 
-
-interface Props extends InputProps{
+/**
+ * Labeled wrapper props model
+ */
+interface AdditionalProps {
   /**
-   * Input element id
+   * Id to be passed to label
    */
   id: string
 
   /**
-   * Input label
+   * Label text
    */
-  label: string,
+  label: string
+
+  /**
+   * True if should display required asterisk
+   */
+  required: boolean
 }
 
 /**
@@ -55,7 +61,7 @@ const LabelWrapper = styled.div<{ hasDescription: boolean }>`
 `;
 
 /**
- * Input description component
+ *  Description component
  */
 const Description = styled.p`
   font-size: 14px;
@@ -63,34 +69,30 @@ const Description = styled.p`
   margin-top: 4px;
 `;
 
+/**
+ * Component props model
+ */
+type PropsWithChildren<P> = P  &  { children?: ReactNode };
 
 /**
- * LabeledInput component
+ * Adds label and description to specified component
  *
- * @param props props of the component
+ * @param Component - component to be wrapped
  */
-const LabeledInput: React.FC<Props> = (props) => {
-  const renderLabel: React.FC | null = () => {
-    if (!props.label) {
-      return null;
-    }
-
-    return (
-      <LabelWrapper hasDescription={ !!props.children }>
-        <label htmlFor={ props.id } >{ props.label }</label>
-        { props.required && <span>&nbsp;*</span> }
-      </LabelWrapper>
-    );
-  };
-
-  return (
+function labeled<P>(Component: ComponentType<PropsWithChildren<P>>): React.FC<P & AdditionalProps> {
+  return (props: PropsWithChildren<P & AdditionalProps>) => (
     <Container>
-      { renderLabel({}) }
+      { props.label &&
+        <LabelWrapper hasDescription={ !!props.children }>
+          <label htmlFor={ props.id } >{ props.label }</label>
+          { props.required && <span>&nbsp;*</span> }
+        </LabelWrapper>
+      }
       { props.children && <Description>{ props.children }</Description> }
-      <Input { ...props }/>
+      <Component {...props as P} />
     </Container>
-
   );
-};
+}
 
-export default LabeledInput;
+
+export default labeled;
