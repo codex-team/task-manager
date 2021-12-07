@@ -6,10 +6,6 @@ export default {
   title: 'Form/ImageUploaderForm',
   component: ImageUploaderForm,
   argTypes: {
-    placeholder: {
-      control: 'text',
-      defaultValue: 'Placeholder',
-    },
     label: {
       control: 'text',
       defaultValue: '',
@@ -24,8 +20,8 @@ const Template: ComponentStory<typeof ImageUploaderForm> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
 };
 
 export const HasLabel = Template.bind({});

@@ -9,10 +9,6 @@ export default {
       control: 'text',
       defaultValue: 'Placeholder',
     },
-    label: {
-      control: 'text',
-      defaultValue: 'Input label',
-    },
     required: {
       control: 'boolean',
       defaultValue: false,
@@ -26,18 +22,8 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-};
-
-export const HasDescription = Template.bind({});
-HasDescription.args = {
-  children: 'Input description', // Named slots ???
-};
-
-export const Required = Template.bind({});
-Required.args = {
-  required: true,
+export const Default = Template.bind({});
+Default.args = {
 };
 
 export const Disabled = Template.bind({});
