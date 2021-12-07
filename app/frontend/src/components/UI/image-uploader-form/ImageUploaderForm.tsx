@@ -14,6 +14,16 @@ interface Props extends ImageUploaderProps {
    * ImageUploaderForm label
    */
    label: string
+
+  /**
+   * Prompt that should be displayed when no image is selected
+   */
+  promptEmpty: string
+
+  /**
+   * Prompt that should be displayed when image is selected
+   */
+  promptHasValue: string
 }
 
 const Wrapper = styled.div<{ label: string, description: string, hasValue: boolean}>`

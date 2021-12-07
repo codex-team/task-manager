@@ -6,10 +6,6 @@ export default {
   title: 'Form/ImageUploaderForm',
   component: ImageUploaderForm,
   argTypes: {
-    placeholder: {
-      control: 'text',
-      defaultValue: 'Placeholder',
-    },
     label: {
       control: 'text',
       defaultValue: '',

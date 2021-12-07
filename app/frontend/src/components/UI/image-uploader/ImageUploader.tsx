@@ -33,16 +33,6 @@ export interface Props {
   previewUrl: string
 
   /**
-   * Prompt that should be displayed when no image is selected
-   */
-  promptEmpty: string
-
-  /**
-   * Prompt that should be displayed when image is selected
-   */
-  promptHasValue: string
-
-  /**
    * Value changle handler
    */
   onChange: (file: File) => void
