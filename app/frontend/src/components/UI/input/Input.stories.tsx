@@ -9,10 +9,6 @@ export default {
       control: 'text',
       defaultValue: 'Placeholder',
     },
-    label: {
-      control: 'text',
-      defaultValue: 'Input label',
-    },
     required: {
       control: 'boolean',
       defaultValue: false,
@@ -26,8 +22,8 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
 };
 
 export const Disabled = Template.bind({});

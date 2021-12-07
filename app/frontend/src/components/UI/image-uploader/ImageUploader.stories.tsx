@@ -16,6 +16,6 @@ const Template: ComponentStory<typeof ImageUploader> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
 };

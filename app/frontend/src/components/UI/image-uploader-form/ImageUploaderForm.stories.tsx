@@ -20,8 +20,8 @@ const Template: ComponentStory<typeof ImageUploaderForm> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
 };
 
 export const HasLabel = Template.bind({});
