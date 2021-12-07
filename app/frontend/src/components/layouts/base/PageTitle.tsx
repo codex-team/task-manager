@@ -15,7 +15,6 @@ const StyledPageTitle = styled.h1`
   font-style: normal;
   font-weight: 700;
   line-height: 40px;
-  color: var(--color-text-dark)
 `;
 
 /**
