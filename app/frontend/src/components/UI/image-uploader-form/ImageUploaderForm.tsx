@@ -26,7 +26,7 @@ interface Props extends ImageUploaderProps {
   promptHasValue: string
 }
 
-const Wrapper = styled.div<{ label: string, description: string, hasValue: boolean}>`
+const Wrapper = styled.div<{ hasLabelOrDescription: boolean, hasValue: boolean}>`
   display: flex;
   align-items: center;
   height: 48px;
@@ -35,7 +35,7 @@ const Wrapper = styled.div<{ label: string, description: string, hasValue: boole
   font-size: 14px;
   letter-spacing: -0.005em;
   cursor: pointer;
-  transition: border 0.15s;
+  transition: all 0.15s;
 
   &:hover {
     color: var(--color-gray-6);
@@ -57,7 +57,7 @@ const Wrapper = styled.div<{ label: string, description: string, hasValue: boole
     margin-right: 12px
   }
 
-  ${props => (props.label || props.children) && `
+  ${props => (props.hasLabelOrDescription) && `
     margin-top: 12px;
   `}
 
@@ -106,7 +106,7 @@ const ImageUploaderForm: React.FC<Props> = (props) => {
     <div>
       { props.label && <Label htmlFor={ props.id }>{ props.label }</Label> }
       { props.children && <Description>{ props.children }</Description> }
-      <Wrapper label={ props.label } description={ props.children as string } hasValue={ hasUploadedFile }>
+      <Wrapper hasLabelOrDescription={ !!props.label || !!props.children } hasValue={ hasUploadedFile }>
         <ImageUploader { ...props } onChange={ handleChange } ref={uploader}/>
         <p onClick={ onClick }>{ prompt }</p>
       </Wrapper>

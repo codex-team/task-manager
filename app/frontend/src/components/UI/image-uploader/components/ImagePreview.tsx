@@ -31,7 +31,10 @@ const ImagePreviewStyled = styled.button<Props>`
   background-size: cover;
   position: relative;
   overflow: hidden;
-  transition: border 0.15s;
+  transition: all 0.15s;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 
 
   svg {
