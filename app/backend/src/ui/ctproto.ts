@@ -23,7 +23,7 @@ export interface TransportServerOptions {
  * @param options - available parameters
  * @param options.authToken - token we use to authorize clients
  */
-export function createTransportServer({ authToken }: TransportServerOptions): CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate> {
+export function createTransportServer({authToken}: TransportServerOptions): CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate> {
   return new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
     port: 3080,
     async onAuth(authRequestPayload: AuthorizeMessagePayload): Promise<AuthorizeResponsePayload> {
@@ -38,11 +38,11 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
 
     async onMessage(message: ApiRequest): Promise<ApiResponse['payload'] | void> {
       if (message.type === 'create-project') {
-        const newProject = await createProject(message.payload.title,
+        await createProject(message.payload.title,
           message.payload.picture, message.payload.messengerChannelUrl);
 
         return {
-          message: 'project created: ' + newProject._id,
+          message: 'project created',
         };
       }
 

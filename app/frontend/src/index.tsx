@@ -35,3 +35,12 @@ client
   .then((responsePayload) => {
     console.log('Response for "get-projects": ', responsePayload);
   });
+
+client
+  .send('update-project-channel', {
+    id: '61b095ec75a4a2de0687eb13',
+    newChannel: 'tg.me',
+  })
+  .then((responsePayload) => {
+    console.log('Response for "update-project-channel": ', responsePayload);
+  });
