@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import ImageUploader from 'components/UI/image-uploader/ImageUploader';
 import { Props as ImageUploaderProps, RefType } from 'components/UI/image-uploader/ImageUploader';
 import { createRef, useState } from 'react';
+import labeled from 'components/UI/labeled/Labeled';
 
 const PROMPT_HAS_VALUE = 'Change picture';
 const PROMPT_EMPTY = 'Upload picture';
@@ -26,58 +27,36 @@ interface Props extends ImageUploaderProps {
   promptHasValue: string
 }
 
-const Wrapper = styled.div<{ hasLabelOrDescription: boolean, hasValue: boolean}>`
+const Wrapper = styled.div<{ hasValue: boolean}>`
   display: flex;
   align-items: center;
   height: 48px;
   width: 309px;
-  color: var(--color-gray-5);
+  color: var(--color-text-secondary);
   font-size: 14px;
   letter-spacing: -0.005em;
   cursor: pointer;
   transition: all 0.15s;
 
   &:hover {
-    color: var(--color-gray-6);
+    color: var(--color-text-primary);
   }
 
   ${props => !props.hasValue && `
   
     &:hover {
       button {
-        border: 1px dashed var(--color-gray-5);
-        color: var(--color-gray-5);
+        border: 1px dashed var(--color-image-preview-border-hover);
+        color: var(--color-image-preview-text-hover);
       }
     }
   
   `}
 
-
   & > *:not(:last-child) {
     margin-right: 12px
   }
 
-  ${props => (props.hasLabelOrDescription) && `
-    margin-top: 12px;
-  `}
-
-`;
-
-/**
- * ImageUploader description component
- */
-const Description = styled.p`
-  font-size: 14px;
-  color: var(--color-gray-5);
-  margin-top: 4px;
-`;
-
-/**
- * Label component.
- */
-const Label = styled.label`
-  font-size: 14px;
-  font-weight: 600;
 `;
 
 
@@ -103,15 +82,11 @@ const ImageUploaderForm: React.FC<Props> = (props) => {
   };
 
   return (
-    <div>
-      { props.label && <Label htmlFor={ props.id }>{ props.label }</Label> }
-      { props.children && <Description>{ props.children }</Description> }
-      <Wrapper hasLabelOrDescription={ !!props.label || !!props.children } hasValue={ hasUploadedFile }>
-        <ImageUploader { ...props } onChange={ handleChange } ref={uploader}/>
-        <p onClick={ onClick }>{ prompt }</p>
-      </Wrapper>
-    </div>
+    <Wrapper hasValue={ hasUploadedFile }>
+      <ImageUploader { ...props } onChange={ handleChange } ref={uploader}/>
+      <p onClick={ onClick }>{ prompt }</p>
+    </Wrapper>
   );
 };
 
-export default ImageUploaderForm;
+export default labeled(ImageUploaderForm);

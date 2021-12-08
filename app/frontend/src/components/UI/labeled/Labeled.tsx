@@ -28,7 +28,7 @@ const Container = styled.div`
   width: 304px;
   
   label {
-    color: var(--color-text-dark);
+    color: var(--color-text-primary);
     font-weight: 600;
     font-size: 14px;
     letter-spacing: -0.005em;
@@ -39,7 +39,7 @@ const Container = styled.div`
     text-overflow: ellipsis;
   }
 
-  p {
+  & > p {
     margin-bottom: 12px;
   }
 `;
@@ -65,7 +65,7 @@ const LabelWrapper = styled.div<{ hasDescription: boolean }>`
  */
 const Description = styled.p`
   font-size: 14px;
-  color: var(--color-gray-5);
+  color: var(--color-text-secondary);
   margin-top: 4px;
 `;
 

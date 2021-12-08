@@ -24,9 +24,7 @@ interface Props {
 const ImagePreviewStyled = styled.button<Props>`
   width: 48px;
   height: 48px;
-  border: 1px dashed var(--color-gray-3);
   border-radius: 12px;
-  color: var(--color-gray-3);
   background: url(${props => props.imageSrc});
   background-size: cover;
   position: relative;
@@ -35,7 +33,8 @@ const ImagePreviewStyled = styled.button<Props>`
   align-items: center;
   display: flex;
   justify-content: center;
-
+  border: 1px dashed var(--color-image-preview-border);
+  color: var(--color-image-preview-text);
 
   svg {
     z-index: 2;
@@ -45,20 +44,19 @@ const ImagePreviewStyled = styled.button<Props>`
   ${props => !props.imageSrc && `
   
     &:hover {
-      border: 1px dashed var(--color-gray-5);
-      color: var(--color-gray-5);
+      border: 1px dashed var(--color-image-preview-border-hover);
+      color: var(--color-image-preview-text-hover);
     }
 
   `}
 
-
   ${props => props.imageSrc && `
-    color: var(--color-white);
+    color: var(--color-image-preview-text-filled);
     border: none;
 
     &::before {
       content: '';
-      background: var(--color-gray-6);
+      background: black;
       opacity: 0.3;
       position: absolute;
       z-index: 1;
