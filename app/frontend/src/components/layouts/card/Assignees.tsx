@@ -27,7 +27,7 @@ const AssigneesStyled = styled.div<Props>`
  *
  * @param props - props of component
  */
-const Assignees: React.FC<Props> = ({ ...props }) => {
+const Assignees: React.FC<Props> = (props ) => {
   return (
     <AssigneesStyled {...props}>
       <Avatar/>
