@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import TaskInfo from 'components/layouts/card/TaskInfo';
-import Assignees from 'components/layouts/card/Assignees';
+import TaskInfo from 'components/UI/card/TaskInfo';
+import Assignees from 'components/UI/card/Assignees';
 
 /**
  * Interface for card component props
@@ -27,6 +27,22 @@ const CardStyled = styled.div<Props>`
   border-radius: 12px;
   padding: 12px 12px 12px 14px;
   width: 300px;
+
+  &:hover {
+    border-color: #D6D6D6;
+  };
+
+  &:active {
+    border-color: #1D2331;
+    background-color: #1D2331;
+    color: #E9F2FF;
+    div :last-child{
+      color: var(--color-text-secondary-reversed);
+    };
+    :last-child > :last-child {
+      color: var(--color-text-secondary-reversed);
+    };
+  }
 `;
 
 /**
