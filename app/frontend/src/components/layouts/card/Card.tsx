@@ -34,7 +34,7 @@ const CardStyled = styled.div<Props>`
  *
  * @param props - props of component
  */
-const Card: React.FC<Props> = ({ ...props }) => {
+const Card: React.FC<Props> = (props) => {
   return (
     <CardStyled {...props}>
       <TaskInfo taskTitle={props.taskTitle} subtasksNumber={props.subtasksNumber} completedSubtasks={props.completedSubtasks}/>

@@ -27,7 +27,7 @@ const TaskInfoStyled = styled.div<Props>`
  *
  * @param props - props of component
  */
-const TaskInfo: React.FC<Props> = ({ ...props }) => {
+const TaskInfo: React.FC<Props> = (props) => {
   if (props.subtasksNumber) {
     return (
       <TaskInfoStyled {...props}>
