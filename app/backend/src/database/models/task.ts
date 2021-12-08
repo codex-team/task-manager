@@ -42,8 +42,8 @@ const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
    * Task creation date
    */
   dateCreated: {
-    type: Date,
-    default: Date.now,
+    type: mongoose.Schema.Types.Date,
+    default: new Date(),
   },
 });
 

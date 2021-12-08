@@ -35,5 +35,3 @@ client
   .then((responsePayload) => {
     console.log('Response for "get-projects": ', responsePayload);
   });
-
-
