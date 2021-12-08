@@ -28,7 +28,7 @@ const TaskInfoStyled = styled.div<Props>`
  * @param props - props of component
  */
 const TaskInfo: React.FC<Props> = ({ ...props }) => {
-  if (props.subtasksNumber){
+  if (props.subtasksNumber) {
     return (
       <TaskInfoStyled {...props}>
         {props.taskTitle}
@@ -39,7 +39,8 @@ const TaskInfo: React.FC<Props> = ({ ...props }) => {
   } else {
     return (
       <TaskInfoStyled {...props}>{props.taskTitle}</TaskInfoStyled>
-    );}
+    );
+  }
 };
 
 export default TaskInfo;
