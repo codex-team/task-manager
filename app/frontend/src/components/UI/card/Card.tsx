@@ -20,6 +20,7 @@ interface Props{
  */
 const CardStyled = styled.div<Props>`
   display: inline-flex;
+  justify-content: space-between;
   font-weight: 400;
   border-width: 1px;
   border-color: #F4F4F4;

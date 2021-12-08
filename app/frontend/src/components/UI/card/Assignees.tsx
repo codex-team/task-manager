@@ -15,7 +15,6 @@ interface Props{
  * @param props - props of component
  */
 const AssigneesStyled = styled.div<Props>`
-  margin-left: 18px;
   display: block;
   width: 18px;
   text-align: center;
