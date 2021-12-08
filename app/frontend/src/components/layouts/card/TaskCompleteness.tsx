@@ -27,7 +27,9 @@ const TaskCompletenessStyled = styled.div<Props>`
  */
 const TaskCompleteness: React.FC<Props> = ({ ...props }) => {
   return (
-    <TaskCompletenessStyled {...props}>{props.children}</TaskCompletenessStyled>
+    <TaskCompletenessStyled {...props}>
+      {props.children}
+    </TaskCompletenessStyled>
   );
 };
 
