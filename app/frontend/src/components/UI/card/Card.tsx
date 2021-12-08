@@ -35,7 +35,7 @@ const CardStyled = styled.div<Props>`
   &:active {
     border-color: #1D2331;
     background-color: #1D2331;
-    color: #E9F2FF;
+    color: var(--color-text-primary-reversed);
     div :last-child{
       color: var(--color-text-secondary-reversed);
     };
