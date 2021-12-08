@@ -31,9 +31,10 @@ const TaskInfo: React.FC<Props> = (props) => {
   return (
     <TaskInfoStyled {...props}>
       {props.taskTitle}
-      <TaskCompleteness>
-        { props.subtasksNumber && `${props.completedSubtasks} of ${props.subtasksNumber} completed` }
-      </TaskCompleteness>
+      { props.subtasksNumber &&
+        <TaskCompleteness>
+          {props.completedSubtasks} of {props.subtasksNumber} completed
+        </TaskCompleteness>}
     </TaskInfoStyled>
   );
 };
