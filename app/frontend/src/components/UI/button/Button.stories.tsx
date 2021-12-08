@@ -2,7 +2,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Button, { StyleType } from 'components/UI/button/Button';
 
 export default {
-  title: 'Example/Button',
   component: Button,
   argTypes: {
     styleType: {
