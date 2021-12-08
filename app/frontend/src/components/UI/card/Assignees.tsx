@@ -18,6 +18,7 @@ const AssigneesStyled = styled.div<Props>`
   margin-left: 18px;
   display: block;
   width: 18px;
+  text-align: center;
   color: var(--color-text-secondary);
   font-size: 10px;
 `;
