@@ -18,7 +18,7 @@ const AssigneesStyled = styled.div<Props>`
   margin-left: 18px;
   display: block;
   width: 18px;
-  color: #8D8D8D;
+  color: var(--color-text-secondary);
   font-size: 10px;
 `;
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TaskComp from "./TaskCompleteness";
-import TaskCompleteness from "./TaskCompleteness";
+import TaskCompleteness from 'components/layouts/card/TaskCompleteness';
 
 /**
  * Interface for task info component props

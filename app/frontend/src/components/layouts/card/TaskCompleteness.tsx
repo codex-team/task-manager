@@ -17,7 +17,7 @@ const TaskCompletenessStyled = styled.div<Props>`
   padding-top: 8px;
   font-size: 12px;
   width: 240px;
-  color: #8D8D8D;
+  color: var(--color-text-secondary);
 `;
 
 /**
