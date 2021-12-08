@@ -2,7 +2,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import ProjectHeader from 'components/layouts/project/ProjectHeader';
 
 export default {
-  title: 'Example/ProjectHeader',
   component: ProjectHeader,
   argTypes: {
     projectTitle: {
