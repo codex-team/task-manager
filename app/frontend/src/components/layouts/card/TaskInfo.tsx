@@ -27,20 +27,15 @@ const TaskInfoStyled = styled.div<Props>`
  *
  * @param props - props of component
  */
-const TaskInfo: React.FC<Props> = ({ ...props }) => {
-  if (props.subtasksNumber) {
-    return (
-      <TaskInfoStyled {...props}>
-        {props.taskTitle}
-        <TaskCompleteness>
-          {props.completedSubtasks} of {props.subtasksNumber} completed
-        </TaskCompleteness>
-      </TaskInfoStyled>);
-  } else {
-    return (
-      <TaskInfoStyled {...props}>{props.taskTitle}</TaskInfoStyled>
-    );
-  }
+const TaskInfo: React.FC<Props> = (props) => {
+  return (
+    <TaskInfoStyled {...props}>
+      {props.taskTitle}
+      <TaskCompleteness>
+        { props.subtasksNumber && `${props.completedSubtasks} of ${props.subtasksNumber} completed` }
+      </TaskCompleteness>
+    </TaskInfoStyled>
+  );
 };
 
 export default TaskInfo;

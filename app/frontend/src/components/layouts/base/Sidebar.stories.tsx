@@ -5,7 +5,6 @@ import Button from 'components/UI/button/Button';
 import Sidebar from 'components/layouts/base/Sidebar';
 
 export default {
-  title: 'Example/Sidebar',
   component: Sidebar,
 } as ComponentMeta<typeof Sidebar>;
 

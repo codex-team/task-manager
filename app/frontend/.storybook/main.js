@@ -2,8 +2,16 @@ const path = require('path');
 
 module.exports = {
   "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)",
+    {
+      directory: '../src/components/UI',
+      files: '**/*.stories.*',
+      titlePrefix: 'UI'
+    },
+    {
+      directory: '../src/components/layouts',
+      files: '**/*.stories.*',
+      titlePrefix: 'Layout'
+    },
   ],
   "addons": [
     "@storybook/addon-links",

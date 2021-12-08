@@ -2,7 +2,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
 
 export default {
-  title: 'Example/SidebarHeader',
   component: SidebarHeader,
 } as ComponentMeta<typeof SidebarHeader>;
 

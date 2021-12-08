@@ -27,16 +27,13 @@ const AssigneesStyled = styled.div<Props>`
  *
  * @param props - props of component
  */
-const Assignees: React.FC<Props> = ({ ...props }) => {
-  if (props.assigneesNumber) {
-    return (
-      <AssigneesStyled {...props}><Avatar/>+{props.assigneesNumber}</AssigneesStyled>
-    );
-  } else {
-    return (
-      <AssigneesStyled {...props}><Avatar/></AssigneesStyled>
-    );
-  }
+const Assignees: React.FC<Props> = (props ) => {
+  return (
+    <AssigneesStyled {...props}>
+      <Avatar/>
+      { props.assigneesNumber && `+${props.assigneesNumber}` }
+    </AssigneesStyled>
+  );
 };
 
 export default Assignees;
