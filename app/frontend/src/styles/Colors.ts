@@ -14,7 +14,36 @@ const ColorVariables = createGlobalStyle`
     --color-gray-6: #1D2331;
 
     --color-bg-main: #FFFFFF;
-    --color-text-dark: var(--color-gray-6);
+    --color-accent: #387CE1;
+    --color-contrast: #1D2331;
+
+    /**
+     * Text colors variables
+     */
+    --color-text-primary: var(--color-gray-6);
+    --color-text-secondary: var(--color-gray-5);
+    --color-text-primary-reversed: #E9F2FF;
+    --color-text-secondary-reversed: #9CA3AD;
+
+
+    /**
+     * Image preview component colors
+     */
+     --color-image-preview-border: var(--color-gray-4);
+     --color-image-preview-text: var(--color-gray-3);
+     --color-image-preview-border-hover: var(--color-gray-5);
+     --color-image-preview-text-hover: var(--color-gray-5);
+     --color-image-preview-text-filled: var(--color-white);
+
+
+     /**
+      * Input component colors
+      */
+     --color-input-border: var(--color-gray-2);
+     --color-input-border-hover: var(--color-gray-4);
+     --color-input-border-focus: var(--color-gray-6);
+
+
   }
 `;
 
