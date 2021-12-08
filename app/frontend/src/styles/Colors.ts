@@ -15,6 +15,16 @@ const ColorVariables = createGlobalStyle`
 
     --color-bg-main: #FFFFFF;
     --color-text-dark: var(--color-gray-6);
+    --color-accent: #387CE1;
+
+
+    /**
+     * Text colors variables
+     */
+    --color-text-primary: #1D2331;
+    --color-text-secondary: #8D8D8D;
+    --color-text-primary-reversed: #E9F2FF;
+    --color-text-secondary-reversed: #9CA3AD;
   }
 `;
 

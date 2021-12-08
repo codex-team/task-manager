@@ -25,7 +25,6 @@ interface Props extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<
  * @param props - props of component
  */
 const ButtonStyled = styled.button<Props>`
-  font-family: 'SF UI Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   padding: 10px 20px;
   font-weight: 500;
@@ -39,8 +38,8 @@ const ButtonStyled = styled.button<Props>`
     switch (props.styleType) {
       case StyleType.Primary:
         return css`
-          background-color: #387CE1;
-          color: #E9F2FF;
+          background-color: var(--color-accent);
+          color: var(--color-text-primary-reversed);
 
           &:hover {
             background-color: #2068D5;
@@ -53,7 +52,7 @@ const ButtonStyled = styled.button<Props>`
       case StyleType.Secondary:
       default:
         return css`
-          color: #1D2331;
+          color: var(--color-text-primary);
           background-color: #F4F4F4;
 
           &:hover {
