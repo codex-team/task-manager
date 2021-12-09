@@ -23,26 +23,26 @@ const CardStyled = styled.div<Props>`
   justify-content: space-between;
   font-weight: 400;
   border-width: 1px;
-  border-color: #F4F4F4;
+  border-color: var(--color-card-border);
   border-style: solid;
   border-radius: 12px;
   padding: 12px 12px 12px 14px;
   width: 300px;
 
   &:hover {
-    border-color: #D6D6D6;
+    border-color: var(--color-card-border-hover);
   };
 
   &:active {
-    border-color: #1D2331;
-    background-color: #1D2331;
+    border-color: var(--color-card-border-active);
+    background-color: var(--color-card-bg-active);
     color: var(--color-text-primary-reversed);
-    div :last-child{
+    .completeness {
       color: var(--color-text-secondary-reversed);
     };
-    :last-child > :last-child {
+    .progress {
       color: var(--color-text-secondary-reversed);
-    };
+    }
   }
 `;
 
