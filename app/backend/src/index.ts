@@ -23,7 +23,6 @@ server.listen(PORT, HOST, (err, address) => {
     process.exit(1);
   }
   console.log(`Server listening at ${address}`);
-  console.log(process.env.NODE_ENV);
 });
 
 /**
