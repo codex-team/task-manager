@@ -87,7 +87,7 @@ const InputWrapper = styled.div`
  */
 const Input: React.FC<Props> = (props) => {
   return (
-    <InputWrapper >
+    <InputWrapper>
       <input
         id={ props.id }
         value={props.value}
