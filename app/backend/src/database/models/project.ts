@@ -1,22 +1,16 @@
 import mongoose from '../index';
-import { ProjectDocument, ProjectModel } from '../interfaces/project';
+import Project from '../../../../types/entities/project';
 
 /**
  * Project schema
  */
-const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
+const ProjectSchema: mongoose.Schema<Project> = new mongoose.Schema({
   /**
    * Project name
    */
-  name: {
+  title: {
     type: mongoose.Schema.Types.String,
     required: true,
-  },
-  /**
-   * Url for notions
-   */
-  messengerChannelUrl: {
-    type: mongoose.Schema.Types.String,
   },
   /**
    * Project picture
@@ -28,10 +22,15 @@ const ProjectSchema: mongoose.Schema<ProjectDocument> = new mongoose.Schema ({
    * Project creation date
    */
   dateCreated: {
-    type: Date,
-    default: Date.now,
+    type: mongoose.Schema.Types.String,
+    default: Date(),
+  },
+  /**
+   * Url for notions
+   */
+  messengerChannelUrl: {
+    type: mongoose.Schema.Types.String,
   },
 });
 
-
-export default mongoose.model<ProjectDocument, ProjectModel>('Project', ProjectSchema);
+export default mongoose.model<Project>('Project', ProjectSchema);

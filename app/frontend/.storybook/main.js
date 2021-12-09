@@ -1,11 +1,29 @@
+const path = require('path');
+
 module.exports = {
   "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+    {
+      directory: '../src/components/UI',
+      files: '**/*.stories.*',
+      titlePrefix: 'UI'
+    },
+    {
+      directory: '../src/components/layouts',
+      files: '**/*.stories.*',
+      titlePrefix: 'Layout'
+    },
   ],
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/preset-create-react-app"
-  ]
+    "@storybook/preset-create-react-app",
+  ],
+  webpackFinal: async (config, { configType }) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'components': path.resolve(__dirname, "../src/components"),
+    };
+
+    return config;
+  }
 }

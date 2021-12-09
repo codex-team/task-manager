@@ -46,6 +46,7 @@ COPY --from=frontend /usr/src/app/frontend/build ./frontend/build
 
 # Expose app's port
 EXPOSE 3000
+EXPOSE 3080
 
 # Move to the backend directory and start the app
 WORKDIR /usr/src/app/backend

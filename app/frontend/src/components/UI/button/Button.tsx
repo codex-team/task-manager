@@ -4,18 +4,9 @@ import styled, { css } from 'styled-components';
 /**
  * Types of button style
  */
-export enum StyleTypes {
-  PRIMARY = 'PRIMARY',
-  SECONDARY = 'SECONDARY'
-}
-
-/**
- * Sizes of button content
- */
-export enum Sizes {
-  LARGE = 'LARGE',
-  MEDIUM = 'MEDIUM',
-  SMALL = 'SMALL'
+export enum StyleType {
+  Primary = 'PRIMARY',
+  Secondary = 'SECONDARY'
 }
 
 /**
@@ -25,12 +16,7 @@ interface Props extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<
   /**
    * Button style type
    */
-  styleType?: StyleTypes;
-
-  /**
-   * Size of button text and paddings
-   */
-  size?: Sizes;
+  styleType?: StyleType;
 }
 
 /**
@@ -39,7 +25,8 @@ interface Props extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<
  * @param props - props of component
  */
 const ButtonStyled = styled.button<Props>`
-  font-family: 'SF UI Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  padding: 10px 20px;
   font-weight: 500;
   line-height: 130%;
   border: 0;
@@ -49,10 +36,10 @@ const ButtonStyled = styled.button<Props>`
 
   ${(props) => {
     switch (props.styleType) {
-      case StyleTypes.PRIMARY:
+      case StyleType.Primary:
         return css`
-          background-color: #387CE1;
-          color: #E9F2FF;
+          background-color: var(--color-accent);
+          color: var(--color-text-primary-reversed);
 
           &:hover {
             background-color: #2068D5;
@@ -62,10 +49,10 @@ const ButtonStyled = styled.button<Props>`
             background-color: #1B57B1;
           }
         `;
-      case StyleTypes.SECONDARY:
+      case StyleType.Secondary:
       default:
         return css`
-          color: #1D2331;
+          color: var(--color-text-primary);
           background-color: #F4F4F4;
 
           &:hover {
@@ -77,18 +64,7 @@ const ButtonStyled = styled.button<Props>`
           }
         `;
     }
-  }};
-
-  ${(props) => {
-    switch (props.size) {
-      case Sizes.LARGE:
-      default:
-        return css`
-          font-size: 14px;
-          padding: 10px 20px;
-        `;
-    }
-  }};
+  }};};
 `;
 
 /**
