@@ -29,9 +29,10 @@ const AssigneesStyled = styled.div<Props>`
  */
 const Assignees: React.FC<Props> = (props ) => {
   return (
-    <AssigneesStyled {...props}>
+    <AssigneesStyled {...props} className={'assignees'}>
       <Avatar/>
-      { props.assigneesNumber && `+${props.assigneesNumber}` }
+      { ((props.assigneesNumber && props.assigneesNumber-1) || ``) &&
+      `+${props.assigneesNumber?props.assigneesNumber-1:''}` }
     </AssigneesStyled>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TaskCompleteness from 'components/UI/card/TaskCompleteness';
+import TaskProgress from 'components/UI/card/TaskProgress';
 
 /**
  * Interface for task info component props
@@ -19,7 +19,7 @@ interface Props{
 const TaskInfoStyled = styled.div<Props>`
   word-wrap: break-word;
   font-size: 14px;
-  width: 240px;
+  width: 90%;
 `;
 
 /**
@@ -31,10 +31,8 @@ const TaskInfo: React.FC<Props> = (props) => {
   return (
     <TaskInfoStyled {...props}>
       {props.taskTitle}
-      { props.subtasksNumber &&
-        <TaskCompleteness>
-          {props.completedSubtasks} of {props.subtasksNumber} completed
-        </TaskCompleteness>}
+      { (props.subtasksNumber || '') &&
+        <TaskProgress subtasksNumber={props.subtasksNumber} completedSubtasks={props.completedSubtasks}/> }
     </TaskInfoStyled>
   );
 };
