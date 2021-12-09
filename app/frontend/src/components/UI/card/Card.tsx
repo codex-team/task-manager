@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {ReactComponent as Avatar} from 'components/icons/DefaultAvatar.svg';
+import { ReactComponent as Avatar } from 'components/icons/DefaultAvatar.svg';
 
 /**
  * Interface for card component props
