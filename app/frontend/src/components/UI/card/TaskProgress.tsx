@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 /**
- * Interface for task completeness component props
+ * Interface for task progress component props
  */
 interface Props{
   completedSubtasks?: number;
@@ -10,7 +10,7 @@ interface Props{
 }
 
 /**
- * Styled task completeness component
+ * Styled task progress component
  *
  * @param props - props of component
  */
@@ -23,7 +23,7 @@ const TaskProgressStyled = styled.div<Props>`
 `;
 
 /**
- * Task completeness component
+ * Task progress component
  *
  * @param props - props of component
  */
