@@ -11,7 +11,6 @@ const ColorVariables = createGlobalStyle`
     --color-gray-3: #DBDBDB;
     --color-gray-4: #D6D6D6;
     --color-gray-5: #8D8D8D;
-    --color-gray-6: #1D2331;
 
     --color-bg-main: #FFFFFF;
     --color-accent: #387CE1;
@@ -20,7 +19,7 @@ const ColorVariables = createGlobalStyle`
     /**
      * Text colors variables
      */
-    --color-text-primary: var(--color-gray-6);
+    --color-text-primary: var(--color-contrast);
     --color-text-secondary: var(--color-gray-5);
     --color-text-primary-reversed: #E9F2FF;
     --color-text-secondary-reversed: #9CA3AD;
@@ -41,7 +40,7 @@ const ColorVariables = createGlobalStyle`
       */
      --color-input-border: var(--color-gray-2);
      --color-input-border-hover: var(--color-gray-4);
-     --color-input-border-focus: var(--color-gray-6);
+     --color-input-border-focus: var(--color-contrast);
 
 
   }
