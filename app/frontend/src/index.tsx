@@ -8,6 +8,11 @@ import { ApiRequest, ApiResponse, ApiUpdate } from '../../types/transport';
 
 import App from './App';
 
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({ path: path.join(__dirname, '.', '..', '.env') });
+
 
 ReactDOM.render(
   <App />,
