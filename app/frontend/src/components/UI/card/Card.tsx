@@ -43,7 +43,8 @@ const CardStyled = styled.div<Props>`
   padding: 12px 12px 12px 14px;
 
   .task-info {
-    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow:ellipsis;
     font-size: 14px;
   }
 
