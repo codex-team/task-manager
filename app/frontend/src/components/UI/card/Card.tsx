@@ -14,17 +14,17 @@ interface Props{
   /**
    * Number of task assignees
    */
-  assigneesNumber: number;
+  assigneesNumber?: number;
 
   /**
    * Number of subtasks in task
    */
-  subtasksNumber: number;
+  subtasksNumber?: number;
 
   /**
    * Number of completed subtasks in task
    */
-  completedSubtasks: number;
+  completedSubtasks?: number;
 }
 
 /**
@@ -91,7 +91,7 @@ const Card: React.FC<Props> = (props) => {
     <CardStyled {...props}>
       <div className={'task-info'}>
         {props.taskTitle}
-        { (props.subtasksNumber || '') &&
+        { (props.subtasksNumber || ``) &&
           <div className={'progress'}>
             {props.completedSubtasks || 0} of {props.subtasksNumber} completed
           </div> }
@@ -99,7 +99,7 @@ const Card: React.FC<Props> = (props) => {
       <div className={'assignees'}>
         <Avatar/>
         { ((props.assigneesNumber && props.assigneesNumber-1) || ``) &&
-        `+${props.assigneesNumber-1}` }
+          `+${props.assigneesNumber?props.assigneesNumber-1:``}` }
       </div>
     </CardStyled>
   );
