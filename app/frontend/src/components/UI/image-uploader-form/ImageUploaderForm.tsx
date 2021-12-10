@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ImageUploader from 'components/UI/image-uploader/ImageUploader';
-import { Props as ImageUploaderProps, RefType } from 'components/UI/image-uploader/ImageUploader';
+import { ImageUploaderProps, ImageUploaderRefType } from 'components/UI/image-uploader/ImageUploader';
 import { createRef, useState } from 'react';
 import labeled from 'components/UI/labeled/Labeled';
 
@@ -52,11 +52,13 @@ const Wrapper = styled.div<{ hasValue: boolean}>`
     }
   
   `}
+`;
 
-  & > *:not(:last-child) {
-    margin-right: 12px
-  }
-
+/**
+ * Styled ImageUploader component
+ */
+const StyledImageUploader = styled(ImageUploader)`
+  margin-right: 12px;
 `;
 
 
@@ -65,9 +67,9 @@ const Wrapper = styled.div<{ hasValue: boolean}>`
  *
  * @param props - props of the component
  */
-const ImageUploaderForm: React.FC<Props> = (props) => {
+const ImageUploaderForm: React.FC<Props> = (props: Props) => {
   const [hasUploadedFile, setHasUploadedFile] = useState(!!props.previewUrl);
-  const uploader = createRef<RefType>();
+  const uploader = createRef<ImageUploaderRefType>();
   const prompt = hasUploadedFile
     ? (props.promptHasValue || PROMPT_HAS_VALUE)
     : (props.promptEmpty || PROMPT_EMPTY);
@@ -83,7 +85,7 @@ const ImageUploaderForm: React.FC<Props> = (props) => {
 
   return (
     <Wrapper hasValue={ hasUploadedFile }>
-      <ImageUploader { ...props } onChange={ handleChange } ref={uploader}/>
+      <StyledImageUploader { ...props } onChange={ handleChange } ref={ uploader }/>
       <p onClick={ onClick }>{ prompt }</p>
     </Wrapper>
   );

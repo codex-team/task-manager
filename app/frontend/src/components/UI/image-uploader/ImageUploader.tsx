@@ -4,9 +4,9 @@ import ImagePreview from './components/ImagePreview';
 const ACCEPT = 'image/png, image/gif, image/jpeg';
 
 /**
- * Contains methods component exposes via forwarded ref
+ * Type of ImageUploader component reference
  */
-export interface RefType {
+export interface ImageUploaderRefType {
   /**
    * Opens file input dialog
    */
@@ -16,7 +16,7 @@ export interface RefType {
 /**
  * ImageUploader component props model
  */
-export interface Props {
+export interface ImageUploaderProps {
   /**
    * Input component id
    */
@@ -41,7 +41,12 @@ export interface Props {
    * Component ref.
    * Allows to call component method from outside
    */
-  ref: RefType
+  ref: ImageUploaderRefType
+
+  /**
+   * CSS class name
+   */
+  className: string
 }
 
 /**
@@ -66,7 +71,7 @@ const getFilePreview = async (file: File): Promise<string> => {
  * @param props - props of the component
  * @param ref - contains ref to component
  */
-const ImageUploader = forwardRef<RefType, Props>((props, ref) => {
+const ImageUploader = forwardRef<ImageUploaderRefType, ImageUploaderProps>((props, ref) => {
   const hiddenFileInput: MutableRefObject<HTMLInputElement | null> = React.useRef(null);
   const [previewUrl, setPreviewUrl] = useState(props.previewUrl);
 
@@ -91,7 +96,7 @@ const ImageUploader = forwardRef<RefType, Props>((props, ref) => {
   }));
 
   return (
-    <div>
+    <div className={ props.className }>
       <input
         id={ props.id }
         type="file"
