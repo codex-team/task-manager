@@ -31,7 +31,6 @@ const Wrapper = styled.div<{ hasValue: boolean}>`
   display: flex;
   align-items: center;
   height: 48px;
-  width: 309px;
   color: var(--color-text-secondary);
   font-size: 14px;
   letter-spacing: -0.005em;

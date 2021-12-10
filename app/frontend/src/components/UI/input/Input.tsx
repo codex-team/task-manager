@@ -45,7 +45,6 @@ export interface Props {
  * Input wrapper component
  */
 const InputWrapper = styled.div`
-  width: 100%;
   height: 38px;
   border: 1px solid var(--color-input-border);
   border-radius: 12px;

@@ -25,8 +25,6 @@ interface AdditionalProps {
  * Root container component
  */
 const Container = styled.div`
-  width: 100%;
-  
   label {
     color: var(--color-text-primary);
     font-weight: 600;
