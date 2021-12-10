@@ -17,7 +17,6 @@ const ColorVariables = createGlobalStyle`
     --color-text-dark: var(--color-gray-6);
     --color-accent: #387CE1;
 
-
     /**
      * Text colors variables
      */
@@ -29,10 +28,10 @@ const ColorVariables = createGlobalStyle`
     /**
     * Card component colors variables
     */
-    --color-card-border: #F4F4F4;
-    --color-card-border-hover: #D6D6D6;
-    --color-card-border-active: #1D2331;
-    --color-card-bg-active: #1D2331;
+    --color-line: #F4F4F4;
+    --color-line-hover: #D6D6D6;
+    --color-line-active: #1D2331;
+    --color-bg-active: #1D2331;
 
   }
 `;
