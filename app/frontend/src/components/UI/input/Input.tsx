@@ -90,12 +90,12 @@ const Input: React.FC<Props> = (props) => {
     <InputWrapper>
       <input
         id={ props.id }
-        value={props.value}
-        type={props.type}
-        placeholder={props.placeholder}
-        required={props.required}
-        disabled={props.disabled}
-        onChange={({ target: { value } }) => props.onChange(value)}/>
+        value={ props.value }
+        type={ props.type }
+        placeholder={ props.placeholder }
+        required={ props.required }
+        disabled={ props.disabled }
+        onChange={ ({ target: { value } }) => props.onChange(value) } />
     </InputWrapper>
   );
 };
