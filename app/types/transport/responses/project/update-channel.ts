@@ -1,14 +1,15 @@
 import { ResponseMessage } from 'ctproto';
+import { Project } from '../../../entities';
 
 /**
  * Response for 'update-project-channel' message
- * Contains message of success updating with project id
+ * Contains sample of project
  */
 export interface UpdateProjectChannelResponsePayload {
   /**
-   * Response message
+   * Response project
    */
-  message: string;
+  project: Project;
 }
 
 /**

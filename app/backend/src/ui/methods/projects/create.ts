@@ -6,8 +6,8 @@ import ProjectSchema from '../../../database/models/project';
  * @param picture
  * @param messenger
  */
-export function createProject(title: string, picture: string | undefined, messenger: string | undefined): Promise<Project> {
-  return ProjectSchema.create({
+export async function createProject(title: string, picture: string | undefined, messenger: string | undefined): Promise<Project> {
+  return await ProjectSchema.create({
     title: title,
     picture: picture,
     messengerChannelUrl: messenger,
