@@ -16,9 +16,9 @@ ReactDOM.render(
 
 
 const client = new CTProtoClient<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
-  apiUrl: 'ws://localhost:3080',
+  apiUrl: process.env.REACT_APP_ENDPOINT_CTPROTO || 'ws://localhost:3080',
   authRequestPayload: {
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    token: process.env.REACT_APP_ACCESS_TOKEN || '',
   },
   onAuth: (data) => {
     console.log('Authorization is success', data);
