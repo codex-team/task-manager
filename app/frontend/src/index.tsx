@@ -30,7 +30,6 @@ const client = new CTProtoClient<AuthorizeMessagePayload, AuthorizeResponsePaylo
 
 client
   .send('get-projects', {
-    workspaceId: 'test-test-test',
   })
   .then((responsePayload) => {
     console.log('Response for "get-projects": ', responsePayload);

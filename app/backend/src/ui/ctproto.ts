@@ -6,6 +6,7 @@ import { createProject } from './methods/projects/create';
 import { updateTitle } from './methods/projects/update-title';
 import { updatePicture } from './methods/projects/update-picture';
 import { updateChannel } from './methods/projects/update-channel';
+import {getProjects} from "./methods/projects/get-projects";
 
 /**
  * Available options of CTProto transport
@@ -65,20 +66,7 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
 
       if (message.type === 'get-projects') {
         return {
-          projects: [
-            {
-              id: 'pj1',
-              title: 'Project 1',
-              picture: 'https://example.com/picture.png',
-              dateCreated: '2014-01-01T08:15:39.736Z',
-            },
-            {
-              id: 'pj2',
-              title: 'Project 2',
-              picture: 'https://example.com/picture.png',
-              dateCreated: '2014-01-01T08:15:39.736Z',
-            },
-          ],
+          projects: await getProjects(message.payload.workspaceId),
         };
       }
     },
