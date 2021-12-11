@@ -6,7 +6,7 @@ import { createProject } from './methods/projects/create';
 import { updateTitle } from './methods/projects/update-title';
 import { updatePicture } from './methods/projects/update-picture';
 import { updateChannel } from './methods/projects/update-channel';
-import {getProjects} from "./methods/projects/get-projects";
+import { getProjects } from './methods/projects/get-projects';
 
 /**
  * Available options of CTProto transport
