@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Outlet } from 'react-router-dom';
 
 /**
  * Interface for content component props
@@ -25,7 +26,9 @@ const ContentStyled = styled.div<Props>`
  */
 const Content: React.FC<Props> = ({ ...props }) => {
   return (
-    <ContentStyled {...props}/>
+    <ContentStyled {...props}>
+      <Outlet />
+    </ContentStyled>
   );
 };
 

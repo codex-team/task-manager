@@ -18,22 +18,27 @@ export interface Props {
   /**
    * Input placeholder
    */
-  placeholder: string,
+  placeholder?: string,
 
   /**
    * Input type
    */
-  type: string,
+  type?: string,
 
   /**
    * True if input value is required
    */
-  required: boolean,
+  required?: boolean,
 
   /**
    * True if input is disabled
    */
-  disabled: boolean,
+  disabled?: boolean,
+
+  /**
+   * Input name
+   */
+  name?: string,
 
   /**
    * Value change callback
@@ -94,6 +99,7 @@ const Input: React.FC<Props> = (props) => {
         placeholder={ props.placeholder }
         required={ props.required }
         disabled={ props.disabled }
+        name={ props.name }
         onChange={ ({ target: { value } }) => props.onChange(value) } />
     </InputWrapper>
   );

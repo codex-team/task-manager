@@ -8,17 +8,17 @@ interface AdditionalProps {
   /**
    * Id to be passed to label
    */
-  id: string
+  id?: string
 
   /**
    * Label text
    */
-  label: string
+  label?: string
 
   /**
    * True if should display required asterisk
    */
-  required: boolean
+  required?: boolean
 }
 
 /**

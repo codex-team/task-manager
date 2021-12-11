@@ -4,6 +4,12 @@ import Sidebar from './components/layouts/base/Sidebar';
 import Content from './components/layouts/base/Content';
 import ColorVariables from './styles/Colors';
 import GlobalStyles from './styles/Global';
+import ProjectForm from 'components/views/projects/ProjectForm';
+
+import {
+  Routes,
+  Route
+} from 'react-router-dom';
 
 /**
  * Makes the main page
@@ -15,8 +21,13 @@ function App(): React.ReactElement {
     <Container>
       <ColorVariables/>
       <GlobalStyles/>
-      <Sidebar/>
-      <Content/>
+      <Sidebar />
+      <Routes>
+        <Route path="/" element={<Content />}>
+          <Route path="projects/new" element={<ProjectForm />} />
+          <Route path="projects/:id" element={<ProjectForm />} />
+        </Route>
+      </Routes>
     </Container>
   );
 }
