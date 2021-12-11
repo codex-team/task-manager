@@ -4,6 +4,7 @@ import ProjectSchema from '../../../database/models/project';
 /**
  * @param workspaceId
  */
+// eslint-disable-next-line no-unused-vars
 export async function getProjects(workspaceId: string | undefined): Promise<Project[]> {
   let project;
 
