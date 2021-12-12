@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { UiComponentText } from 'styles/Mixins';
 
 /**
  * Input component props model
@@ -74,8 +75,7 @@ const InputWrapper = styled.div`
     height: 100%;
     border-radius: 12px;
     color: var(--color-text-primary);
-    font-size: 14px;
-    letter-spacing: -0.005em;
+    ${ UiComponentText }
     
     ::placeholder {
       color: var(--color-text-secondary);
