@@ -5,7 +5,7 @@ import Input from 'components/UI/input/Input';
 import labeled from 'components/UI/labeled/Labeled';
 import ImageUploaderForm from 'components/UI/image-uploader-form/ImageUploaderForm';
 import Button, { StyleType } from 'components/UI/button/Button';
-import { createProject } from '../../../services/projects';
+import { createProject } from 'services/projects';
 
 /**
  * Input with label modifier applied
@@ -32,7 +32,7 @@ const FormStyled = styled.div`
  *
  * @param props - props of the component
  */
-const ProjectForm: React.FC<Props> = (props: Props) => {
+const ProjectForm: React.FC<Props> = () => {
   const [title, setTitle] = useState('');
   const [messengerChannelUrl, setMessengerChannelUrl] = useState('');
 
