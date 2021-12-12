@@ -18,8 +18,8 @@ const ColorVariables = createGlobalStyle`
     --color-text-secondary-reversed: #9CA3AD;
 
     /**
-    * Card component colors variables
-    */
+     * Card component colors variables
+     */
     --color-line: #F4F4F4;
     --color-line-hover: #D6D6D6;
     --color-line-active: #1D2331;
