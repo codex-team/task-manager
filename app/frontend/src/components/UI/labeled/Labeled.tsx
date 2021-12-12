@@ -25,10 +25,8 @@ interface AdditionalProps {
  * Root container component
  */
 const Container = styled.div`
-  width: 304px;
-  
   label {
-    color: var(--color-text-dark);
+    color: var(--color-text-primary);
     font-weight: 600;
     font-size: 14px;
     letter-spacing: -0.005em;
@@ -38,8 +36,7 @@ const Container = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
-  p {
+  & > p {
     margin-bottom: 12px;
   }
 `;
@@ -54,7 +51,6 @@ const LabelWrapper = styled.div<{ hasDescription: boolean }>`
   display: flex;
   font-size: 14px;
   font-weight: 600;
-
   ${props => !props.hasDescription && `
     margin-bottom: 12px
   `}
@@ -65,7 +61,7 @@ const LabelWrapper = styled.div<{ hasDescription: boolean }>`
  */
 const Description = styled.p`
   font-size: 14px;
-  color: var(--color-gray-5);
+  color: var(--color-text-secondary);
   margin-top: 4px;
 `;
 
@@ -83,13 +79,13 @@ function labeled<P>(Component: ComponentType<PropsWithChildren<P>>): React.FC<P 
   return (props: PropsWithChildren<P & AdditionalProps>) => (
     <Container>
       { props.label &&
-        <LabelWrapper hasDescription={ !!props.children }>
-          <label htmlFor={ props.id } >{ props.label }</label>
-          { props.required && <span>&nbsp;*</span> }
-        </LabelWrapper>
+      <LabelWrapper hasDescription={ !!props.children }>
+        <label htmlFor={ props.id }> { props.label } </label>
+        { props.required && <span> &nbsp;* </span> }
+      </LabelWrapper>
       }
-      { props.children && <Description>{ props.children }</Description> }
-      <Component {...props as P} />
+      { props.children && <Description> { props.children } </Description> }
+      <Component { ...props as P } />
     </Container>
   );
 }
