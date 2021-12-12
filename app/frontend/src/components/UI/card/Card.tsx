@@ -35,33 +35,11 @@ interface Props{
 const CardStyled = styled.div<Props>`
   display: flex;
   justify-content: space-between;
-  font-weight: 400;
   border-width: 1px;
   border-color: var(--color-line);
   border-style: solid;
   border-radius: 12px;
   padding: 12px 12px 12px 14px;
-
-  .task-info {
-    overflow: hidden;
-    text-overflow:ellipsis;
-    font-size: 14px;
-  }
-
-  .assignees {
-    display: block;
-    width: 18px;
-    text-align: center;
-    color: var(--color-text-secondary);
-    font-size: 10px;
-  };
-
-  .progress {
-    font-weight: 500;
-    padding-top: 8px;
-    font-size: 12px;
-    color: var(--color-text-secondary);
-  }
 
   &:hover {
     border-color: var(--color-line-hover);
@@ -70,7 +48,10 @@ const CardStyled = styled.div<Props>`
   &:active {
     border-color: var(--color-line-active);
     background-color: var(--color-bg-active);
-    color: var(--color-text-primary-reversed);
+
+    .title {
+      color: var(--color-text-primary-reversed);;
+    }
 
     .assignees {
       color: var(--color-text-secondary-reversed);
@@ -83,27 +64,79 @@ const CardStyled = styled.div<Props>`
 `;
 
 /**
+ * Styled task info
+ */
+const TaskInfo = styled.div`
+  overflow: hidden;
+`;
+
+/**
+ * Styled task title
+ */
+const Title = styled.div`
+  font-weight: 400;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+`;
+
+/**
+ * Styled task assignees
+ */
+const Assignees = styled.div`
+  display: block;
+  width: 18px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 10px;
+`;
+
+/**
+ * Styled task progress
+ */
+const Progress = styled.div`
+  font-weight: 500;
+  padding-top: 8px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+`;
+
+/**
  * Card component
  *
  * @param props - props of component
  */
 const Card: React.FC<Props> = (props) => {
+  const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
+
   return (
     <CardStyled {...props}>
-      <div className={'task-info'}>
-        {props.taskTitle}
-        { (props.subtasksNumber || ``) &&
-          <div className={'progress'}>
-            {props.completedSubtasks || 0} of {props.subtasksNumber} completed
-          </div> }
-      </div>
-      <div className={'assignees'}>
+      <TaskInfo>
+        <Title className={'title'}>
+          {props.taskTitle}
+        </Title>
+        { props.subtasksNumber?
+          <Progress className={'progress'}>
+            {props.completedSubtasks} of {props.subtasksNumber} completed
+          </Progress> : null }
+      </TaskInfo>
+      <Assignees className={'assignees'}>
         <Avatar/>
-        { ((props.assigneesNumber && props.assigneesNumber-1) || ``) &&
-          `+${props.assigneesNumber?props.assigneesNumber-1:``}` }
-      </div>
+        { isShownAssigneesNumber && props.assigneesNumber?
+          `+${props.assigneesNumber-1}`: null }
+      </Assignees>
     </CardStyled>
   );
+};
+
+/**
+ * Default card component props
+ */
+Card.defaultProps = {
+  completedSubtasks : 0,
 };
 
 export default Card;
