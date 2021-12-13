@@ -121,12 +121,14 @@ const Card: React.FC<Props> = (props) => {
         { props.subtasksNumber?
           <Progress>
             {props.completedSubtasks} of {props.subtasksNumber} completed
-          </Progress> : null }
+          </Progress> : null
+        }
       </TaskInfo>
       <Assignees>
         <Avatar/>
-        { isShownAssigneesNumber && props.assigneesNumber?
-          `+${props.assigneesNumber-1}`: null }
+        { isShownAssigneesNumber && props.assigneesNumber ?
+          `+${props.assigneesNumber-1}`: null
+        }
       </Assignees>
     </CardStyled>
   );
