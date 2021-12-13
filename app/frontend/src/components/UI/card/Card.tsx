@@ -118,7 +118,7 @@ const Card: React.FC<Props> = (props) => {
         <Title>
           {props.taskTitle}
         </Title>
-        { props.subtasksNumber?
+        { props.subtasksNumber ?
           <Progress>
             {props.completedSubtasks} of {props.subtasksNumber} completed
           </Progress> : null
