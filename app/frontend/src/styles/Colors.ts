@@ -25,12 +25,11 @@ const ColorVariables = createGlobalStyle`
     --color-text-secondary-reversed: #9CA3AD;
 
     /**
-     * Card component colors variables
-     */
+    * Lines colors variables
+    */
     --color-line: var(--color-gray-2);
     --color-line-hover: var(--color-gray-4);
     --color-line-active: var(--color-contrast);
-    --color-bg-active: var(--color-contrast);
 
     /**
      * Image preview component colors
