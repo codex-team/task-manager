@@ -115,15 +115,15 @@ const Card: React.FC<Props> = (props) => {
   return (
     <CardStyled {...props}>
       <TaskInfo>
-        <Title className={'title'}>
+        <Title>
           {props.taskTitle}
         </Title>
         { props.subtasksNumber?
-          <Progress className={'progress'}>
+          <Progress>
             {props.completedSubtasks} of {props.subtasksNumber} completed
           </Progress> : null }
       </TaskInfo>
-      <Assignees className={'assignees'}>
+      <Assignees>
         <Avatar/>
         { isShownAssigneesNumber && props.assigneesNumber?
           `+${props.assigneesNumber-1}`: null }
