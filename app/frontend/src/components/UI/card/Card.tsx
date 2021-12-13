@@ -88,7 +88,7 @@ const CardStyled = styled.div<Props>`
 
   &:active {
     border-color: var(--color-line-active);
-    background-color: var(--color-bg-active);
+    background-color: var(--color-contrast);
 
     ${Title} {
       color: var(--color-text-primary-reversed);;
