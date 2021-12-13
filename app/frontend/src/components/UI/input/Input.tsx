@@ -46,20 +46,20 @@ export interface Props {
  */
 const InputWrapper = styled.div`
   height: 38px;
-  border: 1px solid var(--color-input-border);
+  border: 1px solid var(--color-line);
   border-radius: 12px;
   display: flex;
   transition: border 0.15s;
-  
+
   &:hover {
-    border: 1px solid var(--color-input-border-hover);
+    border: 1px solid var(--color-line-hover);
   }
 
   &:focus-within {
-    border: 1px solid var(--color-input-border-focus);
+    border: 1px solid var(--color-line-active);
   }
 
-  
+
   input {
     flex: 1;
     padding-left: 12px;
@@ -71,7 +71,7 @@ const InputWrapper = styled.div`
     color: var(--color-text-primary);
     font-size: 14px;
     letter-spacing: -0.005em;
-    
+
     ::placeholder {
       color: var(--color-text-secondary);
       opacity: 1;

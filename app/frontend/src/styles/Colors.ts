@@ -24,6 +24,12 @@ const ColorVariables = createGlobalStyle`
     --color-text-primary-reversed: #E9F2FF;
     --color-text-secondary-reversed: #9CA3AD;
 
+    /**
+     * Lines colors variables
+     */
+    --color-line: var(--color-gray-2);
+    --color-line-hover: var(--color-gray-4);
+    --color-line-active: var(--color-contrast);
 
     /**
      * Image preview component colors
@@ -33,16 +39,6 @@ const ColorVariables = createGlobalStyle`
      --color-image-preview-border-hover: var(--color-gray-5);
      --color-image-preview-text-hover: var(--color-gray-5);
      --color-image-preview-text-filled: var(--color-white);
-
-
-     /**
-      * Input component colors
-      */
-     --color-input-border: var(--color-gray-2);
-     --color-input-border-hover: var(--color-gray-4);
-     --color-input-border-focus: var(--color-contrast);
-
-
   }
 `;
 
