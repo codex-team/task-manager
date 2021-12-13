@@ -27,10 +27,10 @@ const ColorVariables = createGlobalStyle`
     /**
      * Card component colors variables
      */
-    --color-line: #F4F4F4;
-    --color-line-hover: #D6D6D6;
-    --color-line-active: #1D2331;
-    --color-bg-active: #1D2331;
+    --color-line: var(--color-gray-2);
+    --color-line-hover: var(--color-gray-4);
+    --color-line-active: var(--color-contrast);
+    --color-bg-active: var(--color-contrast);
 
     /**
      * Image preview component colors
