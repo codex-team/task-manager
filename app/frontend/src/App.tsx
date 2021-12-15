@@ -19,7 +19,7 @@ function App(): React.ReactElement {
       <ColorVariables/>
       <GlobalStyles/>
       <Sidebar>
-        <SidebarHeader sidebarTitle={'Codex Tasks'}/>
+        <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
         <ProjectList>
           <ProjectListItem projectTitle={'Project 1'}/>
           <ProjectListItem projectTitle={'Project 2'}/>
