@@ -28,49 +28,6 @@ interface Props{
 }
 
 /**
- * Styled card component
- *
- * @param props - props of component
- */
-const CardStyled = styled.div<Props>`
-  display: flex;
-  justify-content: space-between;
-  border-width: 1px;
-  border-color: var(--color-line);
-  border-style: solid;
-  border-radius: 12px;
-  padding: 12px 12px 12px 14px;
-
-  &:hover {
-    border-color: var(--color-line-hover);
-  };
-
-  &:active {
-    border-color: var(--color-line-active);
-    background-color: var(--color-bg-active);
-
-    .title {
-      color: var(--color-text-primary-reversed);;
-    }
-
-    .assignees {
-      color: var(--color-text-secondary-reversed);
-    };
-
-    .progress {
-      color: var(--color-text-secondary-reversed);
-    }
-  }
-`;
-
-/**
- * Styled task info
- */
-const TaskInfo = styled.div`
-  overflow: hidden;
-`;
-
-/**
  * Styled task title
  */
 const Title = styled.div`
@@ -81,6 +38,13 @@ const Title = styled.div`
   -webkit-line-clamp: 3;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+`;
+
+/**
+ * Styled task info
+ */
+const TaskInfo = styled.div`
+  overflow: hidden;
 `;
 
 /**
@@ -105,6 +69,37 @@ const Progress = styled.div`
 `;
 
 /**
+ * Styled card component
+ *
+ * @param props - props of component
+ */
+const CardStyled = styled.div<Props>`
+  display: flex;
+  justify-content: space-between;
+  border-width: 1px;
+  border-color: var(--color-line);
+  border-style: solid;
+  border-radius: 12px;
+  padding: 12px 12px 12px 14px;
+  &:hover {
+    border-color: var(--color-line-hover);
+  };
+  &:active {
+    border-color: var(--color-line-active);
+    background-color: var(--color-contrast);
+    ${Title} {
+      color: var(--color-text-primary-reversed);;
+    };
+    ${Assignees} {
+      color: var(--color-text-secondary-reversed);
+    };
+    ${Progress} {
+      color: var(--color-text-secondary-reversed);
+    };
+  }
+`;
+
+/**
  * Card component
  *
  * @param props - props of component
@@ -115,18 +110,20 @@ const Card: React.FC<Props> = (props) => {
   return (
     <CardStyled {...props}>
       <TaskInfo>
-        <Title className={'title'}>
+        <Title>
           {props.taskTitle}
         </Title>
-        { props.subtasksNumber?
-          <Progress className={'progress'}>
+        { props.subtasksNumber ?
+          <Progress>
             {props.completedSubtasks} of {props.subtasksNumber} completed
-          </Progress> : null }
+          </Progress> : null
+        }
       </TaskInfo>
-      <Assignees className={'assignees'}>
+      <Assignees>
         <Avatar/>
-        { isShownAssigneesNumber && props.assigneesNumber?
-          `+${props.assigneesNumber-1}`: null }
+        { isShownAssigneesNumber && props.assigneesNumber ?
+          `+${props.assigneesNumber-1}`: null
+        }
       </Assignees>
     </CardStyled>
   );

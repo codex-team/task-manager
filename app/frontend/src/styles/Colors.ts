@@ -11,12 +11,9 @@ const ColorVariables = createGlobalStyle`
     --color-gray-3: #DBDBDB;
     --color-gray-4: #D6D6D6;
     --color-gray-5: #8D8D8D;
-    --color-gray-6: #1D2331;
-
     --color-bg-main: #FFFFFF;
     --color-accent: #387CE1;
     --color-contrast: #1D2331;
-
     /**
      * Text colors variables
      */
@@ -24,31 +21,20 @@ const ColorVariables = createGlobalStyle`
     --color-text-secondary: var(--color-gray-5);
     --color-text-primary-reversed: #E9F2FF;
     --color-text-secondary-reversed: #9CA3AD;
-
     /**
-     * Card component colors variables
+     * Lines colors variables
      */
-    --color-line: #F4F4F4;
-    --color-line-hover: #D6D6D6;
-    --color-line-active: #1D2331;
-    --color-bg-active: #1D2331;
-
+    --color-line: var(--color-gray-2);
+    --color-line-hover: var(--color-gray-4);
+    --color-line-active: var(--color-contrast);
     /**
      * Image preview component colors
      */
-     --color-image-preview-border: var(--color-gray-4);
-     --color-image-preview-text: var(--color-gray-3);
-     --color-image-preview-border-hover: var(--color-gray-5);
-     --color-image-preview-text-hover: var(--color-gray-5);
-     --color-image-preview-text-filled: var(--color-white);
-
-
-     /**
-      * Input component colors
-      */
-     --color-input-border: var(--color-gray-2);
-     --color-input-border-hover: var(--color-gray-4);
-     --color-input-border-focus: var(--color-contrast);
+    --color-image-preview-border: var(--color-gray-4);
+    --color-image-preview-text: var(--color-gray-3);
+    --color-image-preview-border-hover: var(--color-gray-5);
+    --color-image-preview-text-hover: var(--color-gray-5);
+    --color-image-preview-text-filled: var(--color-white);
   }
 `;
 
