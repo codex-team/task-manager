@@ -4,5 +4,8 @@
   },
   "devDependencies": {
     "cypress": "9.1.0"
+  },
+  "dependencies": {
+    "ctproto": "^0.0.13"
   }
 }
