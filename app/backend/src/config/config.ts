@@ -23,5 +23,9 @@ export class Config {
      */
     public static ctprotoHost: string = process.env.CTPROTO_HOST || 'localhost';
     public static ctprotoPort: string = process.env.CTPROTO_PORT || '3080';
+
+    /**
+     * Ctproto access token
+     */
     public static ctprotoToken: string = process.env.CTPROTO_TOKEN || '';
 }
