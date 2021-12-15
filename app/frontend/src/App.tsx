@@ -21,9 +21,9 @@ function App(): React.ReactElement {
       <Sidebar>
         <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
         <ProjectList>
-          <ProjectListItem projectTitle={'Project 1'}/>
-          <ProjectListItem projectTitle={'Project 2'}/>
-          <ProjectListItem projectTitle={'Project 3'}/>
+          <ProjectListItem title={'All projects'} />
+          <ProjectListItem title={'Hawk'} picture={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHDBRoAMoZ_mga_JVM_Y1drzCF3yII75v4-gqJdueV-hBbhdOPOmAVedy3CbKUWqDfSs&usqp=CAU'}/>
+          <ProjectListItem title={'Github Bot'} picture={'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'}/>
         </ProjectList>
       </Sidebar>
       <Content/>
