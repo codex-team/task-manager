@@ -1,30 +1,30 @@
 import { CTProtoClient } from 'ctproto';
 
-const client = new CTProtoClient({
-  apiUrl: 'ws://localhost:3080/',
-  authRequestPayload: {
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-  },
-  onAuth: (data) => {
-    console.log('Authorization is success', data);
-  },
-  onMessage: (data) => {
-    console.log('Incoming message: ', data);
-  },
-});
+describe('Ctproto API', function () {
+  let client;
 
-describe('Creating client', function () {
-  it('building ctproto client', async function () {
-    cy.stub(client, 'send')
+  before('Initialize ctproto', function () {
+    client = new CTProtoClient({
+      apiUrl: 'ws://localhost:3080/',
+      authRequestPayload: {
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+      },
+      onAuth: (data) => {
+        cy.log('Authorization is success', data);
+      },
+      onMessage: (data) => {
+        cy.log('Incoming message: ', data);
+      },
+    });
+  })
 
-    await client
-      .send('create-project', {
-        title: 'titleAgain',
+  it('Get all projects', function () {
+    client
+      .send('get-projects', {
+        workspaceId: 'test-test-test',
       })
-      .then((responsePayload) => {
-        console.log('Response for "create-project": ', responsePayload);
-      });
-
-    expect(client.send).to.be.called
+      .then(function (responsePayload) {
+        expect(responsePayload).ownProperty('projects');
+      })
   });
 });
