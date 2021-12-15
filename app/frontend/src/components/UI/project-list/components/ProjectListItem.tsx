@@ -41,6 +41,16 @@ const ProjectAvatar = styled.div`
 `;
 
 /**
+ * Styled image
+ */
+const Image = styled.img`
+  object-fit: cover;
+  border-radius: 7px;
+  width: 24px;
+  height: 24px;
+`;
+
+/**
  * Styled project component
  */
 const ProjectListItemStyled = styled.li<Props>`
@@ -74,7 +84,7 @@ const ProjectListItem: React.FC<Props> = (props) => {
     <ProjectListItemStyled {...props}>
       <ProjectAvatar>
         { props.projectPicture ?
-          <img src={props.projectPicture} alt={props.projectTitle}/>:
+          <Image src={props.projectPicture} alt={props.projectTitle}/>:
           <Avatar/>
         }
       </ProjectAvatar>
