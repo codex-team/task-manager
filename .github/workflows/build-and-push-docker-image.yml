@@ -18,6 +18,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Make backend envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DB_URL: 'mongodb://mongo:27017/task-manager'
+          envkey_HOST: '0.0.0.0'
+          envkey_PORT: '3000'
+          envkey_CTPROTO_HOST: '0.0.0.0'
+          envkey_CTPROTO_PORT: '3080'
+          envkey_CTPROTO_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+          directory: './app/backend/'
+
+      - name: Make frontend envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_REACT_APP_ENDPOINT_BACKEND: 'http://localhost:3000'
+          envkey_REACT_APP_ENDPOINT_CTPROTO: 'ws://localhost:3080'
+          envkey_REACT_APP_ACCESS_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+          directory: './app/frontend/'
+
       - name: Build and push docker image
         uses: docker/build-push-action@v1
         with:
