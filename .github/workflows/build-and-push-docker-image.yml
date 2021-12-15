@@ -14,7 +14,7 @@ env:
 jobs:
   build-image:
     runs-on: ubuntu-20.04
-    if: ${{ endsWith(github.ref, '/stage') || endsWith(github.ref, '/prod') || endsWidth(github.ref, '/feature/environment-variables' }}
+    if: ${{ endsWith(github.ref, '/stage') || endsWith(github.ref, '/prod') || endsWidth(github.ref, '/feature/environment-variables') }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
