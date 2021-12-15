@@ -6,7 +6,6 @@ on:
       - prod
       - stage
       - storybook
-      - feature/enviroment-variables
 
 env:
   DOCKER_REPO: ${{ secrets.DOCKER_USERNAME }}/task-manager
@@ -14,7 +13,7 @@ env:
 jobs:
   build-image:
     runs-on: ubuntu-20.04
-    if: ${{ endsWith(github.ref, '/stage') || endsWith(github.ref, '/prod') || endsWith(github.ref, '/feature/enviroment-variables') }}
+    if: ${{ endsWith(github.ref, '/stage') || endsWith(github.ref, '/prod') }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
