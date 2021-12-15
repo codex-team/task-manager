@@ -7,14 +7,14 @@ import { ReactComponent as Avatar } from 'components/icons/ProjectAva.svg';
  */
 interface Props{
   /**
-   * ProjectListItem title
+   * Project title
    */
-  projectTitle: string;
+  title: string;
 
   /**
-   * ProjectListItem picture
+   * Project picture
    */
-  projectPicture?: string;
+  picture?: string;
 }
 
 /**
@@ -75,7 +75,7 @@ const ProjectListItemStyled = styled.li<Props>`
 `;
 
 /**
- * Project list item list component
+ * Project list item component
  *
  * @param props - props of component
  */
@@ -83,13 +83,13 @@ const ProjectListItem: React.FC<Props> = (props) => {
   return (
     <ProjectListItemStyled {...props}>
       <ProjectAvatar>
-        { props.projectPicture ?
-          <Image src={props.projectPicture} alt={props.projectTitle}/>:
+        { props.picture ?
+          <Image src={props.picture} alt={props.title}/>:
           <Avatar/>
         }
       </ProjectAvatar>
       <ProjectTitle>
-        {props.projectTitle}
+        {props.title}
       </ProjectTitle>
     </ProjectListItemStyled>
   );
