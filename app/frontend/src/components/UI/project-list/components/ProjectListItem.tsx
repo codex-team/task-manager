@@ -54,6 +54,12 @@ const Image = styled.img`
  * Styled project component
  */
 const ProjectListItemStyled = styled.li<Props>`
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   align-items: center;
   cursor: pointer;
   display: flex;
