@@ -26,7 +26,7 @@ interface AdditionalProps {
  * Root container component
  */
 const Container = styled.div`
-  ${ UiComponentText }
+  ${ UiComponentText };
   
   label {
     color: var(--color-text-primary);

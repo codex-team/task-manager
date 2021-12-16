@@ -75,7 +75,7 @@ const InputWrapper = styled.div`
     height: 100%;
     border-radius: 12px;
     color: var(--color-text-primary);
-    ${ UiComponentText }
+    ${ UiComponentText };
     
     ::placeholder {
       color: var(--color-text-secondary);
