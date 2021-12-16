@@ -5,7 +5,7 @@ export default interface Project {
   /**
    * Project's unique identity
    */
-  id?: string;
+  id: string;
 
   /**
    * Project's visible title
@@ -20,7 +20,7 @@ export default interface Project {
   /**
    * Project's creation date
    */
-  dateCreated?: string;
+  dateCreated: string;
 
   /**
    * URL of a Channel in a messenger in where reports and notifies will be sent
