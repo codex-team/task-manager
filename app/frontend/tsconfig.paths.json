@@ -4,7 +4,7 @@
       "paths": {
          "services/*" : ["./services/*"],
          "styles/*" : ["./styles/*"],
-         "utils/*" : ["./utils/*"],
+         "transport/*" : ["./transport/*"],
          "types/*" : ["../../types/*"]
        }
   }
