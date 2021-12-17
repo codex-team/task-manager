@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import ProjectList from 'components/UI/project-list/ProjectList';
-import ProjectListItem from 'components/UI/project-list/components/ProjectListItem';
+import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import Sidebar from 'components/layouts/base/Sidebar';
 
 export default {

@@ -54,11 +54,7 @@ const Image = styled.img`
  * Styled project component
  */
 const ProjectListItemStyled = styled.li<Props>`
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  touch-callout: none;
   user-select: none;
   align-items: center;
   cursor: pointer;
@@ -71,13 +67,6 @@ const ProjectListItemStyled = styled.li<Props>`
   &:hover {
     background: var(--color-bg-hover);
   };
-
-  &:active {
-    background: var(--color-contrast);
-    ${ProjectTitle} {
-      color: var(--color-text-primary-reversed);
-    }
-  }
 `;
 
 /**
