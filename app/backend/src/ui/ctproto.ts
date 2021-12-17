@@ -2,6 +2,7 @@ import { CTProtoServer } from 'ctproto';
 import { AuthorizeMessagePayload } from '../../../types/transport/requests/authorize';
 import { AuthorizeResponsePayload } from '../../../types/transport/responses/authorize';
 import { ApiRequest, ApiResponse, ApiUpdate } from '../../../types/transport';
+import { Config } from '../config/config';
 import { createProject } from './methods/projects/create';
 import { updateTitle } from './methods/projects/update-title';
 import { updatePicture } from './methods/projects/update-picture';
@@ -24,10 +25,18 @@ export interface TransportServerOptions {
  * @param options.authToken - token we use to authorize clients
  */
 export function createTransportServer({ authToken }: TransportServerOptions): CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate> {
+  const CTPROTO_SERVER_HOST = '0.0.0.0';
+  const CTPROTO_SERVER_PORT = parseInt(Config.CTPROTO_SERVER_PORT);
+
   return new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
-    port: 3080,
+    host: CTPROTO_SERVER_HOST,
+    port: CTPROTO_SERVER_PORT,
     async onAuth(authRequestPayload: AuthorizeMessagePayload): Promise<AuthorizeResponsePayload> {
       if (authRequestPayload.token == authToken) {
+        /**
+         * Lets imagine that we have a nice auth check
+         * Returns fake auth data
+         */
         return {
           userId: '123',
         };
