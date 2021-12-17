@@ -18,7 +18,7 @@ interface CreateProjectPayload {
   /**
    * URL of a Channel in a messenger in where reports and notifies will be sent
    */
-  messengerChannelUrl: string
+  messengerChannelUrl?: string
 }
 
 /**
