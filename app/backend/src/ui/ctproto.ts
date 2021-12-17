@@ -25,7 +25,7 @@ export interface TransportServerOptions {
  * @param options.authToken - token we use to authorize clients
  */
 export function createTransportServer({ authToken }: TransportServerOptions): CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate> {
-  const CTPROTO_SERVER_HOST = '127.0.0.1';
+  const CTPROTO_SERVER_HOST = '0.0.0.0';
   const CTPROTO_SERVER_PORT = parseInt(Config.CTPROTO_SERVER_PORT);
 
   return new CTProtoServer<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
