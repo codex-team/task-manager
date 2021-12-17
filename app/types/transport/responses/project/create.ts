@@ -1,14 +1,15 @@
 import { ResponseMessage } from 'ctproto';
+import { Project } from '../../../entities';
 
 /**
  * Response for 'create-project' message
- * Contains message of success creating with project id
+ * Contains sample of project
  */
 export interface CreateProjectResponsePayload {
   /**
-   * Response message
+   * Response sample
    */
-  message: string;
+  project: Project;
 }
 
 /**
