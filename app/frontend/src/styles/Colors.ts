@@ -13,6 +13,7 @@ const ColorVariables = createGlobalStyle`
     --color-gray-5: #8D8D8D;
 
     --color-bg-main: #FFFFFF;
+    --color-bg-hover: var(--color-gray-1);
     --color-accent: #387CE1;
     --color-contrast: #1D2331;
 
