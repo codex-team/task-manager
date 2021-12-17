@@ -66,11 +66,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Duplicate env file with default values for docker
-        run: cp app/backend/.env.sample app/backend/.env
-
       - name: Build the stack
         run: docker-compose -f docker-compose.prod.yml build
+
+      - name: Duplicate env file with default values for docker
+        run: cp app/backend/.env.sample app/backend/.env
 
       - name: Run the stack
         run: docker-compose -f docker-compose.prod.yml up -d
