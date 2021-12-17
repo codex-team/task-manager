@@ -5,7 +5,7 @@ import Content from 'components/layouts/base/Content';
 import ColorVariables from './styles/Colors';
 import GlobalStyles from './styles/Global';
 import ProjectList from 'components/UI/project-list/ProjectList';
-import ProjectListItem from 'components/UI/project-list/components/ProjectListItem';
+import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
 
 /**

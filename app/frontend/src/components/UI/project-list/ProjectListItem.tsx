@@ -67,13 +67,6 @@ const ProjectListItemStyled = styled.li<Props>`
   &:hover {
     background: var(--color-bg-hover);
   };
-
-  &:active {
-    background: var(--color-contrast);
-    ${ProjectTitle} {
-      color: var(--color-text-primary-reversed);
-    }
-  }
 `;
 
 /**

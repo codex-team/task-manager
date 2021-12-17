@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ProjectListItem from 'components/UI/project-list/components/ProjectListItem';
+import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import Sidebar from 'components/layouts/base/Sidebar';
 
 export default {
@@ -14,5 +14,4 @@ const Template: ComponentStory<typeof ProjectListItem> = (args) =>
 export const WithTitle = Template.bind({});
 WithTitle.args = {
   title: 'My Project',
-  picture: '',
 };
