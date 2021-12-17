@@ -69,8 +69,8 @@ jobs:
       - name: Build the stack
         run: docker-compose -f docker-compose.prod.yml build
 
-      - name: Duplicate env file for docker
-        run: cp app/backend/.env.sample cp app/backend/.env
+      - name: Duplicate env file with default values for docker
+        run: cp app/backend/.env.sample app/backend/.env
 
       - name: Run the stack
         run: docker-compose -f docker-compose.prod.yml up -d
