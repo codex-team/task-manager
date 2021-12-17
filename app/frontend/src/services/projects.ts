@@ -1,11 +1,25 @@
-import { Project } from 'types/entities';
 import { CreateProjectResponsePayload } from 'types/transport/responses/project/create';
 import client from 'transport/ctproto-client';
 
 /**
  * Represents data needed to create new project
  */
-type CreateProjectPayload = Omit<Project, 'id' | 'dateCreated'>;
+interface CreateProjectPayload {
+  /**
+   * Project's visible title
+   */
+  title: string
+
+  /**
+   * Project's visible picture
+   */
+  picture?: string
+
+  /**
+   * URL of a Channel in a messenger in where reports and notifies will be sent
+   */
+  messengerChannelUrl: string
+}
 
 /**
  * Creates new project

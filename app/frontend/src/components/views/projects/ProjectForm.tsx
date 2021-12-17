@@ -29,8 +29,6 @@ const FormStyled = styled.div`
 
 /**
  * ProjectForm component
- *
- * @param props - props of the component
  */
 const ProjectForm: React.FC<Props> = () => {
   const [title, setTitle] = useState('');
