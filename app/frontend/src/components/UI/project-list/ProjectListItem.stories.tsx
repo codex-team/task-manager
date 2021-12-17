@@ -14,4 +14,5 @@ const Template: ComponentStory<typeof ProjectListItem> = (args) =>
 export const WithTitle = Template.bind({});
 WithTitle.args = {
   title: 'My Project',
+  picture: '',
 };
