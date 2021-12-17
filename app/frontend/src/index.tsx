@@ -5,9 +5,9 @@ import { AuthorizeMessagePayload } from '../../types/transport/requests/authoriz
 import { AuthorizeResponsePayload } from '../../types/transport/responses/authorize';
 import { ApiRequest, ApiResponse, ApiUpdate } from '../../types/transport';
 
+import { Config } from './config';
 
 import App from './App';
-
 
 ReactDOM.render(
   <App />,
@@ -16,9 +16,9 @@ ReactDOM.render(
 
 
 const client = new CTProtoClient<AuthorizeMessagePayload, AuthorizeResponsePayload, ApiRequest, ApiResponse, ApiUpdate>({
-  apiUrl: 'ws://localhost:3080/',
+  apiUrl: Config.CTPROTO_ENDPOINT,
   authRequestPayload: {
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    token: Config.CTPROTO_TOKEN,
   },
   onAuth: (data) => {
     console.log('Authorization is success', data);
