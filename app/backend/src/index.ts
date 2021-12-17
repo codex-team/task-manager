@@ -41,7 +41,7 @@ server.route({
 /**
  * Define server init params
  */
-const SERVER_HOST = '127.0.0.1';
+const SERVER_HOST = '0.0.0.0';
 const SERVER_PORT = Config.SERVER_PORT;
 
 server.listen(SERVER_PORT, SERVER_HOST, (err, address) => {
