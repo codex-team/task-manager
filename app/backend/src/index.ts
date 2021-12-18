@@ -28,6 +28,7 @@ server.route({
     const ENV_FRONTEND = {
       SERVER_ENDPOINT: Config.SERVER_ENDPOINT,
       CTPROTO_ENDPOINT: Config.CTPROTO_ENDPOINT,
+      CTPROTO_TOKEN: Config.CTPROTO_TOKEN,
     };
 
     /**
