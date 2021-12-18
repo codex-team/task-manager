@@ -1,11 +1,15 @@
 import { ResponseMessage } from 'ctproto';
+import { Project } from '../../../entities';
 
 /**
  * Response for 'update-project-title' message
- * Contains message of success updating with project id
+ * Contains sample of project
  */
 export interface UpdateProjectTitleResponsePayload {
-  message: string;
+  /**
+   * Response project
+   */
+  project: Project;
 }
 
 /**

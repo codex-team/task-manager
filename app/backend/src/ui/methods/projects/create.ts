@@ -2,14 +2,16 @@ import Project from '../../../../../types/entities/project';
 import ProjectSchema from '../../../database/models/project';
 
 /**
- * @param title
- * @param picture
- * @param messenger
+ * Creates new project
+ *
+ * @param title - project title
+ * @param picture - project picture url
+ * @param messengerChannelUrl - project messenger channel url
  */
-export function createProject(title: string, picture: string | undefined, messenger: string | undefined): Promise<Project> {
-  return ProjectSchema.create({
-    title: title,
-    picture: picture,
-    messengerChannelUrl: messenger,
+export async function createProject(title: string, picture?: string, messengerChannelUrl?: string): Promise<Project> {
+  return await ProjectSchema.create({
+    title,
+    picture,
+    messengerChannelUrl,
   });
 }
