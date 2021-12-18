@@ -1,5 +1,6 @@
 import { ComponentType, ReactNode } from 'react';
 import styled from 'styled-components';
+import { UiComponentText } from 'styles/Mixins';
 
 /**
  * Labeled wrapper props model
@@ -8,28 +9,28 @@ interface AdditionalProps {
   /**
    * Id to be passed to label
    */
-  id: string
+  id?: string
 
   /**
    * Label text
    */
-  label: string
+  label?: string
 
   /**
    * True if should display required asterisk
    */
-  required: boolean
+  required?: boolean
 }
 
 /**
  * Root container component
  */
 const Container = styled.div`
+  ${ UiComponentText };
+  
   label {
     color: var(--color-text-primary);
     font-weight: 600;
-    font-size: 14px;
-    letter-spacing: -0.005em;
     display: inline-block;
     max-width: 100%;
     white-space: nowrap;
@@ -50,7 +51,6 @@ const Container = styled.div`
  */
 const LabelWrapper = styled.div<{ hasDescription: boolean }>`
   display: flex;
-  font-size: 14px;
   font-weight: 600;
 
   ${props => !props.hasDescription && `
@@ -62,7 +62,6 @@ const LabelWrapper = styled.div<{ hasDescription: boolean }>`
  *  Description component
  */
 const Description = styled.p`
-  font-size: 14px;
   color: var(--color-text-secondary);
   margin-top: 4px;
 `;

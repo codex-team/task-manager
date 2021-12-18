@@ -20,12 +20,12 @@ export interface ImageUploaderProps {
   /**
    * Input component id
    */
-  id: string
+  id?: string
 
   /**
    * String that defines the file types the file input should accept
    */
-  accept: string
+  accept?: string
 
   /**
    * Url of the image to be displayed in image preview
@@ -41,12 +41,12 @@ export interface ImageUploaderProps {
    * Component ref.
    * Allows to call component method from outside
    */
-  ref: ImageUploaderRefType
+  ref?: ImageUploaderRefType
 
   /**
    * CSS class name
    */
-  className: string
+  className?: string
 }
 
 /**

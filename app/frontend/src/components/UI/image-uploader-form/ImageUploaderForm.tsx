@@ -14,17 +14,17 @@ interface Props extends ImageUploaderProps {
   /**
    * ImageUploaderForm label
    */
-   label: string
+   label?: string
 
   /**
    * Prompt that should be displayed when no image is selected
    */
-  promptEmpty: string
+  promptEmpty?: string
 
   /**
    * Prompt that should be displayed when image is selected
    */
-  promptHasValue: string
+  promptHasValue?: string
 }
 
 const Wrapper = styled.div<{ hasValue: boolean}>`
@@ -32,8 +32,6 @@ const Wrapper = styled.div<{ hasValue: boolean}>`
   align-items: center;
   height: 48px;
   color: var(--color-text-secondary);
-  font-size: 14px;
-  letter-spacing: -0.005em;
   cursor: pointer;
   transition: all 0.15s;
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { UiComponentText } from 'styles/Mixins';
 
 /**
  * Input component props model
@@ -18,22 +19,27 @@ export interface Props {
   /**
    * Input placeholder
    */
-  placeholder: string,
+  placeholder?: string,
 
   /**
    * Input type
    */
-  type: string,
+  type?: string,
 
   /**
    * True if input value is required
    */
-  required: boolean,
+  required?: boolean,
 
   /**
    * True if input is disabled
    */
-  disabled: boolean,
+  disabled?: boolean,
+
+  /**
+   * Input name
+   */
+  name?: string,
 
   /**
    * Value change callback
@@ -69,9 +75,8 @@ const InputWrapper = styled.div`
     height: 100%;
     border-radius: 12px;
     color: var(--color-text-primary);
-    font-size: 14px;
-    letter-spacing: -0.005em;
-
+    ${ UiComponentText };
+    
     ::placeholder {
       color: var(--color-text-secondary);
       opacity: 1;
@@ -94,6 +99,7 @@ const Input: React.FC<Props> = (props) => {
         placeholder={ props.placeholder }
         required={ props.required }
         disabled={ props.disabled }
+        name={ props.name }
         onChange={ ({ target: { value } }) => props.onChange(value) } />
     </InputWrapper>
   );

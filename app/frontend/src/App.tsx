@@ -4,6 +4,11 @@ import Sidebar from 'components/layouts/base/Sidebar';
 import Content from 'components/layouts/base/Content';
 import ColorVariables from './styles/Colors';
 import GlobalStyles from './styles/Global';
+import ProjectForm from 'components/views/projects/ProjectForm';
+import {
+  Routes,
+  Route
+} from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
 import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
@@ -26,7 +31,12 @@ function App(): React.ReactElement {
           <ProjectListItem title={'Github Bot'} picture={'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'}/>
         </ProjectList>
       </Sidebar>
-      <Content/>
+      <Routes>
+        <Route path="/" element={<Content />}>
+          <Route path="projects/new" element={<ProjectForm />} />
+          <Route path="projects/:id" element={<ProjectForm />} />
+        </Route>
+      </Routes>
     </Container>
   );
 }
