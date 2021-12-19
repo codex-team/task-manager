@@ -39,6 +39,7 @@ const ButtonStyled = styled.button<Props>`
   border-radius: 12px;
   cursor: pointer;
   display: flex;
+  text-align: left;
 
   ${(props) => {
     switch (props.styleType) {
@@ -93,7 +94,9 @@ const Button: React.FC<Props> = ({ ...props }) => {
       { props.icon &&
           <Icon name='plus' width={16} height={16}/>
       }
-      {props.children}
+      <span>
+        {props.children}
+      </span>
     </ButtonStyled>
   );
 };

@@ -12,6 +12,17 @@ import {
 import ProjectList from 'components/UI/project-list/ProjectList';
 import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
+import { Link } from 'react-router-dom';
+import Button from 'components/UI/button/Button';
+import styled from 'styled-components';
+
+
+/**
+ * Link component with overriden styles
+ */
+const StyledLink = styled(Link)`
+  text-decoration: unset;
+`;
 
 /**
  * Makes the main page
@@ -29,6 +40,9 @@ function App(): React.ReactElement {
           <ProjectListItem title={'All projects'} />
           <ProjectListItem title={'Hawk'} picture={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHDBRoAMoZ_mga_JVM_Y1drzCF3yII75v4-gqJdueV-hBbhdOPOmAVedy3CbKUWqDfSs&usqp=CAU'}/>
           <ProjectListItem title={'Github Bot'} picture={'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'}/>
+          <StyledLink to='/projects/new'>
+            <Button icon='plus'>Add new project</Button>
+          </StyledLink>
         </ProjectList>
       </Sidebar>
       <Routes>
