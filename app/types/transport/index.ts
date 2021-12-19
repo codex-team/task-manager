@@ -11,6 +11,10 @@ import UpdateProjectPicture from './requests/project/update-picture';
 import UpdateProjectPictureResponse from './responses/project/update-picture';
 import UpdateProjectChannel from './requests/project/update-channel';
 import UpdateProjectChannelResponse from './responses/project/update-channel';
+import CreateTaskMessage from "./requests/task/create";
+import CreateTaskResponse from "./responses/task/create";
+import GetTasksMessage from "./requests/task/get-tasks";
+import GetTasksResponse from "./responses/task/get-tasks";
 
 /**
  * The type described all available outgoing messages that can be sent by API
@@ -28,6 +32,8 @@ export type ApiRequest =
   | UpdateProjectTitle
   | UpdateProjectPicture
   | UpdateProjectChannel
+  | CreateTaskMessage
+  | GetTasksMessage
 ;
 
 /**
@@ -40,4 +46,6 @@ export type ApiResponse =
   | UpdateProjectTitleResponse
   | UpdateProjectPictureResponse
   | UpdateProjectChannelResponse
+  | CreateTaskResponse
+  | GetTasksResponse
 ;
