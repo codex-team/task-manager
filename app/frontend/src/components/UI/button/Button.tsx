@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import Icon from 'components/UI/icon/Icon';
 
 /**
  * Types of button style
@@ -17,6 +18,11 @@ interface Props extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<
    * Button style type
    */
   styleType?: StyleType;
+
+  /**
+   * Icon name to be displayed inside of the button
+   */
+  icon?: string
 }
 
 /**
@@ -32,7 +38,7 @@ const ButtonStyled = styled.button<Props>`
   border: 0;
   border-radius: 12px;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
 
   ${(props) => {
     switch (props.styleType) {
@@ -64,7 +70,16 @@ const ButtonStyled = styled.button<Props>`
           }
         `;
     }
-  }};};
+  }};
+
+  ${props => props.icon && `
+    padding-left: 16px;
+
+    svg {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  `}
 `;
 
 /**
@@ -74,7 +89,12 @@ const ButtonStyled = styled.button<Props>`
  */
 const Button: React.FC<Props> = ({ ...props }) => {
   return (
-    <ButtonStyled {...props}/>
+    <ButtonStyled {...props}>
+      { props.icon &&
+          <Icon name='plus' width={16} height={16}/>
+      }
+      {props.children}
+    </ButtonStyled>
   );
 };
 

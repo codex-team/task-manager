@@ -23,3 +23,10 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   children: 'Secondary button',
 };
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  icon: 'plus',
+  children: 'Add new project',
+  styleType: StyleType.Primary,
+};

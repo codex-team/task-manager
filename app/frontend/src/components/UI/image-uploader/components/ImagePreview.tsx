@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as PlusIcon } from 'components/icons/plus.svg';
+import { ReactComponent as PlusIcon } from 'icons/plus.svg';
 
 /**
  * ImagePreview component props model
