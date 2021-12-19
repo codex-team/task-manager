@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Avatar } from 'icons/DefaultAvatar.svg';
+import Icon from 'components/UI/icon/Icon';
 
 /**
  * Interface for card component props
@@ -125,7 +125,7 @@ const Card: React.FC<Props> = (props) => {
         }
       </TaskInfo>
       <Assignees>
-        <Avatar/>
+        <Icon name='DefaultAvatar' width={18} height={18}/>
         { isShownAssigneesNumber && props.assigneesNumber ?
           `+${props.assigneesNumber-1}`: null
         }
