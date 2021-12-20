@@ -5,9 +5,9 @@ import Task from '../../../../types/entities/task';
  */
 const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema ({
   /**
-   * Task title
+   * Task body
    */
-  title: {
+  body: {
     type: mongoose.Schema.Types.String,
     required: true,
   },
@@ -27,13 +27,6 @@ const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema ({
   parentId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'TaskSchema',
-  },
-
-  /**
-   * Task description
-   */
-  description: {
-    type: mongoose.Schema.Types.String,
   },
 
   /**

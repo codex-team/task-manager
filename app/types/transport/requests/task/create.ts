@@ -2,9 +2,9 @@ import { NewMessage } from 'ctproto';
 
 export interface CreateTaskPayload {
   /**
-   * Title of creating task
+   * Body of creating task
    */
-  title: string;
+  body: string;
 
   /**
    * Unique identifier of task's project
@@ -15,11 +15,6 @@ export interface CreateTaskPayload {
    * Unique identifier of previous task (subtasks)
    */
   parentId?: string;
-
-  /**
-   * Task's description
-   */
-  description?: string;
 
   /**
    * Task's assignees

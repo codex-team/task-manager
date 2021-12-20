@@ -22,16 +22,15 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
       projects: await getProjects(),
     };
     case 'create-task': return {
-      project: await createTask(
-        message.payload.title,
+      task: await createTask(
+        message.payload.body,
         message.payload.projectId,
         message.payload.parentId,
-        message.payload.description,
         message.payload.assignees
       ),
     };
     case 'get-tasks': return {
-      projects: await getTasks(),
+      tasks: await getTasks(),
     };
   }
 }

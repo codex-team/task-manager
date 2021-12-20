@@ -8,9 +8,9 @@ export default interface Task {
   id: string;
 
   /**
-   * Task's visible title
+   * Task's visible body
    */
-  title: string;
+  body: string;
 
   /**
    * Task's project unique identity
@@ -21,11 +21,6 @@ export default interface Task {
    * Task's unique identity to previous task (for subtasks)
    */
   parentId?: string;
-
-  /**
-   * Task's description
-   */
-  description?: string;
 
   /**
    * Task's assignees unique identities
