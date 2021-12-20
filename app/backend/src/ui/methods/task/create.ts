@@ -4,18 +4,14 @@ import TaskSchema from '../../../database/models/task';
 /**
  * Creates new task
  *
- * @param body- body of task
+ * @param text - text of a task
  * @param projectId- project id of task
  * @param parentId? - parent id of task (for subtask)
  * @param assignees?- array of task assignees
- * @param body
- * @param projectId
- * @param parentId
- * @param assignees
  */
-export async function createTask(body: string, projectId: string, parentId?: string, assignees?: string[]): Promise<Task> {
+export async function createTask(text: string, projectId: string, parentId?: string, assignees?: string[]): Promise<Task> {
   return await TaskSchema.create({
-    body,
+    text,
     projectId,
     parentId,
     assignees,

@@ -8,9 +8,9 @@ export default interface Task {
   id: string;
 
   /**
-   * Task's visible body
+   * Task's visible text
    */
-  body: string;
+  text: string;
 
   /**
    * Task's project unique identity

@@ -2,9 +2,9 @@ import { NewMessage } from 'ctproto';
 
 export interface CreateTaskPayload {
   /**
-   * Body of creating task
+   * Text of creating task
    */
-  body: string;
+  text: string;
 
   /**
    * Unique identifier of task's project

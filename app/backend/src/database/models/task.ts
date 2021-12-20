@@ -5,9 +5,9 @@ import Task from '../../../../types/entities/task';
  */
 const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema ({
   /**
-   * Task body
+   * Task of body
    */
-  body: {
+  text: {
     type: mongoose.Schema.Types.String,
     required: true,
   },

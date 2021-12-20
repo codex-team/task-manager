@@ -23,7 +23,7 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     };
     case 'create-task': return {
       task: await createTask(
-        message.payload.body,
+        message.payload.text,
         message.payload.projectId,
         message.payload.parentId,
         message.payload.assignees
