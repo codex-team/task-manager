@@ -25,6 +25,13 @@ const StyledLink = styled(Link)`
 `;
 
 /**
+ * Button component which takes full width
+ */
+const StyledButton = styled(Button)`
+  width: 100%;
+`;
+
+/**
  * Makes the main page
  *
  * @returns {React.ReactElement}
@@ -41,7 +48,7 @@ function App(): React.ReactElement {
           <ProjectListItem title={'Hawk'} picture={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHDBRoAMoZ_mga_JVM_Y1drzCF3yII75v4-gqJdueV-hBbhdOPOmAVedy3CbKUWqDfSs&usqp=CAU'}/>
           <ProjectListItem title={'Github Bot'} picture={'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'}/>
           <StyledLink to='/projects/new'>
-            <Button icon='plus'>Add new project</Button>
+            <StyledButton icon='plus'>Add new project</StyledButton>
           </StyledLink>
         </ProjectList>
       </Sidebar>

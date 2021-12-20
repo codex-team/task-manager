@@ -30,7 +30,7 @@ interface Props extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<
  *
  * @param props - props of component
  */
-const ButtonStyled = styled.button<Props>`
+const ButtonStyled = styled.button<Props & { hasContent: boolean }>`
   font-size: 14px;
   padding: 10px 20px;
   font-weight: 500;
@@ -40,6 +40,8 @@ const ButtonStyled = styled.button<Props>`
   cursor: pointer;
   display: flex;
   text-align: left;
+  align-items: center;
+  height: 38px;
 
   ${(props) => {
     switch (props.styleType) {
@@ -73,13 +75,18 @@ const ButtonStyled = styled.button<Props>`
     }
   }};
 
-  ${props => props.icon && `
+  ${props => props.icon && props.hasContent && `
     padding-left: 16px;
 
     svg {
       display: inline-block;
       margin-right: 10px;
     }
+  `}
+
+  ${props => (props.icon && !props.hasContent) && `
+    padding-left: 11px;
+    padding-right: 11px;
   `}
 `;
 
@@ -90,12 +97,12 @@ const ButtonStyled = styled.button<Props>`
  */
 const Button: React.FC<Props> = ({ ...props }) => {
   return (
-    <ButtonStyled {...props}>
+    <ButtonStyled {...props} hasContent={!!props.children}>
       { props.icon &&
-          <Icon name='plus' width={16} height={16}/>
+          <Icon name={props.icon} width={16} height={16}/>
       }
       <span>
-        {props.children}
+        { props.children }
       </span>
     </ButtonStyled>
   );

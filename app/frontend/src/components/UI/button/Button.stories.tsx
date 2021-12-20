@@ -2,6 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Button, { StyleType } from 'components/UI/button/Button';
 
 export default {
+  title: 'UI/Button',
   component: Button,
   argTypes: {
     styleType: {
@@ -29,4 +30,9 @@ WithIcon.args = {
   icon: 'plus',
   children: 'Add new project',
   styleType: StyleType.Primary,
+};
+
+export const OnlyIcon = Template.bind({});
+OnlyIcon.args = {
+  icon: 'plus',
 };

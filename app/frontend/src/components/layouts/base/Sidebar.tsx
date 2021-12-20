@@ -19,6 +19,7 @@ const SidebarStyled = styled.div<Props>`
   padding: 16px;
   width: 232px;
   background: var(--color-bg-main);
+  flex-shrink: 0;
 `;
 
 /**

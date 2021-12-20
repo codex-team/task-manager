@@ -28,8 +28,6 @@ const Icon: React.FC<IconProps> = ({ name, ...rest }): JSX.Element | null => {
         // Import path prefixes are flags to force generating ReactComponent named export
         // see https://github.com/facebook/create-react-app/issues/5276#issuecomment-665628393
         ImportedIconRef.current = (await import(`@svgr/webpack?-svgo,+titleProp,+ref!icons/${name}.svg`)).ReactComponent;
-
-        console.log(ImportedIconRef);
       } finally {
         setLoading(false);
       }
