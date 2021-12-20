@@ -1,6 +1,5 @@
 import mongoose from '../index';
 import Task from '../../../../types/entities/task';
-
 /**
  * Task schema
  */
@@ -16,11 +15,11 @@ const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema ({
   /**
    * Task's project id
    */
-  projectId: {
+  projectId: [ {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'ProjectSchema',
-  },
+  } ],
 
   /**
    * Subtask's parent id
