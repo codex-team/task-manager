@@ -13,6 +13,6 @@ export interface GetProjectsResponsePayload {
 }
 
 /**
- * Describes the response of the authorize
+ * Describes the response of getting projects
  */
 export default interface GetProjectsResponse extends ResponseMessage<GetProjectsResponsePayload> {}
