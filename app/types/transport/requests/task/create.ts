@@ -9,7 +9,7 @@ export interface CreateTaskPayload {
   /**
    * Unique identifier of task's project
    */
-  projectId: string;
+  projectId?: string;
 
   /**
    * Unique identifier of previous task (subtasks)

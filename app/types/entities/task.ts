@@ -15,7 +15,7 @@ export default interface Task {
   /**
    * Task's project unique identity
    */
-  projectId: string;
+  projectId?: string;
 
   /**
    * Task's unique identity to previous task (for subtasks)
