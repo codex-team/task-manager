@@ -9,7 +9,12 @@ interface Props {
   /**
    * Title of the project to be displayed
    */
-  projectTitle: string
+  title: string
+
+  /**
+   * True if project header should contain settings button
+   */
+  hasSettingsButton?: boolean
 }
 
 /**
@@ -32,8 +37,10 @@ const Container = styled.div`
 const ProjectHeader: React.FC<Props> = (props) => {
   return (
     <Container>
-      <PageTitle>{props.projectTitle}</PageTitle>
-      <Button>Project settings</Button>
+      <PageTitle>{props.title}</PageTitle>
+      { props.hasSettingsButton &&
+        <Button>Project settings</Button>
+      }
     </Container>
   );
 };

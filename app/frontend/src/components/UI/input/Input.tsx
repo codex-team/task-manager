@@ -1,3 +1,4 @@
+import { KeyboardEventHandler } from 'react';
 import styled from 'styled-components';
 import { UiComponentText } from 'styles/Mixins';
 
@@ -9,7 +10,7 @@ export interface Props {
   /**
    * Input element id
    */
-  id: string
+  id?: string
 
   /**
    * Input value
@@ -45,6 +46,16 @@ export interface Props {
    * Value change callback
    */
   onChange: (val: string) => void
+
+  /**
+   * CSS class name
+   */
+  className?: string
+
+  /**
+   * Keydown event handler
+   */
+  onKeyDown: KeyboardEventHandler<HTMLInputElement>
 }
 
 /**
@@ -91,7 +102,7 @@ const InputWrapper = styled.div`
  */
 const Input: React.FC<Props> = (props) => {
   return (
-    <InputWrapper>
+    <InputWrapper className={ props.className }>
       <input
         id={ props.id }
         value={ props.value }
@@ -100,7 +111,8 @@ const Input: React.FC<Props> = (props) => {
         required={ props.required }
         disabled={ props.disabled }
         name={ props.name }
-        onChange={ ({ target: { value } }) => props.onChange(value) } />
+        onChange={ ({ target: { value } }) => props.onChange(value) }
+        onKeyDown={ props.onKeyDown } />
     </InputWrapper>
   );
 };

@@ -4,7 +4,7 @@ import Sidebar from 'components/layouts/base/Sidebar';
 import Content from 'components/layouts/base/Content';
 import ColorVariables from './styles/Colors';
 import GlobalStyles from './styles/Global';
-import ProjectForm from 'components/views/projects/ProjectForm';
+import ProjectForm from 'components/views/project-form/ProjectForm';
 import {
   Routes,
   Route
@@ -12,6 +12,7 @@ import {
 import ProjectList from 'components/UI/project-list/ProjectList';
 import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
+import ProjectView from 'components/views/project-view/ProjectView';
 
 /**
  * Makes the main page
@@ -34,7 +35,9 @@ function App(): React.ReactElement {
       <Routes>
         <Route path="/" element={<Content />}>
           <Route path="projects/new" element={<ProjectForm />} />
-          <Route path="projects/:id" element={<ProjectForm />} />
+          <Route path="projects/:id/edit" element={<ProjectForm />} />
+          <Route path="projects/all" element={<ProjectView />} />
+          <Route path="projects/:id" element={<ProjectView />} />
         </Route>
       </Routes>
     </Container>
