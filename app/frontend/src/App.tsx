@@ -10,7 +10,6 @@ import {
   Route
 } from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
-import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
 
 /**
@@ -25,11 +24,7 @@ function App(): React.ReactElement {
       <GlobalStyles/>
       <Sidebar>
         <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
-        <ProjectList>
-          <ProjectListItem title={'All projects'} />
-          <ProjectListItem title={'Hawk'} picture={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHDBRoAMoZ_mga_JVM_Y1drzCF3yII75v4-gqJdueV-hBbhdOPOmAVedy3CbKUWqDfSs&usqp=CAU'}/>
-          <ProjectListItem title={'Github Bot'} picture={'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'}/>
-        </ProjectList>
+        <ProjectList workspaceId={''}/>
       </Sidebar>
       <Routes>
         <Route path="/" element={<Content />}>

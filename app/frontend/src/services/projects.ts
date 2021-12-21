@@ -1,5 +1,7 @@
 import { CreateProjectResponsePayload } from 'types/transport/responses/project/create';
 import client from 'transport/ctproto-client';
+import { GetProjectsMessagePayload } from 'types/transport/requests/project/get-projects';
+import { GetProjectsResponsePayload } from 'types/transport/responses/project/get-projects';
 
 /**
  * Represents data needed to create new project
@@ -30,4 +32,15 @@ export async function createProject(data: CreateProjectPayload): Promise<CreateP
   const response = await client.send('create-project', data);
 
   return response as CreateProjectResponsePayload;
+}
+
+/**
+ * Get projects
+ *
+ * @param data - workspace id
+ */
+export async function getProjects( data: GetProjectsMessagePayload): Promise<GetProjectsResponsePayload> {
+  const response = await client.send('get-projects', data);
+
+  return response as GetProjectsResponsePayload;
 }
