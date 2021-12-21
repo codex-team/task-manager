@@ -28,7 +28,8 @@ export default interface Task {
   assignees?: string[];
 
   /**
-   * Task's creation date
+   * Task's creation date (stored in the format: 'Day of the week Month Date Year HH:MM:SS GMT...)  '
+   * (ex. Tue Dec 21 2021 18:09:02 GMT+0000 (Coordinated Universal Time))
    */
-  dateCreated: string;
+  dateCreated?: string;
 }

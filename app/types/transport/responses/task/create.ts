@@ -1,5 +1,5 @@
 import { ResponseMessage } from 'ctproto';
-import Task from "../../../entities/task";
+import Task from '../../../entities/task';
 
 /**
  * Response for 'create-task' message

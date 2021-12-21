@@ -5,10 +5,10 @@ import AuthorizeResponse from './responses/authorize';
 import GetProjectsResponse from './responses/project/get-projects';
 import CreateProjectMessage from './requests/project/create';
 import CreateProjectResponse from './responses/project/create';
-import CreateTaskMessage from "./requests/task/create";
-import CreateTaskResponse from "./responses/task/create";
-import GetTasksMessage from "./requests/task/get-tasks";
-import GetTasksResponse from "./responses/task/get-tasks";
+import CreateTaskMessage from './requests/task/create';
+import CreateTaskResponse from './responses/task/create';
+import GetTasksMessage from './requests/task/get-tasks';
+import GetTasksResponse from './responses/task/get-tasks';
 
 /**
  * The type described all available outgoing messages that can be sent by API
