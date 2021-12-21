@@ -3,14 +3,18 @@
  */
 declare global {
   interface Window {
-    config: Record<string, string>;
+    config: {
+      SERVER_ENDPOINT: string,
+      CTPROTO_ENDPOINT: string,
+      CTPROTO_TOKEN: string
+    };
   }
 }
 
 /**
  * Get env object
  */
-const env = window.config || {};
+// const env = window.config || {};
 
 /**
  * Config class
@@ -22,13 +26,13 @@ export class Config {
      * SITE OPTIONS
      */
     // Site name to be used for full links to backend
-    public static SERVER_ENDPOINT: string = env.SERVER_ENDPOINT || 'http://localhost:3000';
+    public static SERVER_ENDPOINT: string = window.config.SERVER_ENDPOINT || '';
 
     /**
      * CTPROTO OPTIONS
      */
     // Define endpoint for api requests
-    public static CTPROTO_ENDPOINT: string = env.CTPROTO_ENDPOINT || 'ws://localhost:3080';
+    public static CTPROTO_ENDPOINT: string = window.config.CTPROTO_ENDPOINT || '';
     // Auth token for ctproto
-    public static CTPROTO_TOKEN: string = env.CTPROTO_TOKEN || '';
+    public static CTPROTO_TOKEN: string = window.config.CTPROTO_TOKEN || '';
 }

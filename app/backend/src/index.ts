@@ -20,7 +20,7 @@ server.register(fastifyStatic, {
  */
 server.route({
   method: 'GET',
-  url: '/public-env.js',
+  url: '/dotenv.json',
   handler: function (request, reply) {
     /**
      * Define list of public env vars to be available on the frontend side
@@ -34,7 +34,11 @@ server.route({
     /**
      * Assign envs object to window.config variable
      */
-    reply.send(`window.config = ${JSON.stringify(ENV_FRONTEND)};`);
+    reply
+      .header('Access-Control-Allow-Origin', '*')
+      .header('Access-Control-Allow-Methods', 'GET')
+      .header('Content-Type', 'application/json')
+      .send(ENV_FRONTEND);
   },
 });
 

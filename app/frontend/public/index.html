@@ -4,9 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>React App</title>
+    <title>CodeX Task Manager</title>
 
-    <script src="/public-env.js"></script>
+    <script>
+      const proto = window.location.protocol;
+      const host = window.location.host === 'localhost:3030' ? 'localhost:3000' : window.location.host;
+
+      fetch(`${proto}//${host}/dotenv.json`)
+        .then(data => {
+          window.config = data.json();
+        })
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
