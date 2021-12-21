@@ -5,7 +5,7 @@ export default interface Task {
   /**
    * Task's unique identity
    */
-  id: string;
+  _id: string;
 
   /**
    * Task's visible text

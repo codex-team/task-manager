@@ -5,7 +5,7 @@ export default interface Project {
   /**
    * Project's unique identity
    */
-  id: string;
+  _id: string;
 
   /**
    * Project's visible title
