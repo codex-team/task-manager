@@ -30,7 +30,7 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
       ),
     };
     case 'get-tasks': return {
-      tasks: await getTasks(),
+      tasks: await getTasks(message.payload.projectId),
     };
   }
 }
