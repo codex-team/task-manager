@@ -3,6 +3,7 @@
       "baseUrl": "./src",
       "paths": {
          "services/*" : ["./services/*"],
+         "icons/*" : ["./icons/*"],
          "styles/*" : ["./styles/*"],
          "transport/*" : ["./transport/*"],
          "types/*" : ["../../types/*"]
