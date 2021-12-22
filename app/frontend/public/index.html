@@ -6,15 +6,7 @@
 
     <title>CodeX Task Manager</title>
 
-    <script>
-      const proto = window.location.protocol;
-      const host = window.location.host === 'localhost:3030' ? 'localhost:3000' : window.location.host;
-
-      fetch(`${proto}//${host}/dotenv.json`)
-        .then(data => {
-          window.config = data.json();
-        })
-    </script>
+    <script src="%REACT_APP_HOST%/dotenv.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
