@@ -1,9 +1,9 @@
 import { CTProtoClient } from 'ctproto';
 
-describe('Ctproto API', function () {
+describe('CTProto API', function () {
   let client;
 
-  before('Initialize ctproto', async function () {
+  before('Initialize CTProto', async function () {
     /** Get env vars */
     eval((await cy.request('/dotenv.js')).body);
 

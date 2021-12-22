@@ -1,4 +1,4 @@
-describe('Base routes', function () {
+describe('Browser', function () {
   it('should open index page', function () {
     cy.visit('/');
   });
