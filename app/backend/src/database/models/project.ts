@@ -23,7 +23,7 @@ const ProjectSchema: mongoose.Schema<Project> = new mongoose.Schema({
    */
   dateCreated: {
     type: mongoose.Schema.Types.String,
-    default: Date(),
+    default: new Date().toString(),
   },
   /**
    * Url for notions

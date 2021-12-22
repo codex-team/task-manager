@@ -1,50 +1,48 @@
 import mongoose from '../index';
-import { TaskDocument, TaskModel } from '../interfaces/task';
+import Task from '../../../../types/entities/task';
 
 /**
  * Task schema
  */
-const TaskSchema: mongoose.Schema<TaskDocument> = new mongoose.Schema ({
+const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema({
   /**
-   * task's project id
+   * Task of body
    */
-  projectId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Project',
-  },
-  /**
-   * subtask's parent id, task id
-   */
-  parentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Task',
-  },
-  /**
-   * Task title
-   */
-  title: {
+  text: {
     type: mongoose.Schema.Types.String,
     required: true,
   },
+
   /**
-   * Task description
+   * Task's project id
    */
-  description: {
-    type: String,
+  projectId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ProjectSchema',
   },
+
+  /**
+   * Subtask's parent id
+   */
+  parentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'TaskSchema',
+  },
+
   /**
    * Task assignees, list of teammates' id
    */
   assignees: [ {
     type: mongoose.Schema.Types.ObjectId,
   } ],
+
   /**
    * Task creation date
    */
   dateCreated: {
-    type: mongoose.Schema.Types.Date,
-    default: new Date(),
+    type: mongoose.Schema.Types.String,
+    default: new Date().toString(),
   },
 });
 
-export default mongoose.model<TaskDocument, TaskModel>('Task', TaskSchema);
+export default mongoose.model<Task>('Task', TaskSchema);
