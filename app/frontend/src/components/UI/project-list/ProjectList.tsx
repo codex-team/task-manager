@@ -47,6 +47,7 @@ const ProjectList: React.FC<Props> = (props) => {
       {projects.map((project) =>
         <ProjectListItem key={project._id} title={project.title} picture={project.picture}/>
       )}
+      {props.children}
     </ProjectListStyled>
   );
 };

@@ -11,6 +11,24 @@ import {
 } from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
+import { Link } from 'react-router-dom';
+import Button from 'components/UI/button/Button';
+import styled from 'styled-components';
+
+
+/**
+ * Link component with overriden styles
+ */
+const StyledLink = styled(Link)`
+  text-decoration: unset;
+`;
+
+/**
+ * Button component which takes full width
+ */
+const StyledButton = styled(Button)`
+  width: 100%;
+`;
 
 /**
  * Makes the main page
@@ -24,7 +42,11 @@ function App(): React.ReactElement {
       <GlobalStyles/>
       <Sidebar>
         <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
-        <ProjectList workspaceId={''}/>
+        <ProjectList workspaceId={''}>
+          <StyledLink to='/projects/new'>
+            <StyledButton icon='plus'>Add new project</StyledButton>
+          </StyledLink>
+        </ProjectList>
       </Sidebar>
       <Routes>
         <Route path="/" element={<Content />}>

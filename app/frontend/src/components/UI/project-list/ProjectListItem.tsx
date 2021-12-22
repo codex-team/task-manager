@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Avatar } from 'components/icons/ProjectAva.svg';
+import { ReactComponent as Avatar } from 'icons/ProjectAva.svg';
 
 /**
  * Interface for project component props
