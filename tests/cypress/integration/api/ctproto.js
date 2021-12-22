@@ -20,14 +20,14 @@ describe('Ctproto API', function () {
     });
   })
 
-  it('Get projects', async function () {
+  it('should get all projects', async function () {
     const response = await client
       .send('get-projects', {});
 
     expect(response, 'Response').to.have.key('projects');
   });
 
-  it('Create a new project', async function () {
+  it('should create a new project', async function () {
     const singleProject = await cy.fixture('projects/single');
 
     const response = await client

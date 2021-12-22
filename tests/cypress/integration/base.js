@@ -1,9 +1,9 @@
 describe('Base routes', function () {
-  it('Open index page', function () {
+  it('should open index page', function () {
     cy.visit('/');
   });
 
-  it('Load env vars for frontend', async function () {
+  it('should load env vars script', async function () {
     /** Get env vars */
     eval((await cy.request('/dotenv.js')).body);
 
