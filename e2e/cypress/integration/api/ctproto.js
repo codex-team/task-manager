@@ -5,29 +5,46 @@ describe('Ctproto API', function () {
 
   before('Initialize ctproto', async function () {
     /** Get env vars */
-    window.config = (await cy.request('/dotenv.json')).body;
+    eval((await cy.request('/dotenv.js')).body);
 
+    /**
+     * Set up CTProto client
+     */
     client = new CTProtoClient({
       apiUrl: window.config.CTPROTO_ENDPOINT,
       authRequestPayload: {
         token: window.config.CTPROTO_TOKEN,
       },
-      onAuth: (data) => {
-        // cy.log('Authorization is success', data);
-      },
-      onMessage: (data) => {
-        // cy.log('Incoming message: ', data);
-      },
+      onAuth: (data) => {},
+      onMessage: (data) => {},
     });
   })
 
-  it('Get all projects', async function () {
+  it('Get projects', async function () {
     const response = await client
-      .send('get-projects', {
-        workspaceId: 'test-test-test',
-      });
+      .send('get-projects', {});
 
     expect(response, 'Response').to.have.key('projects');
-    // expect(response.projects.length, 'Number of projects').to.eq(2);
+  });
+
+  it('Create a new project', async function () {
+    const singleProject = await cy.fixture('projects/single');
+
+    const response = await client
+      .send('create-project', singleProject);
+
+    expect(response, 'Response').to.have.key('project');
+
+    expect(response.project, 'Project title')
+      .to.have.property('title')
+      .to.eq(singleProject.title);
+
+    expect(response.project, 'Project picture')
+      .to.have.property('picture')
+      .to.eq(singleProject.picture);
+
+    expect(response.project, 'Project messengerChannelUrl')
+      .to.have.property('messengerChannelUrl')
+      .to.eq(singleProject.messengerChannelUrl);
   });
 });
