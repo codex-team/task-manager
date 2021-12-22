@@ -32,13 +32,13 @@ server.route({
     };
 
     /**
-     * Assign envs object to window.config variable
+     * Assign env object to window.config variable
      */
+    const scriptContent = `window.config = ${JSON.stringify(ENV_FRONTEND)}`;
+
     reply
-      .header('Access-Control-Allow-Origin', '*')
-      .header('Access-Control-Allow-Methods', 'GET')
       .header('Content-Type', 'application/json')
-      .send(`window.config = ${JSON.stringify(ENV_FRONTEND)}`);
+      .send(scriptContent);
   },
 });
 
