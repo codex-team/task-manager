@@ -77,6 +77,6 @@ jobs:
 
       - name: Install and run cypress
         run: |
-          cd e2e
+          cd tests
           yarn
           yarn cypress
