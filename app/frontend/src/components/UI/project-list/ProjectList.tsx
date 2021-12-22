@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { getProjects } from 'services/projects';
+import ProjectListItem from 'components/UI/project-list/ProjectListItem';
+import { Project } from 'types/entities';
 
 /**
  * Interface for project list component props
  */
 interface Props{
+  /**
+   * Project workspace id
+   */
+  workspaceId: string;
 }
 
 /**
@@ -25,8 +32,21 @@ const ProjectListStyled = styled.ul<Props>`
  * @param props - props of component
  */
 const ProjectList: React.FC<Props> = (props) => {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  getProjects({
+    workspaceId: props.workspaceId,
+  }).then(
+    res => {
+      setProjects(res.projects);
+    }
+  );
+
   return (
-    <ProjectListStyled>
+    <ProjectListStyled {...props}>
+      {projects.map((project) =>
+        <ProjectListItem key={project._id} title={project.title} picture={project.picture}/>
+      )}
       {props.children}
     </ProjectListStyled>
   );
