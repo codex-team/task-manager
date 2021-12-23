@@ -5,6 +5,6 @@
   },
   "dependencies": {
     "ctproto": "^0.0.13",
-    "cypress": "9.1.0"
+    "cypress": "^9.2.0"
   }
 }
