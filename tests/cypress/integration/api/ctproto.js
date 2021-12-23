@@ -2,45 +2,80 @@ describe('CTProto API', function () {
   beforeEach('Initialize CTProto', function () {
     cy.initCtproto()
       .as('client');
-  })
-
-  it('should get all projects', function () {
-    cy.get('@client')
-      .then(async client => {
-        const response = await client.send('get-projects', {})
-
-        expect(response, 'Response').to.have.key('projects');
-      })
   });
 
-  it('should create a new project', function () {
-    /**
-     * Get single project mock
-     */
-    cy.fixture('projects/single')
-      .as('singleProject');
+  describe('get-projects', function () {
+    it('should get all projects', function () {
+      cy.wrap(this.client.send('get-projects', {}))
+        .its('projects')
+        .should('be.instanceOf', Array);
+    });
+  });
 
-    cy.get('@client')
-      .then(client => {
-        cy.get('@singleProject')
-          .then(async singleProject => {
-            const response = await client
-              .send('create-project', singleProject);
+  describe('create-projects', function () {
+    beforeEach('Send create-project message', function () {
+      cy.fixture('projects/single')
+        .as('singleProject')
+        .then(singleProject => {
+          cy.wrap(this.client.send('create-project', singleProject))
+            .as('response');
+        });
+    });
 
-            expect(response, 'Response').to.have.key('project');
+    it('should create a new project with passed title', function () {
+      cy.get('@response')
+        .its('project')
+        .should('have.property', 'title', this.singleProject.title);
+    });
 
-            expect(response.project, 'Project title')
-              .to.have.property('title')
-              .to.eq(singleProject.title);
+    it('should create a new project with passed picture', function () {
+      cy.get('@response')
+        .its('project')
+        .should('have.property', 'picture', this.singleProject.picture);
+    });
 
-            expect(response.project, 'Project picture')
-              .to.have.property('picture')
-              .to.eq(singleProject.picture);
+    it('should create a new project with passed messengerChannelUrl', function () {
+      cy.get('@response')
+        .its('project')
+        .should('have.property', 'messengerChannelUrl', this.singleProject.messengerChannelUrl);
+    });
+  });
 
-            expect(response.project, 'Project messengerChannelUrl')
-              .to.have.property('messengerChannelUrl')
-              .to.eq(singleProject.messengerChannelUrl);
-          })
-    })
+  describe('get-tasks', function () {
+    beforeEach('Send get-tasks message', function () {
+      cy.wrap(this.client.send('get-tasks', {}))
+        .as('response');
+    });
+
+    it('should get all tasks', function () {
+      cy.get('@response')
+        .its('tasks')
+        .should('be.instanceOf', Array);
+    });
+  });
+
+  describe('create-task', function () {
+    beforeEach('Send create-task message', function () {
+      cy.fixture('tasks/single')
+        .as('singleTask')
+        .then(singleTask => {
+          cy.wrap(this.client.send('create-task', singleTask))
+            .as('response');
+        });
+    });
+
+    it('should create a new task with passed text', function () {
+      cy.get('@response')
+        .its('task')
+        .should('have.property', 'text', this.singleTask.text);
+    });
+
+    it('should create a new task with no assignees', function () {
+      cy.get('@response')
+        .its('task')
+        .its('assignees')
+        .should('be.instanceOf', Array)
+        .should('be.empty');
+    });
   });
 });

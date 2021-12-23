@@ -13,26 +13,20 @@ describe('Browser', function () {
 
     it('should have SERVER_ENDPOINT var', function () {
       cy.window()
-        .then(win => {
-          expect(win.config, 'SERVER_ENDPOINT')
-            .to.have.property('SERVER_ENDPOINT');
-        })
+        .its('config')
+        .should('have.property', 'SERVER_ENDPOINT');
     });
 
     it('should have CTPROTO_ENDPOINT var', function () {
       cy.window()
-        .then(win => {
-          expect(win.config, 'CTPROTO_ENDPOINT')
-            .to.have.property('CTPROTO_ENDPOINT');
-        })
+        .its('config')
+        .should('have.property', 'CTPROTO_ENDPOINT');
     });
 
     it('should have CTPROTO_TOKEN', function () {
       cy.window()
-        .then(win => {
-          expect(win.config, 'CTPROTO_TOKEN')
-            .to.have.property('CTPROTO_TOKEN');
-        })
+        .its('config')
+        .should('have.property', 'CTPROTO_TOKEN');
     });
   });
 });
