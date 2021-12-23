@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Input from 'components/UI/input/Input';
-import { KeyboardEvent, useState } from 'react';
+import Icon from 'components/UI/icon/Icon';
+import React, { KeyboardEvent, useState } from 'react';
 
 /**
  * Component props model
@@ -18,8 +19,50 @@ interface Props {
   onChange: (val: string) => void
 }
 
+/**
+ * Styled input component
+ */
 const StyledInput = styled(Input)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  input {
+    padding-left: 36px;
+  }
+`;
+
+/**
+ * Styled icon component
+ */
+const StyledIcon = styled(Icon)`
+  position: relative;
+  z-index: 1;
+  margin-left: 12px;
+  color: var(--color-text-secondary);
+
+`;
+
+/**
+ * Styled wrapper for input
+ *
+ * @param props
+ */
+const Wrapper = styled.div<{ isFocused: boolean }>`
   height: 48px;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+${props => props.isFocused && `
+  input {
+    padding-left: 12px;
+  }
+`}
+
+
 `;
 
 /**
@@ -29,6 +72,7 @@ const StyledInput = styled(Input)`
  */
 const TaskInput: React.FC<Props> = (props: Props) => {
   const [text, setText] = useState('');
+  const [focused, setFocused] = useState(false);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
     if (event.key !== 'Enter' || !props.onChange) {
@@ -50,12 +94,19 @@ const TaskInput: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <StyledInput
-      value={text}
-      onChange={ setText }
-      placeholder={ props.placeholder }
-      onKeyDown={ handleKeyDown }
-    />
+    <Wrapper isFocused={ focused }>
+      { !focused &&
+        <StyledIcon name='plus' width={ 16 } height={ 16 }/>
+      }
+      <StyledInput
+        value={text}
+        onChange={ setText }
+        placeholder={ props.placeholder }
+        onKeyDown={ handleKeyDown }
+        onFocus={ () => setFocused(true) }
+        onBlur={ () => setFocused(false) }
+      />
+    </Wrapper>
   );
 };
 

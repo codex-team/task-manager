@@ -32,7 +32,7 @@ const SidebarHeader: React.FC<Props> = ({ ...props }) => {
   return (
     <SidebarHeaderStyled {...props}>
       <SidebarTitle>{props.sidebarTitle}</SidebarTitle>
-      <Button/>
+      <Button icon='settings'/>
     </SidebarHeaderStyled>
   );
 };

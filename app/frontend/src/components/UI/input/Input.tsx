@@ -55,7 +55,17 @@ export interface Props {
   /**
    * Keydown event handler
    */
-  onKeyDown: KeyboardEventHandler<HTMLInputElement>
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>
+
+  /**
+   * Focus event handler
+   */
+  onFocus?: () => void
+
+  /**
+   * Blur event handler
+   */
+  onBlur?: () => void
 }
 
 /**
@@ -112,7 +122,9 @@ const Input: React.FC<Props> = (props) => {
         disabled={ props.disabled }
         name={ props.name }
         onChange={ ({ target: { value } }) => props.onChange(value) }
-        onKeyDown={ props.onKeyDown } />
+        onKeyDown={ props.onKeyDown }
+        onFocus={ props.onFocus }
+        onBlur={ props.onBlur } />
     </InputWrapper>
   );
 };
