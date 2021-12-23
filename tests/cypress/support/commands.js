@@ -1,3 +1,5 @@
+import { CTProtoClient } from 'ctproto';
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +25,36 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('getDotenv', () => {
+  /** Get env vars */
+  cy.request('/dotenv.js')
+    .its('body')
+    .then((rawScript) => {
+      cy.window()
+        .then(win => {
+          win.eval(rawScript);
+        })
+    })
+})
+
+/**
+ * Set up CTProto client
+ */
+Cypress.Commands.add('initCtproto', () => {
+  cy.getDotenv();
+
+  return cy.window()
+    .then(win => {
+      const client = new CTProtoClient({
+        apiUrl: win.config.CTPROTO_ENDPOINT,
+        authRequestPayload: {
+          token: win.config.CTPROTO_TOKEN,
+        },
+        onAuth: (data) => {},
+        onMessage: (data) => {},
+      });
+
+      return client;
+    })
+})
