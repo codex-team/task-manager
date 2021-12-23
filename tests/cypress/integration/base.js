@@ -1,12 +1,14 @@
-describe('Browser', function () {
-  it('should open index page', function () {
-    cy.visit('/');
-  });
+describe('Open pages in browser', function () {
+  describe('Visit site', function () {
+    it('should open index page', function () {
+      cy.visit('/');
+    });
+  })
 
   /**
    * Check for a required vars
    */
-  describe('load frontend env script', function () {
+  describe('Load frontend env script', function () {
     before('Get script file', function () {
       cy.getDotenv();
     })
