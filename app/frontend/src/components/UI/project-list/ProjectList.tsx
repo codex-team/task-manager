@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getProjects } from 'services/projects';
 import ProjectListItem from 'components/UI/project-list/ProjectListItem';
@@ -19,7 +19,7 @@ interface Props{
  *
  * @param props - props of component
  */
-const ProjectListStyled = styled.ul<Props>`
+const ProjectListStyled = styled.ul`
   margin-top: 10px;
   list-style-type: none;
   padding-left: 0;
@@ -31,23 +31,25 @@ const ProjectListStyled = styled.ul<Props>`
  *
  * @param props - props of component
  */
-const ProjectList: React.FC<Props> = (props) => {
+const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
   const [projects, setProjects] = useState<Project[]>([]);
 
-  getProjects({
-    workspaceId: props.workspaceId,
-  }).then(
-    res => {
-      setProjects(res.projects);
-    }
-  );
+  useEffect(() => {
+    getProjects({
+      workspaceId: workspaceId,
+    }).then(
+      res => {
+        setProjects(res.projects);
+      }
+    );
+  }, [ workspaceId ]);
 
   return (
-    <ProjectListStyled {...props}>
+    <ProjectListStyled>
       {projects.map((project) =>
         <ProjectListItem key={project._id} title={project.title} picture={project.picture}/>
       )}
-      {props.children}
+      {children}
     </ProjectListStyled>
   );
 };
