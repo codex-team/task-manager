@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Container from 'components/layouts/base/Container';
 import Sidebar from 'components/layouts/base/Sidebar';
 import Content from 'components/layouts/base/Content';
@@ -14,6 +14,7 @@ import SidebarHeader from 'components/layouts/base/SidebarHeader';
 import { Link } from 'react-router-dom';
 import Button from 'components/UI/button/Button';
 import styled from 'styled-components';
+import PopupWrapper from "./components/layouts/popup/PopupWrapper";
 
 
 /**
@@ -36,10 +37,16 @@ const StyledButton = styled(Button)`
  * @returns {React.ReactElement}
  */
 function App(): React.ReactElement {
+  const [ isPopupVisible, setIsPopupVisible ] = useState<boolean>(false);
+
+  const changePopupVisibility = (): void => {
+    setIsPopupVisible( (wasPopupVisible) => !wasPopupVisible);
+  };
   return (
     <Container>
       <ColorVariables/>
       <GlobalStyles/>
+      <PopupWrapper backDropClick={changePopupVisibility} isPopupVisible={isPopupVisible}/>
       <Sidebar>
         <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
         <ProjectList workspaceId={''}>
@@ -47,6 +54,7 @@ function App(): React.ReactElement {
             <StyledButton icon='plus'>Add new project</StyledButton>
           </StyledLink>
         </ProjectList>
+        <button onClick={changePopupVisibility}>click me</button>
       </Sidebar>
       <Routes>
         <Route path="/" element={<Content />}>
