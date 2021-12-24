@@ -52,7 +52,7 @@ const Popup: React.FC<Props> = (props) => {
         {props.children}
       </div>
     </PopupStyled>,
-    document.getElementById('popup-root')!
+    document.body
   );
 };
 
