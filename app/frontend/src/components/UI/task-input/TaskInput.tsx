@@ -41,6 +41,7 @@ const TaskInput: React.FC<Props> = ({ placeholder, onChange }: Props) => {
   };
 
   const onBlur = (): void => {
+    setText('');
     setFocused(false);
   };
 
@@ -70,9 +71,10 @@ const StyledInput = styled(Input)`
   height: 100%;
   left: 0;
   top: 0;
-
+  
   input {
     padding-left: 36px;
+    font-size: 16px;
   }
 `;
 
