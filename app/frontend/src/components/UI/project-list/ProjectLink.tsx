@@ -3,13 +3,6 @@ import { Link, LinkProps, useMatch, useResolvedPath } from 'react-router-dom';
 import ProjectListItem, { Props as ProjectListItemProps } from 'components/UI/project-list/ProjectListItem';
 
 /**
- * Link component with overriden styles
- */
-const StyledLink = styled(Link)`
-  text-decoration: unset;
-`;
-
-/**
  * Link wrapper for project list item component.
  * Sets isActive state of the project list item based on current location
  *
@@ -25,8 +18,8 @@ const ProjectLink: React.FC<LinkProps & ProjectListItemProps> = ({ children, to,
   return (
     <div>
       <StyledLink
-        to={to}
-        {...props}
+        to={ to }
+        { ...props }
       >
         <ProjectListItem title={ props.title } picture={ props.picture } isActive={ !!match }/>
       </StyledLink>
@@ -34,5 +27,11 @@ const ProjectLink: React.FC<LinkProps & ProjectListItemProps> = ({ children, to,
   );
 };
 
+/**
+ * Link component with overriden styles
+ */
+const StyledLink = styled(Link)`
+  text-decoration: unset;
+`;
 
 export default ProjectLink;
