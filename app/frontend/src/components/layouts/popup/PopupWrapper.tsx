@@ -37,7 +37,7 @@ const PopupContent = styled.div`
   width: 1000px;
   padding: 40px;
   position: relative;
-  background-color: white;
+  background-color: var(--color-bg-main);
   min-height: 500px;
   border-radius: 12px;
   display: flex;
