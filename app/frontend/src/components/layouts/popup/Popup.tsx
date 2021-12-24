@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
 
@@ -30,6 +30,22 @@ const PopupStyled = styled.div`
  * @param props - props of component
  */
 const Popup: React.FC<Props> = (props) => {
+  const KEYBOARD_ESC = 27;
+
+  const escFunction = useCallback((event) => {
+    if (event.keyCode === KEYBOARD_ESC) {
+      props.backDropClick();
+    }
+  }, [ props ]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction);
+    };
+  }, [ escFunction ]);
+
   return ReactDOM.createPortal(
     <PopupStyled {...props} onClick={props.backDropClick}>
       <div onClick={e => e.stopPropagation()}>
