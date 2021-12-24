@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Input from 'components/UI/input/Input';
 import Icon from 'components/UI/icon/Icon';
 import React, { KeyboardEvent, useState } from 'react';
@@ -18,6 +18,48 @@ interface Props {
    */
   onChange: (val: string) => void
 }
+
+/**
+ * Component for creating new tasks
+ *
+ * @param props - props of the component
+ */
+const TaskInput: React.FC<Props> = ({ placeholder, onChange }: Props) => {
+  const [text, setText] = useState('');
+  const [focused, setFocused] = useState(false);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key !== 'Enter' || !onChange) {
+      return;
+    }
+    onChange(text);
+    setText('');
+  };
+
+  const onFocus = (): void => {
+    setFocused(true);
+  };
+
+  const onBlur = (): void => {
+    setFocused(false);
+  };
+
+  return (
+    <Wrapper isFocused={ focused }>
+      { !focused &&
+        <StyledIcon name='plus' width={ 16 } height={ 16 }/>
+      }
+      <StyledInput
+        value={text}
+        onChange={ setText }
+        placeholder={ placeholder }
+        onKeyDown={ handleKeyDown }
+        onFocus={ onFocus }
+        onBlur={ onBlur }
+      />
+    </Wrapper>
+  );
+};
 
 /**
  * Styled input component
@@ -42,7 +84,6 @@ const StyledIcon = styled(Icon)`
   z-index: 1;
   margin-left: 12px;
   color: var(--color-text-secondary);
-
 `;
 
 /**
@@ -56,58 +97,11 @@ const Wrapper = styled.div<{ isFocused: boolean }>`
   display: flex;
   align-items: center;
 
-${props => props.isFocused && `
-  input {
-    padding-left: 12px;
-  }
-`}
-
-
-`;
-
-/**
- * Component for creating new tasks
- *
- * @param props - props of the component
- */
-const TaskInput: React.FC<Props> = (props: Props) => {
-  const [text, setText] = useState('');
-  const [focused, setFocused] = useState(false);
-
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key !== 'Enter' || !props.onChange) {
-      return;
+  ${props => props.isFocused && css`
+    input {
+      padding-left: 12px;
     }
-    const value = {
-      blocks : [
-        {
-          type: 'paragraph',
-          data: {
-            text,
-          },
-        },
-      ],
-    };
-
-    props.onChange(JSON.stringify(value));
-    setText('');
-  };
-
-  return (
-    <Wrapper isFocused={ focused }>
-      { !focused &&
-        <StyledIcon name='plus' width={ 16 } height={ 16 }/>
-      }
-      <StyledInput
-        value={text}
-        onChange={ setText }
-        placeholder={ props.placeholder }
-        onKeyDown={ handleKeyDown }
-        onFocus={ () => setFocused(true) }
-        onBlur={ () => setFocused(false) }
-      />
-    </Wrapper>
-  );
-};
+  `}
+`;
 
 export default TaskInput;

@@ -1,4 +1,4 @@
-import { KeyboardEventHandler } from 'react';
+import { ChangeEvent, KeyboardEventHandler } from 'react';
 import styled from 'styled-components';
 import { UiComponentText } from 'styles/Mixins';
 
@@ -68,6 +68,33 @@ export interface Props {
   onBlur?: () => void
 }
 
+
+/**
+ * Input component
+ *
+ * @param props - props of the component
+ */
+const Input: React.FC<Props> = (props: Props) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => props.onChange(event.target.value);
+
+  return (
+    <InputWrapper className={ props.className }>
+      <input
+        id={ props.id }
+        value={ props.value }
+        type={ props.type }
+        placeholder={ props.placeholder }
+        required={ props.required }
+        disabled={ props.disabled }
+        name={ props.name }
+        onChange={ onChange }
+        onKeyDown={ props.onKeyDown }
+        onFocus={ props.onFocus }
+        onBlur={ props.onBlur } />
+    </InputWrapper>
+  );
+};
+
 /**
  * Input wrapper component
  */
@@ -86,7 +113,6 @@ const InputWrapper = styled.div`
     border: 1px solid var(--color-line-active);
   }
 
-
   input {
     flex: 1;
     padding-left: 12px;
@@ -104,32 +130,5 @@ const InputWrapper = styled.div`
     }
   }
 `;
-
-/**
- * Input component
- *
- * @param props - props of the component
- */
-const Input: React.FC<Props> = (props) => {
-  return (
-    <InputWrapper className={ props.className }>
-      <input
-        id={ props.id }
-        value={ props.value }
-        type={ props.type }
-        placeholder={ props.placeholder }
-        required={ props.required }
-        disabled={ props.disabled }
-        name={ props.name }
-        onChange={
-          (event) =>
-            props.onChange(event.target.value)
-        }
-        onKeyDown={ props.onKeyDown }
-        onFocus={ props.onFocus }
-        onBlur={ props.onBlur } />
-    </InputWrapper>
-  );
-};
 
 export default Input;

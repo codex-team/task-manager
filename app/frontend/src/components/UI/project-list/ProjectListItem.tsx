@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ReactComponent as Avatar } from 'icons/ProjectAva.svg';
 
 /**
@@ -71,12 +71,12 @@ const ProjectListItemStyled = styled.li<Props>`
   height: 38px;
   border-radius: 12px;
 
-  ${props => props.isActive && `
+  ${props => props.isActive && css`
     background: var(--color-contrast);
     color: var(--color-text-primary-reversed);
   `}
 
-  ${props => !props.isActive && `
+  ${props => !props.isActive && css`
     &:hover {
       background: var(--color-bg-hover);
     };

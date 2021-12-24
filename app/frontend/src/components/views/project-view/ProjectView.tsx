@@ -10,28 +10,7 @@ import Card from 'components/UI/card/Card';
 /**
  * Props of the component
  */
-interface Props {
-
-}
-
-/**
- * Styled project header component
- */
-const StyledProjectHeader = styled(ProjectHeader)``;
-
-/**
- * Tasks list styled wrapper
- */
-const Wrapper = styled.div`
-  & > *:not(:last-child) {
-    margin-bottom: 3px;
-  }
-
-  ${StyledProjectHeader} {
-    margin-bottom: 16px;
-  }
-`;
-
+interface Props { }
 
 /**
  * ProjectView component
@@ -53,24 +32,26 @@ const ProjectView: React.FC<Props> = () => {
     })();
   }, [ params.id ]);
 
-  const createNewTask = async (text: string): Promise<void> => {
+  const createNewTask = async (value: string): Promise<void> => {
     try {
+      const taskContent = {
+        blocks : [
+          {
+            type: 'paragraph',
+            data: {
+              text: value,
+            },
+          },
+        ],
+      };
       const { task } = await createTask({
-        text,
+        text: JSON.stringify(taskContent),
         projectId: params.id,
       });
 
       setTasksList([task, ...tasksList]);
     } catch (e) {
       console.error(e);
-    }
-  };
-
-  const getTaskTitle = (taskText: string): string => {
-    try {
-      return JSON.parse(taskText).blocks[0].data.text;
-    } catch {
-      return '';
     }
   };
 
@@ -84,5 +65,36 @@ const ProjectView: React.FC<Props> = () => {
     </Wrapper>
   );
 };
+
+/**
+ * Extracts task title text from first block of task content
+ *
+ * @param taskText - string containing task content in editor.js format
+ */
+const getTaskTitle = (taskText: string): string => {
+  try {
+    return JSON.parse(taskText).blocks[0].data.text;
+  } catch {
+    return '';
+  }
+};
+
+/**
+ * Styled project header component
+ */
+const StyledProjectHeader = styled(ProjectHeader)``;
+
+/**
+ * Tasks list styled wrapper
+ */
+const Wrapper = styled.div`
+  & > *:not(:last-child) {
+    margin-bottom: 3px;
+  }
+ 
+  ${StyledProjectHeader} {
+    margin-bottom: 16px;
+  }
+`;
 
 export default ProjectView;

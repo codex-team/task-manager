@@ -23,6 +23,22 @@ interface Props {
 }
 
 /**
+ * Project header component
+ *
+ * @param props - props of the component
+ */
+const ProjectHeader: React.FC<Props> = ({ className, title, hasSettingsButton }: Props) => {
+  return (
+    <Container className={ className }>
+      <PageTitle>{ title }</PageTitle>
+      { hasSettingsButton &&
+        <Button>Project settings</Button>
+      }
+    </Container>
+  );
+};
+
+/**
  * Styled container component
  */
 const Container = styled.div`
@@ -33,21 +49,5 @@ const Container = styled.div`
     margin-right: 24px
   }
 `;
-
-/**
- * Project header component
- *
- * @param props - props of the component
- */
-const ProjectHeader: React.FC<Props> = (props) => {
-  return (
-    <Container className={ props.className }>
-      <PageTitle>{ props.title }</PageTitle>
-      { props.hasSettingsButton &&
-        <Button>Project settings</Button>
-      }
-    </Container>
-  );
-};
 
 export default ProjectHeader;
