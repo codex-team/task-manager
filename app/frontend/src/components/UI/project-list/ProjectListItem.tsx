@@ -5,16 +5,21 @@ import { ReactComponent as Avatar } from 'icons/ProjectAva.svg';
 /**
  * Interface for project component props
  */
-interface Props{
+export interface Props {
   /**
    * Project title
    */
-  title: string;
+  title: string
 
   /**
    * Project picture
    */
-  picture?: string;
+  picture?: string
+
+  /**
+   * True if item is active
+   */
+  isActive?: boolean
 }
 
 /**
@@ -52,6 +57,8 @@ const Image = styled.img`
 
 /**
  * Styled project component
+ *
+ * @param props - props of the component
  */
 const ProjectListItemStyled = styled.li<Props>`
   touch-callout: none;
@@ -64,9 +71,16 @@ const ProjectListItemStyled = styled.li<Props>`
   height: 38px;
   border-radius: 12px;
 
-  &:hover {
-    background: var(--color-bg-hover);
-  };
+  ${props => props.isActive && `
+    background: var(--color-contrast);
+    color: var(--color-text-primary-reversed);
+  `}
+
+  ${props => !props.isActive && `
+    &:hover {
+      background: var(--color-bg-hover);
+    };
+  `}
 `;
 
 /**

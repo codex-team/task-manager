@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getProjects } from 'services/projects';
-import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import { Project } from 'types/entities';
+import ProjectLink from './ProjectLink';
 
 /**
  * Interface for project list component props
@@ -46,10 +46,20 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
 
   return (
     <ProjectListStyled>
-      {projects.map((project) =>
-        <ProjectListItem key={project._id} title={project.title} picture={project.picture}/>
+      <ProjectLink
+        title='All projects'
+        picture=''
+        to='/projects/all'
+      />
+      { projects.map((project) =>
+        <ProjectLink
+          key={ project._id }
+          title={ project.title }
+          picture={ project.picture }
+          to={ '/projects/' + project._id }
+        />
       )}
-      {children}
+      { children }
     </ProjectListStyled>
   );
 };
