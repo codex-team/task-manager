@@ -121,7 +121,10 @@ const Input: React.FC<Props> = (props) => {
         required={ props.required }
         disabled={ props.disabled }
         name={ props.name }
-        onChange={ ({ target: { value } }) => props.onChange(value) }
+        onChange={
+          (event) =>
+            props.onChange(event.target.value)
+        }
         onKeyDown={ props.onKeyDown }
         onFocus={ props.onFocus }
         onBlur={ props.onBlur } />

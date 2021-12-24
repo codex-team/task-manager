@@ -48,7 +48,7 @@ const StyledIcon = styled(Icon)`
 /**
  * Styled wrapper for input
  *
- * @param props
+ * @param props - props of the component
  */
 const Wrapper = styled.div<{ isFocused: boolean }>`
   height: 48px;
@@ -66,7 +66,7 @@ ${props => props.isFocused && `
 `;
 
 /**
- * Component for creating nee tasks
+ * Component for creating new tasks
  *
  * @param props - props of the component
  */
