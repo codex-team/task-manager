@@ -15,6 +15,11 @@ interface Props {
    * True if project header should contain settings button
    */
   hasSettingsButton?: boolean
+
+  /**
+   * CSS class name
+   */
+  className?: string
 }
 
 /**
@@ -36,8 +41,8 @@ const Container = styled.div`
  */
 const ProjectHeader: React.FC<Props> = (props) => {
   return (
-    <Container>
-      <PageTitle>{props.title}</PageTitle>
+    <Container className={ props.className }>
+      <PageTitle>{ props.title }</PageTitle>
       { props.hasSettingsButton &&
         <Button>Project settings</Button>
       }
