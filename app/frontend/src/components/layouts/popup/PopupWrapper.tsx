@@ -6,7 +6,7 @@ import { ReactComponent as CloseIcon } from 'icons/close.svg';
 /**
  * Interface for popup wrapper component props
  */
-interface Props{
+interface Props {
   /**
    * Function to change visible property
    */
@@ -17,6 +17,30 @@ interface Props{
    */
   isPopupVisible: boolean;
 }
+
+/**
+ * Popup wrapper component
+ *
+ * @param props - props of component
+ */
+const PopupWrapper: React.FC<Props> = (props) => {
+  const { children, backDropClick, isPopupVisible } = props;
+
+  if (!isPopupVisible) {
+    return null;
+  }
+
+  return (
+    <Popup backDropClick={backDropClick}>
+      <PopupContent>
+        <CloseButton onClick={backDropClick}>
+          <CloseIcon/>
+        </CloseButton>
+        {children}
+      </PopupContent>
+    </Popup>
+  );
+};
 
 /**
  * Styled close button
@@ -44,27 +68,5 @@ const PopupContent = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-/**
- * Popup wrapper component
- *
- * @param props - props of component
- */
-const PopupWrapper: React.FC<Props> = (props) => {
-  if (!props.isPopupVisible) {
-    return null;
-  }
-
-  return (
-    <Popup backDropClick={props.backDropClick}>
-      <PopupContent>
-        <CloseButton onClick={props.backDropClick}>
-          <CloseIcon/>
-        </CloseButton>
-        {props.children}
-      </PopupContent>
-    </Popup>
-  );
-};
 
 export default PopupWrapper;
