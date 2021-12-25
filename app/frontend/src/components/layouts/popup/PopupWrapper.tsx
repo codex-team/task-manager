@@ -23,9 +23,7 @@ interface Props {
  *
  * @param props - props of component
  */
-const PopupWrapper: React.FC<Props> = (props) => {
-  const { children, backDropClick, isPopupVisible } = props;
-
+const PopupWrapper: React.FC<Props> = ({ children, backDropClick, isPopupVisible }) => {
   if (!isPopupVisible) {
     return null;
   }
