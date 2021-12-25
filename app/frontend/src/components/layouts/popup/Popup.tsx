@@ -40,7 +40,6 @@ const Popup: React.FC<Props> = (props) => {
   );
 };
 
-
 /**
  * Styled popup component
  */
