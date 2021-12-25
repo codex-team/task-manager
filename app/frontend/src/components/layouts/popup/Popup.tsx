@@ -32,7 +32,7 @@ const Popup: React.FC<Props> = (props) => {
 
   return ReactDOM.createPortal(
     <PopupStyled onClick={backDropClick}>
-      <div onClick={ e => stopPropagation(e) }>
+      <div onClick={stopPropagation}>
         {children}
       </div>
     </PopupStyled>,
