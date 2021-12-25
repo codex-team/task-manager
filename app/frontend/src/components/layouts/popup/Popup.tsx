@@ -1,13 +1,45 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
+import { stopPropagation } from 'helpers/helpers';
 
 /**
  * Interface for popup component props
  */
-interface Props{
+interface Props {
   backDropClick: () => void;
 }
+
+/**
+ * Popup component
+ *
+ * @param props - props of component
+ */
+const Popup: React.FC<Props> = (props) => {
+  const { children, backDropClick } = props;
+
+  const popupContainer = document.getElementById('popup-root');
+
+  const KEYBOARD_ESC = 'Escape';
+
+  const escFunction = function (event: KeyboardEvent): void {
+    if (event.key === KEYBOARD_ESC) {
+      backDropClick();
+    }
+  };
+
+  document.addEventListener('keydown', escFunction);
+
+  return ReactDOM.createPortal(
+    <PopupStyled onClick={backDropClick}>
+      <div onClick={ e => stopPropagation(e) }>
+        {children}
+      </div>
+    </PopupStyled>,
+    popupContainer? popupContainer: document.body
+  );
+};
+
 
 /**
  * Styled popup component
@@ -23,37 +55,5 @@ const PopupStyled = styled.div`
   left: 0;
   background-color: rgba(0,0,0,0.2);
 `;
-
-/**
- * Popup component
- *
- * @param props - props of component
- */
-const Popup: React.FC<Props> = (props) => {
-  const KEYBOARD_ESC = 27;
-
-  const escFunction = useCallback((event) => {
-    if (event.keyCode === KEYBOARD_ESC) {
-      props.backDropClick();
-    }
-  }, [ props ]);
-
-  useEffect(() => {
-    document.addEventListener('keydown', escFunction);
-
-    return () => {
-      document.removeEventListener('keydown', escFunction);
-    };
-  }, [ escFunction ]);
-
-  return ReactDOM.createPortal(
-    <PopupStyled {...props} onClick={props.backDropClick}>
-      <div onClick={e => e.stopPropagation()}>
-        {props.children}
-      </div>
-    </PopupStyled>,
-    document.body
-  );
-};
 
 export default Popup;
