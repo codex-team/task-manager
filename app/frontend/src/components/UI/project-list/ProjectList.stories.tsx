@@ -3,9 +3,17 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import ProjectList from 'components/UI/project-list/ProjectList';
 import ProjectListItem from 'components/UI/project-list/ProjectListItem';
 import Sidebar from 'components/layouts/base/Sidebar';
+import { BrowserRouter } from 'react-router-dom';
 
 export default {
   component: ProjectList,
+  decorators: [
+    (Story) => (
+      <BrowserRouter>
+        <Story />
+      </BrowserRouter>
+    ),
+  ],
 } as ComponentMeta<typeof ProjectList>;
 
 export const Empty: ComponentStory<typeof ProjectList> = (args) => <ProjectList {...args} />;
