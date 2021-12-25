@@ -4,13 +4,14 @@ import Sidebar from 'components/layouts/base/Sidebar';
 import Content from 'components/layouts/base/Content';
 import ColorVariables from './styles/Colors';
 import GlobalStyles from './styles/Global';
-import ProjectForm from 'components/views/projects/ProjectForm';
+import ProjectForm from 'components/views/project-form/ProjectForm';
 import {
   Routes,
   Route
 } from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
+import ProjectView from 'components/views/project-view/ProjectView';
 import { Link } from 'react-router-dom';
 import Button from 'components/UI/button/Button';
 import styled from 'styled-components';
@@ -59,7 +60,9 @@ function App(): React.ReactElement {
       <Routes>
         <Route path="/" element={<Content />}>
           <Route path="projects/new" element={<ProjectForm />} />
-          <Route path="projects/:id" element={<ProjectForm />} />
+          <Route path="projects/:id/edit" element={<ProjectForm />} />
+          <Route path="projects/all" element={<ProjectView />} />
+          <Route path="projects/:id" element={<ProjectView />} />
         </Route>
       </Routes>
     </Container>

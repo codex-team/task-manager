@@ -16,3 +16,11 @@ WithTitle.args = {
   title: 'My Project',
   picture: '',
 };
+
+export const Active = Template.bind({});
+Active.args = {
+  title: 'My Project',
+  picture: '',
+  isActive: true,
+};
+
