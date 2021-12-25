@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import ReactDOM from 'react-dom';
 import { stopPropagation } from 'helpers/helpers';
@@ -15,20 +15,24 @@ interface Props {
  *
  * @param props - props of component
  */
-const Popup: React.FC<Props> = (props) => {
-  const { children, backDropClick } = props;
-
+const Popup: React.FC<Props> = ({ children, backDropClick }) => {
   const popupContainer = document.getElementById('popup-root');
 
   const KEYBOARD_ESC = 'Escape';
 
-  const escFunction = function (event: KeyboardEvent): void {
-    if (event.key === KEYBOARD_ESC) {
-      backDropClick();
-    }
-  };
+  useEffect(() => {
+    const escFunction = function (event: KeyboardEvent): void {
+      if (event.key === KEYBOARD_ESC) {
+        backDropClick();
+      }
+    };
 
-  document.addEventListener('keydown', escFunction);
+    document.addEventListener('keydown', escFunction);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction);
+    };
+  });
 
   return ReactDOM.createPortal(
     <PopupStyled onClick={backDropClick}>
