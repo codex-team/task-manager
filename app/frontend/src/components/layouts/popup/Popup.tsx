@@ -32,7 +32,7 @@ const Popup: React.FC<Props> = ({ children, backDropClick }) => {
     return () => {
       document.removeEventListener('keydown', escFunction);
     };
-  },[ backDropClick ]);
+  }, [ backDropClick ]);
 
   return ReactDOM.createPortal(
     <PopupStyled onClick={backDropClick}>
