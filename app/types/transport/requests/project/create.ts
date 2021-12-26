@@ -1,6 +1,6 @@
 import { NewMessage } from 'ctproto';
 
-export interface CreateProjectPayload {
+export interface CreateProjectMessagePayload {
   /**
    * Title of creating project
    */
@@ -18,6 +18,6 @@ export interface CreateProjectPayload {
 /**
  * Describes the request for creating project
  */
-export default interface CreateProjectMessage extends NewMessage<CreateProjectPayload> {
+export default interface CreateProjectMessage extends NewMessage<CreateProjectMessagePayload> {
   type: 'create-project';
 }

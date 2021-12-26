@@ -1,6 +1,6 @@
 import { NewMessage } from 'ctproto';
 
-export interface CreateTaskPayload {
+export interface CreateTaskMessagePayload {
   /**
    * Text of creating task
    */
@@ -25,6 +25,6 @@ export interface CreateTaskPayload {
 /**
  * Describes the request for creating task
  */
-export default interface CreateTaskMessage extends NewMessage<CreateTaskPayload> {
+export default interface CreateTaskMessage extends NewMessage<CreateTaskMessagePayload> {
   type: 'create-task';
 }

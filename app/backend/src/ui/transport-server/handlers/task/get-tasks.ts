@@ -1,5 +1,5 @@
-import { MessageHandler } from '../messageHandler';
 import { getTasks } from '../../../../db-methods/task/get-tasks';
+import { MessageHandler } from '../messageHandler';
 import { ApiResponse } from '../../../../../../types/transport';
 
 /**

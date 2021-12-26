@@ -1,5 +1,5 @@
 import client from 'transport/ctproto-client';
-import { CreateTaskPayload } from 'types/transport/requests/task/create';
+import { CreateTaskMessagePayload } from 'types/transport/requests/task/create';
 import { GetTasksMessagePayload } from 'types/transport/requests/task/get-tasks';
 import { CreateTaskResponsePayload } from 'types/transport/responses/task/create';
 import { GetTasksResponsePayload } from 'types/transport/responses/task/get-tasks';
@@ -21,7 +21,7 @@ export async function getTasks(data: GetTasksMessagePayload): Promise<GetTasksRe
  *
  * @param data - new task data
  */
-export async function createTask(data: CreateTaskPayload): Promise<CreateTaskResponsePayload> {
+export async function createTask(data: CreateTaskMessagePayload): Promise<CreateTaskResponsePayload> {
   const response = await client.send('create-task', data);
 
   return response as CreateTaskResponsePayload;
