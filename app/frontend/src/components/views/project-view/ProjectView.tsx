@@ -17,7 +17,7 @@ interface Props { }
  */
 const ProjectView: React.FC<Props> = () => {
   const params = useParams();
-  const title = params.id ? 'Project title' : 'All project';
+  const title = params.id ? 'Project title' : 'All projects';
   const [tasksList, setTasksList] = useState<Task[]>([]);
 
   useEffect(() => {

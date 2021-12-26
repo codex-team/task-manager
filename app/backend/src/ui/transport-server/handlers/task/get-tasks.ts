@@ -1,5 +1,6 @@
 import { MessageHandler } from '../messageHandler';
-import { getTasks } from '../../../db-methods/task/get-tasks';
+import { getTasks } from '../../../../db-methods/task/get-tasks';
+import { ApiResponse } from '../../../../../../types/transport';
 
 /**
  *
@@ -10,7 +11,7 @@ export class GetTasks implements MessageHandler {
   /**
    * @param payload - payload from message to parse
    */
-  public async handle(payload) {
+  public async handle(payload): Promise<ApiResponse['payload'] | void> {
     return {
       tasks: await getTasks(payload.projectId),
     };

@@ -2,7 +2,7 @@ import { ResponseMessage } from 'ctproto';
 import { Project } from '../../../entities';
 
 /**
- * Response for 'get-project' message
+ * Response for 'get-projects' message
  * Contains list of Projects in a workspace
  */
 export interface GetProjectsResponsePayload {
@@ -13,6 +13,6 @@ export interface GetProjectsResponsePayload {
 }
 
 /**
- * Describes the response of getting project
+ * Describes the response of getting projects
  */
 export default interface GetProjectsResponse extends ResponseMessage<GetProjectsResponsePayload> {}

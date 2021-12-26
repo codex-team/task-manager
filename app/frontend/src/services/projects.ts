@@ -16,7 +16,7 @@ export async function createProject(data: CreateProjectPayload): Promise<CreateP
 }
 
 /**
- * Get project
+ * Get projects
  *
  * @param data - workspace id
  */
