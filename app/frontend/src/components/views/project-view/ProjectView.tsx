@@ -6,6 +6,9 @@ import TaskInput from 'components/UI/task-input/TaskInput';
 import { getTasks, createTask } from 'services/tasks';
 import Task from 'types/entities/task';
 import Card from 'components/UI/card/Card';
+import { useStoreMap } from 'effector-react';
+import { $projects } from 'store/projects';
+
 
 /**
  * Props of the component
@@ -17,8 +20,17 @@ interface Props { }
  */
 const ProjectView: React.FC<Props> = () => {
   const params = useParams();
-  const title = params.id ? 'Project title' : 'All projects';
   const [tasksList, setTasksList] = useState<Task[]>([]);
+
+  const projectData = useStoreMap({
+    store: $projects,
+    keys: [ params.id ],
+    fn: (projects, [ projectId ]) => projectId
+      ? projects.find((project) => projectId === project._id)
+      : null,
+  });
+
+  const title = projectData?.title || 'All projects';
 
   useEffect(() => {
     (async function fetchTasks() {

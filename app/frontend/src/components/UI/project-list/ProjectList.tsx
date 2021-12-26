@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { getProjects } from 'services/projects';
-import { Project } from 'types/entities';
 import ProjectLink from './ProjectLink';
+import { $projects, getProjectsEffectFx } from 'store/projects';
+import { useStore } from 'effector-react';
 
 /**
  * Interface for project list component props
@@ -15,33 +15,17 @@ interface Props{
 }
 
 /**
- * Styled project list component
- *
- * @param props - props of component
- */
-const ProjectListStyled = styled.ul`
-  margin-top: 10px;
-  list-style-type: none;
-  padding-left: 0;
-  width: 100%;
-`;
-
-/**
  * Project list component
  *
  * @param props - props of component
  */
 const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const projects = useStore($projects);
 
   useEffect(() => {
-    getProjects({
+    getProjectsEffectFx({
       workspaceId: workspaceId,
-    }).then(
-      res => {
-        setProjects(res.projects);
-      }
-    );
+    });
   }, [ workspaceId ]);
 
   return (
@@ -63,5 +47,17 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
     </ProjectListStyled>
   );
 };
+
+/**
+ * Styled project list component
+ *
+ * @param props - props of component
+ */
+const ProjectListStyled = styled.ul`
+  margin-top: 10px;
+  list-style-type: none;
+  padding-left: 0;
+  width: 100%;
+`;
 
 export default ProjectList;

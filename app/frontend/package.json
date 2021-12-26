@@ -26,6 +26,8 @@
     "craco-alias": "^3.0.1",
     "cross-env": "^7.0.3",
     "ctproto": "^0.0.13",
+    "effector": "^22.1.2",
+    "effector-react": "^22.0.6",
     "eslint-config-codex": "^1.6.4",
     "eslint-config-react": "^1.1.7",
     "history": "5",
@@ -39,5 +41,8 @@
   },
   "resolutions": {
     "babel-loader": "8.1.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-effector": "^0.5.2"
   }
 }

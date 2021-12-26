@@ -3,7 +3,10 @@ module.exports = {
     'codex/ts',
     'react-app',
     'react-app/jest',
+    'plugin:effector/recommended',
+    'plugin:effector/scope',
   ],
+  plugins: [ 'effector' ],
   overrides: [
     {
       'files': [

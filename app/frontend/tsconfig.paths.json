@@ -2,11 +2,12 @@
   "compilerOptions": {
       "baseUrl": "./src",
       "paths": {
-         "services/*" : ["./services/*"],
-         "icons/*" : ["./icons/*"],
-         "styles/*" : ["./styles/*"],
-         "transport/*" : ["./transport/*"],
-         "types/*" : ["../../types/*"]
+         "services/*": ["./services/*"],
+         "store/*": ["./store/*"],
+         "icons/*": ["./icons/*"],
+         "styles/*": ["./styles/*"],
+         "transport/*": ["./transport/*"],
+         "types/*": ["../../types/*"]
        }
   }
 }
