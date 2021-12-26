@@ -56,7 +56,7 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
           key={ project._id }
           title={ project.title }
           picture={ project.picture }
-          to={ '/projects/' + project._id }
+          to={ '/project/' + project._id }
         />
       )}
       { children }

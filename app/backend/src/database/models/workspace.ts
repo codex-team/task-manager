@@ -43,7 +43,7 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
     } ],
   } ],
   /**
-   * List of projects in workspace
+   * List of project in workspace
    */
   projects: [ {
     type: mongoose.Schema.Types.ObjectId,

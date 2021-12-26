@@ -8,7 +8,7 @@ export interface GetProjectsMessagePayload {
 }
 
 /**
- * Describes the request for getting projects from Workspace
+ * Describes the request for getting project from Workspace
  */
 export default interface GetProjectsMessage extends NewMessage<GetProjectsMessagePayload> {
   type: 'get-projects';

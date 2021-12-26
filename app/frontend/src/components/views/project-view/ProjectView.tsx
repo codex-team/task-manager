@@ -17,7 +17,7 @@ interface Props { }
  */
 const ProjectView: React.FC<Props> = () => {
   const params = useParams();
-  const title = params.id ? 'Project title' : 'All projects';
+  const title = params.id ? 'Project title' : 'All project';
   const [tasksList, setTasksList] = useState<Task[]>([]);
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const Wrapper = styled.div`
   & > *:not(:last-child) {
     margin-bottom: 3px;
   }
- 
+
   ${StyledProjectHeader} {
     margin-bottom: 16px;
   }

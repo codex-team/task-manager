@@ -2,8 +2,8 @@ import { CTProtoServer } from 'ctproto';
 import { AuthorizeMessagePayload } from '../../../../types/transport/requests/authorize';
 import { AuthorizeResponsePayload } from '../../../../types/transport/responses/authorize';
 import { ApiRequest, ApiResponse, ApiUpdate } from '../../../../types/transport';
-import { handleMessage } from './controller';
 import { Config } from '../../config/config';
+import { dispatchMessage } from './messageDispatcher';
 
 /**
  * Available options of CTProto transport
@@ -39,7 +39,7 @@ export function createTransportServer({ authToken }: TransportServerOptions): CT
     },
 
     async onMessage(message: ApiRequest): Promise<ApiResponse['payload'] | void> {
-      return handleMessage(message);
+      return dispatchMessage(message);
     },
   });
 }

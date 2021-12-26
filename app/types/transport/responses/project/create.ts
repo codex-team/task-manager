@@ -13,6 +13,6 @@ export interface CreateProjectResponsePayload {
 }
 
 /**
- * Describes the response of creating projects
+ * Describes the response of creating project
  */
 export default interface CreateProjectResponse extends ResponseMessage<CreateProjectResponsePayload> {}
