@@ -1,8 +1,8 @@
 import { ApiRequest, ApiResponse } from '../../../../types/transport';
-import { createProject } from '../methods/projects/create';
-import { getProjects } from '../methods/projects/get-projects';
-import { createTask } from '../methods/task/create';
-import { getTasks } from '../methods/task/get-tasks';
+import { createProject } from '../../db-methods/projects/create';
+import { getProjects } from '../../db-methods/projects/get-projects';
+import { createTask } from '../../db-methods/task/create';
+import { getTasks } from '../../db-methods/task/get-tasks';
 
 /**
  * Handles CTProto messages

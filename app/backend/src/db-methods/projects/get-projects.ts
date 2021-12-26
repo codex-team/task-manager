@@ -1,5 +1,5 @@
-import Project from '../../../../../types/entities/project';
-import ProjectSchema from '../../../database/models/project';
+import Project from '../../../../types/entities/project';
+import ProjectSchema from '../../database/models/project';
 
 /**
  * Returns list of stored projects

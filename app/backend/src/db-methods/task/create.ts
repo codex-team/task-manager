@@ -1,5 +1,5 @@
-import Task from '../../../../../types/entities/task';
-import TaskSchema from '../../../database/models/task';
+import Task from '../../../../types/entities/task';
+import TaskSchema from '../../database/models/task';
 
 /**
  * Creates new task
