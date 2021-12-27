@@ -1,7 +1,6 @@
 import { createProject } from '../../../../db-methods/project/create';
 import { MessageHandler } from '../messageHandler';
 import { ApiResponse } from '../../../../../../types/transport';
-import { CreateProjectMessagePayload } from '../../../../../../types/transport/requests/project/create';
 
 /**
  *
@@ -12,7 +11,7 @@ export class CreateProject implements MessageHandler {
   /**
    * @param payload - payload from message to parse
    */
-  public async handle(payload: CreateProjectMessagePayload): Promise<ApiResponse['payload'] | void> {
+  public async handle(payload): Promise<ApiResponse['payload'] | void> {
     return {
       project: await createProject(
         payload.title,

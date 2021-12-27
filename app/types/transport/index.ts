@@ -28,6 +28,16 @@ export type ApiRequest =
 ;
 
 /**
+ * The type described all available API message payloads
+ */
+export type ApiMessagePayload =
+  | AuthorizeMessagePayload
+  | CreateProjectMessagePayload
+  | GetProjectsMessagePayload
+  | CreateTaskMessagePayload
+  | GetTasksMessagePayload
+
+/**
  * The type described all available API response messages
  */
 export type ApiResponse =

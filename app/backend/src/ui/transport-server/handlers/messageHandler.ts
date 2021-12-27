@@ -1,6 +1,6 @@
-import { ApiResponse } from '../../../../../types/transport';
+import { ApiMessagePayload, ApiResponse } from '../../../../../types/transport';
 
 export interface MessageHandler {
   type: string;
-  handle(payload): Promise<ApiResponse['payload'] | void>;
+  handle(payload: ApiMessagePayload): Promise<ApiResponse['payload'] | void>;
 }
