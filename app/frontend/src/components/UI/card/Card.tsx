@@ -132,7 +132,8 @@ const ProjectInfo = styled.div`
 const Status = styled.div`
   color: var(--color-text-primary);
   font-size: 14px;
-  width: 200px;
+  line-height: 18px;
+  width: 300px;
   align-self: center;
 `;
 

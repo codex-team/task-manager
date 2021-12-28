@@ -6,7 +6,7 @@ import TaskInput from 'components/UI/task-input/TaskInput';
 import { getTasks, createTask } from 'services/tasks';
 import Task from 'types/entities/task';
 import Card from 'components/UI/card/Card';
-import { useStoreMap } from 'effector-react';
+import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
 
 
@@ -21,16 +21,9 @@ interface Props { }
 const ProjectView: React.FC<Props> = () => {
   const params = useParams();
   const [tasksList, setTasksList] = useState<Task[]>([]);
-
-  const projectData = useStoreMap({
-    store: $projects,
-    keys: [ params.id ],
-    fn: (projects, [ projectId ]) => projectId
-      ? projects.find((project) => projectId === project._id)
-      : null,
-  });
-
-  const title = projectData?.title || 'All projects';
+  const projects = useStore($projects);
+  const currentProject = projects.find((project) => params.id === project._id);
+  const title = currentProject?.title || 'All projects';
 
   useEffect(() => {
     (async function fetchTasks() {
@@ -72,7 +65,12 @@ const ProjectView: React.FC<Props> = () => {
       <StyledProjectHeader title={title} />
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
       { tasksList.map(task =>
-        <Card key={ task._id } taskTitle={ getTaskTitle(task.text) } />
+        <Card
+          key={ task._id }
+          taskTitle={ getTaskTitle(task.text) }
+          projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
+          status='Unsorted'
+        />
       )}
     </Wrapper>
   );
