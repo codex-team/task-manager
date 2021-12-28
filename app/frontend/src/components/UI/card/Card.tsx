@@ -65,10 +65,10 @@ const Card: React.FC<Props> = (props) => {
         <Title>
           {props.taskTitle}
         </Title>
-        { props.subtasksNumber ?
+        { props.subtasksNumber &&
           <Progress>
             {props.completedSubtasks} of {props.subtasksNumber} completed
-          </Progress> : null
+          </Progress>
         }
       </TaskInfo>
       { props.status &&
@@ -78,8 +78,8 @@ const Card: React.FC<Props> = (props) => {
       }
       <Assignees>
         <Icon name='DefaultAvatar' width={18} height={18}/>
-        { isShownAssigneesNumber && props.assigneesNumber ?
-          `+${props.assigneesNumber-1}`: null
+        { (isShownAssigneesNumber && props.assigneesNumber) &&
+          `+${props.assigneesNumber-1}`
         }
       </Assignees>
     </CardStyled>
