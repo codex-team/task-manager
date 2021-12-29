@@ -30,7 +30,7 @@ const ProjectView: React.FC<Props> = () => {
       try {
         const { tasks } = await getTasks(params.id ? { projectId: params.id } : {});
 
-        setTasksList(tasks);
+        setTasksList(tasks.reverse());
       } catch (e) {
         console.error(e);
       }
