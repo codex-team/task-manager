@@ -62,7 +62,7 @@ const ProjectView: React.FC<Props> = () => {
 
   return (
     <Wrapper>
-      <StyledProjectHeader title={title} />
+      <StyledProjectHeader title={title} hasSettingsButton={ !!currentProject }/>
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
       { tasksList.map(task =>
         <Card
