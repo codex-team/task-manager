@@ -20,7 +20,7 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {
  *
  * @param props - props of the component
  */
-const Icon: React.FC<IconProps> = ({ name, className, ...rest }): JSX.Element | null => {
+const Icon: React.FC<IconProps> = ({ name, ...rest }): JSX.Element | null => {
   const ImportedIconRef = React.useRef<
     React.FC<React.SVGProps<SVGSVGElement>>
   >();
@@ -44,7 +44,7 @@ const Icon: React.FC<IconProps> = ({ name, className, ...rest }): JSX.Element | 
   if (!loading && ImportedIconRef.current) {
     const { current: ImportedIcon } = ImportedIconRef;
 
-    return <ImportedIcon {...rest} className={ className }/>;
+    return <ImportedIcon { ...rest }/>;
   }
 
   return null;

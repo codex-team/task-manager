@@ -38,7 +38,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
       { props.items.map((item, i) => (
         <DropdownItem
           key={ item.value }
-          isSelected={ props.selectedValue === item.value}
+          isSelected={ props.selectedValue === item.value }
           isHighlighted={ props.focusedIndex === i }
           onClick={ () => props.onSelect && props.onSelect(item) }
         >
