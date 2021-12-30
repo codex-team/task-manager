@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { getProjects } from 'services/projects';
-import ProjectListItem from 'components/UI/project-list/ProjectListItem';
-import { Project } from 'types/entities';
+import ProjectLink from './ProjectLink';
+import { $projects, getProjectsEffectFx } from 'store/projects';
+import { useStore } from 'effector-react';
 
 /**
  * Interface for project list component props
@@ -15,6 +15,40 @@ interface Props{
 }
 
 /**
+ * Project list component
+ *
+ * @param props - props of component
+ */
+const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
+  const projects = useStore($projects);
+
+  useEffect(() => {
+    getProjectsEffectFx({
+      workspaceId: workspaceId,
+    });
+  }, [ workspaceId ]);
+
+  return (
+    <ProjectListStyled>
+      <ProjectLink
+        title='All projects'
+        picture=''
+        to='/projects/all'
+      />
+      { projects.map((project) =>
+        <ProjectLink
+          key={ project._id }
+          title={ project.title }
+          picture={ project.picture }
+          to={ '/projects/' + project._id }
+        />
+      )}
+      { children }
+    </ProjectListStyled>
+  );
+};
+
+/**
  * Styled project list component
  *
  * @param props - props of component
@@ -25,33 +59,5 @@ const ProjectListStyled = styled.ul`
   padding-left: 0;
   width: 100%;
 `;
-
-/**
- * Project list component
- *
- * @param props - props of component
- */
-const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
-  const [projects, setProjects] = useState<Project[]>([]);
-
-  useEffect(() => {
-    getProjects({
-      workspaceId: workspaceId,
-    }).then(
-      res => {
-        setProjects(res.projects);
-      }
-    );
-  }, [ workspaceId ]);
-
-  return (
-    <ProjectListStyled>
-      {projects.map((project) =>
-        <ProjectListItem key={project._id} title={project.title} picture={project.picture}/>
-      )}
-      {children}
-    </ProjectListStyled>
-  );
-};
 
 export default ProjectList;

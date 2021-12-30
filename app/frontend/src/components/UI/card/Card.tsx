@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Icon from 'components/UI/icon/Icon';
 
 /**
@@ -25,7 +25,117 @@ interface Props{
    * Number of completed subtasks in task
    */
   completedSubtasks?: number;
+
+  /**
+   * Info about project the card belongs to
+   */
+  projectInfo?: {
+    title: string,
+    picture?: string
+  }
+
+  /**
+   * Task status
+   */
+  status?: string
 }
+
+
+/**
+ * Card component
+ *
+ * @param props - props of component
+ */
+const Card: React.FC<Props> = (props) => {
+  const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
+
+  return (
+    <CardStyled {...props}>
+      <TaskInfo>
+        { props.projectInfo &&
+        <ProjectInfo>
+          <ProjectPicture url={ props.projectInfo.picture }>
+            { !props.projectInfo.picture &&
+              <Icon name='home' width={ 8 } height={ 8 }/>
+            }
+          </ProjectPicture>
+          <ProjectTitle> { props.projectInfo.title } </ProjectTitle>
+        </ProjectInfo>
+        }
+        <Title>
+          {props.taskTitle}
+        </Title>
+        { props.subtasksNumber &&
+          <Progress>
+            {props.completedSubtasks} of {props.subtasksNumber} completed
+          </Progress>
+        }
+      </TaskInfo>
+      { props.status &&
+        <Status>
+          { props.status }
+        </Status>
+      }
+      <Assignees>
+        <Icon name='DefaultAvatar' width={18} height={18}/>
+        { (isShownAssigneesNumber && props.assigneesNumber) &&
+          `+${props.assigneesNumber-1}`
+        }
+      </Assignees>
+    </CardStyled>
+  );
+};
+
+/**
+ * Styled project picture component
+ *
+ * @param props - component props
+ */
+const ProjectPicture = styled.div<{ url?: string }>`
+  border-radius: 4px;
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  background: radial-gradient(100% 100% at 87.5% 6.25%, #AE41F1 0%, #FF75D0 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${ ({ url }) => url && css`
+    background: url(url);
+  `}
+`;
+
+/**
+ * Styled project title component
+ */
+const ProjectTitle = styled.span`
+  font-size: 10px;
+  letter-spacing: -0.01em;
+  line-height: 140%;
+  color: var(--color-text-secondary);
+`;
+
+/**
+ * Styled wrapper component for project info
+ */
+const ProjectInfo = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+`;
+
+/**
+ * Styled wrapper for status info
+ */
+const Status = styled.div`
+  color: var(--color-text-primary);
+  font-size: 14px;
+  line-height: 18px;
+  width: 300px;
+  align-self: center;
+`;
 
 /**
  * Styled task title
@@ -45,6 +155,7 @@ const Title = styled.div`
  */
 const TaskInfo = styled.div`
   overflow: hidden;
+  margin-right: auto;
 `;
 
 /**
@@ -101,38 +212,16 @@ const CardStyled = styled.div<Props>`
     ${Progress} {
       color: var(--color-text-secondary-reversed);
     };
+
+    ${ProjectTitle} {
+      color: var(--color-text-secondary-reversed);
+    }
+
+    ${Status} {
+      color: var(--color-text-primary-reversed);;
+    }
   }
 `;
-
-/**
- * Card component
- *
- * @param props - props of component
- */
-const Card: React.FC<Props> = (props) => {
-  const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
-
-  return (
-    <CardStyled {...props}>
-      <TaskInfo>
-        <Title>
-          {props.taskTitle}
-        </Title>
-        { props.subtasksNumber ?
-          <Progress>
-            {props.completedSubtasks} of {props.subtasksNumber} completed
-          </Progress> : null
-        }
-      </TaskInfo>
-      <Assignees>
-        <Icon name='DefaultAvatar' width={18} height={18}/>
-        { isShownAssigneesNumber && props.assigneesNumber ?
-          `+${props.assigneesNumber-1}`: null
-        }
-      </Assignees>
-    </CardStyled>
-  );
-};
 
 /**
  * Default card component props

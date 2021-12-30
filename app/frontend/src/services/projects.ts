@@ -1,27 +1,8 @@
-import { CreateProjectResponsePayload } from 'types/transport/responses/project/create';
 import client from 'transport/ctproto-client';
+import { CreateProjectResponsePayload } from 'types/transport/responses/project/create';
 import { GetProjectsMessagePayload } from 'types/transport/requests/project/get-projects';
 import { GetProjectsResponsePayload } from 'types/transport/responses/project/get-projects';
-
-/**
- * Represents data needed to create new project
- */
-interface CreateProjectPayload {
-  /**
-   * Project's visible title
-   */
-  title: string
-
-  /**
-   * Project's visible picture
-   */
-  picture?: string
-
-  /**
-   * URL of a Channel in a messenger in where reports and notifies will be sent
-   */
-  messengerChannelUrl?: string
-}
+import { CreateProjectPayload } from 'types/transport/requests/project/create';
 
 /**
  * Creates new project

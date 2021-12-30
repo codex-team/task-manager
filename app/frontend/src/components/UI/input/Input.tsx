@@ -1,3 +1,4 @@
+import { ChangeEvent, KeyboardEventHandler } from 'react';
 import styled from 'styled-components';
 import { UiComponentText } from 'styles/Mixins';
 
@@ -9,7 +10,7 @@ export interface Props {
   /**
    * Input element id
    */
-  id: string
+  id?: string
 
   /**
    * Input value
@@ -45,7 +46,54 @@ export interface Props {
    * Value change callback
    */
   onChange: (val: string) => void
+
+  /**
+   * CSS class name
+   */
+  className?: string
+
+  /**
+   * Keydown event handler
+   */
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>
+
+  /**
+   * Focus event handler
+   */
+  onFocus?: () => void
+
+  /**
+   * Blur event handler
+   */
+  onBlur?: () => void
 }
+
+
+/**
+ * Input component
+ *
+ * @param props - props of the component
+ */
+const Input: React.FC<Props> = (props: Props) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => props.onChange(event.target.value);
+
+  return (
+    <InputWrapper className={ props.className }>
+      <input
+        id={ props.id }
+        value={ props.value }
+        type={ props.type }
+        placeholder={ props.placeholder }
+        required={ props.required }
+        disabled={ props.disabled }
+        name={ props.name }
+        onChange={ onChange }
+        onKeyDown={ props.onKeyDown }
+        onFocus={ props.onFocus }
+        onBlur={ props.onBlur } />
+    </InputWrapper>
+  );
+};
 
 /**
  * Input wrapper component
@@ -65,7 +113,6 @@ const InputWrapper = styled.div`
     border: 1px solid var(--color-line-active);
   }
 
-
   input {
     flex: 1;
     padding-left: 12px;
@@ -83,26 +130,5 @@ const InputWrapper = styled.div`
     }
   }
 `;
-
-/**
- * Input component
- *
- * @param props - props of the component
- */
-const Input: React.FC<Props> = (props) => {
-  return (
-    <InputWrapper>
-      <input
-        id={ props.id }
-        value={ props.value }
-        type={ props.type }
-        placeholder={ props.placeholder }
-        required={ props.required }
-        disabled={ props.disabled }
-        name={ props.name }
-        onChange={ ({ target: { value } }) => props.onChange(value) } />
-    </InputWrapper>
-  );
-};
 
 export default Input;
