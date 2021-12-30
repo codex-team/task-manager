@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
 import { UiComponentText } from 'styles/Mixins';
 import Icon from 'components/UI/icon/Icon';
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useRef, useState } from 'react';
 import Dropdown from 'components/UI/dropdown/Dropdown';
 import { DropdownItem } from 'components/UI/dropdown/DropdownItem';
+import { useOutsideClickHandler } from 'helpers/outside-click';
 
 /**
  * Props of the component
@@ -39,6 +40,11 @@ const Select: React.FC<Props> = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(-1);
   const [selectedOption, setSelectedOption] = useState<DropdownItem|undefined>();
+  const ref = useRef(null);
+
+  useOutsideClickHandler(ref, () => {
+    close();
+  });
 
   const selectOption = (option: DropdownItem): void => {
     props.onChange(option.value);
@@ -93,7 +99,7 @@ const Select: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <Wrapper tabIndex={ 0 } isOpen={ isOpen } onClick={ toggle } onKeyDown={ onKeyDown }>
+    <Wrapper tabIndex={ 0 } isOpen={ isOpen } onClick={ toggle } onBlur={ close } onKeyDown={ onKeyDown } ref={ ref }>
       { !selectedOption &&
         <span>{ props.placeholder }</span>
       }
