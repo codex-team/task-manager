@@ -1,19 +1,24 @@
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import {Route, Routes, useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProjectHeader from './components/ProjectHeader';
 import TaskInput from 'components/UI/task-input/TaskInput';
 import { getTasks, createTask } from 'services/tasks';
 import Task from 'types/entities/task';
-import Card from 'components/UI/card/Card';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
-
+import CardLink from 'components/UI/card/CardLink';
+import TaskPopup from 'components/layouts/popup/TaskPopup';
 
 /**
  * Props of the component
  */
 interface Props { }
+
+interface PopupInfo {
+  task: Task;
+  projectTitle?: string;
+}
 
 /**
  * ProjectView component
@@ -42,9 +47,10 @@ const ProjectView: React.FC<Props> = () => {
       const taskContent = {
         blocks : [
           {
-            type: 'paragraph',
+            type: 'header',
             data: {
               text: value,
+              level: 1,
             },
           },
         ],
@@ -60,12 +66,25 @@ const ProjectView: React.FC<Props> = () => {
     }
   };
 
+  const [taskInPopup, setTask] = useState<PopupInfo | null>(null);
+
+  const setPopupInfo = (task:Task, projectTitle: string | undefined): void => {
+    setTask({ task: task, projectTitle: projectTitle });
+  };
+
   return (
     <Wrapper>
+      <Routes>
+        <Route path={":task_id"} element={<TaskPopup task={taskInPopup?.task} projectTitle={taskInPopup?.projectTitle}/>}>
+        </Route>
+      </Routes>
       <StyledProjectHeader title={title} hasSettingsButton={ !!currentProject }/>
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
       { tasksList.map(task =>
-        <Card
+        <CardLink
+          task={task}
+          setTask={setPopupInfo}
+          to={ task._id }
           key={ task._id }
           taskTitle={ getTaskTitle(task.text) }
           projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
@@ -101,7 +120,7 @@ const Wrapper = styled.div`
   & > *:not(:last-child) {
     margin-bottom: 3px;
   }
- 
+
   ${StyledProjectHeader} {
     margin-bottom: 16px;
   }
