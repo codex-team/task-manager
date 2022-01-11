@@ -1,11 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Icon from 'components/UI/icon/Icon';
+import Task from 'types/entities/task';
 
 /**
  * Interface for card component props
  */
-interface Props{
+export interface Props{
+  /**
+   * Set task info to popup
+   */
+  setTask: (task:Task, projectTitle: string | undefined) => void;
+
   /**
    * Task Title
    */
@@ -37,7 +43,16 @@ interface Props{
   /**
    * Task status
    */
-  status?: string
+  status?: string;
+
+  /**
+   * True if card is active
+   */
+  isActive?: boolean;
+}
+
+export interface TaskProps {
+  task:Task;
 }
 
 
@@ -46,11 +61,10 @@ interface Props{
  *
  * @param props - props of component
  */
-const Card: React.FC<Props> = (props) => {
+const Card: React.FC<Props & TaskProps> = (props) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
-
   return (
-    <CardStyled {...props}>
+    <CardStyled {...props} onClick={props.setTask.bind(this, props.task, props.projectInfo?.title)}>
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>
@@ -192,12 +206,12 @@ const CardStyled = styled.div<Props>`
   border-style: solid;
   border-radius: 12px;
   padding: 12px 12px 12px 14px;
+  min-height: 48px;
 
   &:hover {
     border-color: var(--color-line-hover);
   };
-
-  &:active {
+  ${props => props.isActive && css`
     border-color: var(--color-line-active);
     background-color: var(--color-contrast);
 
@@ -220,7 +234,7 @@ const CardStyled = styled.div<Props>`
     ${Status} {
       color: var(--color-text-primary-reversed);;
     }
-  }
+  `}
 `;
 
 /**
