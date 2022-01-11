@@ -141,7 +141,7 @@ const StatusTitle = styled.p`
 const Status = styled.p`
   font-weight: 400;
   font-size: 14px;
-  color: #8D8D8D;
+  color: var(--color-text-secondary);
   margin-bottom: 20px;
 `;
 
