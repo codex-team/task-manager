@@ -7,7 +7,7 @@ import GlobalStyles from './styles/Global';
 import ProjectForm from 'components/views/project-form/ProjectForm';
 import {
   Routes,
-  Route
+  Route, useNavigate
 } from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
@@ -44,6 +44,12 @@ function App(): React.ReactElement {
     setIsPopupVisible( (wasPopupVisible) => !wasPopupVisible);
   };
 
+  const navigate = useNavigate();
+
+  const onClose = (): void => {
+    navigate(-1);
+  };
+
   return (
     <Container>
       <ColorVariables/>
@@ -61,8 +67,12 @@ function App(): React.ReactElement {
         <Route path="/" element={<Content />}>
           <Route path="projects/new" element={<ProjectForm />} />
           <Route path="projects/:id/edit" element={<ProjectForm />} />
-          <Route path="projects/all" element={<ProjectView />} />
-          <Route path="projects/:id" element={<ProjectView />} />
+          <Route path="projects/all" element={<ProjectView />} >
+            <Route path=":task_id"/>
+          </Route>
+          <Route path="projects/:id" element={<ProjectView />} >
+            <Route path=":task_id"/>
+          </Route>
         </Route>
       </Routes>
     </Container>
