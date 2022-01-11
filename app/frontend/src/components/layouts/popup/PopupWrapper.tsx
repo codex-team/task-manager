@@ -57,14 +57,12 @@ const CloseButton = styled.div`
  */
 const PopupContent = styled.div`
   width: 1000px;
-  padding: 40px;
+  z-index: 2;
   position: relative;
   background-color: var(--color-bg-main);
   min-height: 500px;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: scroll;
 `;
 
 export default PopupWrapper;
