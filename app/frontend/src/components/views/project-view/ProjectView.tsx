@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Route, Routes, useParams} from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProjectHeader from './components/ProjectHeader';
 import TaskInput from 'components/UI/task-input/TaskInput';
@@ -69,13 +69,14 @@ const ProjectView: React.FC<Props> = () => {
   const [taskInPopup, setTask] = useState<PopupInfo | null>(null);
 
   const setPopupInfo = (task:Task, projectTitle: string | undefined): void => {
-    setTask({ task: task, projectTitle: projectTitle });
+    setTask({ task: task,
+      projectTitle: projectTitle });
   };
 
   return (
     <Wrapper>
       <Routes>
-        <Route path={":task_id"} element={<TaskPopup task={taskInPopup?.task} projectTitle={taskInPopup?.projectTitle}/>}>
+        <Route path={':task_id'} element={<TaskPopup task={taskInPopup?.task} projectTitle={taskInPopup?.projectTitle}/>}>
         </Route>
       </Routes>
       <StyledProjectHeader title={title} hasSettingsButton={ !!currentProject }/>

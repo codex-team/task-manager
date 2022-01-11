@@ -21,12 +21,13 @@ interface Props {
  *
  * @param task - task to show
  */
-const TaskPopup: React.FC<Props> = ({ task, projectTitle}) => {
+const TaskPopup: React.FC<Props> = ({ task, projectTitle }) => {
   const navigate = useNavigate();
 
   const onClose = (): void => {
     navigate(-1);
   };
+
   if (!projectTitle) {
     projectTitle = localStorage.getItem('projectTitle');
   } else {
@@ -41,24 +42,27 @@ const TaskPopup: React.FC<Props> = ({ task, projectTitle}) => {
       localStorage.setItem('task', JSON.stringify(task));
     }
 
-    const data: OutputData = {blocks: JSON.parse(task!.text).blocks};
+    const data: OutputData = { blocks: JSON.parse(task!.text).blocks };
     const editor = new EditorJS({
-      holder: "editorjs",
-      tools: {header: Header, paragraph: Paragraph}, data: data
-    });}, [task]);
+      holder: 'editorjs',
+      tools: { header: Header,
+        paragraph: Paragraph },
+      data: data,
+    });
+  }, [ task ]);
 
-  let a = [{day: 'numeric'}, {month: 'short'}, {year: 'numeric'}];
+  const a = [ { day: 'numeric' }, { month: 'short' }, { year: 'numeric' } ];
 
   return (
     <PopupWrapper backDropClick={onClose} isPopupVisible={true}>
       <Container>
-        <Content id={"editorjs"}>
+        <Content id={'editorjs'}>
         </Content>
         <Additional>
           <StatusTitle>
             Assignee
           </StatusTitle>
-          <Select onChange={onClose} options={[ ]} placeholder={"Not assigned"}/>
+          <Select onChange={onClose} options={[]} placeholder={'Not assigned'}/>
           <StatusTitle>
             Status
           </StatusTitle>
@@ -87,7 +91,7 @@ const TaskPopup: React.FC<Props> = ({ task, projectTitle}) => {
   );
 };
 
-const formatDate = (dateToFormat: string): string =>{
+const formatDate = (dateToFormat: string): string => {
   const date = new Date(dateToFormat);
   const dd = date.getDate();
 
