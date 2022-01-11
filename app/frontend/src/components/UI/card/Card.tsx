@@ -63,6 +63,7 @@ export interface TaskProps {
  */
 const Card: React.FC<Props & TaskProps> = (props) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
+
   return (
     <CardStyled {...props} onClick={props.setTask.bind(this, props.task, props.projectInfo?.title)}>
       <TaskInfo>
