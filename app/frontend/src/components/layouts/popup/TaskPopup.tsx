@@ -1,60 +1,69 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PopupWrapper from 'components/layouts/popup/PopupWrapper';
 import Task from 'types/entities/task';
 import EditorJS, { OutputData } from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import Paragraph from '@editorjs/paragraph';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'components/UI/select/Select';
+import { getTaskById } from 'services/tasks';
+import { useStore } from 'effector-react';
+import { $projects } from 'store/projects';
 
 /**
  * Interface for task popup component props
  */
 interface Props {
-  task?: Task;
-  projectTitle?: string | null;
 }
 
 /**
  * Task popup component
  *
- * @param task - task to show
+ * @param props - props for component
  */
-const TaskPopup: React.FC<Props> = ({ task, projectTitle }) => {
+const TaskPopup: React.FC<Props> = (props) => {
   const navigate = useNavigate();
+  const params = useParams();
+
+  const id = params.task_id;
 
   const onClose = (): void => {
     navigate(-1);
   };
 
-  if (!projectTitle) {
-    projectTitle = localStorage.getItem('projectTitle');
-  } else {
-    localStorage.setItem('projectTitle', projectTitle);
-    console.log(projectTitle);
-  }
+  const [task, setTask] = useState<Task | null>(null);
+
+  const projects = useStore($projects);
+
+  const [projectTitle, setProjectTitle] = useState<string | null>(null);
 
   useEffect( () => {
-    if (!task) {
-      task = JSON.parse(localStorage.getItem('task')!);
-    } else {
-      localStorage.setItem('task', JSON.stringify(task));
+    if (id) {
+      getTaskById({ taskId: id })
+        .then((payload) => {
+          if (payload.task) {
+            setTask(payload.task);
+            const data: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
+            const editor = new EditorJS({
+              holder: 'editorjs',
+              tools: {
+                header: Header,
+                paragraph: Paragraph,
+              },
+              data: data,
+            });
+            const projectId = payload.task.projectId;
+            const currentProject = projects.find((project) => projectId === project._id);
+
+            setProjectTitle(currentProject?.title || null);
+          }
+        });
     }
-
-    const data: OutputData = { blocks: JSON.parse(task!.text).blocks };
-    const editor = new EditorJS({
-      holder: 'editorjs',
-      tools: { header: Header,
-        paragraph: Paragraph },
-      data: data,
-    });
-  }, [ task ]);
-
-  const a = [ { day: 'numeric' }, { month: 'short' }, { year: 'numeric' } ];
+  }, [id, projects, setProjectTitle]);
 
   return (
-    <PopupWrapper backDropClick={onClose} isPopupVisible={true}>
+    <PopupWrapper backDropClick={onClose} isPopupVisible={true} { ...props }>
       <Container>
         <Content id={'editorjs'}>
         </Content>
@@ -71,7 +80,7 @@ const TaskPopup: React.FC<Props> = ({ task, projectTitle }) => {
             Creation date
           </StatusTitle>
           <Status>
-            { task?.dateCreated ? formatDate(task?.dateCreated): null }
+            { task ? formatDate(task.dateCreated) : null }
           </Status>
           { projectTitle ?
             <StatusTitle>
@@ -107,6 +116,7 @@ const formatDate = (dateToFormat: string): string => {
  */
 const Content = styled.div`
   width: 630px;
+  margin-bottom: 40px;
 `;
 
 /**

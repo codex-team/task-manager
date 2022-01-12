@@ -1,17 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Icon from 'components/UI/icon/Icon';
-import Task from 'types/entities/task';
 
 /**
  * Interface for card component props
  */
 export interface Props{
-  /**
-   * Set task info to popup
-   */
-  setTask: (task:Task, projectTitle: string | undefined) => void;
-
   /**
    * Task Title
    */
@@ -51,21 +45,17 @@ export interface Props{
   isActive?: boolean;
 }
 
-export interface TaskProps {
-  task:Task;
-}
-
 
 /**
  * Card component
  *
  * @param props - props of component
  */
-const Card: React.FC<Props & TaskProps> = (props) => {
+const Card: React.FC<Props> = (props) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
-    <CardStyled {...props} onClick={props.setTask.bind(this, props.task, props.projectInfo?.title)}>
+    <CardStyled {...props}>
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>

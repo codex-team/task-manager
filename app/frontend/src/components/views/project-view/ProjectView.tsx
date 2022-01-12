@@ -15,11 +15,6 @@ import TaskPopup from 'components/layouts/popup/TaskPopup';
  */
 interface Props { }
 
-interface PopupInfo {
-  task: Task;
-  projectTitle?: string;
-}
-
 /**
  * ProjectView component
  */
@@ -66,25 +61,16 @@ const ProjectView: React.FC<Props> = () => {
     }
   };
 
-  const [taskInPopup, setTask] = useState<PopupInfo | null>(null);
-
-  const setPopupInfo = (task:Task, projectTitle: string | undefined): void => {
-    setTask({ task: task,
-      projectTitle: projectTitle });
-  };
-
   return (
     <Wrapper>
       <Routes>
-        <Route path={':task_id'} element={<TaskPopup task={taskInPopup?.task} projectTitle={taskInPopup?.projectTitle}/>}>
+        <Route path={':task_id'} element={<TaskPopup/>}>
         </Route>
       </Routes>
       <StyledProjectHeader title={title} hasSettingsButton={ !!currentProject }/>
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
       { tasksList.map(task =>
         <CardLink
-          task={task}
-          setTask={setPopupInfo}
           to={ task._id }
           key={ task._id }
           taskTitle={ getTaskTitle(task.text) }

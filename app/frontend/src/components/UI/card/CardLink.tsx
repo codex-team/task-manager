@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link, LinkProps, useMatch, useResolvedPath } from 'react-router-dom';
-import Card, { Props as CardProps, TaskProps } from 'components/UI/card/Card';
+import Card, { Props as CardProps } from 'components/UI/card/Card';
 
 /**
  * Link wrapper for card component.
@@ -8,7 +8,7 @@ import Card, { Props as CardProps, TaskProps } from 'components/UI/card/Card';
  *
  * @param props - props of the component
  */
-const CardLink: React.FC<LinkProps & CardProps & TaskProps > = ({ children, to, ...props }) => {
+const CardLink: React.FC<LinkProps & CardProps> = ({ children, to, ...props }) => {
   const resolved = useResolvedPath(to);
   const match = useMatch({
     path: resolved.pathname,
@@ -21,7 +21,7 @@ const CardLink: React.FC<LinkProps & CardProps & TaskProps > = ({ children, to, 
         to={ to }
         { ...props }
       >
-        <Card projectInfo={props.projectInfo} status={props.status} taskTitle={props.taskTitle} isActive={!!match} task={props.task} setTask={props.setTask}/>
+        <Card projectInfo={props.projectInfo} status={props.status} taskTitle={props.taskTitle} isActive={!!match}/>
       </StyledLink>
     </div>
   );
