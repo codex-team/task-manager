@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'components/layouts/base/Container';
 import Sidebar from 'components/layouts/base/Sidebar';
 import Content from 'components/layouts/base/Content';
@@ -7,7 +7,7 @@ import GlobalStyles from './styles/Global';
 import ProjectForm from 'components/views/project-form/ProjectForm';
 import {
   Routes,
-  Route, useNavigate
+  Route
 } from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
@@ -15,7 +15,6 @@ import ProjectView from 'components/views/project-view/ProjectView';
 import { Link } from 'react-router-dom';
 import Button from 'components/UI/button/Button';
 import styled from 'styled-components';
-import PopupWrapper from 'components/layouts/popup/PopupWrapper';
 
 
 /**
@@ -38,23 +37,10 @@ const StyledButton = styled(Button)`
  * @returns {React.ReactElement}
  */
 function App(): React.ReactElement {
-  const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
-
-  const changePopupVisibility = (): void => {
-    setIsPopupVisible( (wasPopupVisible) => !wasPopupVisible);
-  };
-
-  const navigate = useNavigate();
-
-  const onClose = (): void => {
-    navigate(-1);
-  };
-
   return (
     <Container>
       <ColorVariables/>
       <GlobalStyles/>
-      <PopupWrapper backDropClick={changePopupVisibility} isPopupVisible={isPopupVisible}/>
       <Sidebar>
         <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
         <ProjectList workspaceId={''}>
