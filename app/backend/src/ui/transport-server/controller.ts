@@ -3,7 +3,7 @@ import { createProject } from '../methods/projects/create';
 import { getProjects } from '../methods/projects/get-projects';
 import { createTask } from '../methods/task/create';
 import { getTasks } from '../methods/task/get-tasks';
-import {getTaskById} from "../methods/task/get-task-by-id";
+import { getTaskById } from '../methods/task/get-task-by-id';
 
 /**
  * Handles CTProto messages
