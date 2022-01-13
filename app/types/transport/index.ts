@@ -9,6 +9,8 @@ import CreateTaskMessage from './requests/task/create';
 import CreateTaskResponse from './responses/task/create';
 import GetTasksMessage from './requests/task/get-tasks';
 import GetTasksResponse from './responses/task/get-tasks';
+import UpdateTaskMessage from './requests/task/update-task';
+import UpdateTaskResponse from './responses/task/update-task'
 
 /**
  * The type described all available outgoing messages that can be sent by API
@@ -25,6 +27,7 @@ export type ApiRequest =
   | GetProjectsMessage
   | CreateTaskMessage
   | GetTasksMessage
+  | UpdateTaskMessage
 ;
 
 /**
@@ -36,4 +39,5 @@ export type ApiResponse =
   | GetProjectsResponse
   | CreateTaskResponse
   | GetTasksResponse
+  | UpdateTaskResponse
 ;

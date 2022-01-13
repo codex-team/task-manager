@@ -18,6 +18,7 @@ const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema({
    */
   orderScore: {
     type: mongoose.Schema.Types.Number,
+    required: true,
   },
 
   /**
