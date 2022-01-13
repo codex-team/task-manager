@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import Icon from 'components/UI/icon/Icon';
 
 /**
  * Interface for card component props
  */
-interface Props{
+interface Props {
   /**
    * Task Title
    */
@@ -38,7 +38,11 @@ interface Props{
    * Task status
    */
   status?: string
+
+  // ref:
 }
+
+export type CardRefType = Record<string, any>;
 
 
 /**
@@ -46,11 +50,11 @@ interface Props{
  *
  * @param props - props of component
  */
-const Card: React.FC<Props> = (props) => {
+const Card: React.FC<Props & CardRefType> = forwardRef<CardRefType, Props>((props, ref) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
-    <CardStyled {...props}>
+    <CardStyled {...props} ref={ref}>
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>
@@ -84,7 +88,7 @@ const Card: React.FC<Props> = (props) => {
       </Assignees>
     </CardStyled>
   );
-};
+});
 
 /**
  * Styled project picture component
@@ -184,7 +188,7 @@ const Progress = styled.div`
  *
  * @param props - props of component
  */
-const CardStyled = styled.div<Props>`
+const CardStyled = styled.div<CardRefType>`
   display: flex;
   justify-content: space-between;
   border-width: 1px;

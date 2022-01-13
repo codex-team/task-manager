@@ -8,6 +8,7 @@ import Task from 'types/entities/task';
 import Card from 'components/UI/card/Card';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
 /**
@@ -60,18 +61,45 @@ const ProjectView: React.FC<Props> = () => {
     }
   };
 
+  const onDragEnd = (): void => {
+    console.log('here');
+  };
+
   return (
     <Wrapper>
-      <StyledProjectHeader title={title} hasSettingsButton={ !!currentProject }/>
+      <StyledProjectHeader title={ title } hasSettingsButton={ !!currentProject }/>
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
-      { tasksList.map(task =>
-        <Card
-          key={ task._id }
-          taskTitle={ getTaskTitle(task.text) }
-          projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
-          status='Unsorted'
-        />
-      )}
+      <DragDropContext onDragEnd={ onDragEnd }>
+        <Droppable droppableId='0'>
+          { provided => (
+            <div { ...provided.droppableProps } ref={ provided.innerRef }>
+              { tasksList.map((task, i) =>
+                <Draggable draggableId={ task._id } index={ i }>
+                  { draggableProvided => (
+                    <Card { ...draggableProvided.draggableProps } { ...draggableProvided.dragHandleProps }
+                      key={ task._id }
+                      taskTitle={ getTaskTitle(task.text) }
+                      projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
+                      status='Unsorted'
+                      ref={ draggableProvided.innerRef }
+                    />
+                  ) }
+                </Draggable>
+              ) }
+              { provided.placeholder }
+            </div>
+          ) }
+          {/* { tasksList.map(task =>
+            <Card
+              key={ task._id }
+              taskTitle={ getTaskTitle(task.text) }
+              projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
+              status='Unsorted'
+            />
+          )} */}
+
+        </Droppable>
+      </DragDropContext>
     </Wrapper>
   );
 };
