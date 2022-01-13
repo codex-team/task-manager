@@ -25,6 +25,7 @@ interface Props {
 const TaskPopup: React.FC<Props> = (props) => {
   const navigate = useNavigate();
   const params = useParams();
+  const projects = useStore($projects);
 
   const id = params.task_id;
 
@@ -34,17 +35,13 @@ const TaskPopup: React.FC<Props> = (props) => {
 
   const [task, setTask] = useState<Task | null>(null);
 
-  const projects = useStore($projects);
-
-  const [projectTitle, setProjectTitle] = useState<string | null>(null);
-
-  useEffect( () => {
+  useEffect(() => {
     if (id) {
       getTaskById({ taskId: id })
         .then((payload) => {
           if (payload.task) {
             setTask(payload.task);
-            const data: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
+            const data: OutputData = {blocks: JSON.parse(payload.task.text).blocks};
             const editor = new EditorJS({
               holder: 'editorjs',
               tools: {
@@ -53,14 +50,21 @@ const TaskPopup: React.FC<Props> = (props) => {
               },
               data: data,
             });
-            const projectId = payload.task.projectId;
-            const currentProject = projects.find((project) => projectId === project._id);
-
-            setProjectTitle(currentProject?.title || null);
           }
         });
-    }
-  }, [id, projects, setProjectTitle]);
+    }}, [id]);
+
+  const [projectTitle, setProjectTitle] = useState<string | null>(null);
+
+  useEffect( () => {
+    if (task) {
+      const projectId = task.projectId;
+      const currentProject = projects.find((project) => projectId === project._id);
+
+      setProjectTitle(currentProject?.title || null);
+
+    }}
+  , [projects, task]);
 
   return (
     <PopupWrapper backDropClick={onClose} isPopupVisible={true} { ...props }>
