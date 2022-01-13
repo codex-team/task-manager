@@ -60,8 +60,8 @@ const PopupContent = styled.div`
   z-index: 2;
   position: relative;
   background-color: var(--color-bg-main);
-  min-height: 400px;
   border-radius: 12px;
+  margin-bottom: 40px;
   overflow: scroll;
 `;
 

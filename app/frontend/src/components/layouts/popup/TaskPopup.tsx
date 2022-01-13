@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PopupWrapper from 'components/layouts/popup/PopupWrapper';
 import Task from 'types/entities/task';
-import EditorJS, { OutputData } from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import Paragraph from '@editorjs/paragraph';
+import { OutputData } from '@editorjs/editorjs';
+import { createReactEditorJS } from 'react-editor-js';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'components/UI/select/Select';
 import { getTaskById } from 'services/tasks';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
+import { EDITOR_JS_TOOLS } from 'tools';
 
 /**
  * Interface for task popup component props
  */
-interface Props {
-}
+interface Props {}
 
 /**
  * Task popup component
@@ -29,6 +28,10 @@ const TaskPopup: React.FC<Props> = (props) => {
 
   const id = params.task_id;
 
+  const ReactEditorJS = createReactEditorJS();
+
+  const [data, setData] = useState<OutputData | null>(null);
+
   const onClose = (): void => {
     navigate(-1);
   };
@@ -41,15 +44,9 @@ const TaskPopup: React.FC<Props> = (props) => {
         .then((payload) => {
           if (payload.task) {
             setTask(payload.task);
-            const data: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
-            const editor = new EditorJS({
-              holder: 'editorjs',
-              tools: {
-                header: Header,
-                paragraph: Paragraph,
-              },
-              data: data,
-            });
+            const output: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
+
+            setData(output);
           }
         });
     }
@@ -71,9 +68,13 @@ const TaskPopup: React.FC<Props> = (props) => {
   return (
     <PopupWrapper backDropClick={onClose} isPopupVisible={true} { ...props }>
       <Container>
-        <Content id={'editorjs'}>
-        </Content>
-        <Additional>
+        <TaskContent>
+          { data?
+            <ReactEditorJS defaultValue={data} tools={EDITOR_JS_TOOLS}/>:
+            null
+          }
+        </TaskContent>
+        <TaskInfo>
           <StatusTitle>
             Assignee
           </StatusTitle>
@@ -100,27 +101,27 @@ const TaskPopup: React.FC<Props> = (props) => {
             </Status> :
             null
           }
-        </Additional>
+        </TaskInfo>
       </Container>
     </PopupWrapper>
   );
 };
 
+/**
+ * Makes string like dd.mm.yyyy from date
+ *
+ * @param dateToFormat - date for format to string
+ *
+ * @returns { string } - date to show
+ */
 const formatDate = (dateToFormat: string): string => {
-  const date = new Date(dateToFormat);
-  const dd = date.getDate();
-
-  const mm = date.getMonth() + 1;
-
-  const yy = date.getFullYear();
-
-  return dd + '.' + mm + '.' + yy;
+  return new Date(dateToFormat).toLocaleDateString();
 };
 
 /**
  * Content styled
  */
-const Content = styled.div`
+const TaskContent = styled.div`
   width: 630px;
   margin-bottom: 40px;
 `;
@@ -128,7 +129,7 @@ const Content = styled.div`
 /**
  * Additional styled
  */
-const Additional = styled.div`
+const TaskInfo = styled.div`
   width: 240px;
   margin-top: 30px;
   margin-right: 45px;

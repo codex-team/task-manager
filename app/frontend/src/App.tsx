@@ -7,7 +7,7 @@ import GlobalStyles from './styles/Global';
 import ProjectForm from 'components/views/project-form/ProjectForm';
 import {
   Routes,
-  Route, Outlet
+  Route
 } from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
@@ -15,7 +15,6 @@ import ProjectView from 'components/views/project-view/ProjectView';
 import { Link } from 'react-router-dom';
 import Button from 'components/UI/button/Button';
 import styled from 'styled-components';
-import TaskPopup from 'components/layouts/popup/TaskPopup';
 
 
 /**
@@ -58,7 +57,6 @@ function App(): React.ReactElement {
           <Route path="projects/:id/*" element={<ProjectView />} />
         </Route>
       </Routes>
-      <Outlet/>
     </Container>
   );
 }
