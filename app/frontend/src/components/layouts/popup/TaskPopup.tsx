@@ -41,7 +41,7 @@ const TaskPopup: React.FC<Props> = (props) => {
         .then((payload) => {
           if (payload.task) {
             setTask(payload.task);
-            const data: OutputData = {blocks: JSON.parse(payload.task.text).blocks};
+            const data: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
             const editor = new EditorJS({
               holder: 'editorjs',
               tools: {
@@ -52,7 +52,9 @@ const TaskPopup: React.FC<Props> = (props) => {
             });
           }
         });
-    }}, [id]);
+    }
+  }, [ id ]
+  );
 
   const [projectTitle, setProjectTitle] = useState<string | null>(null);
 
@@ -62,8 +64,8 @@ const TaskPopup: React.FC<Props> = (props) => {
       const currentProject = projects.find((project) => projectId === project._id);
 
       setProjectTitle(currentProject?.title || null);
-
-    }}
+    }
+  }
   , [projects, task]);
 
   return (

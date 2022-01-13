@@ -7,7 +7,7 @@ import GlobalStyles from './styles/Global';
 import ProjectForm from 'components/views/project-form/ProjectForm';
 import {
   Routes,
-  Route
+  Route, Outlet
 } from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
@@ -15,6 +15,7 @@ import ProjectView from 'components/views/project-view/ProjectView';
 import { Link } from 'react-router-dom';
 import Button from 'components/UI/button/Button';
 import styled from 'styled-components';
+import TaskPopup from 'components/layouts/popup/TaskPopup';
 
 
 /**
@@ -53,14 +54,11 @@ function App(): React.ReactElement {
         <Route path="/" element={<Content />}>
           <Route path="projects/new" element={<ProjectForm />} />
           <Route path="projects/:id/edit" element={<ProjectForm />} />
-          <Route path="projects/all" element={<ProjectView />} >
-            <Route path=":task_id"/>
-          </Route>
-          <Route path="projects/:id" element={<ProjectView />} >
-            <Route path=":task_id"/>
-          </Route>
+          <Route path="projects/all/*" element={<ProjectView />} />
+          <Route path="projects/:id/*" element={<ProjectView />} />
         </Route>
       </Routes>
+      <Outlet/>
     </Container>
   );
 }
