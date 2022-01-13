@@ -13,6 +13,11 @@ export default interface Task {
   text: string;
 
   /**
+   * Order of the task when displayed in list of project tasks
+   */
+  orderScore: number;
+
+  /**
    * Task's project unique identity
    */
   projectId?: string;
