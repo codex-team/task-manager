@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PopupWrapper from 'components/layouts/popup/PopupWrapper';
 import Task from 'types/entities/task';
-import { OutputData } from '@editorjs/editorjs';
-import { createReactEditorJS } from 'react-editor-js';
+import EditorJS, { OutputData } from '@editorjs/editorjs';
+import Header from '@editorjs/header';
+import Paragraph from '@editorjs/paragraph';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'components/UI/select/Select';
 import { getTaskById } from 'services/tasks';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
-import { EDITOR_JS_TOOLS } from 'tools';
 
 /**
  * Interface for task popup component props
@@ -28,10 +28,6 @@ const TaskPopup: React.FC<Props> = (props) => {
 
   const id = params.task_id;
 
-  const ReactEditorJS = createReactEditorJS();
-
-  const [data, setData] = useState<OutputData | null>(null);
-
   const onClose = (): void => {
     navigate(-1);
   };
@@ -44,9 +40,15 @@ const TaskPopup: React.FC<Props> = (props) => {
         .then((payload) => {
           if (payload.task) {
             setTask(payload.task);
-            const output: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
-
-            setData(output);
+            const data: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
+            const editor = new EditorJS({
+              holder: 'editorjs',
+              tools: {
+                header: Header,
+                paragraph: Paragraph,
+              },
+              data: data,
+            });
           }
         });
     }
@@ -68,12 +70,7 @@ const TaskPopup: React.FC<Props> = (props) => {
   return (
     <PopupWrapper backDropClick={onClose} isPopupVisible={true} { ...props }>
       <Container>
-        <TaskContent>
-          { data?
-            <ReactEditorJS defaultValue={data} tools={EDITOR_JS_TOOLS}/>:
-            null
-          }
-        </TaskContent>
+        <TaskContent id={'editorjs'}/>
         <TaskInfo>
           <StatusTitle>
             Assignee
@@ -122,8 +119,7 @@ const formatDate = (dateToFormat: string): string => {
  * Content styled
  */
 const TaskContent = styled.div`
-  width: 630px;
-  margin-bottom: 40px;
+  width: 640px;
 `;
 
 /**
@@ -140,7 +136,7 @@ const TaskInfo = styled.div`
  */
 const Container = styled.div`
   padding-left: 40px;
-  margin-top: 30px;
+  padding-top: 25px;
   display: flex;
   width: auto;
   justify-content: space-between;
