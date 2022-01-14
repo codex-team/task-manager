@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { ForwardedRef, forwardRef, RefObject } from 'react';
 import styled, { css } from 'styled-components';
 import Icon from 'components/UI/icon/Icon';
 
@@ -38,11 +38,14 @@ interface Props {
    * Task status
    */
   status?: string
-
-  // ref:
 }
 
-export type CardRefType = Record<string, any>;
+/**
+ * Type for card forwarded ref
+ */
+export type CardRefType = {
+  ref: ForwardedRef<HTMLDivElement>
+};
 
 
 /**
@@ -50,7 +53,7 @@ export type CardRefType = Record<string, any>;
  *
  * @param props - props of component
  */
-const Card: React.FC<Props & CardRefType> = forwardRef<CardRefType, Props>((props, ref) => {
+const Card: React.FC<Props & CardRefType> = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
