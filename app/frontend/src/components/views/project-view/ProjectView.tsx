@@ -9,6 +9,7 @@ import Card from 'components/UI/card/Card';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import getOrderScore from 'helpers/get-order-score';
 
 /**
  * Props of the component
@@ -67,24 +68,14 @@ const ProjectView: React.FC<Props> = () => {
   };
 
   const onDragEnd = async (result: DropResult): Promise<void> => {
-    const { destination, draggableId } = result;
+    const { destination, source, draggableId } = result;
 
     if (!destination) {
       return;
     }
     const targetIndex = destination.index;
-    let orderScore;
-
-    debugger;
-    /* eslint-disable @typescript-eslint/no-magic-numbers */
-    if (targetIndex === 0) {
-      orderScore = Math.round(tasksList[0].orderScore + 1);
-    } else if (targetIndex === tasksList.length - 1) {
-      orderScore = tasksList[tasksList.length - 1].orderScore / 2;
-    } else {
-      orderScore = (tasksList[targetIndex].orderScore + tasksList[targetIndex + 1].orderScore) / 2;
-    }
-    /* eslint-enable @typescript-eslint/no-magic-numbers */
+    const sourceIndex = source.index;
+    const orderScore = getOrderScore(tasksList, targetIndex, sourceIndex);
 
     const task = tasksList.find(t => t._id === draggableId);
     const updatedTasksList = tasksList.filter(t => t._id !== draggableId);
