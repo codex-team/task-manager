@@ -58,11 +58,10 @@ const CloseButton = styled.div`
 const PopupContent = styled.div`
   width: 1000px;
   z-index: 2;
+  margin-top: 50px;
   position: relative;
   background-color: var(--color-bg-main);
   border-radius: 12px;
-  margin-bottom: 40px;
-  overflow: scroll;
 `;
 
 export default PopupWrapper;
