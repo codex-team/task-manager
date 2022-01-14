@@ -119,14 +119,14 @@ const formatDate = (dateToFormat: string): string => {
  * Content styled
  */
 const TaskContent = styled.div`
-  width: 640px;
+  width: 650px;
 `;
 
 /**
  * Additional styled
  */
 const TaskInfo = styled.div`
-  width: 240px;
+  width: 220px;
   margin-top: 30px;
   margin-right: 45px;
 `;
