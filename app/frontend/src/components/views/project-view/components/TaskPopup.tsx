@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PopupWrapper from 'components/layouts/popup/PopupWrapper';
 import Task from 'types/entities/task';
-import EditorJS, { OutputData } from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import Paragraph from '@editorjs/paragraph';
+import { OutputData } from '@editorjs/editorjs';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'components/UI/select/Select';
 import { getTaskById } from 'services/tasks';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
+import Editor from '@stfy/react-editor.js';
+import Header from '@editorjs/header';
+import Paragraph from '@editorjs/paragraph';
 
 /**
  * Interface for task popup component props
@@ -34,21 +35,17 @@ const TaskPopup: React.FC<Props> = (props) => {
 
   const [task, setTask] = useState<Task | null>(null);
 
+  const [data, setData] = useState<OutputData | null>(null);
+
   useEffect(() => {
     if (id) {
       getTaskById( id )
         .then((payload) => {
           if (payload.task) {
             setTask(payload.task);
-            const data: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
-            const editor = new EditorJS({
-              holder: 'editorjs',
-              tools: {
-                header: Header,
-                paragraph: Paragraph,
-              },
-              data: data,
-            });
+            const blocks: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
+
+            setData(blocks);
           }
         });
     }
@@ -70,7 +67,12 @@ const TaskPopup: React.FC<Props> = (props) => {
   return (
     <PopupWrapper backDropClick={onClose} isPopupVisible={true} { ...props }>
       <Container>
-        <TaskContent id={'editorjs'}/>
+        <TaskContent>
+          { data ?
+            <Editor data={data} tools={{ header: Header,
+              paragraph: Paragraph }}/> :
+            null }
+        </TaskContent>
         <TaskInfo>
           <StatusTitle>
             Assignee
