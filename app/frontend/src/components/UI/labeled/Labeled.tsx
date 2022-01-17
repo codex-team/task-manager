@@ -80,13 +80,13 @@ function labeled<P>(Component: ComponentType<PropsWithChildren<P>>): React.FC<P 
   return (props: PropsWithChildren<P & AdditionalProps>) => (
     <Container>
       { props.label &&
-        <LabelWrapper hasDescription={ !!props.children }>
-          <label htmlFor={ props.id }> { props.label } </label>
+        <LabelWrapper hasDescription={!!props.children}>
+          <label htmlFor={props.id}> { props.label } </label>
           { props.required && <span> &nbsp;* </span> }
         </LabelWrapper>
       }
       { props.children && <Description> { props.children } </Description> }
-      <Component { ...props as P } />
+      <Component {...props as P} />
     </Container>
   );
 }

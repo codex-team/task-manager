@@ -46,17 +46,17 @@ const TaskInput: React.FC<Props> = ({ placeholder, onChange }: Props) => {
   };
 
   return (
-    <Wrapper isFocused={ focused }>
+    <Wrapper isFocused={focused}>
       { !focused &&
-        <StyledIcon name='plus' width={ 16 } height={ 16 }/>
+        <StyledIcon name='plus' width={16} height={16}/>
       }
       <StyledInput
         value={text}
-        onChange={ setText }
-        placeholder={ !focused ? placeholder : '' }
-        onKeyDown={ handleKeyDown }
-        onFocus={ onFocus }
-        onBlur={ onBlur }
+        onChange={setText}
+        placeholder={!focused ? placeholder : ''}
+        onKeyDown={handleKeyDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
     </Wrapper>
   );

@@ -37,10 +37,10 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
       />
       { projects.map((project) =>
         <ProjectLink
-          key={ project._id }
-          title={ project.title }
-          picture={ project.picture }
-          to={ '/projects/' + project._id }
+          key={project._id}
+          title={project.title}
+          picture={project.picture}
+          to={'/projects/' + project._id}
         />
       )}
       { children }

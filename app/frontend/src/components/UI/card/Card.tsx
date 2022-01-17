@@ -54,9 +54,9 @@ const Card: React.FC<Props> = (props) => {
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>
-          <ProjectPicture url={ props.projectInfo.picture }>
+          <ProjectPicture url={props.projectInfo.picture}>
             { !props.projectInfo.picture &&
-              <Icon name='home' width={ 8 } height={ 8 }/>
+              <Icon name='home' width={8} height={8}/>
             }
           </ProjectPicture>
           <ProjectTitle> { props.projectInfo.title } </ProjectTitle>
@@ -227,7 +227,7 @@ const CardStyled = styled.div<Props>`
  * Default card component props
  */
 Card.defaultProps = {
-  completedSubtasks : 0,
+  completedSubtasks: 0,
 };
 
 export default Card;

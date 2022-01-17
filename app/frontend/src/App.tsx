@@ -41,7 +41,7 @@ function App(): React.ReactElement {
   const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
 
   const changePopupVisibility = (): void => {
-    setIsPopupVisible( (wasPopupVisible) => !wasPopupVisible);
+    setIsPopupVisible((wasPopupVisible) => !wasPopupVisible);
   };
 
   return (

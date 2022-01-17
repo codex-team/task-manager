@@ -40,7 +40,7 @@ const ProjectView: React.FC<Props> = () => {
   const createNewTask = async (value: string): Promise<void> => {
     try {
       const taskContent = {
-        blocks : [
+        blocks: [
           {
             type: 'paragraph',
             data: {
@@ -62,13 +62,13 @@ const ProjectView: React.FC<Props> = () => {
 
   return (
     <Wrapper>
-      <StyledProjectHeader title={title} hasSettingsButton={ !!currentProject }/>
-      <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
+      <StyledProjectHeader title={title} hasSettingsButton={!!currentProject}/>
+      <TaskInput placeholder='Add new task' onChange={createNewTask}/>
       { tasksList.map(task =>
         <Card
-          key={ task._id }
-          taskTitle={ getTaskTitle(task.text) }
-          projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
+          key={task._id}
+          taskTitle={getTaskTitle(task.text)}
+          projectInfo={!currentProject ? projects.find(project => project._id === task.projectId) : undefined}
           status='Unsorted'
         />
       )}

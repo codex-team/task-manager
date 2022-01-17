@@ -29,7 +29,7 @@ export default {
   },
 } as ComponentMeta<typeof LabeledInput>;
 
-const Template: ComponentStory<typeof LabeledInput> = (args) => <LabeledInput {...args} onChange={ action('change') }/>;
+const Template: ComponentStory<typeof LabeledInput> = (args) => <LabeledInput {...args} onChange={action('change')}/>;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -34,13 +34,13 @@ interface Props {
 }
 const Dropdown: React.FC<Props> = (props: Props) => {
   return (
-    <Wrapper className={ props.className }>
+    <Wrapper className={props.className}>
       { props.items.map((item, i) => (
         <DropdownItem
-          key={ item.value }
-          isSelected={ props.selectedValue === item.value }
-          isHighlighted={ props.focusedIndex === i }
-          onClick={ () => props.onSelect && props.onSelect(item) }
+          key={item.value}
+          isSelected={props.selectedValue === item.value}
+          isHighlighted={props.focusedIndex === i}
+          onClick={() => props.onSelect && props.onSelect(item)}
         >
           { item.label }
         </DropdownItem>
