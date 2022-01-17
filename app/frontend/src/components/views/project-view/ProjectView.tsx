@@ -7,8 +7,8 @@ import { getTasks, createTask } from 'services/tasks';
 import Task from 'types/entities/task';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
-import CardLink from 'components/UI/card/CardLink';
-import TaskPopup from 'components/layouts/popup/TaskPopup';
+import CardLink from 'components/views/project-view/components/CardLink';
+import TaskPopup from 'components/views/project-view/components/TaskPopup';
 
 /**
  * Props of the component

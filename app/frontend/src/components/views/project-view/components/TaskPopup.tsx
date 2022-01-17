@@ -36,7 +36,7 @@ const TaskPopup: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (id) {
-      getTaskById({ taskId: id })
+      getTaskById( id )
         .then((payload) => {
           if (payload.task) {
             setTask(payload.task);

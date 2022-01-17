@@ -32,9 +32,13 @@ export async function createTask(data: CreateTaskPayload): Promise<CreateTaskRes
 /**
  * Get task by task id
  *
- * @param data - task id
+ * @param id - task id
  */
-export async function getTaskById(data: GetTaskByIdMessagePayload): Promise<GetTaskByIdResponsePayload> {
+export async function getTaskById(id: string): Promise<GetTaskByIdResponsePayload> {
+  const data: GetTaskByIdMessagePayload = {
+    taskId: id,
+  };
+
   const response = await client.send('get-task-by-id', data);
 
   return response as GetTaskByIdResponsePayload;
