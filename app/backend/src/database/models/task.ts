@@ -14,6 +14,14 @@ const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema({
   },
 
   /**
+   * Order of the task when displayed in list of project tasks
+   */
+  orderScore: {
+    type: mongoose.Schema.Types.Number,
+    required: true,
+  },
+
+  /**
    * Task's project id
    */
   projectId: {
