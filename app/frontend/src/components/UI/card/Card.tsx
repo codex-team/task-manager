@@ -5,7 +5,7 @@ import Icon from 'components/UI/icon/Icon';
 /**
  * Interface for card component props
  */
-export interface Props{
+export interface Props {
   /**
    * Task Title
    */
@@ -45,13 +45,20 @@ export interface Props{
   isActive?: boolean;
 }
 
+// /**
+//  * Type for card forwarded ref
+//  */
+// export type CardRefType = {
+//   ref: ForwardedRef<HTMLDivElement>
+// };
+
 
 /**
  * Card component
  *
  * @param props - props of component
  */
-const Card: React.FC<Props> = (props) => {
+const Card: React.FC<Props> = ((props) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
@@ -89,7 +96,7 @@ const Card: React.FC<Props> = (props) => {
       </Assignees>
     </CardStyled>
   );
-};
+});
 
 /**
  * Styled project picture component

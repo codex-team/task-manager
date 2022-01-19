@@ -53,7 +53,7 @@ const TaskInput: React.FC<Props> = ({ placeholder, onChange }: Props) => {
       <StyledInput
         value={text}
         onChange={ setText }
-        placeholder={ placeholder }
+        placeholder={ !focused ? placeholder : '' }
         onKeyDown={ handleKeyDown }
         onFocus={ onFocus }
         onBlur={ onBlur }

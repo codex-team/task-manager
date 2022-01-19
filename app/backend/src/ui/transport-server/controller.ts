@@ -4,6 +4,7 @@ import { getProjects } from '../methods/projects/get-projects';
 import { createTask } from '../methods/task/create';
 import { getTasks } from '../methods/task/get-tasks';
 import { getTaskById } from '../methods/task/get-task-by-id';
+import { updateTask } from '../methods/task/update-task';
 
 /**
  * Handles CTProto messages
@@ -25,6 +26,7 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     case 'create-task': return {
       task: await createTask(
         message.payload.text,
+        message.payload.orderScore,
         message.payload.projectId,
         message.payload.parentId,
         message.payload.assignees
@@ -35,6 +37,9 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     };
     case 'get-task-by-id': return {
       task: await getTaskById(message.payload.taskId),
+    };
+    case 'update-task': return {
+      task: await updateTask(message.payload),
     };
   }
 }
