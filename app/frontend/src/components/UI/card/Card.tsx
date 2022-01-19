@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ForwardedRef, forwardRef, RefObject } from 'react';
 import styled, { css } from 'styled-components';
 import Icon from 'components/UI/icon/Icon';
 

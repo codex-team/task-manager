@@ -7,9 +7,15 @@ export interface CreateTaskPayload {
   text: string;
 
   /**
+   * Order of the task when displayed in list of project tasks
+   */
+  orderScore: number;
+
+  /**
    * Unique identifier of task's project
    */
   projectId?: string;
+
 
   /**
    * Unique identifier of previous task (subtasks)

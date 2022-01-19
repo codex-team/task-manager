@@ -1,10 +1,12 @@
 import client from 'transport/ctproto-client';
-import { CreateTaskPayload } from 'types/transport/requests/task/create';
+import { UpdateTaskPayload } from 'types/transport/requests/task/update-task';
 import { GetTasksMessagePayload } from 'types/transport/requests/task/get-tasks';
 import { CreateTaskResponsePayload } from 'types/transport/responses/task/create';
 import { GetTasksResponsePayload } from 'types/transport/responses/task/get-tasks';
 import { GetTaskByIdMessagePayload } from 'types/transport/requests/task/get-task-by-id';
 import { GetTaskByIdResponsePayload } from 'types/transport/responses/task/get-task-by-id';
+import { CreateTaskPayload } from 'types/transport/requests/task/create';
+import { UpdateTaskResponsePayload } from 'types/transport/responses/task/update-task';
 
 /**
  * Returns list of tasks
@@ -42,4 +44,16 @@ export async function getTaskById(id: string): Promise<GetTaskByIdResponsePayloa
   const response = await client.send('get-task-by-id', data);
 
   return response as GetTaskByIdResponsePayload;
+}
+
+/**
+ * pdates task
+ *
+ * @param data - updated task data
+ */
+export async function updateTask(data: UpdateTaskPayload): Promise<UpdateTaskResponsePayload> {
+  const response = await client.send('update-task', data);
+
+
+  return response as UpdateTaskResponsePayload;
 }

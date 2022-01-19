@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { Link, LinkProps, useMatch, useResolvedPath } from 'react-router-dom';
 import Card, { Props as CardProps } from 'components/UI/card/Card';
+import { ForwardedRef, forwardRef } from 'react';
+
+/**
+ * Type for card forwarded ref
+ */
+export type CardLinkRefType = {
+  ref: ForwardedRef<HTMLDivElement>
+};
 
 /**
  * Link wrapper for card component.
@@ -8,7 +16,7 @@ import Card, { Props as CardProps } from 'components/UI/card/Card';
  *
  * @param props - props of the component
  */
-const CardLink: React.FC<LinkProps & CardProps> = ({ children, to, projectInfo, taskTitle, status, ...props }) => {
+const CardLink: React.FC<LinkProps & CardProps & CardLinkRefType> = forwardRef<HTMLDivElement, LinkProps & CardProps>(({ children, to, projectInfo, taskTitle, status, ...props }, ref) => {
   const resolved = useResolvedPath(to);
   const match = useMatch({
     path: resolved.pathname,
@@ -16,7 +24,7 @@ const CardLink: React.FC<LinkProps & CardProps> = ({ children, to, projectInfo, 
   });
 
   return (
-    <div>
+    <div ref={ref}>
       <StyledLink
         to={ to }
         { ...props }
@@ -25,7 +33,7 @@ const CardLink: React.FC<LinkProps & CardProps> = ({ children, to, projectInfo, 
       </StyledLink>
     </div>
   );
-};
+});
 
 /**
  * Link component with overriden styles
