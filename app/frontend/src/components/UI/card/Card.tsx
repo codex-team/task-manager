@@ -198,6 +198,7 @@ const CardStyled = styled.div<Props>`
   border-radius: 12px;
   padding: 12px 12px 12px 14px;
   min-height: 48px;
+  background: var(--color-bg-main);
 
   &:hover {
     border-color: var(--color-line-hover);

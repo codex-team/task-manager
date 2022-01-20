@@ -40,6 +40,7 @@ const CardLink: React.FC<LinkProps & CardProps & CardLinkRefType> = forwardRef<H
  */
 const StyledLink = styled(Link)`
   text-decoration: unset;
+  display: block;
 `;
 
 export default CardLink;
