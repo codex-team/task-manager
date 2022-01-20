@@ -15,6 +15,13 @@ server.register(fastifyStatic, {
 });
 
 /**
+ * User react for undefined routes
+ */
+server.setNotFoundHandler(function (request, reply) {
+  reply.sendFile('index.html');
+});
+
+/**
  * Set up a js code with environment variables to be used
  * in the frontend runtime as a phantom script file.
  */
