@@ -17,4 +17,9 @@ module.exports = {
       },
     },
   ],
+  rules: {
+    'key-spacing': ['error', { 'beforeColon': false } ],
+    'space-in-parens': [2, 'never'],
+    'react/jsx-curly-spacing': [2, 'always'],
+  },
 };

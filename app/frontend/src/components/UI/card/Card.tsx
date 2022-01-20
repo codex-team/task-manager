@@ -57,7 +57,7 @@ const Card: React.FC<Props & CardRefType> = forwardRef<HTMLDivElement, Props>((p
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
-    <CardStyled {...props} ref={ref}>
+    <CardStyled { ...props } ref={ ref }>
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>
@@ -84,7 +84,7 @@ const Card: React.FC<Props & CardRefType> = forwardRef<HTMLDivElement, Props>((p
         </Status>
       }
       <Assignees>
-        <Icon name='DefaultAvatar' width={18} height={18}/>
+        <Icon name='DefaultAvatar' width={ 18 } height={ 18 }/>
         { (isShownAssigneesNumber && props.assigneesNumber) &&
           `+${props.assigneesNumber-1}`
         }
@@ -234,7 +234,7 @@ const CardStyled = styled.div<CardRefType>`
  * Default card component props
  */
 Card.defaultProps = {
-  completedSubtasks : 0,
+  completedSubtasks: 0,
 };
 
 export default Card;

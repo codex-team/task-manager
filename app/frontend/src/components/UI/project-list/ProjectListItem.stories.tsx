@@ -8,7 +8,7 @@ export default {
 
 const Template: ComponentStory<typeof ProjectListItem> = (args) =>
   <Sidebar>
-    <ProjectListItem {...args}/>
+    <ProjectListItem { ...args }/>
   </Sidebar>;
 
 export const WithTitle = Template.bind({});

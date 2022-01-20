@@ -9,11 +9,11 @@ export default {
   component: Container,
 } as ComponentMeta<typeof Container>;
 const Template: ComponentStory<typeof Container> = (args) =>
-  <Container {...args}>
+  <Container { ...args }>
     <ColorVariables/>
     <Sidebar/>
     <Content>
-      <ProjectHeader title={'CodeX Project'}/>
+      <ProjectHeader title={ 'CodeX Project' }/>
     </Content>
   </Container>;
 

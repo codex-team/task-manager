@@ -41,28 +41,28 @@ function App(): React.ReactElement {
   const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
 
   const changePopupVisibility = (): void => {
-    setIsPopupVisible( (wasPopupVisible) => !wasPopupVisible);
+    setIsPopupVisible((wasPopupVisible) => !wasPopupVisible);
   };
 
   return (
     <Container>
       <ColorVariables/>
       <GlobalStyles/>
-      <PopupWrapper backDropClick={changePopupVisibility} isPopupVisible={isPopupVisible}/>
+      <PopupWrapper backDropClick={ changePopupVisibility } isPopupVisible={ isPopupVisible }/>
       <Sidebar>
-        <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
-        <ProjectList workspaceId={''}>
+        <SidebarHeader sidebarTitle={ 'CodeX Tasks' }/>
+        <ProjectList workspaceId={ '' }>
           <StyledLink to='/projects/new'>
             <StyledButton icon='plus'>Add new project</StyledButton>
           </StyledLink>
         </ProjectList>
       </Sidebar>
       <Routes>
-        <Route path="/" element={<Content />}>
-          <Route path="projects/new" element={<ProjectForm />} />
-          <Route path="projects/:id/edit" element={<ProjectForm />} />
-          <Route path="projects/all" element={<ProjectView />} />
-          <Route path="projects/:id" element={<ProjectView />} />
+        <Route path="/" element={ <Content /> }>
+          <Route path="projects/new" element={ <ProjectForm /> } />
+          <Route path="projects/:id/edit" element={ <ProjectForm /> } />
+          <Route path="projects/all" element={ <ProjectView /> } />
+          <Route path="projects/:id" element={ <ProjectView /> } />
         </Route>
       </Routes>
     </Container>

@@ -76,7 +76,7 @@ const ImagePreviewStyled = styled.button<Props>`
 const ImagePreview: React.FC<Props> = (props) => {
   return (
     <ImagePreviewStyled { ...props } onClick={ props.onClick }>
-      <Icon name='plus' width={20} height={20}/>
+      <Icon name='plus' width={ 20 } height={ 20 }/>
     </ImagePreviewStyled>
   );
 };

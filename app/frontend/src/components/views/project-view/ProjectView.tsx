@@ -41,7 +41,7 @@ const ProjectView: React.FC<Props> = () => {
   const createNewTask = async (value: string): Promise<void> => {
     try {
       const taskContent = {
-        blocks : [
+        blocks: [
           {
             type: 'paragraph',
             data: {
