@@ -41,7 +41,7 @@ export default {
 const Template: ComponentStory<typeof Select> = (args) => {
   const [value, setValue] = useState<number|string|undefined>();
 
-  return <Select {...args} value={value} onChange={setValue}/>;
+  return <Select { ...args } value={ value } onChange={ setValue }/>;
 };
 
 export const Default = Template.bind({});

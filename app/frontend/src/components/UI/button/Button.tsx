@@ -97,9 +97,9 @@ const ButtonStyled = styled.button<Props & { hasContent: boolean }>`
  */
 const Button: React.FC<Props> = ({ ...props }) => {
   return (
-    <ButtonStyled {...props} hasContent={!!props.children}>
+    <ButtonStyled { ...props } hasContent={ !!props.children }>
       { props.icon &&
-          <Icon name={props.icon} width={16} height={16}/>
+          <Icon name={ props.icon } width={ 16 } height={ 16 }/>
       }
       <span>
         { props.children }

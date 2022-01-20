@@ -29,9 +29,9 @@ const PopupWrapper: React.FC<Props> = ({ children, backDropClick, isPopupVisible
   }
 
   return (
-    <Popup backDropClick={backDropClick}>
+    <Popup backDropClick={ backDropClick }>
       <PopupContent>
-        <CloseButton onClick={backDropClick}>
+        <CloseButton onClick={ backDropClick }>
           <CloseIcon/>
         </CloseButton>
         {children}

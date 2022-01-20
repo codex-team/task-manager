@@ -78,19 +78,19 @@ const Input: React.FC<Props> = (props: Props) => {
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => props.onChange(event.target.value);
 
   return (
-    <InputWrapper className={props.className}>
+    <InputWrapper className={ props.className }>
       <input
-        id={props.id}
-        value={props.value}
-        type={props.type}
-        placeholder={props.placeholder}
-        required={props.required}
-        disabled={props.disabled}
-        name={props.name}
-        onChange={onChange}
-        onKeyDown={props.onKeyDown}
-        onFocus={props.onFocus}
-        onBlur={props.onBlur} />
+        id={ props.id }
+        value={ props.value }
+        type={ props.type }
+        placeholder={ props.placeholder }
+        required={ props.required }
+        disabled={ props.disabled }
+        name={ props.name }
+        onChange={ onChange }
+        onKeyDown={ props.onKeyDown }
+        onFocus={ props.onFocus }
+        onBlur={ props.onBlur } />
     </InputWrapper>
   );
 };

@@ -18,10 +18,10 @@ const ProjectLink: React.FC<LinkProps & ProjectListItemProps> = ({ children, to,
   return (
     <div>
       <StyledLink
-        to={to}
-        {...props}
+        to={ to }
+        { ...props }
       >
-        <ProjectListItem title={props.title} picture={props.picture} isActive={!!match}/>
+        <ProjectListItem title={ props.title } picture={ props.picture } isActive={ !!match }/>
       </StyledLink>
     </div>
   );

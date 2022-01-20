@@ -12,7 +12,7 @@ export default {
 
 const Template: ComponentStory<typeof ImageUploader> = (args) => {
   return (
-    <ImageUploader {...args} onChange={action('change')}/>
+    <ImageUploader { ...args } onChange={ action('change') }/>
   );
 };
 

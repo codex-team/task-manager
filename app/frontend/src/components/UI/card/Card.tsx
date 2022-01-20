@@ -57,13 +57,13 @@ const Card: React.FC<Props & CardRefType> = forwardRef<HTMLDivElement, Props>((p
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
-    <CardStyled {...props} ref={ref}>
+    <CardStyled { ...props } ref={ ref }>
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>
-          <ProjectPicture url={props.projectInfo.picture}>
+          <ProjectPicture url={ props.projectInfo.picture }>
             { !props.projectInfo.picture &&
-              <Icon name='home' width={8} height={8}/>
+              <Icon name='home' width={ 8 } height={ 8 }/>
             }
           </ProjectPicture>
           <ProjectTitle> { props.projectInfo.title } </ProjectTitle>
@@ -84,7 +84,7 @@ const Card: React.FC<Props & CardRefType> = forwardRef<HTMLDivElement, Props>((p
         </Status>
       }
       <Assignees>
-        <Icon name='DefaultAvatar' width={18} height={18}/>
+        <Icon name='DefaultAvatar' width={ 18 } height={ 18 }/>
         { (isShownAssigneesNumber && props.assigneesNumber) &&
           `+${props.assigneesNumber-1}`
         }

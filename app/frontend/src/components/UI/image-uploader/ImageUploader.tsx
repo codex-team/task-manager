@@ -96,15 +96,15 @@ const ImageUploader = forwardRef<ImageUploaderRefType, ImageUploaderProps>((prop
   }));
 
   return (
-    <div className={props.className}>
+    <div className={ props.className }>
       <input
-        id={props.id}
+        id={ props.id }
         type="file"
-        accept={props.accept || ACCEPT}
-        hidden ref={hiddenFileInput}
-        onChange={handleChange}
+        accept={ props.accept || ACCEPT }
+        hidden ref={ hiddenFileInput }
+        onChange={ handleChange }
       />
-      <ImagePreview onClick={openDialog} imageSrc={previewUrl}/>
+      <ImagePreview onClick={ openDialog } imageSrc={ previewUrl }/>
     </div>
   );
 });

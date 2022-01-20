@@ -81,9 +81,9 @@ const ImageUploaderForm: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <Wrapper hasValue={hasUploadedFile}>
-      <StyledImageUploader {...props} onChange={handleChange} ref={uploader}/>
-      <p onClick={onClick}>{ prompt }</p>
+    <Wrapper hasValue={ hasUploadedFile }>
+      <StyledImageUploader { ...props } onChange={ handleChange } ref={ uploader }/>
+      <p onClick={ onClick }>{ prompt }</p>
     </Wrapper>
   );
 };

@@ -5,7 +5,7 @@ export default {
   component: SidebarTitle,
 } as ComponentMeta<typeof SidebarTitle>;
 
-const Template: ComponentStory<typeof SidebarTitle> = (args) => <SidebarTitle {...args} />;
+const Template: ComponentStory<typeof SidebarTitle> = (args) => <SidebarTitle { ...args } />;
 
 export const WithText = Template.bind({});
 WithText.args = {

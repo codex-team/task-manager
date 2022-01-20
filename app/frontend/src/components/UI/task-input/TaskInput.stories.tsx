@@ -12,7 +12,7 @@ export default {
   },
 } as ComponentMeta<typeof TaskInput>;
 
-const Template: ComponentStory<typeof TaskInput> = (args) => <TaskInput {...args} />;
+const Template: ComponentStory<typeof TaskInput> = (args) => <TaskInput { ...args } />;
 
 export const Default = Template.bind({});
 Default.args = {

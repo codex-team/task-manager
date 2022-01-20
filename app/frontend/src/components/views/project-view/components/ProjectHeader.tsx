@@ -29,7 +29,7 @@ interface Props {
  */
 const ProjectHeader: React.FC<Props> = ({ className, title, hasSettingsButton }: Props) => {
   return (
-    <Container className={className}>
+    <Container className={ className }>
       <PageTitle>{ title }</PageTitle>
       { hasSettingsButton &&
         <Button>Project settings</Button>

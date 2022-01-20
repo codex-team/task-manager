@@ -34,23 +34,23 @@ const ProjectForm: React.FC<Props> = () => {
           label='Project title'
           placeholder='New project title'
           id='title'
-          value={title}
-          onChange={e =>  setTitle(e)} />
+          value={ title }
+          onChange={ e =>  setTitle(e) } />
         <LabeledInput
           label='Messenger channel webhook'
           placeholder='Webhook URL'
           id='webhook-url'
-          value={messengerChannelUrl}
-          onChange={e =>  setMessengerChannelUrl(e)}>
+          value={ messengerChannelUrl }
+          onChange={ e =>  setMessengerChannelUrl(e) }>
             Read more about <a href="/">Working Channel</a> integrations
         </LabeledInput>
         <ImageUploaderForm
           label="Project picture"
-          previewUrl={''}
-          onChange={e => console.log(e)}
+          previewUrl={ '' }
+          onChange={ e => console.log(e) }
           promptEmpty='Upload picture for your project'
           promptHasValue='Change picture for your project' />
-        <Button styleType={StyleType.Primary} onClick={() => submit()}>Create project</Button>
+        <Button styleType={ StyleType.Primary } onClick={ () => submit() }>Create project</Button>
       </Wrapper>
     </div>
   );

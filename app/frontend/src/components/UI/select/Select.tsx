@@ -99,18 +99,18 @@ const Select: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <Wrapper tabIndex={0} isOpen={isOpen} onClick={toggle} onBlur={close} onKeyDown={onKeyDown} ref={ref}>
+    <Wrapper tabIndex={ 0 } isOpen={ isOpen } onClick={ toggle } onBlur={ close } onKeyDown={ onKeyDown } ref={ ref }>
       { !selectedOption &&
         <span>{ props.placeholder }</span>
       }
       <span>{ selectedOption?.label }</span>
-      <StyledIcon name='arrow_down' width={24} height={24} />
+      <StyledIcon name='arrow_down' width={ 24 } height={ 24 } />
       { isOpen &&
         <StyledDropdown
-          items={props.options}
-          focusedIndex={focusedOptionIndex}
-          onSelect={selectOption}
-          selectedValue={props.value}
+          items={ props.options }
+          focusedIndex={ focusedOptionIndex }
+          onSelect={ selectOption }
+          selectedValue={ props.value }
         />
       }
     </Wrapper>

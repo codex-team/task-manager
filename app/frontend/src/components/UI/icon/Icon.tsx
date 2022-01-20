@@ -44,7 +44,7 @@ const Icon: React.FC<IconProps> = ({ name, ...rest }): JSX.Element | null => {
   if (!loading && ImportedIconRef.current) {
     const { current: ImportedIcon } = ImportedIconRef;
 
-    return <ImportedIcon {...rest}/>;
+    return <ImportedIcon { ...rest }/>;
   }
 
   return null;

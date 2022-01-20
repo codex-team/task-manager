@@ -90,10 +90,10 @@ const ProjectListItemStyled = styled.li<Props>`
  */
 const ProjectListItem: React.FC<Props> = (props) => {
   return (
-    <ProjectListItemStyled {...props}>
+    <ProjectListItemStyled { ...props }>
       <ProjectAvatar>
         { props.picture ?
-          <Image src={props.picture} alt={props.title}/>:
+          <Image src={ props.picture } alt={ props.title }/>:
           <Avatar/>
         }
       </ProjectAvatar>

@@ -26,7 +26,7 @@ const ContentStyled = styled.div<Props>`
  */
 const Content: React.FC<Props> = ({ ...props }) => {
   return (
-    <ContentStyled {...props}>
+    <ContentStyled { ...props }>
       <Outlet />
     </ContentStyled>
   );

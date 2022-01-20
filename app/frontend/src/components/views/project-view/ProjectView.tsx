@@ -90,27 +90,27 @@ const ProjectView: React.FC<Props> = () => {
 
   return (
     <Wrapper>
-      <StyledProjectHeader title={title} hasSettingsButton={!!currentProject}/>
-      <TaskInput placeholder='Add new task' onChange={createNewTask}/>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <StyledProjectHeader title={ title } hasSettingsButton={ !!currentProject }/>
+      <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
+      <DragDropContext onDragEnd={ onDragEnd }>
         <Droppable droppableId='0'>
           { provided => (
-            <TasksContainer {...provided.droppableProps} ref={provided.innerRef}>
+            <TasksContainer { ...provided.droppableProps } ref={ provided.innerRef }>
               { tasksList.map((task, index) =>
                 <Draggable
-                  draggableId={task._id}
-                  index={index}
-                  key={task._id}
-                  isDragDisabled={!currentProject}
+                  draggableId={ task._id }
+                  index={ index }
+                  key={ task._id }
+                  isDragDisabled={ !currentProject }
                 >
                   { draggableProvided => (
                     <Card
-                      {...draggableProvided.draggableProps}
-                      {...draggableProvided.dragHandleProps}
-                      taskTitle={getTaskTitle(task.text)}
-                      projectInfo={!currentProject ? projects.find(project => project._id === task.projectId) : undefined}
+                      { ...draggableProvided.draggableProps }
+                      { ...draggableProvided.dragHandleProps }
+                      taskTitle={ getTaskTitle(task.text) }
+                      projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
                       status='Unsorted'
-                      ref={draggableProvided.innerRef}
+                      ref={ draggableProvided.innerRef }
                     />
                   ) }
                 </Draggable>
