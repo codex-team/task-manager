@@ -1,11 +1,11 @@
-import React, { ForwardedRef, forwardRef, RefObject } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import Icon from 'components/UI/icon/Icon';
 
 /**
  * Interface for card component props
  */
-export interface Props{
+export interface Props {
   /**
    * Task Title
    */
