@@ -9,7 +9,6 @@ export function stopPropagation(e: React.MouseEvent<HTMLDivElement, MouseEvent>)
   return e.stopPropagation();
 }
 
-
 /**
  * Makes string like dd.mm.yyyy from date
  *
