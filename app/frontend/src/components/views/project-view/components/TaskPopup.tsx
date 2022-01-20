@@ -4,25 +4,16 @@ import Task from 'types/entities/task';
 import { OutputData } from '@editorjs/editorjs';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import Select from 'components/UI/select/Select';
 import { getTaskById } from 'services/tasks';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
-import Editor from '@stfy/react-editor.js';
-import Header from '@editorjs/header';
-import Paragraph from '@editorjs/paragraph';
-
-/**
- * Interface for task popup component props
- */
-interface Props {}
+import TaskContent from 'components/views/project-view/components/TaskContent';
+import TaskInfo from 'components/views/project-view/components/TaskInfo';
 
 /**
  * Task popup component
- *
- * @param props - props for component
  */
-const TaskPopup: React.FC<Props> = (props) => {
+const TaskPopup: React.FC = () => {
   const navigate = useNavigate();
   const params = useParams();
   const projects = useStore($projects);
@@ -38,100 +29,47 @@ const TaskPopup: React.FC<Props> = (props) => {
   const [data, setData] = useState<OutputData | null>(null);
 
   useEffect(() => {
-    if (id) {
-      getTaskById( id )
-        .then((payload) => {
-          if (payload.task) {
-            setTask(payload.task);
-            const blocks: OutputData = { blocks: JSON.parse(payload.task.text).blocks };
-
-            setData(blocks);
-          }
-        });
+    if (!id) {
+      return;
     }
+    const exec = async ():Promise<void> => {
+      const response = await getTaskById(id);
+
+      setTask(response.task);
+      if (!response.task) {
+        return;
+      }
+      const blocks: OutputData = { blocks: JSON.parse(response.task.text).blocks };
+
+      setData(blocks);
+    };
+
+    exec().then();
   }, [ id ]
   );
 
   const [projectTitle, setProjectTitle] = useState<string | null>(null);
 
   useEffect( () => {
-    if (task) {
-      const projectId = task.projectId;
-      const currentProject = projects.find((project) => projectId === project._id);
-
-      setProjectTitle(currentProject?.title || null);
+    if (!task) {
+      return;
     }
+    const projectId = task.projectId;
+    const currentProject = projects.find((project) => projectId === project._id);
+
+    setProjectTitle(currentProject?.title || null);
   }
   , [projects, task]);
 
   return (
-    <PopupWrapper backDropClick={onClose} isPopupVisible={true} { ...props }>
+    <PopupWrapper backDropClick={onClose} isPopupVisible={true}>
       <Container>
-        <TaskContent>
-          { data ?
-            <Editor data={data} tools={{ header: Header,
-              paragraph: Paragraph }}/> :
-            null }
-        </TaskContent>
-        <TaskInfo>
-          <StatusTitle>
-            Assignee
-          </StatusTitle>
-          <Select onChange={onClose} options={[]} placeholder={'Not assigned'}/>
-          <StatusTitle>
-            Status
-          </StatusTitle>
-          <Select onChange={onClose} options={[]}/>
-          <StatusTitle>
-            Creation date
-          </StatusTitle>
-          <Status>
-            { task ? formatDate(task.dateCreated) : null }
-          </Status>
-          { projectTitle ?
-            <StatusTitle>
-              Project
-            </StatusTitle> :
-            null
-          }
-          { projectTitle ?
-            <Status>
-              { projectTitle }
-            </Status> :
-            null
-          }
-        </TaskInfo>
+        <TaskContent data={data}/>
+        <TaskInfo projectTitle={projectTitle} task={task}/>
       </Container>
     </PopupWrapper>
   );
 };
-
-/**
- * Makes string like dd.mm.yyyy from date
- *
- * @param dateToFormat - date for format to string
- *
- * @returns { string } - date to show
- */
-const formatDate = (dateToFormat: string): string => {
-  return new Date(dateToFormat).toLocaleDateString();
-};
-
-/**
- * Content styled
- */
-const TaskContent = styled.div`
-  width: 650px;
-`;
-
-/**
- * Additional styled
- */
-const TaskInfo = styled.div`
-  width: 220px;
-  margin-top: 30px;
-  margin-right: 45px;
-`;
 
 /**
  * Container styled
@@ -142,26 +80,6 @@ const Container = styled.div`
   display: flex;
   width: auto;
   justify-content: space-between;
-`;
-
-/**
- * Status title styled
- */
-const StatusTitle = styled.p`
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 20px;
-  margin-bottom: 5px;
-`;
-
-/**
- * Status styled
- */
-const Status = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  color: var(--color-text-secondary);
-  margin-bottom: 20px;
 `;
 
 export default TaskPopup;
