@@ -15,8 +15,8 @@ interface Props {
 /**
  * Task content component
  *
- * @param projectTitle - title of project
- * @param task - current task
+ * @param Props.projectTitle - title of project
+ * @param Props.task - current task
  */
 const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
   return (
