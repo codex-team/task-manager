@@ -37,7 +37,6 @@ const StyledButton = styled(Button)`
  * @returns {React.ReactElement}
  */
 function App(): React.ReactElement {
-
   return (
     <Container>
       <ColorVariables/>
