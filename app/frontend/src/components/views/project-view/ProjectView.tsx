@@ -93,8 +93,7 @@ const ProjectView: React.FC<Props> = () => {
   return (
     <Wrapper>
       <Routes>
-        <Route path={':task_id'} element={<TaskPopup/>}>
-        </Route>
+        <Route path={':task_id'} element={<TaskPopup/>}/>
       </Routes>
       <StyledProjectHeader title={title} hasSettingsButton={ !!currentProject }/>
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
