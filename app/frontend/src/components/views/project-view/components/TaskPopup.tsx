@@ -32,19 +32,22 @@ const TaskPopup: React.FC = () => {
     if (!id) {
       return;
     }
+
     const exec = async ():Promise<void> => {
       const response = await getTaskById(id);
 
       setTask(response.task);
+
       if (!response.task) {
         return;
       }
+
       const blocks: OutputData = { blocks: JSON.parse(response.task.text).blocks };
 
       setData(blocks);
     };
 
-    exec().then();
+    exec();
   }, [ id ]
   );
 
@@ -54,6 +57,7 @@ const TaskPopup: React.FC = () => {
     if (!task) {
       return;
     }
+
     const projectId = task.projectId;
     const currentProject = projects.find((project) => projectId === project._id);
 
