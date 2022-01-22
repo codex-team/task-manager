@@ -16,7 +16,7 @@ export default {
 
 const Template: ComponentStory<typeof ImageUploaderForm> = (args) => {
   return (
-    <ImageUploaderForm {...args} onChange={action('change')}/>
+    <ImageUploaderForm { ...args } onChange={ action('change') }/>
   );
 };
 

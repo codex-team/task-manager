@@ -42,7 +42,7 @@ const ProjectView: React.FC<Props> = () => {
   const createNewTask = async (value: string): Promise<void> => {
     try {
       const taskContent = {
-        blocks : [
+        blocks: [
           {
             type: 'header',
             data: {
@@ -93,9 +93,9 @@ const ProjectView: React.FC<Props> = () => {
   return (
     <Wrapper>
       <Routes>
-        <Route path={':task_id'} element={<TaskPopup/>}/>
+        <Route path={ ':task_id' } element={ <TaskPopup/> }/>
       </Routes>
-      <StyledProjectHeader title={title} hasSettingsButton={ !!currentProject }/>
+      <StyledProjectHeader title={ title } hasSettingsButton={ !!currentProject }/>
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
       <DragDropContext onDragEnd={ onDragEnd }>
         <Droppable droppableId='0'>
@@ -157,7 +157,7 @@ const Wrapper = styled.div`
     margin-bottom: 3px;
   }
 
-  ${StyledProjectHeader} {
+  ${ StyledProjectHeader } {
     margin-bottom: 16px;
   }
 `;

@@ -11,7 +11,7 @@ export default {
 } as ComponentMeta<typeof ProjectHeader>;
 
 const Template: ComponentStory<typeof ProjectHeader> = (args) =>
-  <ProjectHeader {...args}/>;
+  <ProjectHeader { ...args }/>;
 
 export const Header = Template.bind({});
 Header.args = {

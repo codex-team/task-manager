@@ -37,24 +37,25 @@ const StyledButton = styled(Button)`
  * @returns {React.ReactElement}
  */
 function App(): React.ReactElement {
+
   return (
     <Container>
       <ColorVariables/>
       <GlobalStyles/>
       <Sidebar>
-        <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
-        <ProjectList workspaceId={''}>
+        <SidebarHeader sidebarTitle={ 'CodeX Tasks' }/>
+        <ProjectList workspaceId={ '' }>
           <StyledLink to='/projects/new'>
             <StyledButton icon='plus'>Add new project</StyledButton>
           </StyledLink>
         </ProjectList>
       </Sidebar>
       <Routes>
-        <Route path="/" element={<Content />}>
-          <Route path="projects/new" element={<ProjectForm />} />
-          <Route path="projects/:id/edit" element={<ProjectForm />} />
-          <Route path="projects/all/*" element={<ProjectView />} />
-          <Route path="projects/:id/*" element={<ProjectView />} />
+        <Route path="/" element={ <Content /> }>
+          <Route path="projects/new" element={ <ProjectForm /> } />
+          <Route path="projects/:id/edit" element={ <ProjectForm /> } />
+          <Route path="projects/all/*" element={ <ProjectView /> } />
+          <Route path="projects/:id/*" element={ <ProjectView /> } />
         </Route>
       </Routes>
     </Container>

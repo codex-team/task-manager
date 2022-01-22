@@ -20,7 +20,7 @@ const TaskContent: React.FC<Props> = ({ data }) => {
   return (
     <TaskContentStyled>
       { data &&
-        <Editor data={data} tools={EDITOR_JS_TOOLS}/> }
+        <Editor data={ data } tools={ EDITOR_JS_TOOLS }/> }
     </TaskContentStyled>
   );
 };

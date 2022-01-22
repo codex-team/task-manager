@@ -24,11 +24,11 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
       <StatusTitle>
         Assignee
       </StatusTitle>
-      <Select onChange={onChange} options={[]} placeholder={'Not assigned'}/>
+      <Select onChange={ onChange } options={ [] } placeholder={ 'Not assigned' }/>
       <StatusTitle>
         Status
       </StatusTitle>
-      <Select onChange={onChange} options={[]}/>
+      <Select onChange={ onChange } options={ [] }/>
       <StatusTitle>
         Creation date
       </StatusTitle>

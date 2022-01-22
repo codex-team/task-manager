@@ -55,7 +55,7 @@ const Card: React.FC<Props> = (props) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
-    <CardStyled {...props}>
+    <CardStyled { ...props }>
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>
@@ -68,11 +68,11 @@ const Card: React.FC<Props> = (props) => {
         </ProjectInfo>
         }
         <Title>
-          {props.taskTitle}
+          { props.taskTitle }
         </Title>
         { props.subtasksNumber &&
           <Progress>
-            {props.completedSubtasks} of {props.subtasksNumber} completed
+            { props.completedSubtasks } of { props.subtasksNumber } completed
           </Progress>
         }
       </TaskInfo>
@@ -82,7 +82,7 @@ const Card: React.FC<Props> = (props) => {
         </Status>
       }
       <Assignees>
-        <Icon name='DefaultAvatar' width={18} height={18}/>
+        <Icon name='DefaultAvatar' width={ 18 } height={ 18 }/>
         { (isShownAssigneesNumber && props.assigneesNumber) &&
           `+${props.assigneesNumber-1}`
         }
@@ -233,7 +233,7 @@ const CardStyled = styled.div<Props>`
  * Default card component props
  */
 Card.defaultProps = {
-  completedSubtasks : 0,
+  completedSubtasks: 0,
 };
 
 export default Card;

@@ -50,7 +50,7 @@ const TaskPopup: React.FC = () => {
 
   const [projectTitle, setProjectTitle] = useState<string | null>(null);
 
-  useEffect( () => {
+  useEffect(() => {
     if (!task) {
       return;
     }
@@ -62,10 +62,10 @@ const TaskPopup: React.FC = () => {
   , [projects, task]);
 
   return (
-    <PopupWrapper backDropClick={onClose} isPopupVisible={true}>
+    <PopupWrapper backDropClick={ onClose } isPopupVisible={ true }>
       <Container>
-        <TaskContent data={data}/>
-        <TaskInfo projectTitle={projectTitle} task={task}/>
+        <TaskContent data={ data }/>
+        <TaskInfo projectTitle={ projectTitle } task={ task }/>
       </Container>
     </PopupWrapper>
   );

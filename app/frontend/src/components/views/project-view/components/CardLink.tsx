@@ -24,12 +24,12 @@ const CardLink: React.FC<LinkProps & CardProps & CardLinkRefType> = forwardRef<H
   });
 
   return (
-    <div ref={ref}>
+    <div ref={ ref }>
       <StyledLink
         to={ to }
         { ...props }
       >
-        <Card projectInfo={projectInfo} status={status} taskTitle={taskTitle} isActive={!!match}/>
+        <Card projectInfo={ projectInfo } status={ status } taskTitle={ taskTitle } isActive={ !!match }/>
       </StyledLink>
     </div>
   );

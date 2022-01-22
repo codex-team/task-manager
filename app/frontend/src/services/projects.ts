@@ -20,7 +20,7 @@ export async function createProject(data: CreateProjectPayload): Promise<CreateP
  *
  * @param data - workspace id
  */
-export async function getProjects( data: GetProjectsMessagePayload): Promise<GetProjectsResponsePayload> {
+export async function getProjects(data: GetProjectsMessagePayload): Promise<GetProjectsResponsePayload> {
   const response = await client.send('get-projects', data);
 
   return response as GetProjectsResponsePayload;
