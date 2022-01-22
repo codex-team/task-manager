@@ -32,10 +32,12 @@ const TaskPopup: React.FC = () => {
     if (!id) {
       return;
     }
+
     const exec = async ():Promise<void> => {
       const response = await getTaskById(id);
 
       setTask(response.task);
+
       if (!response.task) {
         return;
       }
@@ -45,7 +47,7 @@ const TaskPopup: React.FC = () => {
       setData(blocks);
     };
 
-    exec().then();
+    exec();
   }, [ id ]
   );
 
