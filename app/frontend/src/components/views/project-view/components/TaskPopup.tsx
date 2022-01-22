@@ -39,6 +39,7 @@ const TaskPopup: React.FC = () => {
       if (!response.task) {
         return;
       }
+
       const blocks: OutputData = { blocks: JSON.parse(response.task.text).blocks };
 
       setData(blocks);
