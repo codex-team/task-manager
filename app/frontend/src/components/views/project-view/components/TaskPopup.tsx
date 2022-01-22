@@ -54,6 +54,7 @@ const TaskPopup: React.FC = () => {
     if (!task) {
       return;
     }
+
     const projectId = task.projectId;
     const currentProject = projects.find((project) => projectId === project._id);
 
