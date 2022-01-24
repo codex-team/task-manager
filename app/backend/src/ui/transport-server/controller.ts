@@ -3,6 +3,7 @@ import { createProject } from '../methods/projects/create';
 import { getProjects } from '../methods/projects/get-projects';
 import { createTask } from '../methods/task/create';
 import { getTasks } from '../methods/task/get-tasks';
+import { getTaskById } from '../methods/task/get-task-by-id';
 import { updateTask } from '../methods/task/update-task';
 
 /**
@@ -34,6 +35,9 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     case 'get-tasks': return {
       tasks: await getTasks(message.payload.projectId),
     };
+    case 'get-task-by-id': return {
+      task: await getTaskById(message.payload.taskId) }
+    ;
     case 'update-task': return {
       task: await updateTask(message.payload),
     };

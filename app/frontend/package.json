@@ -9,6 +9,10 @@
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",
+    "@editorjs/editorjs": "^2.22.2",
+    "@editorjs/header": "^2.6.2",
+    "@editorjs/paragraph": "^2.8.0",
+    "@stfy/react-editor.js": "^1.0.3",
     "@storybook/addon-actions": "^6.4.8",
     "@storybook/addon-essentials": "^6.4.8",
     "@storybook/addon-links": "^6.4.8",

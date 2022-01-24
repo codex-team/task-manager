@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProjectHeader from './components/ProjectHeader';
 import TaskInput from 'components/UI/task-input/TaskInput';
 import { getTasks, createTask, updateTask } from 'services/tasks';
 import Task from 'types/entities/task';
-import Card from 'components/UI/card/Card';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import CardLink from 'components/views/project-view/components/CardLink';
+import TaskPopup from 'components/views/project-view/components/TaskPopup';
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { getOrderScoreDesc } from 'helpers/get-order-score';
 
 /**
@@ -43,9 +44,10 @@ const ProjectView: React.FC<Props> = () => {
       const taskContent = {
         blocks: [
           {
-            type: 'paragraph',
+            type: 'header',
             data: {
               text: value,
+              level: 1,
             },
           },
         ],
@@ -90,6 +92,9 @@ const ProjectView: React.FC<Props> = () => {
 
   return (
     <Wrapper>
+      <Routes>
+        <Route path={ ':task_id' } element={ <TaskPopup/> }/>
+      </Routes>
       <StyledProjectHeader title={ title } hasSettingsButton={ !!currentProject }/>
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
       <DragDropContext onDragEnd={ onDragEnd }>
@@ -104,20 +109,22 @@ const ProjectView: React.FC<Props> = () => {
                   isDragDisabled={ !currentProject }
                 >
                   { draggableProvided => (
-                    <Card
+                    <CardLink
                       { ...draggableProvided.draggableProps }
                       { ...draggableProvided.dragHandleProps }
+                      to={ task._id }
+                      key={ task._id }
                       taskTitle={ getTaskTitle(task.text) }
                       projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
                       status='Unsorted'
                       ref={ draggableProvided.innerRef }
                     />
-                  ) }
+                  )}
                 </Draggable>
-              ) }
+              )}
               { provided.placeholder }
             </TasksContainer>
-          ) }
+          )}
         </Droppable>
       </DragDropContext>
     </Wrapper>
@@ -149,8 +156,8 @@ const Wrapper = styled.div`
   & > *:not(:last-child) {
     margin-bottom: 3px;
   }
- 
-  ${StyledProjectHeader} {
+
+  ${ StyledProjectHeader } {
     margin-bottom: 16px;
   }
 `;
@@ -161,7 +168,7 @@ const Wrapper = styled.div`
 const TasksContainer = styled.div`
   & > *:not(:last-child) {
     margin-bottom: 3px;
-  }
+}
 `;
 
 export default ProjectView;

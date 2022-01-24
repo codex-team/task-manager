@@ -1,11 +1,11 @@
-import React, { ForwardedRef, forwardRef, RefObject } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import Icon from 'components/UI/icon/Icon';
 
 /**
  * Interface for card component props
  */
-interface Props {
+export interface Props {
   /**
    * Task Title
    */
@@ -37,15 +37,13 @@ interface Props {
   /**
    * Task status
    */
-  status?: string
-}
+  status?: string;
 
-/**
- * Type for card forwarded ref
- */
-export type CardRefType = {
-  ref: ForwardedRef<HTMLDivElement>
-};
+  /**
+   * True if card is active
+   */
+  isActive?: boolean;
+}
 
 
 /**
@@ -53,11 +51,11 @@ export type CardRefType = {
  *
  * @param props - props of component
  */
-const Card: React.FC<Props & CardRefType> = forwardRef<HTMLDivElement, Props>((props, ref) => {
+const Card: React.FC<Props> = (props) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
-    <CardStyled { ...props } ref={ ref }>
+    <CardStyled { ...props }>
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>
@@ -70,11 +68,11 @@ const Card: React.FC<Props & CardRefType> = forwardRef<HTMLDivElement, Props>((p
         </ProjectInfo>
         }
         <Title>
-          {props.taskTitle}
+          { props.taskTitle }
         </Title>
         { props.subtasksNumber &&
           <Progress>
-            {props.completedSubtasks} of {props.subtasksNumber} completed
+            { props.completedSubtasks } of { props.subtasksNumber } completed
           </Progress>
         }
       </TaskInfo>
@@ -91,7 +89,7 @@ const Card: React.FC<Props & CardRefType> = forwardRef<HTMLDivElement, Props>((p
       </Assignees>
     </CardStyled>
   );
-});
+};
 
 /**
  * Styled project picture component
@@ -191,7 +189,7 @@ const Progress = styled.div`
  *
  * @param props - props of component
  */
-const CardStyled = styled.div<CardRefType>`
+const CardStyled = styled.div<Props>`
   display: flex;
   justify-content: space-between;
   border-width: 1px;
@@ -199,12 +197,13 @@ const CardStyled = styled.div<CardRefType>`
   border-style: solid;
   border-radius: 12px;
   padding: 12px 12px 12px 14px;
+  min-height: 48px;
+  background: var(--color-bg-main);
 
   &:hover {
     border-color: var(--color-line-hover);
   };
-
-  &:active {
+  ${props => props.isActive && css`
     border-color: var(--color-line-active);
     background-color: var(--color-contrast);
 
@@ -227,7 +226,7 @@ const CardStyled = styled.div<CardRefType>`
     ${Status} {
       color: var(--color-text-primary-reversed);;
     }
-  }
+  `}
 `;
 
 /**
