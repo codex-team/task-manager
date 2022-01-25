@@ -18,6 +18,11 @@ export default interface Task {
   orderScore: number;
 
   /**
+   * Id of task status
+   */
+  statusId?: number;
+
+  /**
    * Task's project unique identity
    */
   projectId?: string;
