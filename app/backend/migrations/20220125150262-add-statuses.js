@@ -1,3 +1,4 @@
+
 const statusLabels = ['Unsorted', 'To do', 'In progress', 'Done'];
 
 module.exports = {
@@ -25,6 +26,20 @@ module.exports = {
           await db.collection('tasks').updateMany(
             { projectId: project._id },
             { $set: { statusId: status._id } }
+          );
+
+          const tasksWithUnsortedStatus = await db.collection('tasks')
+            .find({
+              projectId: project._id,
+              statusId: status._id,
+            })
+            .toArray();
+
+          const taskIds = tasksWithUnsortedStatus.map(task => task._id);
+
+          await await db.collection('statuses').findOneAndUpdate(
+            { _id: status._id },
+            { $push: { tasks: { $each: taskIds } } }
           );
         }
       }
