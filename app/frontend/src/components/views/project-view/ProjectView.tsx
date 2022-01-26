@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 import ProjectHeader from './components/ProjectHeader';
 import TaskInput from 'components/UI/task-input/TaskInput';
 import { getTasks, createTask, updateTask } from 'services/tasks';
-import Task from 'types/entities/task';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
 import CardLink from 'components/views/project-view/components/CardLink';
 import TaskPopup from 'components/views/project-view/components/TaskPopup';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { getOrderScoreDesc } from 'helpers/get-order-score';
+import { Task } from 'types/entities';
 
 /**
  * Props of the component
@@ -116,7 +116,7 @@ const ProjectView: React.FC<Props> = () => {
                       key={ task._id }
                       taskTitle={ getTaskTitle(task.text) }
                       projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
-                      status='Unsorted'
+                      status={ task.status?.label }
                       ref={ draggableProvided.innerRef }
                     />
                   )}

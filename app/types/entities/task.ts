@@ -1,3 +1,5 @@
+import { Status } from ".";
+
 /**
  * This interface represents the Task entity
  */
@@ -21,6 +23,11 @@ export default interface Task {
    * Id of task status
    */
   statusId?: number;
+
+  /**
+   * Task status object
+   */
+  status?: Status;
 
   /**
    * Task's project unique identity
