@@ -68,7 +68,8 @@ const TaskPopup: React.FC = () => {
   return (
     <PopupWrapper backDropClick={ onClose } isPopupVisible={ true }>
       <Container>
-        <TaskContent data={ data }/>
+        { task &&
+        <TaskContent data={ data } id={ task?._id }/>}
         <TaskInfo projectTitle={ projectTitle } task={ task }/>
       </Container>
     </PopupWrapper>

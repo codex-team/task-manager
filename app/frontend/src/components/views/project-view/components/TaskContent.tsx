@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { OutputData } from '@editorjs/editorjs';
+import EditorJS, { OutputData } from '@editorjs/editorjs';
 import EditorJSComponent from 'components/UI/editor/EditorJSComponent';
+import { updateTask } from 'services/tasks';
+
 
 /**
  * Interface for task content component props
  */
 interface Props {
   data: OutputData | null;
+  id: string;
 }
 
 /**
@@ -15,15 +18,23 @@ interface Props {
  *
  * @param data - data for editor
  */
-const TaskContent: React.FC<Props> = ({ data }) => {
+const TaskContent: React.FC<Props> = ({ data, id }) => {
+  const changeTask = (editor: EditorJS): void => {
+    editor.save().then(res => {
+      const block = JSON.stringify(res);
+
+      updateTask({ _id: id,
+        text: block });
+    });
+  };
+
   return (
     <TaskContentStyled>
       { data &&
-        <EditorJSComponent data={ data } /> }
+        <EditorJSComponent data={ data } changeData={ changeTask }/> }
     </TaskContentStyled>
   );
 };
-
 
 /**
  * Content styled
