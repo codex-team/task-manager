@@ -1,5 +1,9 @@
-import Project from './project';
+import Project from './project'
+import Task from './task'
+import Status from './status'
 
 export {
-  Project
+  Project,
+  Task,
+  Status
 }

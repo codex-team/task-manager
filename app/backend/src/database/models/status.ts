@@ -1,10 +1,10 @@
+import { Status } from '../../../../types/entities';
 import mongoose from '../index';
-import { StatusDocument, StatusModel } from '../interfaces/status';
 
 /**
  * Status schema
  */
-const StatusSchema: mongoose.Schema<StatusDocument> = new mongoose.Schema ({
+const StatusSchema: mongoose.Schema<Status> = new mongoose.Schema ({
   /**
    * Status label
    */
@@ -27,4 +27,4 @@ const StatusSchema: mongoose.Schema<StatusDocument> = new mongoose.Schema ({
   } ],
 });
 
-export default mongoose.model<StatusDocument, StatusModel>('Status', StatusSchema);
+export default mongoose.model<Status>('Status', StatusSchema);

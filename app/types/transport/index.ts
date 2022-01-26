@@ -13,6 +13,8 @@ import GetTaskByIdResponse from './responses/task/get-task-by-id';
 import GetTaskByIdMessage from './requests/task/get-task-by-id';
 import UpdateTaskMessage from './requests/task/update-task';
 import UpdateTaskResponse from './responses/task/update-task'
+import GetStatusesMessage from './requests/status/get-statuses'
+import GetStatusesResponse from './responses/status/get-statuses'
 
 /**
  * The type described all available outgoing messages that can be sent by API
@@ -31,6 +33,7 @@ export type ApiRequest =
   | GetTasksMessage
   | GetTaskByIdMessage
   | UpdateTaskMessage
+  | GetStatusesMessage
 ;
 
 /**
@@ -44,4 +47,5 @@ export type ApiResponse =
   | GetTasksResponse
   | GetTaskByIdResponse
   | UpdateTaskResponse
+  | GetStatusesResponse
 ;
