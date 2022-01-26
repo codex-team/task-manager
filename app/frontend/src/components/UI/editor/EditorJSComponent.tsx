@@ -7,7 +7,14 @@ import { OutputData } from '@editorjs/editorjs';
  * Interface for editor js component props
  */
 interface Props {
+  /**
+   * Data to show in editor
+   */
   data: OutputData;
+
+  /**
+   * When data changes
+   */
   changeData: (editor: EditorJS) => void;
 }
 
