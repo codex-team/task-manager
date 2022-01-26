@@ -25,16 +25,16 @@ interface Props {
  * @param Props.changeData - function for editor OnChange
  */
 const EditorJSComponent: React.FC<Props> = ({ data, changeData }) => {
-  useEffect((setData = changeData) => {
+  useEffect(() => {
     const editor = new EditorJS({
       holder: 'editorjs',
       tools: EDITOR_JS_TOOLS,
       data: data,
       onChange: () => {
-        setData(editor);
+        changeData(editor);
       },
     });
-  });
+  }, [ data ]);
 
   return (
     <div id={ 'editorjs' }/>
