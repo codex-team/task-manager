@@ -18,14 +18,13 @@ const TaskPopup: React.FC = () => {
   const params = useParams();
   const projects = useStore($projects);
 
-  const id = params.task_id;
+  const id = params.task_id as string;
 
   const onClose = (): void => {
     navigate(-1);
   };
 
   const [task, setTask] = useState<Task | null>(null);
-
   const [data, setData] = useState<OutputData | null>(null);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const TaskPopup: React.FC = () => {
       return;
     }
 
-    const exec = async ():Promise<void> => {
+    const exec = async (): Promise<void> => {
       const response = await getTaskById(id);
 
       setTask(response.task);
@@ -48,8 +47,7 @@ const TaskPopup: React.FC = () => {
     };
 
     exec();
-  }, [ id ]
-  );
+  }, [ id ]);
 
   const [projectTitle, setProjectTitle] = useState<string | null>(null);
 

@@ -25,7 +25,8 @@ const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema({
    * Task status id
    */
   statusId: {
-    type: mongoose.Schema.Types.Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'StatusSchema',
     requires: true,
   },
 

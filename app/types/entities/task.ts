@@ -22,7 +22,7 @@ export default interface Task {
   /**
    * Id of task status
    */
-  statusId?: number;
+  statusId?: string;
 
   /**
    * Task status object

@@ -1,4 +1,10 @@
 export default interface Status {
+
+  /**
+   * Id of the status
+   */
+  _id: string
+
   /**
    * Status label
    */
