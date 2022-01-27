@@ -2,7 +2,7 @@ import Project from './project'
 import Task from './task'
 import Status from './status'
 
-export {
+export type {
   Project,
   Task,
   Status

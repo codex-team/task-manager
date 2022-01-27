@@ -21,5 +21,8 @@ export async function getTasks(projectId?: string): Promise<Task[]> {
     { $set: {
       status: { $arrayElemAt: ['$status', 0] },
     } },
+    { $sort: {
+      orderScore: -1,
+    } },
   ]);
 }

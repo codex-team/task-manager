@@ -54,6 +54,5 @@ export async function getTaskById(id: string): Promise<GetTaskByIdResponsePayloa
 export async function updateTask(data: UpdateTaskPayload): Promise<UpdateTaskResponsePayload> {
   const response = await client.send('update-task', data);
 
-
   return response as UpdateTaskResponsePayload;
 }
