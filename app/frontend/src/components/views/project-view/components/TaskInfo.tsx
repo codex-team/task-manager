@@ -53,19 +53,20 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
     }
     try {
       const prevStatus = statuses.find(status => status._id === task.statusId);
+
+      if (prevStatus) {
+        // Remove task id from previous status task ids list
+        prevStatus.tasks = prevStatus.tasks.filter(taskId => taskId !== task._id);
+        await updateStatus(prevStatus);
+      }
+
       const newStatus = statuses.find(status => status._id === value);
 
-      if (!prevStatus || !newStatus) {
-        return;
+      if (newStatus) {
+        // Add task id to new status task ids list
+        newStatus.tasks.push(task._id);
+        await updateStatus(newStatus);
       }
-      // Remove task id from previous status task ids list
-      prevStatus.tasks = prevStatus.tasks.filter(taskId => taskId !== task._id);
-
-      // Add task id to new status task ids list
-      newStatus.tasks.push(task._id);
-
-      await updateStatus(prevStatus);
-      await updateStatus(newStatus);
 
       await updateTask({
         _id: task._id,
@@ -89,7 +90,8 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
         onChange={ onStatusChange }
         options={ statusesOptions }
         value={ task?.statusId }
-        initialOption={ statusesOptions.find(option => option.value === task?.statusId) }/>
+        initialOption={ statusesOptions.find(option => option.value === task?.statusId) }
+        placeholder='Unsorted'/>
       <StatusTitle>
         Creation date
       </StatusTitle>
