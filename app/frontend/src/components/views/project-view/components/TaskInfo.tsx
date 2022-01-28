@@ -5,8 +5,8 @@ import { formatDate } from 'helpers/helpers';
 import Task from 'types/entities/task';
 import { DropdownItem } from 'components/UI/dropdown/DropdownItem';
 import { getStatuses, updateStatus } from 'services/statuses';
-import { updateTask } from 'services/tasks';
 import { Status as StatusType } from 'types/entities';
+import { updateTaskEffectFx } from 'store/tasks';
 
 /**
  * Interface for task info component props
@@ -67,8 +67,7 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
         newStatus.tasks.push(task._id);
         await updateStatus(newStatus);
       }
-
-      await updateTask({
+      updateTaskEffectFx({
         _id: task._id,
         statusId: value as string,
       });
