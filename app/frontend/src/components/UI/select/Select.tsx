@@ -13,12 +13,12 @@ interface Props {
   /**
    * Selected value
    */
-  value?: number|string
+  value?: number|string|null
 
   /**
    * Value change callback
    */
-  onChange: (value: number|string|undefined) => void
+  onChange: (value: number|string|null|undefined) => void
 
   /**
    * Select placeholder

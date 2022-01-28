@@ -15,7 +15,7 @@ interface Props {
   /**
    * Value of selected item
    */
-  selectedValue?: number|string
+  selectedValue?: number|string|null
 
   /**
    * Index of item to be highlighted

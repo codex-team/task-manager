@@ -7,5 +7,5 @@ export interface DropdownItem {
   /**
    * Dropdown item value
    */
-  value: string|number
+  value: string|number|null
 }

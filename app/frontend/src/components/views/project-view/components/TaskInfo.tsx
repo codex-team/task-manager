@@ -9,6 +9,14 @@ import { Status as StatusType } from 'types/entities';
 import { updateTaskEffectFx } from 'store/tasks';
 
 /**
+ * Status option representing absence of status
+ */
+const EMPTY_STATUS_OPTION = {
+  label: 'Unsorted',
+  value: null,
+};
+
+/**
  * Interface for task info component props
  */
 interface Props {
@@ -40,14 +48,14 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
           value: item._id,
         }));
 
-        setStatusesOptions(options);
+        setStatusesOptions([EMPTY_STATUS_OPTION, ...options]);
       } catch (e) {
         console.error(e);
       }
     })();
   }, [ task ]);
 
-  const onStatusChange = async (value: string|number|undefined): Promise<void> => {
+  const onStatusChange = async (value: string|number|null|undefined): Promise<void> => {
     if (!task) {
       return;
     }
@@ -60,13 +68,16 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
         await updateStatus(prevStatus);
       }
 
-      const newStatus = statuses.find(status => status._id === value);
+      if (value !== EMPTY_STATUS_OPTION.value) {
+        const newStatus = statuses.find(status => status._id === value);
 
-      if (newStatus) {
-        // Add task id to new status task ids list
-        newStatus.tasks.push(task._id);
-        await updateStatus(newStatus);
+        if (newStatus) {
+          // Add task id to new status task ids list
+          newStatus.tasks.push(task._id);
+          await updateStatus(newStatus);
+        }
       }
+
       updateTaskEffectFx({
         _id: task._id,
         statusId: value as string,
