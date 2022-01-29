@@ -7,7 +7,7 @@ import TeammateModel from '../../../database/models/teammate';
  *
  * @param data - teammate update params
  */
-export async function updateTeammate(data: UpdateTeammatePayload): Promise<Teammate> {
+export async function updateTeammate(data: UpdateTeammatePayload): Promise<Teammate | null> {
   const query = { _id: data._id };
 
   return TeammateModel.findOneAndUpdate(query, data).exec();

@@ -1,8 +1,6 @@
 /**
  * This interface represents the Teammate entity
  */
-import ContactType from "./contactType";
-
 export default interface Teammate {
   /**
    * Teammate's unique identity
@@ -22,12 +20,7 @@ export default interface Teammate {
   /**
    * List of teammate's contacts
    */
-  contacts?: ContactType;
-
-  /**
-   * Teammate's workspace unique identity
-   */
-  workspaceId: string;
+  contacts?: { type: string, value: string }[];
 
   /**
    * Teammate's creation date (stored in the format: 'Day of the week Month Date Year HH:MM:SS GMT...)  '

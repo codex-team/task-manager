@@ -40,15 +40,6 @@ const TeammateSchema: mongoose.Schema<Teammate> = new mongoose.Schema({
   } ],
 
   /**
-   * Teammate's workspace id
-   */
-  workspaceId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'WorkspaceSchema',
-    required: true,
-  },
-
-  /**
    * Teammate creation date
    */
   dateCreated: {

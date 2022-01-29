@@ -6,7 +6,7 @@ import TeammateSchema from '../../../database/models/teammate';
  *
  * @param workspaceId - teammate's workspace identifier
  */
-export async function getTeammates(workspaceId: string): Promise<Teammate[]> {
+export async function getTeammates(workspaceId?: string): Promise<Teammate[]> {
   return TeammateSchema
     .find({ workspaceId: workspaceId })
     .exec();

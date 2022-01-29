@@ -1,5 +1,5 @@
 /**
- * Response for 'update=teammate' message
+ * Response for 'update-teammate' message
  * Contains sample of teammate
  */
 import {ResponseMessage} from "ctproto";

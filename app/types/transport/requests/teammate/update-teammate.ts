@@ -1,5 +1,4 @@
 import { NewMessage } from "ctproto";
-import ContactType from "../../../entities/contactType";
 
 export interface UpdateTeammatePayload {
   /**
@@ -21,7 +20,7 @@ export interface UpdateTeammatePayload {
    * List of teammate's contacts
    */
   contacts?: [ {
-    type: ContactType,
+    type: string,
     value: string
   } ];
 }
