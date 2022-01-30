@@ -56,6 +56,7 @@ const CloseButton = styled.div`
  * Styled popup content
  */
 const PopupContent = styled.div`
+  cursor: auto;
   width: 1000px;
   z-index: 2;
   margin-top: 50px;
