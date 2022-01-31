@@ -59,7 +59,6 @@ const PopupContent = styled.div`
   cursor: auto;
   width: 1000px;
   z-index: 2;
-  margin-top: 50px;
   position: relative;
   background-color: var(--color-bg-main);
   border-radius: 12px;
