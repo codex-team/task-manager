@@ -12,12 +12,14 @@ export async function getTasks(projectId?: string): Promise<Task[]> {
 
   return TaskSchema.aggregate([
     { $match: query },
+    // Add expanded status data (if any) to result object
     { $lookup: {
       from: 'statuses',
       localField: 'statusId',
       foreignField: '_id',
       as: 'status',
     } },
+    // Retrieves element with index 0 from found statuses array
     { $set: {
       status: { $arrayElemAt: ['$status', 0] },
     } },

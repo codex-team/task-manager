@@ -64,7 +64,6 @@ const ProjectView: React.FC<Props> = () => {
     }
     const orderScore = getOrderScoreDesc(tasksList, destination.index, source.index);
 
-    console.log('newOrderScore', orderScore);
     const task = tasksList.find(t => t._id === draggableId);
     const updatedTasksList = tasksList.filter(t => t._id !== draggableId);
 

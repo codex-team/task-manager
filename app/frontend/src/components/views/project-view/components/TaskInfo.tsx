@@ -55,6 +55,11 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
     })();
   }, [ task ]);
 
+  /**
+   * Handles status change
+   *
+   * @param value - new status value
+   */
   const onStatusChange = async (value: string|number|null|undefined): Promise<void> => {
     if (!task) {
       return;

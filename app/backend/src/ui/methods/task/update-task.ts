@@ -19,10 +19,6 @@ export async function updateTask(data: UpdateTaskPayload): Promise<Task | null> 
   // Add expanded status data (if any) to result object
   const status = await getStatusById(task.statusId);
 
-  if (!status) {
-    return task.toObject();
-  }
-
   return {
     ...(task.toObject()),
     status,

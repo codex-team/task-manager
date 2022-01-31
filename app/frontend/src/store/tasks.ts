@@ -30,7 +30,9 @@ $tasks.on(createTaskEffectFx.done, (state, { result }) => [result.task, ...state
  * Updates task in tasks list
  */
 $tasks.on(updateTaskEffectFx.done, (state, { result }) => {
+  // Find index of the task
   const index = state.findIndex(item => result && result.task && item._id === result.task._id);
+  // Replace task at found index with new data
   const newState = [ ...state ].map((item, i) => i === index && result.task ? result.task : item);
 
   newState.sort((a, b) => b.orderScore - a.orderScore);
