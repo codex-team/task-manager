@@ -1,4 +1,4 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, createEvent, createStore } from 'effector';
 import { createTask, getTasks, updateTask } from 'services/tasks';
 import { Task } from 'types/entities';
 
@@ -14,7 +14,11 @@ export const $tasks = createStore<Task[]>([]);
 export const getTasksEffectFx = createEffect(getTasks);
 export const createTaskEffectFx = createEffect(createTask);
 export const updateTaskEffectFx = createEffect(updateTask);
-export const setTasksEffectFx = createEffect((tasks: Task[]) => tasks);
+
+/**
+ * Event to be called when tasks list state should be updated
+ */
+export const listUpdated = createEvent<Task[]>();
 
 /**
  * Sets tasks llist
@@ -41,6 +45,6 @@ $tasks.on(updateTaskEffectFx.done, (state, { result }) => {
 });
 
 /**
- * Updates tasks list
+ * Updates tasks list state
  */
-$tasks.on(setTasksEffectFx.done, (_, { result }) => [ ...result ]);
+$tasks.on(listUpdated, (_, result) => [ ...result ]);

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Select from 'components/UI/select/Select';
 import { formatDate } from 'helpers/helpers';
 import Task from 'types/entities/task';
-import { DropdownItem } from 'components/UI/dropdown/DropdownItem';
-import { getStatuses, updateStatus } from 'services/statuses';
-import { Status as StatusType } from 'types/entities';
+import { updateStatus } from 'services/statuses';
 import { updateTaskEffectFx } from 'store/tasks';
+import { useStore, useStoreMap } from 'effector-react';
+import { $statuses, getStatusesFx } from 'store/statuses';
+import { $selectedProject } from 'store/projects';
 
 /**
  * Status option representing absence of status
@@ -21,7 +22,7 @@ const EMPTY_STATUS_OPTION = {
  */
 interface Props {
   projectTitle: string | null;
-  task: Task | null;
+  task: Task;
 }
 
 /**
@@ -31,29 +32,26 @@ interface Props {
  * @param Props.task - current task
  */
 const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
-  const [statusesOptions, setStatusesOptions] = useState<DropdownItem[]>([]);
-  const [statuses, setStatuses] = useState<StatusType[]>([]);
+  const statuses = useStore($statuses);
+  const selectedProject = useStore($selectedProject);
+  const statusesOptions = useStoreMap(
+    $statuses,
+    (state) => [
+      EMPTY_STATUS_OPTION,
+      ...state.map(item => ({
+        label: item.label,
+        value: item._id,
+      })),
+    ]
+  );
 
   useEffect(() => {
-    (async function () {
-      if (!task) {
-        return;
-      }
-      try {
-        const response = await getStatuses(task.projectId as string);
-
-        setStatuses(response.statuses);
-        const options = response.statuses.map(item => ({
-          label: item.label,
-          value: item._id,
-        }));
-
-        setStatusesOptions([EMPTY_STATUS_OPTION, ...options]);
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, [ task ]);
+    // Handle case when task popup in opened from 'All projects' list view
+    // and there is no saved selected project and statuses data in store
+    if (!selectedProject && task.projectId) {
+      getStatusesFx(task.projectId);
+    }
+  }, [task, selectedProject]);
 
   /**
    * Handles status change
@@ -61,9 +59,6 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
    * @param value - new status value
    */
   const onStatusChange = async (value: string|number|null|undefined): Promise<void> => {
-    if (!task) {
-      return;
-    }
     try {
       const prevStatus = statuses.find(status => status._id === task.statusId);
 

@@ -10,7 +10,7 @@ import TaskPopup from 'components/views/project-view/components/TaskPopup';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { getOrderScoreDesc } from 'helpers/get-order-score';
 import { Task } from 'types/entities';
-import { $tasks, createTaskEffectFx, getTasksEffectFx, setTasksEffectFx, updateTaskEffectFx } from 'store/tasks';
+import { $tasks, createTaskEffectFx, getTasksEffectFx, listUpdated, updateTaskEffectFx } from 'store/tasks';
 
 /**
  * Props of the component
@@ -71,7 +71,7 @@ const ProjectView: React.FC<Props> = () => {
       ...task as Task,
       orderScore,
     });
-    setTasksEffectFx(updatedTasksList);
+    listUpdated(updatedTasksList);
     updateTaskEffectFx({
       _id: draggableId,
       orderScore,

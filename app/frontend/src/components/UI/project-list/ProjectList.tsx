@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import ProjectLink from './ProjectLink';
-import { $projects, getProjectsEffectFx } from 'store/projects';
+import { $projects, getProjectsEffectFx, projectSelected } from 'store/projects';
 import { useStore } from 'effector-react';
+import { Project } from 'types/entities';
 
 /**
  * Interface for project list component props
@@ -28,12 +29,22 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
     });
   }, [ workspaceId ]);
 
+  /**
+   * Updates selected project data in store
+   *
+   * @param project - selected project data
+   */
+  const handleProjectClick = (project: Project | null): void => {
+    projectSelected(project);
+  };
+
   return (
     <ProjectListStyled>
       <ProjectLink
         title='All projects'
         picture=''
         to='/projects/all'
+        onClick={ () => handleProjectClick(null) }
       />
       { projects.map((project) =>
         <ProjectLink
@@ -41,6 +52,7 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
           title={ project.title }
           picture={ project.picture }
           to={ '/projects/' + project._id }
+          onClick={ () => handleProjectClick(project) }
         />
       )}
       { children }
