@@ -9,7 +9,14 @@ import { updateTask } from 'services/tasks';
  * Interface for task content component props
  */
 interface Props {
+  /**
+   * Task data to show
+   */
   data: OutputData | null;
+
+  /**
+   * Task id to change
+   */
   id: string;
 }
 

@@ -8,7 +8,14 @@ import Task from 'types/entities/task';
  * Interface for task info component props
  */
 interface Props {
+  /**
+   * Title of the task project
+   */
   projectTitle: string | null;
+
+  /**
+   * Task to show info
+   */
   task: Task | null;
 }
 
