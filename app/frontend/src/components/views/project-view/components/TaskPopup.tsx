@@ -21,8 +21,9 @@ const TaskPopup: React.FC = () => {
   const id = params.task_id;
 
   const onClose = (): void => {
-    navigate(-1);
-    navigate(0);
+    navigate('../');
+    
+    return navigate(0);
   };
 
   const [task, setTask] = useState<Task | null>(null);

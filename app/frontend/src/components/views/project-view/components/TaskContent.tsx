@@ -20,12 +20,16 @@ interface Props {
  */
 const TaskContent: React.FC<Props> = ({ data, id }) => {
   const changeTask = (editor: EditorJS): void => {
-    editor.save().then(res => {
+
+    const exec = async ():Promise<void> => {
+      const res = await editor.save();
       const block = JSON.stringify(res);
 
-      updateTask({ _id: id,
+      await updateTask({ _id: id,
         text: block });
-    });
+    };
+
+    exec();
   };
 
   return (

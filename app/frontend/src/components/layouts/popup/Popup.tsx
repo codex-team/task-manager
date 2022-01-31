@@ -24,6 +24,7 @@ const Popup: React.FC<Props> = ({ children, backDropClick }) => {
     const escFunction = function (event: KeyboardEvent): void {
       if (event.key === KEYBOARD_ESC) {
         backDropClick();
+        window.location.reload();
       }
     };
 
