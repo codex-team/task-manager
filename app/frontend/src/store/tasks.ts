@@ -36,10 +36,10 @@ $tasks.on(createTaskFx.done, (state, { result }) => [result.task, ...state]);
 $tasks.on(updateTaskFx.done, (state, { result }) => {
   // Find index of the task
   const index = state.findIndex(item => result && result.task && item._id === result.task._id);
-  // Replace task at found index with new data
-  const newState = [ ...state ].map((item, i) => i === index && result.task ? result.task : item);
+  const newState = [ ...state ];
 
-  newState.sort((a, b) => b.orderScore - a.orderScore);
+  // Replace task at found index with new data
+  newState[index] = result.task as Task;
 
   return newState;
 });
