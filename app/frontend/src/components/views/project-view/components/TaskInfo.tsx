@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Select from 'components/UI/select/Select';
 import { formatDate } from 'helpers/helpers';
 import Task from 'types/entities/task';
-import { updateStatus } from 'services/statuses';
 import { updateTaskFx } from 'store/tasks';
 import { useStore, useStoreMap } from 'effector-react';
 import { $statuses, getStatusesFx } from 'store/statuses';
@@ -60,24 +59,6 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
    */
   const onStatusChange = async (value: string|number|null|undefined): Promise<void> => {
     try {
-      const prevStatus = statuses.find(status => status._id === task.statusId);
-
-      if (prevStatus) {
-        // Remove task id from previous status task ids list
-        prevStatus.tasks = prevStatus.tasks.filter(taskId => taskId !== task._id);
-        await updateStatus(prevStatus);
-      }
-
-      if (value !== EMPTY_STATUS_OPTION.value) {
-        const newStatus = statuses.find(status => status._id === value);
-
-        if (newStatus) {
-          // Add task id to new status task ids list
-          newStatus.tasks.push(task._id);
-          await updateStatus(newStatus);
-        }
-      }
-
       updateTaskFx({
         _id: task._id,
         statusId: value as string,
