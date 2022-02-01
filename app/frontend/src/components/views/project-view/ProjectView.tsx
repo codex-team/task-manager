@@ -10,7 +10,7 @@ import TaskPopup from 'components/views/project-view/components/TaskPopup';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { getOrderScoreDesc } from 'helpers/get-order-score';
 import { Task } from 'types/entities';
-import { $tasks, createTaskEffectFx, getTasksEffectFx, listUpdated, updateTaskEffectFx } from 'store/tasks';
+import { $tasks, createTaskFx, getTasksFx, listUpdated, updateTaskFx } from 'store/tasks';
 
 /**
  * Props of the component
@@ -29,7 +29,7 @@ const ProjectView: React.FC<Props> = () => {
 
 
   useEffect(() => {
-    getTasksEffectFx(params.id ? { projectId: params.id } : {});
+    getTasksFx(params.id ? { projectId: params.id } : {});
   }, [ params.id ]);
 
   const createNewTask = async (value: string): Promise<void> => {
@@ -49,7 +49,7 @@ const ProjectView: React.FC<Props> = () => {
     const newTaskOrderScore = !tasksList.length ? 1 : (tasksList[0].orderScore + 1);
     /* eslint-enable @typescript-eslint/no-magic-numbers */
 
-    createTaskEffectFx({
+    createTaskFx({
       text: JSON.stringify(taskContent),
       projectId: params.id,
       orderScore: newTaskOrderScore,
@@ -72,7 +72,7 @@ const ProjectView: React.FC<Props> = () => {
       orderScore,
     });
     listUpdated(updatedTasksList);
-    updateTaskEffectFx({
+    updateTaskFx({
       _id: draggableId,
       orderScore,
     });

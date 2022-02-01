@@ -11,9 +11,9 @@ export const $tasks = createStore<Task[]>([]);
 /**
  * Task effects
  */
-export const getTasksEffectFx = createEffect(getTasks);
-export const createTaskEffectFx = createEffect(createTask);
-export const updateTaskEffectFx = createEffect(updateTask);
+export const getTasksFx = createEffect(getTasks);
+export const createTaskFx = createEffect(createTask);
+export const updateTaskFx = createEffect(updateTask);
 
 /**
  * Event to be called when tasks list state should be updated
@@ -23,17 +23,17 @@ export const listUpdated = createEvent<Task[]>();
 /**
  * Sets tasks llist
  */
-$tasks.on(getTasksEffectFx.done, (_, { result }) => result.tasks);
+$tasks.on(getTasksFx.done, (_, { result }) => result.tasks);
 
 /**
  * Add newly added task to tasks list
  */
-$tasks.on(createTaskEffectFx.done, (state, { result }) => [result.task, ...state]);
+$tasks.on(createTaskFx.done, (state, { result }) => [result.task, ...state]);
 
 /**
  * Updates task in tasks list
  */
-$tasks.on(updateTaskEffectFx.done, (state, { result }) => {
+$tasks.on(updateTaskFx.done, (state, { result }) => {
   // Find index of the task
   const index = state.findIndex(item => result && result.task && item._id === result.task._id);
   // Replace task at found index with new data

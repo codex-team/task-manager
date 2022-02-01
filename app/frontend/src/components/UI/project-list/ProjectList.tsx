@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import ProjectLink from './ProjectLink';
-import { $projects, getProjectsEffectFx, projectSelected } from 'store/projects';
+import { $projects, getProjectsFx, projectSelected } from 'store/projects';
 import { useStore } from 'effector-react';
 import { Project } from 'types/entities';
 
@@ -24,7 +24,7 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
   const projects = useStore($projects);
 
   useEffect(() => {
-    getProjectsEffectFx({
+    getProjectsFx({
       workspaceId: workspaceId,
     });
   }, [ workspaceId ]);

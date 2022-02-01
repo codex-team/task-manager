@@ -20,12 +20,12 @@ export const projectSelected = createEvent<Project | null>();
 /**
  * Projects effects
  */
-export const getProjectsEffectFx = createEffect(getProjects);
-export const createProjectEffectFx = createEffect(createProject);
+export const getProjectsFx = createEffect(getProjects);
+export const createProjectFx = createEffect(createProject);
 
 /**
  * State changes based on effects results
  */
-$projects.on(getProjectsEffectFx.done, (_, { result }) => result.projects);
-$projects.on(createProjectEffectFx.done, (state, { result }) => [...state, result.project]);
+$projects.on(getProjectsFx.done, (_, { result }) => result.projects);
+$projects.on(createProjectFx.done, (state, { result }) => [...state, result.project]);
 $selectedProject.on(projectSelected, (_, value) => value);

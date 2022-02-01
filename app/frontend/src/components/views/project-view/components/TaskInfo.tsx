@@ -4,7 +4,7 @@ import Select from 'components/UI/select/Select';
 import { formatDate } from 'helpers/helpers';
 import Task from 'types/entities/task';
 import { updateStatus } from 'services/statuses';
-import { updateTaskEffectFx } from 'store/tasks';
+import { updateTaskFx } from 'store/tasks';
 import { useStore, useStoreMap } from 'effector-react';
 import { $statuses, getStatusesFx } from 'store/statuses';
 import { $selectedProject } from 'store/projects';
@@ -78,7 +78,7 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
         }
       }
 
-      updateTaskEffectFx({
+      updateTaskFx({
         _id: task._id,
         statusId: value as string,
       });
