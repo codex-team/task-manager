@@ -38,14 +38,6 @@ const TeammateSchema: mongoose.Schema<Teammate> = new mongoose.Schema({
       type: mongoose.Schema.Types.String,
     },
   } ],
-
-  /**
-   * Teammate creation date
-   */
-  dateCreated: {
-    type: mongoose.Schema.Types.String,
-    default: new Date().toString(),
-  },
 });
 
 export default mongoose.model<Teammate>('Teammate', TeammateSchema);

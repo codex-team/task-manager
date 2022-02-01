@@ -1,6 +1,5 @@
 import Teammate from "../../../entities/teammate";
 import {ResponseMessage} from "ctproto";
-import {GetTeammateByIdResponsePayload} from "./get-teammate-by-id";
 
 /**
  * Response for 'get-teammates' message

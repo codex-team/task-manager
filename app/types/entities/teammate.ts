@@ -21,10 +21,4 @@ export default interface Teammate {
    * List of teammate's contacts
    */
   contacts?: { type: string, value: string }[];
-
-  /**
-   * Teammate's creation date (stored in the format: 'Day of the week Month Date Year HH:MM:SS GMT...)  '
-   * (ex. Tue Dec 21 2021 18:09:02 GMT+0000 (Coordinated Universal Time))
-   */
-  dateCreated: string;
 }
