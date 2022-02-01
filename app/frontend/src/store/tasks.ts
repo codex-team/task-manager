@@ -35,7 +35,11 @@ $tasks.on(createTaskFx.done, (state, { result }) => [result.task, ...state]);
  */
 $tasks.on(updateTaskFx.done, (state, { result }) => {
   // Find index of the task
-  const index = state.findIndex(item => result && result.task && item._id === result.task._id);
+  const index = state.findIndex(item => result.task && item._id === result.task._id);
+
+  if (index < 0) {
+    return;
+  }
   const newState = [ ...state ];
 
   // Replace task at found index with new data

@@ -34,7 +34,7 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
    *
    * @param project - selected project data
    */
-  const handleProjectClick = (project: Project | null): void => {
+  const handleProjectClick = (project: Project | null) => (): void => {
     projectSelected(project);
   };
 
@@ -44,7 +44,7 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
         title='All projects'
         picture=''
         to='/projects/all'
-        onClick={ () => handleProjectClick(null) }
+        onClick={ handleProjectClick(null) }
       />
       { projects.map((project) =>
         <ProjectLink
@@ -52,7 +52,7 @@ const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
           title={ project.title }
           picture={ project.picture }
           to={ '/projects/' + project._id }
-          onClick={ () => handleProjectClick(project) }
+          onClick={ handleProjectClick(project) }
         />
       )}
       { children }

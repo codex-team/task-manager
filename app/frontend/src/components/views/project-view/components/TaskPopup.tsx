@@ -18,7 +18,7 @@ const TaskPopup: React.FC = () => {
   const params = useParams();
   const projects = useStore($projects);
 
-  const id = params.task_id as string;
+  const id = params.task_id;
 
   const onClose = (): void => {
     navigate(-1);
