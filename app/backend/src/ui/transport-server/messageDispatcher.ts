@@ -4,13 +4,20 @@ import { GetProjects } from './handlers/project/get-projects';
 import { GetTasks } from './handlers/task/get-tasks';
 import { CreateTask } from './handlers/task/create';
 import { MessageHandler } from './handlers/messageHandler';
+import { GetTaskById } from './handlers/task/get-task-by-id';
+import { UpdateTask } from './handlers/task/update-task';
 
 
 const handlers = new Map<string, MessageHandler>([
+  /** ./project */
   ['create-project', new CreateProject()],
   ['get-projects', new GetProjects()],
+
+  /** ./task */
   ['create-task', new CreateTask()],
+  ['get-task-by-id', new GetTaskById()],
   ['get-tasks', new GetTasks()],
+  ['update-task', new UpdateTask()],
 ]);
 
 /**
@@ -24,4 +31,8 @@ export async function dispatchMessage(message: ApiRequest): Promise<ApiResponse[
   if (handler) {
     return handler.handle(message.payload);
   }
+
+  /**
+   * If no handler was found then ignore message
+   */
 }

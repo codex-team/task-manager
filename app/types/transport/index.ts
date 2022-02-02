@@ -10,8 +10,8 @@ import CreateTaskResponse from './responses/task/create';
 import GetTasksMessage, {GetTasksMessagePayload} from './requests/task/get-tasks';
 import GetTasksResponse from './responses/task/get-tasks';
 import GetTaskByIdResponse from './responses/task/get-task-by-id';
-import GetTaskByIdMessage from './requests/task/get-task-by-id';
-import UpdateTaskMessage from './requests/task/update-task';
+import GetTaskByIdMessage, { GetTaskByIdMessagePayload } from './requests/task/get-task-by-id';
+import UpdateTaskMessage, { UpdateTaskMessagePayload } from './requests/task/update-task';
 import UpdateTaskResponse from './responses/task/update-task'
 
 /**
@@ -42,6 +42,9 @@ export type ApiMessagePayload =
   | GetProjectsMessagePayload
   | CreateTaskMessagePayload
   | GetTasksMessagePayload
+  | GetTaskByIdMessagePayload
+  | UpdateTaskMessagePayload
+;
 
 /**
  * The type described all available API response messages

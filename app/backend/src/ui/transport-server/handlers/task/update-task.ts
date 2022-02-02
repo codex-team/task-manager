@@ -1,19 +1,24 @@
-import { getTasks } from '../../../../db-methods/task/get-tasks';
 import { MessageHandler } from '../messageHandler';
 import { ApiResponse } from '../../../../../../types/transport';
+import { updateTask } from '../../../../db-methods/task/update-task';
+import { UpdateTaskMessagePayload } from '../../../../../../types/transport/requests/task/update-task';
 
 /**
- *
+ * Update task handler
  */
-export class GetTasks implements MessageHandler {
-  public type = 'get-tasks';
+export class UpdateTask implements MessageHandler {
+  public type = 'update-task';
 
   /**
    * @param payload - payload from message to parse
    */
-  public async handle(payload): Promise<ApiResponse['payload'] | void> {
+  public async handle(payload: UpdateTaskMessagePayload): Promise<ApiResponse['payload'] | void> {
     return {
-      tasks: await getTasks(payload.projectId),
+      task: await updateTask(
+        payload._id,
+        payload.text,
+        payload.orderScore
+      ),
     };
   }
 }

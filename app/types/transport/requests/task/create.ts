@@ -16,7 +16,6 @@ export interface CreateTaskMessagePayload {
    */
   projectId?: string;
 
-
   /**
    * Unique identifier of previous task (subtasks)
    */

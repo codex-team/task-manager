@@ -4,8 +4,8 @@ import TaskSchema from '../../database/models/task';
 /**
  * Creates new task
  *
- * @param text - text of a task
- * @param orderScore - task order score
+ * @param text - task's text
+ * @param orderScore - task's order score
  * @param [projectId] - task's project identifier
  * @param [parentId] - id of the parent task (for subtask)
  * @param [assignees] - an array of task assignees

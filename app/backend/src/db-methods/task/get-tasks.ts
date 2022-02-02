@@ -7,15 +7,16 @@ import TaskSchema from '../../database/models/task';
  * @param [projectId] - task's project identifier,
  */
 export async function getTasks(projectId?: string): Promise<Task[]> {
+  let filter = {};
+
   if (projectId) {
-    return TaskSchema
-      .find({ projectId: projectId })
-      .sort([ ['orderScore', -1] ])
-      .exec();
-  } else {
-    return TaskSchema
-      .find()
-      .sort([ ['orderScore', -1] ])
-      .exec();
+    filter = {
+      projectId: projectId,
+    };
   }
+
+  return TaskSchema
+    .find(filter)
+    .sort([ ['orderScore', -1] ])
+    .exec();
 }

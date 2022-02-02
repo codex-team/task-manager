@@ -1,14 +1,20 @@
 import Task from '../../../../types/entities/task';
 import TaskSchema from '../../database/models/task';
-import { UpdateTaskPayload } from '../../../../types/transport/requests/task/update-task';
 
 /**
  * Updates existing task
  *
- * @param data - task update params
+ * @param _id - task's identifier
+ * @param [text] - task's content
+ * @param [orderScore] - task's order rank
  */
-export async function updateTask(data: UpdateTaskPayload): Promise<Task | null> {
-  const query = { _id: data._id };
+export async function updateTask(_id: string, text?: string, orderScore?: number): Promise<Task | null> {
+  const query = { _id };
+  const data = {
+    _id,
+    text,
+    orderScore,
+  };
 
   return TaskSchema.findOneAndUpdate(query, data).exec();
 }
