@@ -1,5 +1,8 @@
 import { ApiRequest, ApiResponse } from '../../../../../types/transport';
 
+/**
+ * Interface for message handlers
+ */
 export interface MessageHandler {
   /**
    * Handler's type

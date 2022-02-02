@@ -7,7 +7,9 @@ import { MessageHandler } from './handlers/messageHandler';
 import { GetTaskById } from './handlers/task/get-task-by-id';
 import { UpdateTask } from './handlers/task/update-task';
 
-
+/**
+ * Map of message types and associated handlers
+ */
 const handlers = new Map<string, MessageHandler>([
   /** ./project */
   ['create-project', new CreateProject()],

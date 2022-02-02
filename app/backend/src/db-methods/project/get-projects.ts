@@ -4,7 +4,7 @@ import ProjectSchema from '../../database/models/project';
 /**
  * Returns list of stored projects
  *
- * @param workspaceId
+ * @param workspaceId - project's workspace id
  */
 export async function getProjects(workspaceId?: string): Promise<Project[]> {
   return ProjectSchema
