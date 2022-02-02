@@ -1,4 +1,4 @@
-import { ApiMessagePayload, ApiResponse } from '../../../../../types/transport';
+import { ApiRequest, ApiResponse } from '../../../../../types/transport';
 
 export interface MessageHandler {
   /**
@@ -11,5 +11,5 @@ export interface MessageHandler {
    *
    * @param payload - message's payload
    */
-  handle(payload: ApiMessagePayload): Promise<ApiResponse['payload'] | void>;
+  handle(payload: ApiRequest['payload']): Promise<ApiResponse['payload'] | void>;
 }

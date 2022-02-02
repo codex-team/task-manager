@@ -1,7 +1,7 @@
 import { MessageHandler } from '../messageHandler';
-import { ApiResponse } from '../../../../../../types/transport';
 import { getTaskById } from '../../../../db-methods/task/get-task-by-id';
 import { GetTaskByIdMessagePayload } from '../../../../../../types/transport/requests/task/get-task-by-id';
+import { GetTaskByIdResponsePayload } from '../../../../../../types/transport/responses/task/get-task-by-id';
 
 /**
  * Get task by id handler
@@ -12,7 +12,7 @@ export class GetTaskById implements MessageHandler {
   /**
    * @param payload - payload from message to parse
    */
-  public async handle(payload: GetTaskByIdMessagePayload): Promise<ApiResponse['payload'] | void> {
+  public async handle(payload: GetTaskByIdMessagePayload): Promise<GetTaskByIdResponsePayload> {
     return {
       task: await getTaskById(payload.taskId),
     };

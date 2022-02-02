@@ -6,7 +6,8 @@
 
 Message Dispatcher has a map of message types and their handlers.
 
-Each [handler](./handlers/messageHandler.ts) should have:
+Each handler should implement [messageHandler](./handlers/messageHandler.ts) interface
+with the following required fields:
 
 - `type` — type of messages to be processed by this handler;
 - `handle(payload)` — processor function which gets the payload from the message.
