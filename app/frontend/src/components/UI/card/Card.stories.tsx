@@ -7,11 +7,23 @@ export default {
 } as ComponentMeta<typeof Card>;
 
 const Template: ComponentStory<typeof Card> = (args) =>
-  <Card {...args}/>;
+  <Card { ...args }/>;
 
 export const WithTaskTitle = Template.bind({});
 WithTaskTitle.args = {
   taskTitle: 'My task',
+};
+
+export const WithProjectInfo = Template.bind({});
+WithProjectInfo.args = {
+  taskTitle: 'My task',
+  projectInfo: { title: 'Project title' },
+};
+
+export const WithStatus = Template.bind({});
+WithStatus.args = {
+  taskTitle: 'My task',
+  status: 'Unsorted',
 };
 
 export const WithTitleAndCompleteness = Template.bind({});

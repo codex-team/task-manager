@@ -10,10 +10,12 @@ export async function getTasks(projectId?: string): Promise<Task[]> {
   if (projectId) {
     return TaskSchema
       .find({ projectId: projectId })
+      .sort([ ['orderScore', -1] ])
       .exec();
   } else {
     return TaskSchema
       .find()
+      .sort([ ['orderScore', -1] ])
       .exec();
   }
 }

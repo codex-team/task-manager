@@ -11,8 +11,8 @@ export default {
 
 const Template: ComponentStory<typeof Sidebar> = (args) =>
   <Sidebar>
-    <SidebarHeader sidebarTitle={'CodeX App'}>
-      <SidebarTitle {...args}>
+    <SidebarHeader sidebarTitle={ 'CodeX App' }>
+      <SidebarTitle { ...args }>
       </SidebarTitle>
       <Button/>
     </SidebarHeader>

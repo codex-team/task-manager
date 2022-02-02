@@ -3,11 +3,16 @@ import React from 'react';
 /**
  * Icon component props
  */
-interface IconProps extends React.SVGProps<SVGSVGElement> {
+export interface IconProps extends React.SVGProps<SVGSVGElement> {
   /**
    * Name of the file containing svg icon
    */
   name: string;
+
+  /**
+   * CSS class name
+   */
+  className?: string
 }
 
 /**
@@ -39,7 +44,7 @@ const Icon: React.FC<IconProps> = ({ name, ...rest }): JSX.Element | null => {
   if (!loading && ImportedIconRef.current) {
     const { current: ImportedIcon } = ImportedIconRef;
 
-    return <ImportedIcon {...rest} />;
+    return <ImportedIcon { ...rest }/>;
   }
 
   return null;

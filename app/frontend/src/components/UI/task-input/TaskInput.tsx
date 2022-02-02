@@ -51,9 +51,9 @@ const TaskInput: React.FC<Props> = ({ placeholder, onChange }: Props) => {
         <StyledIcon name='plus' width={ 16 } height={ 16 }/>
       }
       <StyledInput
-        value={text}
+        value={ text }
         onChange={ setText }
-        placeholder={ placeholder }
+        placeholder={ !focused ? placeholder : '' }
         onKeyDown={ handleKeyDown }
         onFocus={ onFocus }
         onBlur={ onBlur }

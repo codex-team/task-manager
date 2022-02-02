@@ -13,6 +13,11 @@ export default interface Task {
   text: string;
 
   /**
+   * Order of the task when displayed in list of project tasks
+   */
+  orderScore: number;
+
+  /**
    * Task's project unique identity
    */
   projectId?: string;
@@ -31,5 +36,5 @@ export default interface Task {
    * Task's creation date (stored in the format: 'Day of the week Month Date Year HH:MM:SS GMT...)  '
    * (ex. Tue Dec 21 2021 18:09:02 GMT+0000 (Coordinated Universal Time))
    */
-  dateCreated?: string;
+  dateCreated: string;
 }

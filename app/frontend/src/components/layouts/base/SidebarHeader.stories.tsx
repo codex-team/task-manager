@@ -6,7 +6,7 @@ export default {
 } as ComponentMeta<typeof SidebarHeader>;
 
 const Template: ComponentStory<typeof SidebarHeader> = (args) =>
-  <SidebarHeader {...args}>
+  <SidebarHeader { ...args }>
   </SidebarHeader>;
 
 export const Header = Template.bind({});

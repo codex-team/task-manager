@@ -3,7 +3,10 @@ module.exports = {
     'codex/ts',
     'react-app',
     'react-app/jest',
+    'plugin:effector/recommended',
+    'plugin:effector/scope',
   ],
+  plugins: [ 'effector' ],
   overrides: [
     {
       'files': [
@@ -14,4 +17,9 @@ module.exports = {
       },
     },
   ],
+  rules: {
+    'key-spacing': ['error', { 'beforeColon': false } ],
+    'space-in-parens': [2, 'never'],
+    'react/jsx-curly-spacing': [2, 'always'],
+  },
 };

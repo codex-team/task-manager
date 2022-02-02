@@ -12,7 +12,7 @@ const ProjectLink: React.FC<LinkProps & ProjectListItemProps> = ({ children, to,
   const resolved = useResolvedPath(to);
   const match = useMatch({
     path: resolved.pathname,
-    end: true,
+    end: false,
   });
 
   return (
