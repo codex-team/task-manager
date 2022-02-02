@@ -6,7 +6,7 @@ import { CreateTaskResponsePayload } from '../../../../../../types/transport/res
 /**
  * Create task handler
  */
-export class CreateTask implements MessageHandler {
+export class CreateTaskHandler implements MessageHandler {
   public type = 'create-task';
 
   /**

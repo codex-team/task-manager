@@ -1,25 +1,25 @@
-import { CreateProject } from './handlers/project/create';
+import { CreateProjectHandler } from './handlers/project/create';
 import { ApiRequest, ApiResponse } from '../../../../types/transport';
-import { GetProjects } from './handlers/project/get-projects';
-import { GetTasks } from './handlers/task/get-tasks';
-import { CreateTask } from './handlers/task/create';
+import { GetProjectsHandler } from './handlers/project/get-projects';
+import { GetTasksHandler } from './handlers/task/get-tasks';
+import { CreateTaskHandler } from './handlers/task/create';
 import { MessageHandler } from './handlers/messageHandler';
-import { GetTaskById } from './handlers/task/get-task-by-id';
-import { UpdateTask } from './handlers/task/update-task';
+import { GetTaskByIdHandler } from './handlers/task/get-task-by-id';
+import { UpdateTaskHandler } from './handlers/task/update-task';
 
 /**
  * Map of message types and associated handlers
  */
 const handlers = new Map<string, MessageHandler>([
   /** ./project */
-  ['create-project', new CreateProject()],
-  ['get-projects', new GetProjects()],
+  ['create-project', new CreateProjectHandler()],
+  ['get-projects', new GetProjectsHandler()],
 
   /** ./task */
-  ['create-task', new CreateTask()],
-  ['get-task-by-id', new GetTaskById()],
-  ['get-tasks', new GetTasks()],
-  ['update-task', new UpdateTask()],
+  ['create-task', new CreateTaskHandler()],
+  ['get-task-by-id', new GetTaskByIdHandler()],
+  ['get-tasks', new GetTasksHandler()],
+  ['update-task', new UpdateTaskHandler()],
 ]);
 
 /**

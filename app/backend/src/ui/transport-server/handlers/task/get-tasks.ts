@@ -6,7 +6,7 @@ import { GetTasksResponsePayload } from '../../../../../../types/transport/respo
 /**
  * Get tasks handler
  */
-export class GetTasks implements MessageHandler {
+export class GetTasksHandler implements MessageHandler {
   public type = 'get-tasks';
 
   /**

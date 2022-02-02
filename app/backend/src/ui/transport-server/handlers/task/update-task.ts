@@ -6,7 +6,7 @@ import { UpdateTaskResponsePayload } from '../../../../../../types/transport/res
 /**
  * Update task handler
  */
-export class UpdateTask implements MessageHandler {
+export class UpdateTaskHandler implements MessageHandler {
   public type = 'update-task';
 
   /**

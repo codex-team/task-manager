@@ -6,7 +6,7 @@ import { CreateProjectResponsePayload } from '../../../../../../types/transport/
 /**
  * Create project handler
  */
-export class CreateProject implements MessageHandler {
+export class CreateProjectHandler implements MessageHandler {
   public type = 'create-project';
 
   /**

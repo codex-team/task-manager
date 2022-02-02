@@ -6,7 +6,7 @@ import { GetProjectsResponsePayload } from '../../../../../../types/transport/re
 /**
  * Get project handler
  */
-export class GetProjects implements MessageHandler {
+export class GetProjectsHandler implements MessageHandler {
   public type = 'get-projects';
 
   /**

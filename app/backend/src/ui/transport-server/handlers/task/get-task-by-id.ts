@@ -6,7 +6,7 @@ import { GetTaskByIdResponsePayload } from '../../../../../../types/transport/re
 /**
  * Get task by id handler
  */
-export class GetTaskById implements MessageHandler {
+export class GetTaskByIdHandler implements MessageHandler {
   public type = 'get-task-by-id';
 
   /**
