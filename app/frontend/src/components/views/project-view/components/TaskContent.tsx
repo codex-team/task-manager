@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import EditorJS, { OutputData } from '@editorjs/editorjs';
 import EditorJSComponent from 'components/UI/editor/EditorJSComponent';
 import { updateTask } from 'services/tasks';
+import SaveIndicator from 'components/views/project-view/components/SaveIndicator';
 
 
 /**
@@ -26,18 +27,31 @@ interface Props {
  * @param data - data for editor
  */
 const TaskContent: React.FC<Props> = ({ data, id }) => {
+  const [isShow, setIsShow] = useState<boolean>(false);
+
   const changeTask = async (editor: EditorJS): Promise<void> => {
+    const time = 500;
     const res = await editor.save();
     const block = JSON.stringify(res);
 
-    await updateTask({ _id: id,
-      text: block });
+    try {
+      const result = await updateTask({ _id: id,
+        text: block });
+
+      if (result) {
+        setIsShow(true);
+        setTimeout(setIsShow.bind(false), time);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <TaskContentStyled>
       { data &&
         <EditorJSComponent data={ data } onDataChange={ changeTask }/> }
+      <SaveIndicator isShow={ isShow }/>
     </TaskContentStyled>
   );
 };
