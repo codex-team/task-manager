@@ -26,16 +26,12 @@ interface Props {
  * @param data - data for editor
  */
 const TaskContent: React.FC<Props> = ({ data, id }) => {
-  const changeTask = (editor: EditorJS): void => {
-    const exec = async ():Promise<void> => {
-      const res = await editor.save();
-      const block = JSON.stringify(res);
+  const changeTask = async (editor: EditorJS): Promise<void> => {
+    const res = await editor.save();
+    const block = JSON.stringify(res);
 
-      await updateTask({ _id: id,
-        text: block });
-    };
-
-    exec();
+    await updateTask({ _id: id,
+      text: block });
   };
 
   return (

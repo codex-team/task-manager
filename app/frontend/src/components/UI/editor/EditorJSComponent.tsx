@@ -37,7 +37,7 @@ const EditorJSComponent: React.FC<Props> = ({ data, onDataChange }) => {
   }, [ data ]);
 
   return (
-    <div id={ 'editorjs' }/>
+    <div id="editorjs"/>
   );
 };
 
