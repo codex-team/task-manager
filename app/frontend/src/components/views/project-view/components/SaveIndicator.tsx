@@ -27,7 +27,7 @@ const SaveIndicator: React.FC<Props> = ({ isShow }) => {
 /**
  * Indicator styled
  *
- * @param props - props for component
+ * @param props
  */
 const StyledIndicator = styled.div<Props>`
   opacity: 0;
