@@ -4,6 +4,7 @@ import EditorJS, { OutputData } from '@editorjs/editorjs';
 import EditorJSComponent from 'components/UI/editor/EditorJSComponent';
 import { updateTask } from 'services/tasks';
 import SaveIndicator from 'components/views/project-view/components/SaveIndicator';
+import { throttle } from 'lodash';
 
 
 /**
@@ -47,10 +48,16 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
     }
   };
 
+  const time = 5000;
+
+  const throttledChange = throttle(async (editor:EditorJS) => {
+    changeTask(editor);
+  }, time);
+
   return (
     <TaskContentStyled>
       { data &&
-        <EditorJSComponent data={ data } onDataChange={ changeTask }/> }
+        <EditorJSComponent data={ data } onDataChange={ throttledChange }/> }
       <SaveIndicator isShow={ isShow }/>
     </TaskContentStyled>
   );

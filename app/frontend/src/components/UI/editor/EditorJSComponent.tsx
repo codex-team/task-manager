@@ -3,6 +3,7 @@ import { EDITOR_JS_TOOLS, EDITOR_JS_COMPONENT } from 'tools';
 import EditorJS from '@editorjs/editorjs';
 import { OutputData } from '@editorjs/editorjs';
 
+
 /**
  * Interface for editor js component props
  */
