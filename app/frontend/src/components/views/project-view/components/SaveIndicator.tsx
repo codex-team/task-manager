@@ -12,10 +12,9 @@ interface Props {
 }
 
 /**
- * Editor js component
+ * Indicator component
  *
- * @param Props.data - data for editor
- * @param Props.changeData - function for editor OnChange
+ * @param Props.isShow - isIndicator shows
  */
 const SaveIndicator: React.FC<Props> = ({ isShow }) => {
   return (
@@ -25,6 +24,9 @@ const SaveIndicator: React.FC<Props> = ({ isShow }) => {
   );
 };
 
+/**
+ * Indicator styled
+ */
 const StyledIndicator = styled.div<Props>`
   opacity: 0;
 ${props => props.isShow && css`
