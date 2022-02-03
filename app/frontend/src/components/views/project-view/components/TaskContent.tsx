@@ -41,7 +41,7 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
   return (
     <TaskContentStyled>
       { data &&
-        <EditorJSComponent data={ data } changeData={ changeTask }/> }
+        <EditorJSComponent data={ data } onDataChange={ changeTask }/> }
     </TaskContentStyled>
   );
 };

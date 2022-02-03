@@ -15,7 +15,7 @@ interface Props {
   /**
    * When data changes
    */
-  changeData: (editor: EditorJS) => void;
+  onDataChange: (editor: EditorJS) => void;
 }
 
 /**
@@ -24,14 +24,14 @@ interface Props {
  * @param Props.data - data for editor
  * @param Props.changeData - function for editor OnChange
  */
-const EditorJSComponent: React.FC<Props> = ({ data, changeData }) => {
+const EditorJSComponent: React.FC<Props> = ({ data, onDataChange }) => {
   useEffect(() => {
     const editor = new EditorJS({
       holder: 'editorjs',
       tools: EDITOR_JS_TOOLS,
       data: data,
       onChange: () => {
-        changeData(editor);
+        onDataChange(editor);
       },
     });
   }, [ data ]);
