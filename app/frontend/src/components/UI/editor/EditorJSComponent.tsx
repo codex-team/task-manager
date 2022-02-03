@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { EDITOR_JS_TOOLS } from 'tools';
+import { EDITOR_JS_TOOLS, EDITOR_JS_COMPONENT } from 'tools';
 import EditorJS from '@editorjs/editorjs';
 import { OutputData } from '@editorjs/editorjs';
 
@@ -37,7 +37,7 @@ const EditorJSComponent: React.FC<Props> = ({ data, onDataChange }) => {
   }, [ data ]);
 
   return (
-    <div id="editorjs"/>
+    <div id={ EDITOR_JS_COMPONENT }/>
   );
 };
 
