@@ -30,7 +30,8 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
     const res = await editor.save();
     const block = JSON.stringify(res);
 
-    await updateTask({ _id: id, text: block });
+    await updateTask({ _id: id,
+      text: block });
   };
 
   return (
