@@ -39,11 +39,11 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
   const changeTask = async (editor: EditorJS): Promise<void> => {
     const time = 500;
     const res = await editor.save();
-    const block = JSON.stringify(res);
+    const text = JSON.stringify(res);
 
     try {
       const result = await updateTask({ _id: id,
-        text: block });
+        text: text });
 
       if (result) {
         setIsIndicatorVisible(true);
