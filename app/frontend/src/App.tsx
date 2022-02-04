@@ -10,6 +10,7 @@ import {
   Route
 } from 'react-router-dom';
 import ProjectList from 'components/UI/project-list/ProjectList';
+import Sprite from 'components/UI/sprite/Sprite';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
 import ProjectView from 'components/views/project-view/ProjectView';
 import { Link } from 'react-router-dom';
@@ -57,6 +58,7 @@ function App(): React.ReactElement {
           <Route path="projects/:id/*" element={ <ProjectView /> } />
         </Route>
       </Routes>
+      <Sprite />
     </Container>
   );
 }
