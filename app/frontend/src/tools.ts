@@ -6,4 +6,4 @@ export const EDITOR_JS_TOOLS = {
   header: Header,
 };
 
-export const EDITOR_JS_COMPONENT = 'editorjs';
+export const EDITOR_JS_HOLDER_NAME = 'editorjs';
