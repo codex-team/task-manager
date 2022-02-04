@@ -6,9 +6,9 @@ import styled, { css } from 'styled-components';
  */
 interface Props {
   /**
-   * Is indicator shows
+   * Is indicator visible
    */
-  isShow: boolean;
+  isVisible: boolean;
 }
 
 /**
@@ -16,9 +16,9 @@ interface Props {
  *
  * @param Props.isShow - isIndicator shows
  */
-const SaveIndicator: React.FC<Props> = ({ isShow }) => {
+const SaveIndicator: React.FC<Props> = ({ isVisible }) => {
   return (
-    <StyledIndicator isShow={ isShow }>
+    <StyledIndicator isVisible={ isVisible }>
       Saved
     </StyledIndicator>
   );
@@ -31,7 +31,7 @@ const SaveIndicator: React.FC<Props> = ({ isShow }) => {
  */
 const StyledIndicator = styled.div<Props>`
   opacity: 0;
-${props => props.isShow && css`
+${props => props.isVisible && css`
   opacity: 0.5;
   color: var(--color-text-secondary);
   margin-top: 0;

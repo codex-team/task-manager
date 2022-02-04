@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {EDITOR_JS_TOOLS, EDITOR_JS_HOLDER_NAME} from 'tools';
+import { EDITOR_JS_TOOLS, EDITOR_JS_HOLDER_NAME } from 'tools';
 import EditorJS from '@editorjs/editorjs';
 import { OutputData } from '@editorjs/editorjs';
 

@@ -4,7 +4,7 @@ import EditorJS, { OutputData } from '@editorjs/editorjs';
 import EditorJSComponent from 'components/UI/editor/EditorJSComponent';
 import { updateTask } from 'services/tasks';
 import SaveIndicator from 'components/views/project-view/components/SaveIndicator';
-import { throttle } from 'lodash';
+import { debounce } from 'lodash';
 
 
 /**
@@ -25,10 +25,11 @@ interface Props {
 /**
  * Task content component
  *
- * @param data - data for editor
+ * @param Props.data - data for editor
+ * @param Props.id - task id to change data
  */
 const TaskContent: React.FC<Props> = ({ data, id }) => {
-  const [isShow, setIsShow] = useState<boolean>(false);
+  const [isIndicatorVisible, setIsIndicatorVisible] = useState<boolean>(false);
 
   /**
    * Changes task data
@@ -45,25 +46,25 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
         text: block });
 
       if (result) {
-        setIsShow(true);
-        setTimeout(setIsShow.bind(false), time);
+        setIsIndicatorVisible(true);
+        setTimeout(setIsIndicatorVisible.bind(false), time);
       }
     } catch (err) {
       console.log(err);
     }
   };
 
-  const time = 5000;
+  const timeForDebouncing = 1000;
 
-  const throttledChange = throttle(async (editor:EditorJS) => {
+  const debouncedChange = debounce(async (editor:EditorJS) => {
     changeTask(editor);
-  }, time);
+  }, timeForDebouncing);
 
   return (
     <TaskContentStyled>
       { data &&
-        <EditorJSComponent data={ data } onDataChange={ throttledChange }/> }
-      <SaveIndicator isShow={ isShow }/>
+        <EditorJSComponent data={ data } onDataChange={ debouncedChange }/> }
+      <SaveIndicator isVisible={ isIndicatorVisible }/>
     </TaskContentStyled>
   );
 };
