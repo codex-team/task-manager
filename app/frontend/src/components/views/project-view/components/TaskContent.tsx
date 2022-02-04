@@ -65,7 +65,8 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
   return (
     <TaskContentStyled>
       { data &&
-        <EditorJSComponent data={ data } onDataChange={ debouncedChange }/> }
+        <EditorJSComponent data={ data } onDataChange={ debouncedChange }/>
+      }
       <SaveIndicator isVisible={ isIndicatorVisible }/>
     </TaskContentStyled>
   );
