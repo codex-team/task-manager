@@ -44,7 +44,8 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
     try {
       const result = await updateTask({
          _id: id,
-        text: text });
+        text: text
+      });
 
       if (result) {
         setIsIndicatorVisible(true);
