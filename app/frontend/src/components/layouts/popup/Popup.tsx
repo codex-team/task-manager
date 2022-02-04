@@ -51,6 +51,7 @@ const Popup: React.FC<Props> = ({ children, backDropClick }) => {
  * Styled popup component
  */
 const PopupStyled = styled.div`
+  cursor: pointer;
   z-index: 2;
   padding-top: 20px;
   padding-bottom: 50px;

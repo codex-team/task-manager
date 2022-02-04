@@ -5,3 +5,5 @@ export const EDITOR_JS_TOOLS = {
   paragraph: Paragraph,
   header: Header,
 };
+
+export const EDITOR_JS_HOLDER_NAME = 'editorjs';
