@@ -30,6 +30,11 @@ interface Props {
 const TaskContent: React.FC<Props> = ({ data, id }) => {
   const [isShow, setIsShow] = useState<boolean>(false);
 
+  /**
+   * Changes task data
+   *
+   * @param editor - editor js to get changed data
+   */
   const changeTask = async (editor: EditorJS): Promise<void> => {
     const time = 500;
     const res = await editor.save();
