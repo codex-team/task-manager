@@ -11,11 +11,13 @@ import React from 'react';
 import HomeIcon from '!!raw-loader!icons/home.svg';
 import DefaultAvatar from '!!raw-loader!icons/DefaultAvatar.svg';
 import PlusIcon from '!!raw-loader!icons/plus.svg';
+import SettingsIcon from '!!raw-loader!icons/settings.svg';
 
 const icons = {
   'home': HomeIcon,
   'DefaultAvatar': DefaultAvatar,
   'plus': PlusIcon,
+  'settings': SettingsIcon,
 };
 
 export const viewBoxes = new Map();
