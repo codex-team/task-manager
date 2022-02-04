@@ -1,3 +1,4 @@
+/* eslint-disable import/no-webpack-loader-syntax */
 import React from 'react';
 
 /**
@@ -7,11 +8,8 @@ import React from 'react';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 // import icons from '!!raw-loader!icons/*.svg';
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
 import HomeIcon from '!!raw-loader!icons/home.svg';
-// eslint-disable-next-line import/no-webpack-loader-syntax
 import DefaultAvatar from '!!raw-loader!icons/DefaultAvatar.svg';
-// eslint-disable-next-line import/no-webpack-loader-syntax
 import PlusIcon from '!!raw-loader!icons/plus.svg';
 
 const icons = {
@@ -22,9 +20,6 @@ const icons = {
 
 export const viewBoxes = new Map();
 
-
-// Do not use RegEx to parse XML
-// const getViewBox = (xml) => xml?.match(/viewBox="((\d+(.\d+)? ?)+)"/)?.[1]
 const getViewBox = (xml:string):string => {
   const doc = new DOMParser().parseFromString(xml, 'text/html');
 
@@ -33,8 +28,7 @@ const getViewBox = (xml:string):string => {
 
 const xmlns = 'http://www.w3.org/2000/svg';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const __html = Object.entries(icons)
+const html = Object.entries(icons)
   .map(([name, icon]) => {
     viewBoxes.set(name, getViewBox(icon));
 
@@ -45,6 +39,6 @@ const __html = Object.entries(icons)
   .join('');
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-const Sprite: React.FC = () => <svg xmlns={ xmlns } display="none" dangerouslySetInnerHTML={ { __html } } />;
+const Sprite: React.FC = () => <svg xmlns={ xmlns } display="none" dangerouslySetInnerHTML={ { __html: html } } />;
 
 export default Sprite;
