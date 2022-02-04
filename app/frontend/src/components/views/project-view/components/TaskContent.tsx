@@ -43,8 +43,8 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
 
     try {
       const result = await updateTask({
-         _id: id,
-        text: text
+        _id: id,
+        text: text,
       });
 
       if (result) {
