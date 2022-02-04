@@ -42,7 +42,8 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
     const text = JSON.stringify(res);
 
     try {
-      const result = await updateTask({ _id: id,
+      const result = await updateTask({
+         _id: id,
         text: text });
 
       if (result) {
