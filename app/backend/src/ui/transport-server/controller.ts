@@ -5,6 +5,11 @@ import { createTask } from '../methods/task/create';
 import { getTasks } from '../methods/task/get-tasks';
 import { getTaskById } from '../methods/task/get-task-by-id';
 import { updateTask } from '../methods/task/update-task';
+import { createTeammate } from '../methods/teammate/create';
+import { getTeammates } from '../methods/teammate/get-teammates';
+import { getTeammateById } from '../methods/teammate/get-teammate-by-id';
+import { updateTeammate } from '../methods/teammate/update-teammate';
+import { removeTeammateById } from '../methods/teammate/remove-teammate-by-id';
 
 /**
  * Handles CTProto messages
@@ -41,5 +46,22 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     case 'update-task': return {
       task: await updateTask(message.payload),
     };
+    case 'create-teammate': return {
+      teammate: await createTeammate(
+        message.payload.name,
+        message.payload.photo,
+        message.payload.contacts
+      ),
+    };
+    case 'get-teammates': return {
+      teammates: await getTeammates(message.payload.workspaceId),
+    };
+    case 'get-teammate-by-id': return {
+      teammate: await getTeammateById(message.payload.teammateId),
+    };
+    case 'update-teammate': return {
+      teammate: await updateTeammate(message.payload),
+    };
+    case 'remove-teammate-by-id': return await removeTeammateById(message.payload.teammateId);
   }
 }
