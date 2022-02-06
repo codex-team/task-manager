@@ -3,7 +3,7 @@ import React from 'react';
 
 /**
  * Icons must be imported separately because some of them may not be used in application
- * otherwise try to use use following syntax:
+ * otherwise try to use following syntax:
  */
 // eslint-disable-next-line import/no-webpack-loader-syntax
 // import icons from '!!raw-loader!icons/*.svg';
