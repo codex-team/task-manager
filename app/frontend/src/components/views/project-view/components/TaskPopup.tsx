@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getTaskById } from 'services/tasks';
 import { useStore } from 'effector-react';
-import { $projects } from 'store/projects';
+import { $projects, $selectedProject, projectSelected } from 'store/projects';
 import TaskContent from 'components/views/project-view/components/TaskContent';
 import TaskInfo from 'components/views/project-view/components/TaskInfo';
 
@@ -17,6 +17,7 @@ const TaskPopup: React.FC = () => {
   const navigate = useNavigate();
   const params = useParams();
   const projects = useStore($projects);
+  const selectedProject = useStore($selectedProject);
 
   const id = params.task_id;
 
@@ -56,12 +57,19 @@ const TaskPopup: React.FC = () => {
       return;
     }
 
-    const projectId = task.projectId;
-    const currentProject = projects.find((project) => projectId === project._id);
+    if (!selectedProject) {
+      const projectId = task.projectId;
+      const currentProject = projects.find((project) => projectId === project._id);
 
-    setProjectTitle(currentProject?.title || null);
+      if (currentProject) {
+        projectSelected(currentProject);
+      }
+    }
+
+
+    setProjectTitle(selectedProject?.title || null);
   }
-  , [projects, task]);
+  , [projects, task, selectedProject]);
 
   return (
     <PopupWrapper backDropClick={ onClose } isPopupVisible={ true }>
