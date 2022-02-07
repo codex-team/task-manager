@@ -25,11 +25,6 @@ export default interface Task {
   statusId?: string;
 
   /**
-   * Task status object
-   */
-  status?: Status|null;
-
-  /**
    * Task's project unique identity
    */
   projectId?: string;

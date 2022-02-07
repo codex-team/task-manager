@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Select from 'components/UI/select/Select';
 import { formatDate } from 'helpers/helpers';
 import Task from 'types/entities/task';
 import { updateTaskFx } from 'store/tasks';
-import { useStore, useStoreMap } from 'effector-react';
-import { $statuses, getStatusesFx } from 'store/statuses';
+import { useStoreMap } from 'effector-react';
 import { $selectedProject } from 'store/projects';
 
 /**
@@ -38,25 +37,21 @@ interface Props {
  * @param Props.task - current task
  */
 const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
-  const selectedProject = useStore($selectedProject);
   const statusesOptions = useStoreMap(
-    $statuses,
-    (state) => [
-      EMPTY_STATUS_OPTION,
-      ...state.map(item => ({
-        label: item.label,
-        value: item._id,
-      })),
-    ]
-  );
+    $selectedProject,
+    (state) => {
+      if (!state?.taskStatuses) {
+        return [ EMPTY_STATUS_OPTION ];
+      }
 
-  useEffect(() => {
-    // Handle case when task popup in opened from 'All projects' list view
-    // and there is no saved selected project and statuses data in store
-    if (!selectedProject && task.projectId) {
-      getStatusesFx(task.projectId);
-    }
-  }, [task, selectedProject]);
+      return [
+        EMPTY_STATUS_OPTION,
+        ...state.taskStatuses.map(item => ({
+          label: item.label,
+          value: item._id,
+        })),
+      ];
+    });
 
   /**
    * Handles status change

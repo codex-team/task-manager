@@ -78,6 +78,19 @@ const ProjectView: React.FC<Props> = () => {
     });
   };
 
+  /**
+   * Returns label of task status.
+   *
+   * @param task - task that needs label displayed
+   */
+  const getTaskStatusLabel = (task: Task): string|undefined => {
+    if (!currentProject) {
+      return;
+    }
+
+    return currentProject.taskStatuses?.find(status => status._id === task.statusId)?.label;
+  };
+
   return (
     <Wrapper>
       <Routes>
@@ -104,7 +117,7 @@ const ProjectView: React.FC<Props> = () => {
                       key={ task._id }
                       taskTitle={ getTaskTitle(task.text) }
                       projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
-                      status={ task.status?.label }
+                      status={ getTaskStatusLabel(task) }
                       ref={ draggableProvided.innerRef }
                     />
                   )}
