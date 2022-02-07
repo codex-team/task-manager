@@ -1,22 +1,24 @@
+import { Status } from '../../../../types/entities';
 import mongoose from '../index';
-import { StatusDocument, StatusModel } from '../interfaces/status';
 
 /**
  * Status schema
  */
-const StatusSchema: mongoose.Schema<StatusDocument> = new mongoose.Schema ({
+const StatusSchema: mongoose.Schema<Status> = new mongoose.Schema({
   /**
    * Status label
    */
   label: {
     type: mongoose.Schema.Types.String,
+    required: true,
   },
   /**
    * Status's project id
    */
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Project',
+    ref: 'ProjectSchema',
+    required: true,
   },
   /**
    * Tasks with this status
@@ -27,4 +29,4 @@ const StatusSchema: mongoose.Schema<StatusDocument> = new mongoose.Schema ({
   } ],
 });
 
-export default mongoose.model<StatusDocument, StatusModel>('Status', StatusSchema);
+export default mongoose.model<Status>('Status', StatusSchema, 'statuses');

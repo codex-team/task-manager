@@ -1,3 +1,5 @@
+import { Status } from ".";
+
 /**
  * This interface represents the Task entity
  */
@@ -16,6 +18,11 @@ export default interface Task {
    * Order of the task when displayed in list of project tasks
    */
   orderScore: number;
+
+  /**
+   * Id of task status
+   */
+  statusId?: string;
 
   /**
    * Task's project unique identity

@@ -3,6 +3,17 @@ import styled from 'styled-components';
 import Select from 'components/UI/select/Select';
 import { formatDate } from 'helpers/helpers';
 import Task from 'types/entities/task';
+import { updateTaskFx } from 'store/tasks';
+import { useStoreMap } from 'effector-react';
+import { $selectedProject } from 'store/projects';
+
+/**
+ * Status option representing absence of status
+ */
+const EMPTY_STATUS_OPTION = {
+  label: 'Unsorted',
+  value: null,
+};
 
 /**
  * Interface for task info component props
@@ -14,9 +25,9 @@ interface Props {
   projectTitle: string | null;
 
   /**
-   * Task to show info
+   * Task data
    */
-  task: Task | null;
+  task: Task;
 }
 
 /**
@@ -26,6 +37,38 @@ interface Props {
  * @param Props.task - current task
  */
 const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
+  const statusesOptions = useStoreMap(
+    $selectedProject,
+    (state) => {
+      if (!state?.taskStatuses) {
+        return [ EMPTY_STATUS_OPTION ];
+      }
+
+      return [
+        EMPTY_STATUS_OPTION,
+        ...state.taskStatuses.map(item => ({
+          label: item.label,
+          value: item._id,
+        })),
+      ];
+    });
+
+  /**
+   * Handles status change
+   *
+   * @param value - new status value
+   */
+  const onStatusChange = async (value: string|number|null|undefined): Promise<void> => {
+    try {
+      updateTaskFx({
+        _id: task._id,
+        statusId: value as string,
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <TaskInfoStyled>
       <StatusTitle>
@@ -35,7 +78,12 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
       <StatusTitle>
         Status
       </StatusTitle>
-      <Select onChange={ onChange } options={ [] }/>
+      <Select
+        onChange={ onStatusChange }
+        options={ statusesOptions }
+        value={ task?.statusId }
+        initialOption={ statusesOptions.find(option => option.value === task?.statusId) }
+        placeholder='Unsorted'/>
       <StatusTitle>
         Creation date
       </StatusTitle>

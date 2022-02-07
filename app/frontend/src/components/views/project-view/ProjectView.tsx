@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import { Route, Routes, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ProjectHeader from './components/ProjectHeader';
 import TaskInput from 'components/UI/task-input/TaskInput';
-import { getTasks, createTask, updateTask } from 'services/tasks';
-import Task from 'types/entities/task';
 import { useStore } from 'effector-react';
 import { $projects } from 'store/projects';
 import CardLink from 'components/views/project-view/components/CardLink';
 import TaskPopup from 'components/views/project-view/components/TaskPopup';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { getOrderScoreDesc } from 'helpers/get-order-score';
+import { Task } from 'types/entities';
+import { $tasks, createTaskFx, getTasksFx, listUpdated, updateTaskFx } from 'store/tasks';
 
 /**
  * Props of the component
@@ -22,51 +22,38 @@ interface Props { }
  */
 const ProjectView: React.FC<Props> = () => {
   const params = useParams();
-  const [tasksList, setTasksList] = useState<Task[]>([]);
   const projects = useStore($projects);
+  const tasksList = useStore($tasks);
   const currentProject = projects.find((project) => params.id === project._id);
   const title = currentProject?.title || 'All projects';
 
-  useEffect(() => {
-    (async function fetchTasks() {
-      try {
-        const { tasks } = await getTasks(params.id ? { projectId: params.id } : {});
 
-        setTasksList(tasks);
-      } catch (e) {
-        console.error(e);
-      }
-    })();
+  useEffect(() => {
+    getTasksFx(params.id ? { projectId: params.id } : {});
   }, [ params.id ]);
 
   const createNewTask = async (value: string): Promise<void> => {
-    try {
-      const taskContent = {
-        blocks: [
-          {
-            type: 'header',
-            data: {
-              text: value,
-              level: 1,
-            },
+    const taskContent = {
+      blocks: [
+        {
+          type: 'header',
+          data: {
+            text: value,
+            level: 1,
           },
-        ],
-      };
+        },
+      ],
+    };
 
-      /* eslint-disable @typescript-eslint/no-magic-numbers */
-      const newTaskOrderScore = !tasksList.length ? 1 : (tasksList[0].orderScore + 1);
-      /* eslint-enable @typescript-eslint/no-magic-numbers */
+    /* eslint-disable @typescript-eslint/no-magic-numbers */
+    const newTaskOrderScore = !tasksList.length ? 1 : (tasksList[0].orderScore + 1);
+    /* eslint-enable @typescript-eslint/no-magic-numbers */
 
-      const { task } = await createTask({
-        text: JSON.stringify(taskContent),
-        projectId: params.id,
-        orderScore: newTaskOrderScore,
-      });
-
-      setTasksList([task, ...tasksList]);
-    } catch (e) {
-      console.error(e);
-    }
+    createTaskFx({
+      text: JSON.stringify(taskContent),
+      projectId: params.id,
+      orderScore: newTaskOrderScore,
+    });
   };
 
   const onDragEnd = async (result: DropResult): Promise<void> => {
@@ -76,6 +63,7 @@ const ProjectView: React.FC<Props> = () => {
       return;
     }
     const orderScore = getOrderScoreDesc(tasksList, destination.index, source.index);
+
     const task = tasksList.find(t => t._id === draggableId);
     const updatedTasksList = tasksList.filter(t => t._id !== draggableId);
 
@@ -83,11 +71,24 @@ const ProjectView: React.FC<Props> = () => {
       ...task as Task,
       orderScore,
     });
-    setTasksList(updatedTasksList);
-    await updateTask({
+    listUpdated(updatedTasksList);
+    updateTaskFx({
       _id: draggableId,
       orderScore,
     });
+  };
+
+  /**
+   * Returns label of task status.
+   *
+   * @param task - task that needs label displayed
+   */
+  const getTaskStatusLabel = (task: Task): string|undefined => {
+    if (!currentProject) {
+      return;
+    }
+
+    return currentProject.taskStatuses?.find(status => status._id === task.statusId)?.label;
   };
 
   return (
@@ -116,7 +117,7 @@ const ProjectView: React.FC<Props> = () => {
                       key={ task._id }
                       taskTitle={ getTaskTitle(task.text) }
                       projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
-                      status='Unsorted'
+                      status={ getTaskStatusLabel(task) }
                       ref={ draggableProvided.innerRef }
                     />
                   )}

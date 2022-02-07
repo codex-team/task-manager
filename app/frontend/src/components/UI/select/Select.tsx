@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { UiComponentText } from 'styles/Mixins';
 import Icon from 'components/UI/icon/Icon';
-import { KeyboardEvent, useRef, useState } from 'react';
+import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import Dropdown from 'components/UI/dropdown/Dropdown';
 import { DropdownItem } from 'components/UI/dropdown/DropdownItem';
 import { useOutsideClickHandler } from 'helpers/outside-click';
@@ -13,12 +13,12 @@ interface Props {
   /**
    * Selected value
    */
-  value?: number|string
+  value?: number|string|null
 
   /**
    * Value change callback
    */
-  onChange: (value: number|string|undefined) => void
+  onChange: (value: number|string|null|undefined) => void
 
   /**
    * Select placeholder
@@ -29,6 +29,11 @@ interface Props {
    * Select options
    */
   options: DropdownItem[]
+
+  /**
+   * Label and other data for initially selected value
+   */
+  initialOption?: DropdownItem
 }
 
 /**
@@ -41,6 +46,10 @@ const Select: React.FC<Props> = (props: Props) => {
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(-1);
   const [selectedOption, setSelectedOption] = useState<DropdownItem|undefined>();
   const ref = useRef(null);
+
+  useEffect(() => {
+    setSelectedOption(props.initialOption);
+  }, [ props.initialOption ]);
 
   useOutsideClickHandler(ref, () => {
     close();

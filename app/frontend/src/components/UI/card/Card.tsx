@@ -76,11 +76,9 @@ const Card: React.FC<Props> = (props) => {
           </Progress>
         }
       </TaskInfo>
-      { props.status &&
-        <Status>
-          { props.status }
-        </Status>
-      }
+      <Status>
+        { props.status || 'Unsorted' }
+      </Status>
       <Assignees>
         <Icon name='DefaultAvatar' width={ 18 } height={ 18 }/>
         { (isShownAssigneesNumber && props.assigneesNumber) &&

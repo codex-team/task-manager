@@ -5,6 +5,7 @@ import { createTask } from '../methods/task/create';
 import { getTasks } from '../methods/task/get-tasks';
 import { getTaskById } from '../methods/task/get-task-by-id';
 import { updateTask } from '../methods/task/update-task';
+import { getStatuses } from '../methods/statuses/get-statuses';
 import { createTeammate } from '../methods/teammate/create';
 import { getTeammates } from '../methods/teammate/get-teammates';
 import { getTeammateById } from '../methods/teammate/get-teammate-by-id';
@@ -45,6 +46,9 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     ;
     case 'update-task': return {
       task: await updateTask(message.payload),
+    };
+    case 'get-statuses': return {
+      statuses: await getStatuses(message.payload.projectId),
     };
     case 'create-teammate': return {
       teammate: await createTeammate(

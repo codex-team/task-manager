@@ -15,7 +15,7 @@ interface Props {
   /**
    * Value of selected item
    */
-  selectedValue?: number|string
+  selectedValue?: number|string|null
 
   /**
    * Index of item to be highlighted
@@ -53,6 +53,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
  * Wrapper styled component
  */
 const Wrapper = styled.ul`
+  background: var(--color-bg-main);
   border: 1px solid var(--color-line);
   border-radius: 12px;
   padding: 5px;

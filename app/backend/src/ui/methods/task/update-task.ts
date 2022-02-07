@@ -10,5 +10,5 @@ import TaskModel from '../../../database/models/task';
 export async function updateTask(data: UpdateTaskPayload): Promise<Task | null> {
   const query = { _id: data._id };
 
-  return TaskModel.findOneAndUpdate(query, data).exec();
+  return TaskModel.findOneAndUpdate(query, data, { new: true }).exec();
 }
