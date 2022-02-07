@@ -50,6 +50,7 @@ const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema({
    */
   assignees: [ {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'TeammateSchema',
   } ],
 
   /**

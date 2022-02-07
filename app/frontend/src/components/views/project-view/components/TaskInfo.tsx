@@ -20,7 +20,14 @@ const EMPTY_STATUS_OPTION = {
  * Interface for task info component props
  */
 interface Props {
+  /**
+   * Title of the task project
+   */
   projectTitle: string | null;
+
+  /**
+   * Task data
+   */
   task: Task;
 }
 
@@ -31,7 +38,6 @@ interface Props {
  * @param Props.task - current task
  */
 const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
-  const statuses = useStore($statuses);
   const selectedProject = useStore($selectedProject);
   const statusesOptions = useStoreMap(
     $statuses,

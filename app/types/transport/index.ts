@@ -15,6 +15,14 @@ import UpdateTaskMessage from './requests/task/update-task';
 import UpdateTaskResponse from './responses/task/update-task'
 import GetStatusesMessage from './requests/status/get-statuses'
 import GetStatusesResponse from './responses/status/get-statuses'
+import CreateTeammateMessage from "./requests/teammate/create";
+import GetTeammatesMessage from "./requests/teammate/get-teammates";
+import GetTeammateByIdMessage from "./requests/teammate/get-teammate-by-id";
+import UpdateTeammateMessage from "./requests/teammate/update-teammate";
+import GetTeammatesResponse from "./responses/teammate/get-teammates";
+import GetTeammateByIdResponse from "./responses/teammate/get-teammate-by-id";
+import UpdateTeammateResponse from "./responses/teammate/update-teammate";
+import RemoveTeammateByIdMessage from "./requests/teammate/remove-teammate-by-id";
 
 /**
  * The type described all available outgoing messages that can be sent by API
@@ -34,6 +42,11 @@ export type ApiRequest =
   | GetTaskByIdMessage
   | UpdateTaskMessage
   | GetStatusesMessage
+  | CreateTeammateMessage
+  | GetTeammatesMessage
+  | GetTeammateByIdMessage
+  | UpdateTeammateMessage
+  | RemoveTeammateByIdMessage
 ;
 
 /**
@@ -48,4 +61,7 @@ export type ApiResponse =
   | GetTaskByIdResponse
   | UpdateTaskResponse
   | GetStatusesResponse
+  | GetTeammatesResponse
+  | GetTeammateByIdResponse
+  | UpdateTeammateResponse
 ;

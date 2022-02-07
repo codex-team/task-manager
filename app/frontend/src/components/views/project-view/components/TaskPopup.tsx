@@ -21,7 +21,7 @@ const TaskPopup: React.FC = () => {
   const id = params.task_id;
 
   const onClose = (): void => {
-    navigate(-1);
+    navigate('../');
   };
 
   const [task, setTask] = useState<Task | null>(null);
@@ -65,12 +65,12 @@ const TaskPopup: React.FC = () => {
 
   return (
     <PopupWrapper backDropClick={ onClose } isPopupVisible={ true }>
-      <Container>
-        <TaskContent data={ data }/>
-        { task &&
+      { task &&
+        <Container>
+          <TaskContent data={ data } id={ task._id }/>
           <TaskInfo projectTitle={ projectTitle } task={ task }/>
-        }
-      </Container>
+        </Container>
+      }
     </PopupWrapper>
   );
 };
