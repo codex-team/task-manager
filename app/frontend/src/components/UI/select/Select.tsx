@@ -5,6 +5,7 @@ import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import Dropdown from 'components/UI/dropdown/Dropdown';
 import { DropdownItem } from 'components/UI/dropdown/DropdownItem';
 import { useOutsideClickHandler } from 'helpers/outside-click';
+import { values } from 'lodash';
 
 /**
  * Props of the component
@@ -50,6 +51,10 @@ const Select: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     setSelectedOption(props.initialOption);
   }, [ props.initialOption ]);
+
+  useEffect(() => {
+    setSelectedOption(props.options.find(option => option.value === props.value));
+  }, [ props.value ]);
 
   useOutsideClickHandler(ref, () => {
     close();
