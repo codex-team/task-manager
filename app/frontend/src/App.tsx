@@ -15,6 +15,7 @@ import ProjectView from 'components/views/project-view/ProjectView';
 import { Link } from 'react-router-dom';
 import Button from 'components/UI/button/Button';
 import styled from 'styled-components';
+import WorkspaceForm from './components/views/workspace-form/WorkSpaceForm';
 
 
 /**
@@ -51,6 +52,7 @@ function App(): React.ReactElement {
       </Sidebar>
       <Routes>
         <Route path="/" element={ <Content /> }>
+          <Route path="workspace/edit" element={ <WorkspaceForm /> } />
           <Route path="projects/new" element={ <ProjectForm /> } />
           <Route path="projects/:id/edit" element={ <ProjectForm /> } />
           <Route path="projects/all/*" element={ <ProjectView /> } />

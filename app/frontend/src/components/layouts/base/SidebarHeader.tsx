@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SidebarTitle from 'components/layouts/base/SidebarTitle';
 import Button from 'components/UI/button/Button';
+import { Link } from 'react-router-dom';
 
 /**
  * Interface for sidebar heading component props
@@ -32,7 +33,9 @@ const SidebarHeader: React.FC<Props> = ({ ...props }) => {
   return (
     <SidebarHeaderStyled { ...props }>
       <SidebarTitle>{props.sidebarTitle}</SidebarTitle>
-      <Button icon='settings'/>
+      <Link to='/workspace/edit'>
+        <Button icon='settings'/>
+      </Link>
     </SidebarHeaderStyled>
   );
 };
