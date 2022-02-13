@@ -115,6 +115,7 @@ const ProjectListView: React.FC<Props> = () => {
                       projectInfo={ getTaskProjectInfo(task) }
                       status={ getTaskStatusLabel(task) }
                       ref={ draggableProvided.innerRef }
+                      showStatus={ true }
                     />
                   )}
                 </Draggable>
