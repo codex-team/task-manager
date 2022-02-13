@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getTaskById } from 'services/tasks';
 import { useStore } from 'effector-react';
-import { $projects, $selectedProject, projectSelected } from 'store/projects';
-import TaskContent from 'components/views/project-view/components/TaskContent';
-import TaskInfo from 'components/views/project-view/components/TaskInfo';
+import { $projects, $selectedProject } from 'store/projects';
+import TaskContent from 'components/views/project-list-view/components/TaskContent';
+import TaskInfo from 'components/views/project-list-view/components/TaskInfo';
 
 /**
  * Task popup component
@@ -27,6 +27,7 @@ const TaskPopup: React.FC = () => {
 
   const [task, setTask] = useState<Task | null>(null);
   const [data, setData] = useState<OutputData | null>(null);
+  const [projectTitle, setProjectTitle] = useState<string | null>(null);
 
   useEffect(() => {
     if (!id) {
@@ -50,26 +51,14 @@ const TaskPopup: React.FC = () => {
     exec();
   }, [ id ]);
 
-  const [projectTitle, setProjectTitle] = useState<string | null>(null);
 
   useEffect(() => {
     if (!task) {
       return;
     }
 
-    if (!selectedProject) {
-      const projectId = task.projectId;
-      const currentProject = projects.find((project) => projectId === project._id);
-
-      if (currentProject) {
-        projectSelected(currentProject);
-      }
-    }
-
-
     setProjectTitle(selectedProject?.title || null);
-  }
-  , [projects, task, selectedProject]);
+  }, [projects, task, selectedProject]);
 
   return (
     <PopupWrapper backDropClick={ onClose } isPopupVisible={ true }>

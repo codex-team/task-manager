@@ -15,7 +15,7 @@ export const $selectedProject = createStore<Project | null>(null);
 /**
  * Event to be called when selected project state should be updated
  */
-export const projectSelected = createEvent<Project | null>();
+export const projectSelected = createEvent<Project | null | undefined>();
 
 /**
  * Projects effects

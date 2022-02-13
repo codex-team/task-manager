@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import EditorJS, { OutputData } from '@editorjs/editorjs';
 import EditorJSComponent from 'components/UI/editor/EditorJSComponent';
 import { updateTask } from 'services/tasks';
-import SaveIndicator from 'components/views/project-view/components/SaveIndicator';
+import SaveIndicator from 'components/views/project-list-view/components/SaveIndicator';
 import { debounce } from 'lodash';
 
 
