@@ -5,6 +5,7 @@ import AuthorizeResponse from './responses/authorize';
 import GetProjectsResponse from './responses/project/get-projects';
 import CreateProjectMessage from './requests/project/create';
 import CreateProjectResponse from './responses/project/create';
+import UpdateProjectMessage from './requests/project/update-project'
 import CreateTaskMessage from './requests/task/create';
 import CreateTaskResponse from './responses/task/create';
 import GetTasksMessage from './requests/task/get-tasks';
@@ -36,6 +37,7 @@ export type ApiUpdate =
 export type ApiRequest =
   | Authorize
   | CreateProjectMessage
+  | UpdateProjectMessage
   | GetProjectsMessage
   | CreateTaskMessage
   | GetTasksMessage
