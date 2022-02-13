@@ -96,7 +96,7 @@ const ProjectView: React.FC<Props> = () => {
       <Routes>
         <Route path={ ':task_id' } element={ <TaskPopup/> }/>
       </Routes>
-      <StyledProjectHeader title={ title } hasSettingsButton={ !!currentProject }/>
+      <StyledProjectHeader title={ title } hasSettingsButton={ !!currentProject } to={ `/projects/${params.id}/edit` }/>
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
       <DragDropContext onDragEnd={ onDragEnd }>
         <Droppable droppableId='0'>
