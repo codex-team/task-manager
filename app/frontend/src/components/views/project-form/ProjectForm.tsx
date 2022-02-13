@@ -5,7 +5,10 @@ import Input from 'components/UI/input/Input';
 import labeled from 'components/UI/labeled/Labeled';
 import ImageUploaderForm from 'components/UI/image-uploader-form/ImageUploaderForm';
 import Button, { StyleType } from 'components/UI/button/Button';
-import { createProjectFx } from 'store/projects';
+import { createProjectFx, updateProjectFx } from 'store/projects';
+import { useParams } from 'react-router-dom';
+import { $projects } from 'store/projects';
+import { useStore } from 'effector-react';
 
 /**
  * ProjectForm component props model
@@ -16,19 +19,34 @@ interface Props { }
  * ProjectForm component
  */
 const ProjectForm: React.FC<Props> = () => {
-  const [title, setTitle] = useState('');
-  const [messengerChannelUrl, setMessengerChannelUrl] = useState('');
+  const params = useParams();
+  const projects = useStore($projects);
+  const currentProject = projects.find((project) => params.id === project._id);
+  const projectFormTitle = `${currentProject?.title} Settings` || 'Add new project';
+
+  const [title, setTitle] = useState(currentProject?.title || '');
+  const [messengerChannelUrl, setMessengerChannelUrl] = useState(currentProject?.messengerChannelUrl || '');
 
   const submit = async (): Promise<void> => {
-    await createProjectFx({
-      title,
-      messengerChannelUrl,
-    });
+    if (currentProject) {
+      // await editProjectFx({
+      //   id:currentProject._id,
+      //   title,
+      //   messengerChannelUrl,
+      // });
+      console.log("Editing");
+    }
+    else {
+      await createProjectFx({
+        title,
+        messengerChannelUrl,
+      });
+    }
   };
 
   return (
     <div>
-      <PageTitle>Add new project</PageTitle>
+      <PageTitle>{ projectFormTitle }</PageTitle>
       <Wrapper>
         <LabeledInput
           label='Project title'
@@ -50,7 +68,9 @@ const ProjectForm: React.FC<Props> = () => {
           onChange={ e => console.log(e) }
           promptEmpty='Upload picture for your project'
           promptHasValue='Change picture for your project' />
-        <Button styleType={ StyleType.Primary } onClick={ () => submit() }>Create project</Button>
+        <Button styleType={ StyleType.Primary } onClick={ () => submit() }>
+          { currentProject?.title?'Edit Project': 'Create project' }
+        </Button>
       </Wrapper>
     </div>
   );
