@@ -1,5 +1,5 @@
 import { createStore, createEffect, createEvent } from 'effector';
-import { createProject, getProjects } from 'services/projects';
+import { createProject, getProjects, updateProject } from 'services/projects';
 import { Project } from 'types/entities';
 
 /**
@@ -22,10 +22,18 @@ export const projectSelected = createEvent<Project | null>();
  */
 export const getProjectsFx = createEffect(getProjects);
 export const createProjectFx = createEffect(createProject);
+export const updateProjectFx = createEffect(updateProject);
 
 /**
  * State changes based on effects results
  */
 $projects.on(getProjectsFx.done, (_, { result }) => result.projects);
 $projects.on(createProjectFx.done, (state, { result }) => [...state, result.project]);
+$projects.on(updateProjectFx.done, (state, { result }) => {
+  // get index of the project
+  const projectIndex = state.findIndex((project) => result.project._id === project._id);
+  // replace with updated project data
+  state[projectIndex] = result.project;
+  return state;
+});
 $selectedProject.on(projectSelected, (_, value) => value);

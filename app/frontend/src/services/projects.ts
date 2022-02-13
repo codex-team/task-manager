@@ -16,6 +16,18 @@ export async function createProject(data: CreateProjectPayload): Promise<CreateP
 }
 
 /**
+ * Update project
+ *
+ * @param data - updated project data
+ */
+export async function updateProject(data: CreateProjectPayload): Promise<CreateProjectResponsePayload> {
+  const response = await client.send('update-project', data);
+
+  return response as CreateProjectResponsePayload;
+}
+
+
+/**
  * Get projects
  *
  * @param data - workspace id
