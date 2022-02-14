@@ -11,7 +11,7 @@ import { getTeammates } from '../methods/teammate/get-teammates';
 import { getTeammateById } from '../methods/teammate/get-teammate-by-id';
 import { updateTeammate } from '../methods/teammate/update-teammate';
 import { removeTeammateById } from '../methods/teammate/remove-teammate-by-id';
-import { updateStatus } from '../methods/statuses/update-status';
+import { changeTaskStatus } from '../methods/task/change-task-status';
 
 /**
  * Handles CTProto messages
@@ -51,9 +51,7 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     case 'get-statuses': return {
       statuses: await getStatuses(message.payload.projectId),
     };
-    case 'update-status': return {
-      status: await updateStatus(message.payload),
-    };
+    case 'change-task-status': return changeTaskStatus(message.payload);
     case 'create-teammate': return {
       teammate: await createTeammate(
         message.payload.name,
