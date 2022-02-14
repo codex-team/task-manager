@@ -23,6 +23,8 @@ import GetTeammatesResponse from "./responses/teammate/get-teammates";
 import GetTeammateByIdResponse from "./responses/teammate/get-teammate-by-id";
 import UpdateTeammateResponse from "./responses/teammate/update-teammate";
 import RemoveTeammateByIdMessage from "./requests/teammate/remove-teammate-by-id";
+import UpdateStatusMessage from './requests/status/update-status';
+import UpdateStatusResponse from './responses/status/update-status'
 
 /**
  * The type described all available outgoing messages that can be sent by API
@@ -47,6 +49,7 @@ export type ApiRequest =
   | GetTeammateByIdMessage
   | UpdateTeammateMessage
   | RemoveTeammateByIdMessage
+  | UpdateStatusMessage
 ;
 
 /**
@@ -64,4 +67,5 @@ export type ApiResponse =
   | GetTeammatesResponse
   | GetTeammateByIdResponse
   | UpdateTeammateResponse
+  | UpdateStatusResponse
 ;
