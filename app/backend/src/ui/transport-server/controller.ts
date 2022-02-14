@@ -51,9 +51,9 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
       tasks: await getTasks(message.payload.projectId),
     };
     case 'get-task-by-id': return {
-      task: await getTaskById(message.payload.taskId)
+      task: await getTaskById(message.payload.taskId),
     }
-      ;
+    ;
     case 'update-task': return {
       task: await updateTask(message.payload),
     };

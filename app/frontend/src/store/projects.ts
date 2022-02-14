@@ -32,8 +32,10 @@ $projects.on(createProjectFx.done, (state, { result }) => [...state, result.proj
 $projects.on(updateProjectFx.done, (state, { result }) => {
   // get index of the project
   const projectIndex = state.findIndex((project) => result.project._id === project._id);
+
   // replace with updated project data
   state[projectIndex] = result.project;
+
   return state;
 });
 $selectedProject.on(projectSelected, (_, value) => value);

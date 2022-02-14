@@ -34,8 +34,7 @@ const ProjectForm: React.FC<Props> = () => {
         title,
         messengerChannelUrl,
       });
-    }
-    else {
+    } else {
       await createProjectFx({
         title,
         messengerChannelUrl,
