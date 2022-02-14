@@ -17,6 +17,8 @@ const ContentStyled = styled.div<Props>`
   padding: 16px;
   width: 100%;
   background: var(--color-bg-main);
+  flex: 1;
+  overflow-x: hidden;
 `;
 
 /**

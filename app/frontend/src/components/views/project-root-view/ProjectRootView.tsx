@@ -49,6 +49,10 @@ const StyledProjectHeader = styled(ProjectHeader)``;
  * Tasks list styled wrapper
  */
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
   ${StyledProjectHeader} {
     margin-bottom: 16px;
   }

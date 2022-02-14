@@ -8,6 +8,7 @@ import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautif
 import { getOrderScoreDesc } from 'helpers/get-order-score';
 import { Project, Task } from 'types/entities';
 import { $tasks, createTaskFx, listUpdated, updateTaskFx } from 'store/tasks';
+import getTaskTitle from 'helpers/get-task-title';
 
 /**
  * Props of the component
@@ -75,11 +76,13 @@ const ProjectListView: React.FC<Props> = () => {
    * @param task - task that needs label displayed
    */
   const getTaskStatusLabel = (task: Task): string|undefined => {
-    if (!currentProject) {
+    const project = projects.find(p => p._id === task.projectId);
+
+    if (!project) {
       return;
     }
 
-    return currentProject.taskStatuses?.find(status => status._id === task.statusId)?.label;
+    return project.taskStatuses?.find(status => status._id === task.statusId)?.label;
   };
 
   const getTaskProjectInfo = (task: Task): Project | undefined => {
@@ -127,19 +130,6 @@ const ProjectListView: React.FC<Props> = () => {
       </DragDropContext>
     </Wrapper>
   );
-};
-
-/**
- * Extracts task title text from first block of task content
- *
- * @param taskText - string containing task content in editor.js format
- */
-const getTaskTitle = (taskText: string): string => {
-  try {
-    return JSON.parse(taskText).blocks[0].data.text;
-  } catch {
-    return '';
-  }
 };
 
 /**

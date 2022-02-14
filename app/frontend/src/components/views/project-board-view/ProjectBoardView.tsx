@@ -5,25 +5,31 @@ import { Outlet } from 'react-router';
 import { $selectedProject } from 'store/projects';
 import { $tasks } from 'store/tasks';
 import styled from 'styled-components';
+import { Status, Task } from 'types/entities';
 import CardLink from '../project-list-view/components/CardLink';
+import getTaskTitle from 'helpers/get-task-title';
 
-/**
- * Extracts task title text from first block of task content
- *
- * @param taskText - string containing task content in editor.js format
- */
-const getTaskTitle = (taskText: string): string => {
-  try {
-    return JSON.parse(taskText).blocks[0].data.text;
-  } catch {
-    return '';
-  }
-};
 
 /**
  * Props of the component
  */
 interface Props { }
+
+
+/**
+ * Represents column data structure
+ */
+interface Column {
+  /**
+   * Status data
+   */
+  status: Status | { _id: string, label: string },
+
+  /**
+   * Tasks that have corresponding status
+   */
+  tasks: Task[]
+}
 
 /**
  * ProjectBoardView component
@@ -44,17 +50,21 @@ const ProjectBoardView: React.FC<Props> = () => {
     <Container>
       <Outlet />
       <DragDropContext onDragEnd={ onDragEnd }>
-        { currentProject?.taskStatuses?.map(column => (
-          <Droppable droppableId={ column._id } key={ column._id }>
+        { getColumnsData(tasksList, currentProject?.taskStatuses).map(column => (
+          <Droppable droppableId={ column.status._id } key={ column.status._id }>
             { provided => (
-              <Column
+              <ColumnStyled
                 { ...provided.droppableProps }
                 ref={ provided.innerRef }>
-                <div>
-                  { column.label }
-                </div>
-                { tasksList
-                  .filter(task => task.statusId === column._id)
+
+                <ColumnLabel>
+                  { column.status.label }
+                  <CountLabel>
+                    { column.tasks.length }
+                  </CountLabel>
+                </ColumnLabel>
+
+                { column.tasks
                   .map((task, index) => (
                     <Draggable
                       draggableId={ task._id }
@@ -74,9 +84,12 @@ const ProjectBoardView: React.FC<Props> = () => {
                       )}
                     </Draggable>
                   ))}
+
                 { provided.placeholder }
+
                 <TaskInput onChange={ createNewTask }/>
-              </Column>
+
+              </ColumnStyled>
             )}
           </Droppable>
         ))}
@@ -85,26 +98,94 @@ const ProjectBoardView: React.FC<Props> = () => {
   );
 };
 
+/**
+ * Styled component for displaying count of tasks in column
+ */
+const CountLabel = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-left: 6px;
+  vertical-align: top;
+  line-height: 120%;
+`;
+
+/**
+ * Styled component for displaying column label
+ */
+const ColumnLabel = styled.h2`
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+  letter-spacing: -0.005em;
+  line-height: 120%;
+`;
+
+/**
+ * Styled component for displaying card
+ */
 const StyledCardLink = styled(CardLink)`
   &:not(:last-child){
     margin-bottom: 3px;
   }
 `;
 
-const Column = styled.div`
+/**
+ * Styled column container
+ */
+const ColumnStyled = styled.div`
   width: 300px;
   flex-grow: 0;
+  flex-shrink: 0;
 `;
 
+/**
+ * Styled container
+ */
 const Container = styled.div`
   display: flex;
+  overflow-x: scroll;
+  flex-grow: 1;
 
-  ${Column} {
+  ${ColumnStyled} {
     &:not(:last-child){
       margin-right: 16px;
     }
   }
 `;
+
+/**
+ * Forms data to render columns
+ *
+ * @param tasks - tasks that should be spread into columns corresponding to their status
+ * @param statuses - available statuses data
+ */
+const getColumnsData = (tasks: Task[], statuses?: Status[]): Column[] => {
+  const unsortedTasks = tasks.filter(task => !task.statusId);
+  const columns: Column[] = [
+    {
+      status: {
+        _id: 'unsorted-column',
+        label: 'Unsorted',
+      },
+      tasks: unsortedTasks,
+    },
+  ];
+
+  statuses?.forEach(status => {
+    const tasksWithTheStatus = status.tasks
+      .map(id => tasks.find(task => task._id === id))
+      .filter(item => !!item);
+
+    columns.push({
+      status,
+      tasks: tasksWithTheStatus as Task[],
+    });
+  });
+
+  return columns;
+};
 
 
 export default ProjectBoardView;
