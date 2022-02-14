@@ -6,6 +6,7 @@ import GetProjectsResponse from './responses/project/get-projects';
 import CreateProjectMessage from './requests/project/create';
 import CreateProjectResponse from './responses/project/create';
 import UpdateProjectMessage from './requests/project/update-project'
+import UpdateProjectResponse from './responses/project/update-project'
 import CreateTaskMessage from './requests/task/create';
 import CreateTaskResponse from './responses/task/create';
 import GetTasksMessage from './requests/task/get-tasks';
@@ -49,7 +50,7 @@ export type ApiRequest =
   | GetTeammateByIdMessage
   | UpdateTeammateMessage
   | RemoveTeammateByIdMessage
-;
+  ;
 
 /**
  * The type described all available API response messages
@@ -57,6 +58,7 @@ export type ApiRequest =
 export type ApiResponse =
   | AuthorizeResponse
   | CreateProjectResponse
+  | UpdateProjectResponse
   | GetProjectsResponse
   | CreateTaskResponse
   | GetTasksResponse
@@ -66,4 +68,4 @@ export type ApiResponse =
   | GetTeammatesResponse
   | GetTeammateByIdResponse
   | UpdateTeammateResponse
-;
+  ;

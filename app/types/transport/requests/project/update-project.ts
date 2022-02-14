@@ -4,7 +4,7 @@ export interface UpdateProjectPayload {
   /**
    * Id of project to be updated
    */
-  id:string;
+  id: string;
   /**
    * Title of creating project
    */
@@ -20,7 +20,7 @@ export interface UpdateProjectPayload {
 }
 
 /**
- * Describes the request for creating project
+ * Describes the request for updating project
  */
 export default interface UpdateProjectMessage extends NewMessage<UpdateProjectPayload> {
   type: 'update-project';
