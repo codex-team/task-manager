@@ -3,6 +3,7 @@ import { CreateProjectResponsePayload } from 'types/transport/responses/project/
 import { GetProjectsMessagePayload } from 'types/transport/requests/project/get-projects';
 import { GetProjectsResponsePayload } from 'types/transport/responses/project/get-projects';
 import { CreateProjectPayload } from 'types/transport/requests/project/create';
+import { UpdateProjectPayload } from 'types/transport/requests/project/update-project';
 
 /**
  * Creates new project
@@ -20,7 +21,7 @@ export async function createProject(data: CreateProjectPayload): Promise<CreateP
  *
  * @param data - updated project data
  */
-export async function updateProject(data: CreateProjectPayload): Promise<CreateProjectResponsePayload> {
+export async function updateProject(data: UpdateProjectPayload): Promise<CreateProjectResponsePayload> {
   const response = await client.send('update-project', data);
 
   return response as CreateProjectResponsePayload;
