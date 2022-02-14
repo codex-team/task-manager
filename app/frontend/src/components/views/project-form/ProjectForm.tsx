@@ -29,11 +29,11 @@ const ProjectForm: React.FC<Props> = () => {
 
   const submit = async (): Promise<void> => {
     if (currentProject) {
-      // await editProjectFx({
-      //   id:currentProject._id,
-      //   title,
-      //   messengerChannelUrl,
-      // });
+      await updateProjectFx({
+        id: currentProject._id,
+        title,
+        messengerChannelUrl,
+      });
       console.log("Editing");
     }
     else {
