@@ -3,12 +3,14 @@ import { useStore } from 'effector-react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { Outlet } from 'react-router';
 import { $selectedProject } from 'store/projects';
-import { $tasks } from 'store/tasks';
+import { $tasks, changeTaskStatusFx } from 'store/tasks';
 import styled from 'styled-components';
 import { Status, Task } from 'types/entities';
 import CardLink from '../project-list-view/components/CardLink';
 import getTaskTitle from 'helpers/get-task-title';
+import { ChangeTaskStatusPayload } from 'types/transport/requests/task/change-task-status';
 
+const UNSORTED_COLUMN_ID = 'unsorted-column';
 
 /**
  * Props of the component
@@ -39,7 +41,25 @@ const ProjectBoardView: React.FC<Props> = () => {
   const tasksList = useStore($tasks);
 
   const onDragEnd = async (result: DropResult): Promise<void> => {
-    console.log(result);
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    const updateParams: ChangeTaskStatusPayload = {
+      taskId: draggableId,
+    };
+
+    if (source.droppableId !== UNSORTED_COLUMN_ID) {
+      updateParams.prevStatusId = source.droppableId;
+    }
+
+    if (destination.droppableId !== UNSORTED_COLUMN_ID) {
+      updateParams.newStatusId = destination.droppableId;
+      updateParams.newIndex = destination.index;
+    }
+    changeTaskStatusFx(updateParams);
   };
 
   const createNewTask = (text: string): void => {
@@ -166,7 +186,7 @@ const getColumnsData = (tasks: Task[], statuses?: Status[]): Column[] => {
   const columns: Column[] = [
     {
       status: {
-        _id: 'unsorted-column',
+        _id: UNSORTED_COLUMN_ID,
         label: 'Unsorted',
       },
       tasks: unsortedTasks,

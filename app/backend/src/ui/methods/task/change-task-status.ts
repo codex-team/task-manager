@@ -17,11 +17,11 @@ export async function changeTaskStatus(params: ChangeTaskStatusPayload): Promise
 
   session.startTransaction();
   try {
-    const task = await TaskModel.findOneAndUpdate({ _id: params.taskId }, { statusId: params.newStatusId }, { new: true }).exec();
-
-    response.task = task;
-
     if (params.newStatusId) {
+      const task = await TaskModel.findOneAndUpdate({ _id: params.taskId }, { statusId: params.newStatusId }, { new: true }).exec();
+
+      response.task = task;
+
       const newStatus = await StatusModel.findById(params.newStatusId);
       const newStatusTasks = newStatus?.tasks || [];
 
@@ -34,6 +34,11 @@ export async function changeTaskStatus(params: ChangeTaskStatusPayload): Promise
       const newStatusUpdated = await StatusModel.findOneAndUpdate({ _id: params.newStatusId }, { tasks: newStatusTasks }, { new: true }).exec();
 
       response.newStatus = newStatusUpdated;
+    } else {
+      // Task becomes unsorted
+      const task = await TaskModel.findOneAndUpdate({ _id: params.taskId }, { $unset: { statusId: '' } }, { new: true }).exec();
+
+      response.task = task;
     }
 
     if (params.prevStatusId) {
