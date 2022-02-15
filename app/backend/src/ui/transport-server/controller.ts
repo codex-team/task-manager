@@ -68,6 +68,6 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     case 'update-teammate': return {
       teammate: await updateTeammate(message.payload),
     };
-    case 'remove-teammate-by-id': return await removeTeammateById(message.payload.teammateId);
+    case 'remove-teammate-by-id': return removeTeammateById(message.payload.teammateId);
   }
 }
