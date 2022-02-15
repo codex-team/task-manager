@@ -1,7 +1,7 @@
-import { createProject } from '../../../../db-methods/project/create';
 import { MessageHandler } from '../messageHandler';
-import { CreateProjectMessagePayload } from '../../../../../../types/transport/requests/project/create';
-import { CreateProjectResponsePayload } from '../../../../../../types/transport/responses/project/create';
+import { createProject } from 'application/project/create-project';
+import { CreateProjectMessagePayload } from 'types/transport/requests/project/create-project';
+import { CreateProjectResponsePayload } from 'types/transport/responses/project/create-project';
 
 /**
  * Create project handler

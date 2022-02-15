@@ -1,5 +1,13 @@
 import Project from './project';
+import Status from './status';
+import Task from './task';
+import Teammate from './teammate';
+import Workspace from './workspace';
 
-export {
-  Project
+export type {
+  Project,
+  Status,
+  Task,
+  Teammate,
+  Workspace
 }

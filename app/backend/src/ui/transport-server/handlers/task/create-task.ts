@@ -1,7 +1,7 @@
-import { createTask } from '../../../../db-methods/task/create';
 import { MessageHandler } from '../messageHandler';
-import { CreateTaskMessagePayload } from '../../../../../../types/transport/requests/task/create';
-import { CreateTaskResponsePayload } from '../../../../../../types/transport/responses/task/create';
+import { createTask } from 'application/task/create-task';
+import { CreateTaskMessagePayload } from 'types/transport/requests/task/create-task';
+import { CreateTaskResponsePayload } from 'types/transport/responses/task/create-task';
 
 /**
  * Create task handler

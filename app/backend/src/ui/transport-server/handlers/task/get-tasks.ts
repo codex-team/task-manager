@@ -1,7 +1,7 @@
-import { getTasks } from '../../../../db-methods/task/get-tasks';
 import { MessageHandler } from '../messageHandler';
-import { GetTasksMessagePayload } from '../../../../../../types/transport/requests/task/get-tasks';
-import { GetTasksResponsePayload } from '../../../../../../types/transport/responses/task/get-tasks';
+import { getTasks } from 'application/task/get-tasks';
+import { GetTasksMessagePayload } from 'types/transport/requests/task/get-tasks';
+import { GetTasksResponsePayload } from 'types/transport/responses/task/get-tasks';
 
 /**
  * Get tasks handler

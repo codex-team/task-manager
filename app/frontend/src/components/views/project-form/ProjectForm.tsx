@@ -5,7 +5,7 @@ import Input from 'components/UI/input/Input';
 import labeled from 'components/UI/labeled/Labeled';
 import ImageUploaderForm from 'components/UI/image-uploader-form/ImageUploaderForm';
 import Button, { StyleType } from 'components/UI/button/Button';
-import { createProjectEffectFx } from 'store/projects';
+import { createProjectFx } from 'store/projects';
 
 /**
  * ProjectForm component props model
@@ -20,7 +20,7 @@ const ProjectForm: React.FC<Props> = () => {
   const [messengerChannelUrl, setMessengerChannelUrl] = useState('');
 
   const submit = async (): Promise<void> => {
-    await createProjectEffectFx({
+    await createProjectFx({
       title,
       messengerChannelUrl,
     });

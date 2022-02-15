@@ -1,3 +1,5 @@
+import { Status } from '.';
+
 /**
  * This interface represents the Project entity
  */
@@ -27,4 +29,9 @@ export default interface Project {
    * URL of a Channel in a messenger in where reports and notifies will be sent
    */
   messengerChannelUrl?: string;
+
+  /**
+   * List of available statuses that task within this project can have
+   */
+  taskStatuses?: Status[]
 }

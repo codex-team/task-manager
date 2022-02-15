@@ -5,10 +5,12 @@ export interface CreateProjectMessagePayload {
    * Title of creating project
    */
   title: string;
+
   /**
    * Link to project's picture
    */
   picture?: string;
+
   /**
    * Link to the project's messenger channel
    */

@@ -1,8 +1,8 @@
 import client from 'transport/ctproto-client';
-import { CreateProjectResponsePayload } from 'types/transport/responses/project/create';
+import { CreateProjectResponsePayload } from 'types/transport/responses/project/create-project';
 import { GetProjectsMessagePayload } from 'types/transport/requests/project/get-projects';
 import { GetProjectsResponsePayload } from 'types/transport/responses/project/get-projects';
-import { CreateProjectMessagePayload } from 'types/transport/requests/project/create';
+import { CreateProjectMessagePayload } from 'types/transport/requests/project/create-project';
 
 /**
  * Creates new project

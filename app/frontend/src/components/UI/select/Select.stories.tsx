@@ -39,7 +39,7 @@ export default {
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args) => {
-  const [value, setValue] = useState<number|string|undefined>();
+  const [value, setValue] = useState<number|string|null|undefined>();
 
   return <Select { ...args } value={ value } onChange={ setValue }/>;
 };

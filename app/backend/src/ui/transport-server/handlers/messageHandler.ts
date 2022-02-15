@@ -1,4 +1,4 @@
-import { ApiRequest, ApiResponse } from '../../../../../types/transport';
+import { ApiRequest, ApiResponse } from 'types/transport';
 
 /**
  * Interface for message handlers

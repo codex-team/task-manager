@@ -1,8 +1,8 @@
 import client from 'transport/ctproto-client';
-import { CreateTaskMessagePayload } from 'types/transport/requests/task/create';
+import { CreateTaskMessagePayload } from 'types/transport/requests/task/create-task';
 import { UpdateTaskMessagePayload } from 'types/transport/requests/task/update-task';
 import { GetTasksMessagePayload } from 'types/transport/requests/task/get-tasks';
-import { CreateTaskResponsePayload } from 'types/transport/responses/task/create';
+import { CreateTaskResponsePayload } from 'types/transport/responses/task/create-task';
 import { GetTasksResponsePayload } from 'types/transport/responses/task/get-tasks';
 import { GetTaskByIdMessagePayload } from 'types/transport/requests/task/get-task-by-id';
 import { GetTaskByIdResponsePayload } from 'types/transport/responses/task/get-task-by-id';

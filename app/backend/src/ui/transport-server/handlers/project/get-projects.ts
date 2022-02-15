@@ -1,7 +1,7 @@
-import { getProjects } from '../../../../db-methods/project/get-projects';
 import { MessageHandler } from '../messageHandler';
-import { GetProjectsMessagePayload } from '../../../../../../types/transport/requests/project/get-projects';
-import { GetProjectsResponsePayload } from '../../../../../../types/transport/responses/project/get-projects';
+import { getProjects } from 'application/project/get-projects';
+import { GetProjectsMessagePayload } from 'types/transport/requests/project/get-projects';
+import { GetProjectsResponsePayload } from 'types/transport/responses/project/get-projects';
 
 /**
  * Get project handler

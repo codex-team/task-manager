@@ -15,6 +15,11 @@ export interface UpdateTaskMessagePayload {
    * Order of the task when displayed in list of project tasks
    */
   orderScore?: number;
+
+  /**
+   * Id of the status
+   */
+  statusId?: string
 }
 
 /**

@@ -1,7 +1,7 @@
 import { MessageHandler } from '../messageHandler';
-import { getTaskById } from '../../../../db-methods/task/get-task-by-id';
-import { GetTaskByIdMessagePayload } from '../../../../../../types/transport/requests/task/get-task-by-id';
-import { GetTaskByIdResponsePayload } from '../../../../../../types/transport/responses/task/get-task-by-id';
+import { getTaskById } from 'application/task/get-task-by-id';
+import { GetTaskByIdMessagePayload } from 'types/transport/requests/task/get-task-by-id';
+import { GetTaskByIdResponsePayload } from 'types/transport/responses/task/get-task-by-id';
 
 /**
  * Get task by id handler
