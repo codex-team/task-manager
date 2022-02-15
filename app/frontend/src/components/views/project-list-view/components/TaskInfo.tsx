@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Select from 'components/UI/select/Select';
 import { formatDate } from 'helpers/helpers';
 import Task from 'types/entities/task';
-import { updateTaskFx } from 'store/tasks';
+import { changeTaskStatusFx } from 'store/tasks';
 import { useStoreMap } from 'effector-react';
 import { $selectedProject } from 'store/projects';
 
@@ -60,9 +60,10 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
    */
   const onStatusChange = async (value: string|number|null|undefined): Promise<void> => {
     try {
-      updateTaskFx({
-        _id: task._id,
-        statusId: value as string,
+      changeTaskStatusFx({
+        taskId: task._id,
+        newStatusId: value as string,
+        prevStatusId: task.statusId,
       });
     } catch (e) {
       console.error(e);

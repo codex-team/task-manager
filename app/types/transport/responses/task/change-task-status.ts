@@ -1,10 +1,26 @@
 import { ResponseMessage } from 'ctproto';
+import { Status } from 'types/entities';
 import Task from '../../../entities/task';
 
 /**
  * Response for 'change-task-status' message
  */
-export interface ChangeTaskStatusResponsePayload {}
+export interface ChangeTaskStatusResponsePayload {
+  /**
+   * Updated task data
+   */
+  task?: Task | null
+
+  /**
+   * Updated previous status object (if any)
+   */
+  prevStatus?: Status
+  
+  /**
+   * Updated new status object (if any)
+   */
+  newStatus?: Status
+}
 
 /**
  * Describes the response of updating task status

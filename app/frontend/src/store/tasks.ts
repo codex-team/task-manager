@@ -1,6 +1,7 @@
 import { createEffect, createEvent, createStore } from 'effector';
-import { createTask, getTasks, updateTask } from 'services/tasks';
+import { changeTaskStatus, createTask, getTasks, updateTask } from 'services/tasks';
 import { Task } from 'types/entities';
+import getListWithItemReplaced from 'helpers/get-list-with-item-replaced';
 
 
 /**
@@ -14,6 +15,7 @@ export const $tasks = createStore<Task[]>([]);
 export const getTasksFx = createEffect(getTasks);
 export const createTaskFx = createEffect(createTask);
 export const updateTaskFx = createEffect(updateTask);
+export const changeTaskStatusFx = createEffect(changeTaskStatus);
 
 /**
  * Event to be called when tasks list state should be updated
@@ -34,21 +36,26 @@ $tasks.on(createTaskFx.done, (state, { result }) => [result.task, ...state]);
  * Updates task in tasks list
  */
 $tasks.on(updateTaskFx.done, (state, { result }) => {
-  // Find index of the task
-  const index = state.findIndex(item => result.task && item._id === result.task._id);
-
-  if (index < 0) {
-    return;
+  if (!result.task) {
+    return state;
   }
-  const newState = [ ...state ];
 
-  // Replace task at found index with new data
-  newState[index] = result.task as Task;
-
-  return newState;
+  return getListWithItemReplaced(state, result.task);
 });
 
 /**
  * Updates tasks list state
  */
 $tasks.on(listUpdated, (_, result) => [ ...result ]);
+
+/**
+ * Updates task in tasks list after task status change
+ */
+$tasks.on(changeTaskStatusFx.done, (state, { result }) => {
+  if (!result.task) {
+    return state;
+  }
+
+  return getListWithItemReplaced(state, result.task);
+});
+

@@ -7,6 +7,8 @@ import { GetTaskByIdMessagePayload } from 'types/transport/requests/task/get-tas
 import { GetTaskByIdResponsePayload } from 'types/transport/responses/task/get-task-by-id';
 import { CreateTaskPayload } from 'types/transport/requests/task/create';
 import { UpdateTaskResponsePayload } from 'types/transport/responses/task/update-task';
+import { ChangeTaskStatusPayload } from 'types/transport/requests/task/change-task-status';
+import { ChangeTaskStatusResponsePayload } from 'types/transport/responses/task/change-task-status';
 
 /**
  * Returns list of tasks
@@ -47,7 +49,7 @@ export async function getTaskById(id: string): Promise<GetTaskByIdResponsePayloa
 }
 
 /**
- * pdates task
+ * Updates task
  *
  * @param data - updated task data
  */
@@ -55,4 +57,15 @@ export async function updateTask(data: UpdateTaskPayload): Promise<UpdateTaskRes
   const response = await client.send('update-task', data);
 
   return response as UpdateTaskResponsePayload;
+}
+
+/**
+ * Updates task status
+ *
+ * @param data - update params
+ */
+export async function changeTaskStatus(data: ChangeTaskStatusPayload): Promise<ChangeTaskStatusResponsePayload> {
+  const response = await client.send('change-task-status', data);
+
+  return response as ChangeTaskStatusResponsePayload;
 }
