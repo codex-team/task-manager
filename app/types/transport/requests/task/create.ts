@@ -26,6 +26,11 @@ export interface CreateTaskPayload {
    * Task's assignees
    */
   assignees?: string[];
+
+  /**
+   * Id of the status the task has
+   */
+  statusId?: string
 }
 
 /**

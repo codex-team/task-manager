@@ -9,6 +9,7 @@ import { getOrderScoreDesc } from 'helpers/get-order-score';
 import { Project, Task } from 'types/entities';
 import { $tasks, createTaskFx, listUpdated, updateTaskFx } from 'store/tasks';
 import getTaskTitle from 'helpers/get-task-title';
+import prepareTaskContent from 'helpers/prepare-task-content';
 
 /**
  * Props of the component
@@ -25,24 +26,12 @@ const ProjectListView: React.FC<Props> = () => {
   const projects = useStore($projects);
 
   const createNewTask = async (value: string): Promise<void> => {
-    const taskContent = {
-      blocks: [
-        {
-          type: 'header',
-          data: {
-            text: value,
-            level: 1,
-          },
-        },
-      ],
-    };
-
     /* eslint-disable @typescript-eslint/no-magic-numbers */
     const newTaskOrderScore = !tasksList.length ? 1 : (tasksList[0].orderScore + 1);
     /* eslint-enable @typescript-eslint/no-magic-numbers */
 
     createTaskFx({
-      text: JSON.stringify(taskContent),
+      text: prepareTaskContent(value),
       projectId: params.id,
       orderScore: newTaskOrderScore,
     });

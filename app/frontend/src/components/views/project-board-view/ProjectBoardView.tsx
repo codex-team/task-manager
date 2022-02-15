@@ -3,12 +3,15 @@ import { useStore } from 'effector-react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { Outlet } from 'react-router';
 import { $selectedProject } from 'store/projects';
-import { $tasks, changeTaskStatusFx } from 'store/tasks';
+import { $tasks, changeTaskStatusFx, createTaskFx } from 'store/tasks';
 import styled from 'styled-components';
 import { Status, Task } from 'types/entities';
 import CardLink from '../project-list-view/components/CardLink';
 import getTaskTitle from 'helpers/get-task-title';
 import { ChangeTaskStatusPayload } from 'types/transport/requests/task/change-task-status';
+import prepareTaskContent from 'helpers/prepare-task-content';
+import { CreateTaskPayload } from 'types/transport/requests/task/create';
+
 
 const UNSORTED_COLUMN_ID = 'unsorted-column';
 
@@ -62,8 +65,21 @@ const ProjectBoardView: React.FC<Props> = () => {
     changeTaskStatusFx(updateParams);
   };
 
-  const createNewTask = (text: string): void => {
-    console.log('create new task');
+  const createNewTask = (statusId: string, text: string): void => {
+    if (!currentProject) {
+      return;
+    }
+
+    const taskData: CreateTaskPayload = {
+      text: prepareTaskContent(text),
+      projectId: currentProject._id,
+      orderScore: (tasksList[0].orderScore + 1),
+    };
+
+    if (statusId !== UNSORTED_COLUMN_ID) {
+      taskData.statusId = statusId;
+    }
+    createTaskFx(taskData);
   };
 
   return (
@@ -107,7 +123,7 @@ const ProjectBoardView: React.FC<Props> = () => {
 
                 { provided.placeholder }
 
-                <TaskInput onChange={ createNewTask }/>
+                <TaskInput onChange={ (value) => createNewTask(column.status._id, value) }/>
 
               </ColumnStyled>
             )}

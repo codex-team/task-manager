@@ -30,15 +30,14 @@ export async function handleMessage(message: ApiRequest): Promise<ApiResponse['p
     case 'get-projects': return {
       projects: await getProjects(),
     };
-    case 'create-task': return {
-      task: await createTask(
-        message.payload.text,
-        message.payload.orderScore,
-        message.payload.projectId,
-        message.payload.parentId,
-        message.payload.assignees
-      ),
-    };
+    case 'create-task': return createTask(
+      message.payload.text,
+      message.payload.orderScore,
+      message.payload.projectId,
+      message.payload.parentId,
+      message.payload.assignees,
+      message.payload.statusId
+    );
     case 'get-tasks': return {
       tasks: await getTasks(message.payload.projectId),
     };

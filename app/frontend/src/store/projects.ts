@@ -1,7 +1,7 @@
 import { createStore, createEffect, createEvent } from 'effector';
 import { createProject, getProjects } from 'services/projects';
 import { Project } from 'types/entities';
-import { changeTaskStatusFx } from './tasks';
+import { changeTaskStatusFx, createTaskFx } from './tasks';
 import getListWithItemReplaced from 'helpers/get-list-with-item-replaced';
 
 /**
@@ -51,6 +51,21 @@ $selectedProject.on(changeTaskStatusFx.done, (state, { result }) => {
   return {
     ...state,
     taskStatuses: statuses,
+  };
+});
+
+/**
+ * Update project statuses once new task with specified status added
+ */
+$selectedProject.on(createTaskFx.done, (state, { result }) => {
+  if (!state || !result.status) {
+    return state;
+  }
+  const statuses = state?.taskStatuses || [];
+
+  return {
+    ...state,
+    taskStatuses: getListWithItemReplaced(statuses, result.status),
   };
 });
 
