@@ -40,7 +40,6 @@ const html = Object.entries(icons)
   })
   .join('');
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const Sprite: React.FC = () => <svg xmlns={ xmlns } display="none" dangerouslySetInnerHTML={ { __html: html } } />;
 
 export default Sprite;
