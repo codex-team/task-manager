@@ -1,10 +1,10 @@
-import { NewMessage } from "ctproto";
+import { NewMessage } from 'ctproto';
 
 export interface GetTeammateByIdMessagePayload {
   /**
    * Id of teammate
    */
-  teammateId: string;
+  id: string;
 }
 
 /**

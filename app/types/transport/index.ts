@@ -28,7 +28,8 @@ import RemoveTeammateByIdMessage from "./requests/teammate/remove-teammate-by-id
  * The type described all available outgoing messages that can be sent by API
  */
 export type ApiUpdate =
-  | TaskCreatedMessage;
+  | TaskCreatedMessage
+;
 
 /**
  * The type described all available API request messages

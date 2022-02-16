@@ -1,21 +1,20 @@
-
 import { NewMessage } from 'ctproto';
 
-export interface CreateStatusPayload {
+export interface CreateStatusMessagePayload {
   /**
    * Status label
    */
-  label: string
+  label: string;
 
   /**
    * Id of the project status belongs to
    */
-  projectId?: string
+  projectId?: string;
 }
 
 /**
  * Describes the request for creating a status
  */
-export default interface CreateStatusMessage extends NewMessage<CreateStatusPayload> {
+export default interface CreateStatusMessage extends NewMessage<CreateStatusMessagePayload> {
   type: 'create-status';
 }
