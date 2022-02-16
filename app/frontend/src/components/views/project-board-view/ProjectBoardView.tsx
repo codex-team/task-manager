@@ -10,7 +10,7 @@ import CardLink from '../project-list-view/components/CardLink';
 import getTaskTitle from 'helpers/get-task-title';
 import { ChangeTaskStatusPayload } from 'types/transport/requests/task/change-task-status';
 import prepareTaskContent from 'helpers/prepare-task-content';
-import { CreateTaskPayload } from 'types/transport/requests/task/create';
+import { CreateTaskMessagePayload } from 'types/transport/requests/task/create-task';
 
 
 const UNSORTED_COLUMN_ID = 'unsorted-column';
@@ -81,7 +81,7 @@ const ProjectBoardView: React.FC<Props> = () => {
       return;
     }
 
-    const taskData: CreateTaskPayload = {
+    const taskData: CreateTaskMessagePayload = {
       text: prepareTaskContent(text),
       projectId: currentProject._id,
       orderScore: (tasksList[0].orderScore + 1),

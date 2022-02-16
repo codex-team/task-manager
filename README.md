@@ -12,9 +12,13 @@ Clone the repository.
 
 `git clone https://github.com/codex-team/task-manager`
 
-Go to directory.
+Go to project's directory.
 
 `cd task-manager`
+
+Create an environment file `.env` in the [app/backend](./app/backend) directory by its sample.
+
+`cp app/backend/.env.sample app/backend/.env`
 
 Run app's containers with the following command.
 
@@ -28,6 +32,16 @@ App will be restarted automatically on any code changes.
 Backend site: [localhost:3000](localhost:3000)
 Frontend hot-reloaded build: [localhost:3030](localhost:3030)
 Frontend Storybook: [localhost:6006](localhost:6006)
+
+### Database migrations
+
+On the **local machine** just run the following command:
+
+`docker-compose exec backend sh -c "cd backend; yarn db-migrate"`
+
+And almost the same command for **production docker environment**:
+
+`docker-compose -f docker-compose.prod.yml exec app sh -c "cd backend; yarn db-migrate"`
 
 ### Remove node deps for containers
 

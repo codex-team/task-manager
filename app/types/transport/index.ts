@@ -30,7 +30,8 @@ import ChangeTaskStatusResponse from './responses/task/change-task-status';
  * The type described all available outgoing messages that can be sent by API
  */
 export type ApiUpdate =
-  | TaskCreatedMessage;
+  | TaskCreatedMessage
+;
 
 /**
  * The type described all available API request messages

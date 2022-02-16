@@ -1,10 +1,10 @@
 import { NewMessage } from 'ctproto';
 
-export interface UpdateTaskPayload {
-   /**
-   * Task's unique identity
-   */
-    _id: string;
+export interface UpdateTaskMessagePayload {
+  /**
+  * Task's unique identity
+  */
+  _id: string;
 
   /**
    * Text of creating task
@@ -25,6 +25,6 @@ export interface UpdateTaskPayload {
 /**
  * Describes the request for updating task
  */
-export default interface UpdateTaskMessage extends NewMessage<UpdateTaskPayload> {
+export default interface UpdateTaskMessage extends NewMessage<UpdateTaskMessagePayload> {
   type: 'update-task';
 }

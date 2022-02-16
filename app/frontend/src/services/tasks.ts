@@ -1,11 +1,11 @@
 import client from 'transport/ctproto-client';
-import { UpdateTaskPayload } from 'types/transport/requests/task/update-task';
+import { CreateTaskMessagePayload } from 'types/transport/requests/task/create-task';
+import { UpdateTaskMessagePayload } from 'types/transport/requests/task/update-task';
 import { GetTasksMessagePayload } from 'types/transport/requests/task/get-tasks';
-import { CreateTaskResponsePayload } from 'types/transport/responses/task/create';
+import { CreateTaskResponsePayload } from 'types/transport/responses/task/create-task';
 import { GetTasksResponsePayload } from 'types/transport/responses/task/get-tasks';
 import { GetTaskByIdMessagePayload } from 'types/transport/requests/task/get-task-by-id';
 import { GetTaskByIdResponsePayload } from 'types/transport/responses/task/get-task-by-id';
-import { CreateTaskPayload } from 'types/transport/requests/task/create';
 import { UpdateTaskResponsePayload } from 'types/transport/responses/task/update-task';
 import { ChangeTaskStatusPayload } from 'types/transport/requests/task/change-task-status';
 import { ChangeTaskStatusResponsePayload } from 'types/transport/responses/task/change-task-status';
@@ -27,7 +27,7 @@ export async function getTasks(data: GetTasksMessagePayload): Promise<GetTasksRe
  *
  * @param data - new task data
  */
-export async function createTask(data: CreateTaskPayload): Promise<CreateTaskResponsePayload> {
+export async function createTask(data: CreateTaskMessagePayload): Promise<CreateTaskResponsePayload> {
   const response = await client.send('create-task', data);
 
   return response as CreateTaskResponsePayload;
@@ -53,7 +53,7 @@ export async function getTaskById(id: string): Promise<GetTaskByIdResponsePayloa
  *
  * @param data - updated task data
  */
-export async function updateTask(data: UpdateTaskPayload): Promise<UpdateTaskResponsePayload> {
+export async function updateTask(data: UpdateTaskMessagePayload): Promise<UpdateTaskResponsePayload> {
   const response = await client.send('update-task', data);
 
   return response as UpdateTaskResponsePayload;

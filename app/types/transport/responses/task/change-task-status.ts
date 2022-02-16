@@ -14,12 +14,12 @@ export interface ChangeTaskStatusResponsePayload {
   /**
    * Updated previous status object (if any)
    */
-  prevStatus?: Status
+  prevStatus?: Status | null
   
   /**
    * Updated new status object (if any)
    */
-  newStatus?: Status
+  newStatus?: Status | null
 }
 
 /**

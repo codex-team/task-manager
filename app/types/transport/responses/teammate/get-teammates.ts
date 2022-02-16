@@ -1,5 +1,5 @@
 import Teammate from "../../../entities/teammate";
-import {ResponseMessage} from "ctproto";
+import {ResponseMessage} from 'ctproto';
 
 /**
  * Response for 'get-teammates' message
