@@ -1,6 +1,7 @@
-import { NewMessage } from "ctproto";
+import { NewMessage } from 'ctproto';
+import ContactType from '../../../entities/contactType';
 
-export interface UpdateTeammatePayload {
+export interface UpdateTeammateMessagePayload {
   /**
    * Teammate's unique identity
    */
@@ -20,7 +21,7 @@ export interface UpdateTeammatePayload {
    * List of teammate's contacts
    */
   contacts?: [ {
-    type: string,
+    type: ContactType,
     value: string
   } ];
 }
@@ -28,6 +29,6 @@ export interface UpdateTeammatePayload {
 /**
  * Describes the request for updating teammate
  */
-export default interface UpdateTeammateMessage extends NewMessage<UpdateTeammatePayload> {
+export default interface UpdateTeammateMessage extends NewMessage<UpdateTeammateMessagePayload> {
   type: 'update-teammate';
 }

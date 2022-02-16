@@ -1,5 +1,5 @@
-import { Status } from '../../../../types/entities';
 import mongoose from '../index';
+import { Status } from 'types/entities';
 
 /**
  * Status schema

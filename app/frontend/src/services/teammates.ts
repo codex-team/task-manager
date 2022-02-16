@@ -1,11 +1,11 @@
 import client from 'transport/ctproto-client';
-import { CreateTeammatePayload } from 'types/transport/requests/teammate/create';
-import { CreateTeammateResponsePayload } from 'types/transport/responses/teammate/create';
+import { CreateTeammateMessagePayload } from 'types/transport/requests/teammate/create-teammate';
+import { CreateTeammateResponsePayload } from 'types/transport/responses/teammate/create-teammate';
 import { GetTeammatesMessagePayload } from 'types/transport/requests/teammate/get-teammates';
 import { GetTeammatesResponsePayload } from 'types/transport/responses/teammate/get-teammates';
 import { GetTeammateByIdMessagePayload } from 'types/transport/requests/teammate/get-teammate-by-id';
 import { GetTeammateByIdResponsePayload } from 'types/transport/responses/teammate/get-teammate-by-id';
-import { UpdateTeammatePayload } from 'types/transport/requests/teammate/update-teammate';
+import { UpdateTeammateMessagePayload } from 'types/transport/requests/teammate/update-teammate';
 import { UpdateTeammateResponsePayload } from 'types/transport/responses/teammate/update-teammate';
 import { RemoveTeammateByIdMessagePayload } from 'types/transport/requests/teammate/remove-teammate-by-id';
 import { RemoveTeammateByIdResponsePayload } from 'types/transport/responses/teammate/remove-teammate-by-id';
@@ -15,7 +15,7 @@ import { RemoveTeammateByIdResponsePayload } from 'types/transport/responses/tea
  *
  * @param data - new teammate data
  */
-export async function createTeammate(data: CreateTeammatePayload): Promise<CreateTeammateResponsePayload> {
+export async function createTeammate(data: CreateTeammateMessagePayload): Promise<CreateTeammateResponsePayload> {
   const response = await client.send('create-teammate', data);
 
   return response as CreateTeammateResponsePayload;
@@ -39,7 +39,7 @@ export async function getTeammates(data: GetTeammatesMessagePayload): Promise<Ge
  */
 export async function getTeammateById(id: string): Promise<GetTeammateByIdResponsePayload> {
   const data: GetTeammateByIdMessagePayload = {
-    teammateId: id,
+    id,
   };
 
   const response = await client.send('get-teammate-by-id', data);
@@ -52,7 +52,7 @@ export async function getTeammateById(id: string): Promise<GetTeammateByIdRespon
  *
  * @param data - update teammate data
  */
-export async function updateTeammate(data: UpdateTeammatePayload): Promise<UpdateTeammateResponsePayload> {
+export async function updateTeammate(data: UpdateTeammateMessagePayload): Promise<UpdateTeammateResponsePayload> {
   const response = await client.send('update-teammate', data);
 
   return response as UpdateTeammateResponsePayload;

@@ -1,5 +1,5 @@
 import mongoose from '../index';
-import Task from '../../../../types/entities/task';
+import { Task } from 'types/entities';
 
 /**
  * Task schema

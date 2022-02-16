@@ -1,4 +1,4 @@
-import {ResponseMessage} from "ctproto";
+import {ResponseMessage} from 'ctproto';
 
 /**
  * Response for 'remove-teammate' message
