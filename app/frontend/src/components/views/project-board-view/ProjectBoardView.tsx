@@ -56,15 +56,7 @@ const ProjectBoardView: React.FC<Props> = () => {
       return;
     }
 
-    // Update on UI first to avoid lags
-    taskMoved({
-      taskId: draggableId,
-      sourceStatusId: source.droppableId,
-      targetStatusId: destination.droppableId,
-      newIndex: destination.index,
-    });
 
-    // Update on server
     const updateParams: ChangeTaskStatusPayload = {
       taskId: draggableId,
     };
@@ -77,6 +69,10 @@ const ProjectBoardView: React.FC<Props> = () => {
       updateParams.newStatusId = destination.droppableId;
       updateParams.newIndex = destination.index;
     }
+
+    // Update on UI first to avoid lags
+    taskMoved(updateParams);
+    // Update on server
     changeTaskStatusFx(updateParams);
   };
 
@@ -102,47 +98,44 @@ const ProjectBoardView: React.FC<Props> = () => {
       <Outlet />
       <DragDropContext onDragEnd={ onDragEnd }>
         { getColumnsData(tasksList, currentProject?.taskStatuses).map(column => (
-          <Droppable droppableId={ column.status._id } key={ column.status._id }>
-            { provided => (
-              <ColumnStyled
-                { ...provided.droppableProps }
-                ref={ provided.innerRef }>
-
-                <ColumnLabel>
-                  { column.status.label }
-                  <CountLabel>
-                    { column.tasks.length }
-                  </CountLabel>
-                </ColumnLabel>
-
-                { column.tasks
-                  .map((task, index) => (
-                    <Draggable
-                      draggableId={ task._id }
-                      index={ index }
-                      key={ task._id }
-                      isDragDisabled={ !currentProject }
-                    >
-                      { draggableProvided => (
-                        <StyledCardLink
-                          { ...draggableProvided.draggableProps }
-                          { ...draggableProvided.dragHandleProps }
-                          to={ task._id }
-                          key={ task._id }
-                          taskTitle={ getTaskTitle(task.text) }
-                          ref={ draggableProvided.innerRef }
-                        />
-                      )}
-                    </Draggable>
-                  ))}
-
-                { provided.placeholder }
-
-                <TaskInput onChange={ (value) => createNewTask(column.status._id, value) }/>
-
-              </ColumnStyled>
-            )}
-          </Droppable>
+          <ColumnStyled key={ column.status._id }>
+            <ColumnLabel>
+              { column.status.label }
+              <CountLabel>
+                { column.tasks.length }
+              </CountLabel>
+            </ColumnLabel>
+            <Droppable droppableId={ column.status._id } >
+              { provided => (
+                <div
+                  { ...provided.droppableProps }
+                  ref={ provided.innerRef }>
+                  { column.tasks
+                    .map((task, index) => (
+                      <Draggable
+                        draggableId={ task._id }
+                        index={ index }
+                        key={ task._id }
+                        isDragDisabled={ !currentProject }
+                      >
+                        { draggableProvided => (
+                          <StyledCardLink
+                            { ...draggableProvided.draggableProps }
+                            { ...draggableProvided.dragHandleProps }
+                            to={ task._id }
+                            key={ task._id }
+                            taskTitle={ getTaskTitle(task.text) }
+                            ref={ draggableProvided.innerRef }
+                          />
+                        )}
+                      </Draggable>
+                    ))}
+                  { provided.placeholder }
+                  <TaskInput onChange={ (value) => createNewTask(column.status._id, value) }/>
+                </div>
+              )}
+            </Droppable>
+          </ColumnStyled>
         ))}
       </DragDropContext>
     </Container>
