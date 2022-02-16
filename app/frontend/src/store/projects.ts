@@ -25,6 +25,11 @@ export const projectSelected = createEvent<Project | null | undefined>();
 export const getProjectsFx = createEffect(getProjects);
 export const createProjectFx = createEffect(createProject);
 
+
+/**
+ * Event to be called when task moved
+ */
+export const taskMoved = createEvent<{ taskId: string, sourceStatusId: string, targetStatusId: string, newIndex: number }>();
 /**
  * State changes based on effects results
  */
@@ -66,6 +71,39 @@ $selectedProject.on(createTaskFx.done, (state, { result }) => {
   return {
     ...state,
     taskStatuses: getListWithItemReplaced(statuses, result.status),
+  };
+});
+
+
+$selectedProject.on(taskMoved, (state, data) => {
+  if (!state || !state.taskStatuses) {
+    return;
+  }
+  const statuses = [ ...state?.taskStatuses ];
+
+  if (!statuses) {
+    return state;
+  }
+
+  if (data.sourceStatusId) {
+    const sourceStatus = statuses.find(status => status._id === data.sourceStatusId);
+
+    if (sourceStatus) {
+      sourceStatus.tasks = sourceStatus.tasks.filter(taskId => taskId !== data.taskId);
+    }
+  }
+
+  if (data.targetStatusId && data.newIndex !== undefined && data.newIndex !== null) {
+    const targetStatus = statuses.find(status => status._id === data.targetStatusId);
+
+    if (targetStatus) {
+      targetStatus.tasks.splice(data.newIndex, 0, data.taskId);
+    }
+  }
+
+  return {
+    ...state,
+    taskStatuses: statuses,
   };
 });
 

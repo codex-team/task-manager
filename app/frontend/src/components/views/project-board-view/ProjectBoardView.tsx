@@ -2,7 +2,7 @@ import TaskInput from 'components/UI/task-input/TaskInput';
 import { useStore } from 'effector-react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { Outlet } from 'react-router';
-import { $selectedProject } from 'store/projects';
+import { $selectedProject, taskMoved } from 'store/projects';
 import { $tasks, changeTaskStatusFx, createTaskFx } from 'store/tasks';
 import styled from 'styled-components';
 import { Status, Task } from 'types/entities';
@@ -50,6 +50,21 @@ const ProjectBoardView: React.FC<Props> = () => {
       return;
     }
 
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+      // Task stays at the same place
+
+      return;
+    }
+
+    // Update on UI first to avoid lags
+    taskMoved({
+      taskId: draggableId,
+      sourceStatusId: source.droppableId,
+      targetStatusId: destination.droppableId,
+      newIndex: destination.index,
+    });
+
+    // Update on server
     const updateParams: ChangeTaskStatusPayload = {
       taskId: draggableId,
     };

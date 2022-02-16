@@ -14,7 +14,8 @@ interface Props{
  * @param props - props of component
  */
 const ContentStyled = styled.div<Props>`
-  padding: 16px;
+  padding: 16px 0 0 16px;
+  min-height: calc(100vh - 16px);
   width: 100%;
   background: var(--color-bg-main);
   flex: 1;

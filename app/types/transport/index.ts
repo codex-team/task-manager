@@ -24,7 +24,7 @@ import GetTeammateByIdResponse from "./responses/teammate/get-teammate-by-id";
 import UpdateTeammateResponse from "./responses/teammate/update-teammate";
 import RemoveTeammateByIdMessage from "./requests/teammate/remove-teammate-by-id";
 import ChangeTaskStatusMessage from './requests/task/change-task-status';
-import ChangeTaskStatusResponse from './responses/task/change-task-status'
+import ChangeTaskStatusResponse from './responses/task/change-task-status';
 
 /**
  * The type described all available outgoing messages that can be sent by API
