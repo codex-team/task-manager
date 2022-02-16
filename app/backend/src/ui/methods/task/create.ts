@@ -1,6 +1,5 @@
 import TaskModel from '../../../database/models/task';
 import StatusModel from '../../../database/models/status';
-import mongoose from '../../../database';
 import { CreateTaskResponsePayload } from '../../../../../types/transport/responses/task/create';
 
 /**
@@ -15,37 +14,26 @@ import { CreateTaskResponsePayload } from '../../../../../types/transport/respon
  */
 export async function createTask(text: string, orderScore: number, projectId?: string, parentId?: string, assignees?: string[], statusId?: string): Promise<CreateTaskResponsePayload> {
   const response = {} as CreateTaskResponsePayload;
-  const session = await mongoose.startSession();
+  const task = await TaskModel.create({
+    text,
+    orderScore,
+    projectId,
+    parentId,
+    assignees,
+    statusId,
+  });
 
-  session.startTransaction();
-  try {
-    const task = await TaskModel.create({
-      text,
-      orderScore,
-      projectId,
-      parentId,
-      assignees,
-      statusId,
-    });
+  response.task = task;
 
-    response.task = task;
+  if (statusId) {
+    const status = await StatusModel.findById(statusId);
+    const newStatusTasks = status?.tasks || [];
 
-    if (statusId) {
-      const status = await StatusModel.findById(statusId);
-      const newStatusTasks = status?.tasks || [];
+    newStatusTasks.push(task._id);
+    const updatedStatus = await StatusModel.findOneAndUpdate({ _id: statusId }, { tasks: newStatusTasks }, { new: true }).exec();
 
-      newStatusTasks.push(task._id);
-      const updatedStatus = await StatusModel.findOneAndUpdate({ _id: statusId }, { tasks: newStatusTasks }, { new: true }).exec();
-
-      response.status = updatedStatus;
-    }
-    await session.commitTransaction();
-
-    return response;
-  } catch (e) {
-    await session.abortTransaction();
-    throw e;
-  } finally {
-    session.endSession();
+    response.status = updatedStatus;
   }
+
+  return response;
 }
