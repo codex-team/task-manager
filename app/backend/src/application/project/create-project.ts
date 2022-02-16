@@ -25,8 +25,8 @@ async function createStandardStatuses(projectId: string): Promise<void> {
  * Creates new project
  *
  * @param title - project title
- * @param picture - project picture url
- * @param messengerChannelUrl - project messenger channel url
+ * @param [picture] - project picture url
+ * @param [messengerChannelUrl] - project messenger channel url
  */
 export async function createProject(title: string, picture?: string, messengerChannelUrl?: string): Promise<Project> {
   const newProject = await ProjectSchema.create({
