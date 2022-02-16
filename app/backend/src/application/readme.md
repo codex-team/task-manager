@@ -1,3 +1,3 @@
 # Application
 
-Methods with implements business logic.
+Business logic methods
