@@ -2,7 +2,7 @@
  * Response for 'update-teammate' message
  * Contains sample of teammate
  */
-import {ResponseMessage} from "ctproto";
+import {ResponseMessage} from 'ctproto';
 import Teammate from "../../../entities/teammate";
 
 export interface UpdateTeammateResponsePayload {

@@ -1,4 +1,4 @@
-import { NewMessage } from "ctproto";
+import { NewMessage } from 'ctproto';
 
 export interface GetTeammateByIdMessagePayload {
   /**

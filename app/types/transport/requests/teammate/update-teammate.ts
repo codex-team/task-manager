@@ -1,4 +1,4 @@
-import { NewMessage } from "ctproto";
+import { NewMessage } from 'ctproto';
 import ContactType from '../../../entities/contactType';
 
 export interface UpdateTeammateMessagePayload {
