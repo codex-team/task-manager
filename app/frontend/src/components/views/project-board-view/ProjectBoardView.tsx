@@ -3,7 +3,7 @@ import { useStore } from 'effector-react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { Outlet } from 'react-router';
 import { $selectedProject, taskMoved } from 'store/projects';
-import { $tasks, changeTaskStatusFx, createTaskFx } from 'store/tasks';
+import { $tasks, changeTaskStatusFx, createTaskFx, taskSelected } from 'store/tasks';
 import styled from 'styled-components';
 import { Status, Task } from 'types/entities';
 import CardLink from '../project-list-view/components/CardLink';
@@ -93,6 +93,10 @@ const ProjectBoardView: React.FC<Props> = () => {
     createTaskFx(taskData);
   };
 
+  const handleCardClick = (task: Task): void => {
+    taskSelected(task);
+  };
+
   return (
     <Container>
       <Outlet />
@@ -126,6 +130,7 @@ const ProjectBoardView: React.FC<Props> = () => {
                             key={ task._id }
                             taskTitle={ getTaskTitle(task.text) }
                             ref={ draggableProvided.innerRef }
+                            onClick={ () => handleCardClick(task) }
                           />
                         )}
                       </Draggable>

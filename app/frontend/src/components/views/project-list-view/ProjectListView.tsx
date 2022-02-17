@@ -7,7 +7,7 @@ import CardLink from 'components/views/project-list-view/components/CardLink';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { getOrderScoreDesc } from 'helpers/get-order-score';
 import { Project, Task } from 'types/entities';
-import { $tasks, createTaskFx, listUpdated, updateTaskFx } from 'store/tasks';
+import { $tasks, createTaskFx, listUpdated, taskSelected, updateTaskFx } from 'store/tasks';
 import getTaskTitle from 'helpers/get-task-title';
 import prepareTaskContent from 'helpers/prepare-task-content';
 
@@ -82,6 +82,10 @@ const ProjectListView: React.FC<Props> = () => {
     return projects.find(project => project._id === task.projectId);
   };
 
+  const handleCardClick = (task: Task): void => {
+    taskSelected(task);
+  };
+
   return (
     <Wrapper>
       <Outlet />
@@ -108,6 +112,7 @@ const ProjectListView: React.FC<Props> = () => {
                       status={ getTaskStatusLabel(task) }
                       ref={ draggableProvided.innerRef }
                       showStatus={ true }
+                      onClick={ () => handleCardClick(task) }
                     />
                   )}
                 </Draggable>

@@ -10,6 +10,11 @@ import getListWithItemReplaced from 'helpers/get-list-with-item-replaced';
 export const $tasks = createStore<Task[]>([]);
 
 /**
+ * Stores selected task
+ */
+export const $selectedTask = createStore<Task | null>(null);
+
+/**
  * Task effects
  */
 export const getTasksFx = createEffect(getTasks);
@@ -21,6 +26,12 @@ export const changeTaskStatusFx = createEffect(changeTaskStatus);
  * Event to be called when tasks list state should be updated
  */
 export const listUpdated = createEvent<Task[]>();
+
+
+/**
+ * Event to be called when selected task state should be updated
+ */
+export const taskSelected = createEvent<Task | null | undefined>();
 
 /**
  * Sets tasks llist
@@ -58,4 +69,7 @@ $tasks.on(changeTaskStatusFx.done, (state, { result }) => {
 
   return getListWithItemReplaced(state, result.task);
 });
+
+$selectedTask.on(taskSelected, (_, value) => value);
+$selectedTask.on(changeTaskStatusFx.done, (_, { result }) => result.task);
 

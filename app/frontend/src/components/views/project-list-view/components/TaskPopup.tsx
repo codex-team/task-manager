@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PopupWrapper from 'components/layouts/popup/PopupWrapper';
-import Task from 'types/entities/task';
 import { OutputData } from '@editorjs/editorjs';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getTaskById } from 'services/tasks';
 import { useStore } from 'effector-react';
-import { $projects, $selectedProject } from 'store/projects';
+import { $selectedProject } from 'store/projects';
 import TaskContent from 'components/views/project-list-view/components/TaskContent';
 import TaskInfo from 'components/views/project-list-view/components/TaskInfo';
+import { $selectedTask, taskSelected } from 'store/tasks';
 
 /**
  * Task popup component
@@ -16,18 +16,16 @@ import TaskInfo from 'components/views/project-list-view/components/TaskInfo';
 const TaskPopup: React.FC = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const projects = useStore($projects);
   const selectedProject = useStore($selectedProject);
-
+  const task = useStore($selectedTask);
   const id = params.task_id;
 
   const onClose = (): void => {
+    taskSelected(null);
     navigate('../');
   };
 
-  const [task, setTask] = useState<Task | null>(null);
   const [data, setData] = useState<OutputData | null>(null);
-  const [projectTitle, setProjectTitle] = useState<string | null>(null);
 
   useEffect(() => {
     if (!id) {
@@ -35,37 +33,27 @@ const TaskPopup: React.FC = () => {
     }
 
     const exec = async (): Promise<void> => {
-      const response = await getTaskById(id);
+      if (!task) {
+        const response = await getTaskById(id);
 
-      setTask(response.task);
+        taskSelected(response.task);
 
-      if (!response.task) {
         return;
       }
-
-      const blocks: OutputData = { blocks: JSON.parse(response.task.text).blocks };
+      const blocks: OutputData = { blocks: JSON.parse(task.text).blocks };
 
       setData(blocks);
     };
 
     exec();
-  }, [ id ]);
-
-
-  useEffect(() => {
-    if (!task) {
-      return;
-    }
-
-    setProjectTitle(selectedProject?.title || null);
-  }, [projects, task, selectedProject]);
+  }, [task, id]);
 
   return (
     <PopupWrapper backDropClick={ onClose } isPopupVisible={ true }>
       { task &&
         <Container>
           <TaskContent data={ data } id={ task._id }/>
-          <TaskInfo projectTitle={ projectTitle } task={ task }/>
+          <TaskInfo projectTitle={ selectedProject?.title || null } task={ task }/>
         </Container>
       }
     </PopupWrapper>
