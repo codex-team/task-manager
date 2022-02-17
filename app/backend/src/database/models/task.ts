@@ -1,5 +1,5 @@
 import mongoose from '../index';
-import Task from '../../../../types/entities/task';
+import { Task } from 'types/entities';
 
 /**
  * Task schema
@@ -11,6 +11,22 @@ const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema({
   text: {
     type: mongoose.Schema.Types.String,
     required: true,
+  },
+
+  /**
+   * Order of the task when displayed in list of project tasks
+   */
+  orderScore: {
+    type: mongoose.Schema.Types.Number,
+    required: true,
+  },
+
+  /**
+   * Task status id
+   */
+  statusId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'StatusSchema',
   },
 
   /**
@@ -34,6 +50,7 @@ const TaskSchema: mongoose.Schema<Task> = new mongoose.Schema({
    */
   assignees: [ {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'TeammateSchema',
   } ],
 
   /**

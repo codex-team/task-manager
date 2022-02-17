@@ -1,5 +1,5 @@
 import mongoose from '../index';
-import Project from '../../../../types/entities/project';
+import { Project } from 'types/entities';
 
 /**
  * Project schema

@@ -5,7 +5,7 @@ import Input from 'components/UI/input/Input';
 import labeled from 'components/UI/labeled/Labeled';
 import ImageUploaderForm from 'components/UI/image-uploader-form/ImageUploaderForm';
 import Button, { StyleType } from 'components/UI/button/Button';
-import { createProjectEffectFx } from 'store/projects';
+import { createProjectFx } from 'store/projects';
 
 /**
  * ProjectForm component props model
@@ -20,7 +20,7 @@ const ProjectForm: React.FC<Props> = () => {
   const [messengerChannelUrl, setMessengerChannelUrl] = useState('');
 
   const submit = async (): Promise<void> => {
-    await createProjectEffectFx({
+    await createProjectFx({
       title,
       messengerChannelUrl,
     });
@@ -35,18 +35,18 @@ const ProjectForm: React.FC<Props> = () => {
           placeholder='New project title'
           id='title'
           value={ title }
-          onChange={ e =>  setTitle(e)} />
+          onChange={ e =>  setTitle(e) } />
         <LabeledInput
           label='Messenger channel webhook'
           placeholder='Webhook URL'
           id='webhook-url'
           value={ messengerChannelUrl }
-          onChange={ e =>  setMessengerChannelUrl(e)}>
+          onChange={ e =>  setMessengerChannelUrl(e) }>
             Read more about <a href="/">Working Channel</a> integrations
         </LabeledInput>
         <ImageUploaderForm
           label="Project picture"
-          previewUrl={''}
+          previewUrl={ '' }
           onChange={ e => console.log(e) }
           promptEmpty='Upload picture for your project'
           promptHasValue='Change picture for your project' />

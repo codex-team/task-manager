@@ -29,9 +29,9 @@ const PopupWrapper: React.FC<Props> = ({ children, backDropClick, isPopupVisible
   }
 
   return (
-    <Popup backDropClick={backDropClick}>
+    <Popup backDropClick={ backDropClick }>
       <PopupContent>
-        <CloseButton onClick={backDropClick}>
+        <CloseButton onClick={ backDropClick }>
           <CloseIcon/>
         </CloseButton>
         {children}
@@ -56,15 +56,12 @@ const CloseButton = styled.div`
  * Styled popup content
  */
 const PopupContent = styled.div`
+  cursor: auto;
   width: 1000px;
-  padding: 40px;
+  z-index: 2;
   position: relative;
   background-color: var(--color-bg-main);
-  min-height: 500px;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export default PopupWrapper;

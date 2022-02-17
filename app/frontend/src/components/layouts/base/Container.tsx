@@ -29,7 +29,7 @@ const ContainerStyled = styled.div<Props>`
  */
 const Container: React.FC<Props> = ({ ...props }) => {
   return (
-    <ContainerStyled {...props}/>
+    <ContainerStyled { ...props }/>
   );
 };
 

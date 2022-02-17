@@ -1,8 +1,8 @@
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
-import { createTransportServer } from './ui/transport-server';
-import { Config } from './config/config';
+import { createTransportServer } from 'ui/transport-server';
+import { Config } from 'config/config';
 
 const server = fastify();
 
@@ -12,6 +12,13 @@ const server = fastify();
 server.register(fastifyStatic, {
   root: path.join(__dirname, '..', '..', 'frontend', 'build'),
   prefix: '/',
+});
+
+/**
+ * User react for undefined routes
+ */
+server.setNotFoundHandler(function (request, reply) {
+  reply.sendFile('index.html');
 });
 
 /**

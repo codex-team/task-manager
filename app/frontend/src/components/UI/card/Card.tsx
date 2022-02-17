@@ -5,7 +5,7 @@ import Icon from 'components/UI/icon/Icon';
 /**
  * Interface for card component props
  */
-interface Props{
+export interface Props {
   /**
    * Task Title
    */
@@ -37,7 +37,12 @@ interface Props{
   /**
    * Task status
    */
-  status?: string
+  status?: string;
+
+  /**
+   * True if card is active
+   */
+  isActive?: boolean;
 }
 
 
@@ -50,7 +55,7 @@ const Card: React.FC<Props> = (props) => {
   const isShownAssigneesNumber = props.assigneesNumber && props.assigneesNumber-1;
 
   return (
-    <CardStyled {...props}>
+    <CardStyled { ...props }>
       <TaskInfo>
         { props.projectInfo &&
         <ProjectInfo>
@@ -63,21 +68,19 @@ const Card: React.FC<Props> = (props) => {
         </ProjectInfo>
         }
         <Title>
-          {props.taskTitle}
+          { props.taskTitle }
         </Title>
         { props.subtasksNumber &&
           <Progress>
-            {props.completedSubtasks} of {props.subtasksNumber} completed
+            { props.completedSubtasks } of { props.subtasksNumber } completed
           </Progress>
         }
       </TaskInfo>
-      { props.status &&
-        <Status>
-          { props.status }
-        </Status>
-      }
+      <Status>
+        { props.status || 'Unsorted' }
+      </Status>
       <Assignees>
-        <Icon name='DefaultAvatar' width={18} height={18}/>
+        <Icon name='DefaultAvatar' width={ 18 } height={ 18 }/>
         { (isShownAssigneesNumber && props.assigneesNumber) &&
           `+${props.assigneesNumber-1}`
         }
@@ -192,12 +195,13 @@ const CardStyled = styled.div<Props>`
   border-style: solid;
   border-radius: 12px;
   padding: 12px 12px 12px 14px;
+  min-height: 48px;
+  background: var(--color-bg-main);
 
   &:hover {
     border-color: var(--color-line-hover);
   };
-
-  &:active {
+  ${props => props.isActive && css`
     border-color: var(--color-line-active);
     background-color: var(--color-contrast);
 
@@ -220,14 +224,14 @@ const CardStyled = styled.div<Props>`
     ${Status} {
       color: var(--color-text-primary-reversed);;
     }
-  }
+  `}
 `;
 
 /**
  * Default card component props
  */
 Card.defaultProps = {
-  completedSubtasks : 0,
+  completedSubtasks: 0,
 };
 
 export default Card;

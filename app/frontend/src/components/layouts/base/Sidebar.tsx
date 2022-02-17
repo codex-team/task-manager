@@ -29,7 +29,7 @@ const SidebarStyled = styled.div<Props>`
  */
 const Sidebar: React.FC<Props> = ({ ...props }) => {
   return (
-    <SidebarStyled {...props}/>
+    <SidebarStyled { ...props }/>
   );
 };
 

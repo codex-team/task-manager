@@ -29,14 +29,17 @@ const Popup: React.FC<Props> = ({ children, backDropClick }) => {
 
     document.addEventListener('keydown', escFunction);
 
+    document.body.style.overflow = 'hidden';
+
     return () => {
+      document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', escFunction);
     };
   }, [ backDropClick ]);
 
   return ReactDOM.createPortal(
-    <PopupStyled onClick={backDropClick}>
-      <div onClick={stopPropagation}>
+    <PopupStyled onClick={ backDropClick }>
+      <div onClick={ stopPropagation }>
         {children}
       </div>
     </PopupStyled>,
@@ -48,15 +51,20 @@ const Popup: React.FC<Props> = ({ children, backDropClick }) => {
  * Styled popup component
  */
 const PopupStyled = styled.div`
-  width: 100%;
-  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+  padding-top: 20px;
+  padding-bottom: 50px;
   position: fixed;
-  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
   align-items: center;
   justify-content: center;
-  top: 0;
-  left: 0;
   background-color: rgba(0,0,0,0.2);
+  overflow: scroll;
 `;
 
 export default Popup;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'components/layouts/base/Container';
 import Sidebar from 'components/layouts/base/Sidebar';
 import Content from 'components/layouts/base/Content';
@@ -15,7 +15,6 @@ import ProjectView from 'components/views/project-view/ProjectView';
 import { Link } from 'react-router-dom';
 import Button from 'components/UI/button/Button';
 import styled from 'styled-components';
-import PopupWrapper from 'components/layouts/popup/PopupWrapper';
 
 
 /**
@@ -38,31 +37,24 @@ const StyledButton = styled(Button)`
  * @returns {React.ReactElement}
  */
 function App(): React.ReactElement {
-  const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
-
-  const changePopupVisibility = (): void => {
-    setIsPopupVisible( (wasPopupVisible) => !wasPopupVisible);
-  };
-
   return (
     <Container>
       <ColorVariables/>
       <GlobalStyles/>
-      <PopupWrapper backDropClick={changePopupVisibility} isPopupVisible={isPopupVisible}/>
       <Sidebar>
-        <SidebarHeader sidebarTitle={'CodeX Tasks'}/>
-        <ProjectList workspaceId={''}>
+        <SidebarHeader sidebarTitle={ 'CodeX Tasks' }/>
+        <ProjectList workspaceId={ '' }>
           <StyledLink to='/projects/new'>
             <StyledButton icon='plus'>Add new project</StyledButton>
           </StyledLink>
         </ProjectList>
       </Sidebar>
       <Routes>
-        <Route path="/" element={<Content />}>
-          <Route path="projects/new" element={<ProjectForm />} />
-          <Route path="projects/:id/edit" element={<ProjectForm />} />
-          <Route path="projects/all" element={<ProjectView />} />
-          <Route path="projects/:id" element={<ProjectView />} />
+        <Route path="/" element={ <Content /> }>
+          <Route path="projects/new" element={ <ProjectForm /> } />
+          <Route path="projects/:id/edit" element={ <ProjectForm /> } />
+          <Route path="projects/all/*" element={ <ProjectView /> } />
+          <Route path="projects/:id/*" element={ <ProjectView /> } />
         </Route>
       </Routes>
     </Container>
