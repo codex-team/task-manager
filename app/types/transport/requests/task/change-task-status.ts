@@ -12,11 +12,6 @@ export interface ChangeTaskStatusPayload {
   newStatusId?: string
 
   /**
-   * Id of status task previously had
-   */
-  prevStatusId?: string
-
-  /**
    * Index of the task in new status tasks array
    */
   newIndex?: number

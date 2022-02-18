@@ -63,7 +63,6 @@ const TaskInfo: React.FC<Props> = ({ projectTitle, task }) => {
       changeTaskStatusFx({
         taskId: task._id,
         newStatusId: value as string,
-        prevStatusId: task.statusId,
       });
     } catch (e) {
       console.error(e);

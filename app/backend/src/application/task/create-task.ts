@@ -27,12 +27,16 @@ export async function createTask(text: string, orderScore: number, projectId?: s
 
   if (statusId) {
     const status = await StatusModel.findById(statusId);
-    const newStatusTasks = status?.tasks || [];
 
-    newStatusTasks.push(task._id);
-    const updatedStatus = await StatusModel.findOneAndUpdate({ _id: statusId }, { tasks: newStatusTasks }, { new: true }).exec();
+    if (status) {
+      const newStatusTasks = status?.tasks || [];
 
-    response.status = updatedStatus;
+      newStatusTasks.push(task._id);
+      status.tasks = newStatusTasks;
+      await status.save();
+
+      response.status = status;
+    }
   }
 
   return response;

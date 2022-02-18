@@ -61,17 +61,18 @@ const ProjectBoardView: React.FC<Props> = () => {
       taskId: draggableId,
     };
 
-    if (source.droppableId !== UNSORTED_COLUMN_ID) {
-      updateParams.prevStatusId = source.droppableId;
-    }
-
     if (destination.droppableId !== UNSORTED_COLUMN_ID) {
       updateParams.newStatusId = destination.droppableId;
       updateParams.newIndex = destination.index;
     }
 
+    const prevStatusId = source.droppableId !== UNSORTED_COLUMN_ID ? source.droppableId : null;
+
     // Update on UI first to avoid lags
-    taskMoved(updateParams);
+    taskMoved({
+      ...updateParams,
+      prevStatusId,
+    });
     // Update on server
     changeTaskStatusFx(updateParams);
   };
@@ -80,11 +81,11 @@ const ProjectBoardView: React.FC<Props> = () => {
     if (!currentProject) {
       return;
     }
-
+    const orderScore = tasksList.length ? (tasksList[0].orderScore + 1) : 1;
     const taskData: CreateTaskMessagePayload = {
       text: prepareTaskContent(text),
       projectId: currentProject._id,
-      orderScore: (tasksList[0].orderScore + 1),
+      orderScore,
     };
 
     if (statusId !== UNSORTED_COLUMN_ID) {

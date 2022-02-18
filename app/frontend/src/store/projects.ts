@@ -29,7 +29,7 @@ export const createProjectFx = createEffect(createProject);
 /**
  * Event to be called when task moved
  */
-export const taskMoved = createEvent<{ taskId: string, prevStatusId?: string, newStatusId?: string, newIndex?: number }>();
+export const taskMoved = createEvent<{ taskId: string, prevStatusId?: string | null, newStatusId?: string | null, newIndex?: number }>();
 /**
  * State changes based on effects results
  */
@@ -106,4 +106,3 @@ $selectedProject.on(taskMoved, (state, data) => {
     taskStatuses: statuses,
   };
 });
-

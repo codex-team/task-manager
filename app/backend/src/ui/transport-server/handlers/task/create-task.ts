@@ -18,7 +18,8 @@ export class CreateTaskHandler implements MessageHandler {
       payload.orderScore,
       payload.projectId,
       payload.parentId,
-      payload.assignees
+      payload.assignees,
+      payload.statusId
     );
   }
 }
