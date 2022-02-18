@@ -12,38 +12,44 @@ import Mongoose from 'mongoose';
  */
 export async function changeTaskStatus(params: ChangeTaskStatusPayload): Promise<ChangeTaskStatusResponsePayload> {
   const response: ChangeTaskStatusResponsePayload = { };
+  const task = await TaskModel.findById(params.taskId);
 
-  if (params.prevStatusId) {
-    const prevStatus = await StatusModel.findById(params.prevStatusId);
+  if (!task) {
+    return response;
+  }
+
+  // Remove taskId from previous status tasks array
+  if (task.statusId) {
+    const prevStatus = await StatusModel.findById(task.statusId);
     const prevStatusTasks = (prevStatus?.tasks || []).filter(id => !(id as unknown as Mongoose.Types.ObjectId).equals(new Mongoose.Types.ObjectId(params.taskId)));
-    const prevStatusUpdated = await StatusModel.findOneAndUpdate({ _id: params.prevStatusId }, { tasks: prevStatusTasks }, { new: true }).exec();
+    const prevStatusUpdated = await StatusModel.findOneAndUpdate({ _id: task.statusId }, { tasks: prevStatusTasks }, { new: true }).exec();
 
     response.prevStatus = prevStatusUpdated;
   }
+
+  // Update task status id
+  task.statusId = params.newStatusId;
+  await task.save();
+  response.task = task;
+
+  // Push task id to new status tasks array
   if (params.newStatusId) {
-    const task = await TaskModel.findOneAndUpdate({ _id: params.taskId }, { statusId: params.newStatusId }, { new: true }).exec();
-
-    response.task = task;
-
     const newStatus = await StatusModel.findById(params.newStatusId);
-    const newStatusTasks = newStatus?.tasks || [];
 
-    if (params.newIndex !== null && params.newIndex !== undefined) {
-      newStatusTasks.splice(params.newIndex, 0, params.taskId);
-    } else {
-      newStatusTasks.push(params.taskId);
+    if (newStatus) {
+      const newStatusTasks = newStatus.tasks || [];
+
+      if (params.newIndex !== null && params.newIndex !== undefined) {
+        newStatusTasks.splice(params.newIndex, 0, params.taskId);
+      } else {
+        newStatusTasks.push(params.taskId);
+      }
+      newStatus.tasks = newStatusTasks;
+      await newStatus.save();
+
+      response.newStatus = newStatus;
     }
-
-    const newStatusUpdated = await StatusModel.findOneAndUpdate({ _id: params.newStatusId }, { tasks: newStatusTasks }, { new: true }).exec();
-
-    response.newStatus = newStatusUpdated;
-  } else {
-    // Task becomes unsorted
-    const task = await TaskModel.findOneAndUpdate({ _id: params.taskId }, { $unset: { statusId: '' } }, { new: true }).exec();
-
-    response.task = task;
   }
-
 
   return response;
 }
