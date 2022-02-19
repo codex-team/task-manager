@@ -164,6 +164,9 @@ const ReportManager: React.FC = () => {
       setEditingSchedule(false);
     };
 
+    /**
+     * @todo needs to parse cron schedule to user-friendly format
+     */
     return (
       <ReportWrapper key={ index } onClick={ onReportSelect } selected={ index === selectedReport }>
         <div>
