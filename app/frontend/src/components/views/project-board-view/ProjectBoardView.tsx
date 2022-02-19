@@ -194,6 +194,7 @@ const ColumnStyled = styled.div`
  * Styled container
  */
 const Container = styled.div`
+  padding-right: 16px;
   display: flex;
   overflow-x: scroll;
   flex-grow: 1;

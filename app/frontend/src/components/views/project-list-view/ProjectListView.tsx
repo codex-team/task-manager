@@ -130,6 +130,8 @@ const ProjectListView: React.FC<Props> = () => {
  * Tasks list styled wrapper
  */
 const Wrapper = styled.div`
+  padding-right: 16px;
+  
   & > *:not(:last-child) {
     margin-bottom: 3px;
   }
