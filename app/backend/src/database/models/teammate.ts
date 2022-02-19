@@ -1,6 +1,6 @@
 import mongoose from '../index';
-import Teammate from '../../../../types/entities/teammate';
-import ContactType from '../../../../types/entities/contactType';
+import Teammate from 'types/entities/teammate';
+import ContactType from 'types/entities/contactType';
 
 /**
  * Teammate schema
@@ -13,6 +13,7 @@ const TeammateSchema: mongoose.Schema<Teammate> = new mongoose.Schema({
     type: mongoose.Schema.Types.String,
     required: true,
   },
+
   /**
    * Teammate photo
    */
@@ -31,6 +32,7 @@ const TeammateSchema: mongoose.Schema<Teammate> = new mongoose.Schema({
       type: mongoose.Schema.Types.String,
       default: ContactType.Telegram,
     },
+
     /**
      * Contact value(username of email address)
      */

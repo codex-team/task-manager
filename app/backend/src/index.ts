@@ -1,8 +1,8 @@
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
-import { createTransportServer } from './ui/transport-server';
-import { Config } from './config/config';
+import { createTransportServer } from 'ui/transport-server';
+import { Config } from 'config/config';
 
 const server = fastify();
 
