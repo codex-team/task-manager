@@ -12,12 +12,12 @@ export interface ChangeTaskStatusResponsePayload {
   task?: Task | null
 
   /**
-   * Updated previous status object (if any)
+   * Updated previous status object (if not moved from unsorted column)
    */
   prevStatus?: Status | null
   
   /**
-   * Updated new status object (if any)
+   * Updated new status object (if not moved to unsorted column)
    */
   newStatus?: Status | null
 }
