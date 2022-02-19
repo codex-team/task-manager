@@ -1,15 +1,30 @@
 import React, { MouseEvent, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Button, { StyleType } from '../../../../UI/button/Button';
-import CreateReportForm from './CreateReportForm/CreateReportForm';
+import EditReportForm from './EditReportForm/EditReportForm';
 import { DropdownItem } from '../../../../UI/dropdown/DropdownItem';
 import Icon from '../../../../UI/icon/Icon';
 
+/**
+ * Report object
+ */
 export interface ScheduledReport {
+  /**
+   * Id of report status
+   */
   statusId: number,
+
+  /**
+   * Schedule of report as cron string
+   */
   schedule: string,
 }
 
+/**
+ * Mocked statuses
+ *
+ * @todo replace with statuses from the store
+ */
 export const statuses: DropdownItem[] = [
   {
     label: 'To do',
@@ -25,7 +40,16 @@ export const statuses: DropdownItem[] = [
   },
 ];
 
+/**
+ * Report manager component
+ * This component helps with creating schedule of report
+ *
+ * @class
+ */
 const ReportManager: React.FC = () => {
+  /**
+   * @todo replace mocked values with real project data
+   */
   const [reports, setReports] = useState<ScheduledReport[]>([
     {
       statusId: 1,
@@ -36,29 +60,55 @@ const ReportManager: React.FC = () => {
       schedule: '0 9 * * 1-5',
     },
   ]);
+
+  /**
+   * Mode of manager: editing or not
+   */
   const [editingSchedule, setEditingSchedule] = useState(false);
+
+  /**
+   * Index of selected report
+   * Can be undefined if there is no selected report
+   */
   const [selectedReport, setSelectedReport] = useState<number | undefined>(undefined);
 
+  /**
+   * Function parses status id and returns string value of the status
+   *
+   * @param statusId - index of the status to parse
+   */
   const parseStatusLabel = (statusId: number): string => {
     const statusObj = statuses.find(status => status.value === statusId);
 
     return statusObj!.label;
   };
 
+  /**
+   * Click handler for add report button
+   */
   const onAddReportButtonClick = (): void => {
     setSelectedReport(undefined);
     setEditingSchedule(true);
   };
 
   /**
-   * Edit reports form callbacks
+   * === Edit reports form callbacks ===
    */
-
+  /**
+   * Handler for creating a new report
+   *
+   * @param report - report object returned from EditReportForm
+   */
   const onAddReport = (report: ScheduledReport): void => {
     setReports(prevState => [...prevState, report]);
     setEditingSchedule(false);
   };
 
+  /**
+   * Handler for editing an existed report
+   *
+   * @param report - report object returned from EditReportForm
+   */
   const onEditReport = (report: ScheduledReport): void => {
     if (selectedReport === undefined) {
       return;
@@ -76,17 +126,28 @@ const ReportManager: React.FC = () => {
     setEditingSchedule(false);
   };
 
+  /**
+   * Handler for canceling the form
+   */
   const onFormCancel = (): void => {
     setSelectedReport(undefined);
     setEditingSchedule(false);
   };
 
   const ListOfReports = reports.map(({ statusId, schedule }, index) => {
+    /**
+     * Select report handler
+     */
     const onReportSelect = (): void => {
       setSelectedReport(index);
       setEditingSchedule(true);
     };
 
+    /**
+     * Remove report handler
+     *
+     * @param event - mouse event, it's used for stop propagation
+     */
     const onRemoveReport = (event: MouseEvent): void => {
       event.stopPropagation();
 
@@ -115,12 +176,12 @@ const ReportManager: React.FC = () => {
   });
 
   return (
-    <Wrapper>
+    <div>
       {ListOfReports}
       { editingSchedule &&
-        <StyledCreateReportForm
+        <StyledEditReportForm
           statuses={ statuses }
-          editedReport={ selectedReport !== undefined ? reports[selectedReport] : undefined }
+          editableReport={ selectedReport !== undefined ? reports[selectedReport] : undefined }
           onSubmit={ selectedReport !== undefined ? onEditReport : onAddReport }
           onCancel={ onFormCancel }
         />
@@ -133,15 +194,11 @@ const ReportManager: React.FC = () => {
           onClick={ onAddReportButtonClick }
         >Add new schedule</AddNewScheduleButton>
       }
-    </Wrapper>
+    </div>
   );
 };
 
 export default ReportManager;
-
-const Wrapper = styled.div`
-  width: 309px;
-`;
 
 const RemoveReportButton = styled(Icon)`
   width: 10px;
@@ -189,7 +246,7 @@ const ReportWrapper = styled.div<{ selected: boolean }>`
   }}
 `;
 
-const StyledCreateReportForm = styled(CreateReportForm)`
+const StyledEditReportForm = styled(EditReportForm)`
   margin: 20px 0;
 `;
 

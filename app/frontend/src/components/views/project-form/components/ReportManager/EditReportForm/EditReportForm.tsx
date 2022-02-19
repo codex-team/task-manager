@@ -7,7 +7,13 @@ import styled from 'styled-components';
 import Button, { StyleType } from '../../../../../UI/button/Button';
 import { ScheduledReport } from '../ReportManager';
 
+/**
+ * Props of the form
+ */
 interface Props {
+  /**
+   * Possible statuses in form for dropdown
+   */
   statuses: DropdownItem[],
 
   /**
@@ -15,36 +21,73 @@ interface Props {
    */
   className?: string,
 
-  editedReport?: ScheduledReport,
+  /**
+   * Data of editable report. Can be undefined if the form will create a new report.
+   */
+  editableReport?: ScheduledReport,
 
-  onCancel: () => void,
-
+  /**
+   * On form submit event handler
+   *
+   * @param report - report object with new data
+   */
   onSubmit: (report: ScheduledReport) => void;
+
+  /**
+   * On cancel form handler
+   */
+  onCancel: () => void,
 }
 
-const CreateReportForm: React.FC<Props> = ({ statuses, className, onSubmit, onCancel, editedReport }) => {
+/**
+ * Edit report form component is used for creating new reports and editing existed reports
+ *
+ * @param statuses - statuses for dropdown select
+ * @param className - class name of the wrapper for styling
+ * @param onSubmit - on submit form handler
+ * @param onCancel - on cancel form handler
+ * @param editableReport - data of editable report. Can be undefined if the form will create a new report.
+ * @class
+ */
+const EditReportForm: React.FC<Props> = ({ statuses, className, onSubmit, onCancel, editableReport }) => {
   const [statusId, setStatusId] = useState<number | undefined>(undefined);
   const [schedule, setSchedule] = useState('');
 
+  /**
+   * If new editable report will pass to the component, the state of component will be updated
+   */
   useEffect(() => {
-    if (!editedReport) {
+    if (!editableReport) {
       return;
     }
 
-    setStatusId(editedReport.statusId);
-    setSchedule(editedReport.schedule);
-  }, [ editedReport ]);
+    setStatusId(editableReport.statusId);
+    setSchedule(editableReport.schedule);
+  }, [ editableReport ]);
 
+  /**
+   * Handler for data in dropdown changes
+   *
+   * @param value - new value
+   */
   const onChangeStatus = (value: string | number | null | undefined): void => {
     if (typeof value === 'number') {
       setStatusId(value);
     }
   };
 
+  /**
+   * Handler for data in schedule input changes
+   *
+   * @param value - new value
+   */
   const onChangeSchedule = (value: string): void => {
     setSchedule(value);
   };
 
+  /**
+   * On form submit handler is used for check the correctness of data
+   */
   const onFormSubmit = (): void => {
     if (statusId === undefined || schedule === '') {
       return;
@@ -84,7 +127,7 @@ const CreateReportForm: React.FC<Props> = ({ statuses, className, onSubmit, onCa
   );
 };
 
-export default CreateReportForm;
+export default EditReportForm;
 
 const Wrapper = styled.div`
   display: flex;
