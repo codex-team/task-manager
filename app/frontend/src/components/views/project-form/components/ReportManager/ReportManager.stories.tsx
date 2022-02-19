@@ -1,5 +1,5 @@
-import {ComponentMeta, ComponentStory} from "@storybook/react";
-import ReportManager from "./ReportManager";
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import ReportManager from './ReportManager';
 
 export default {
   component: ReportManager,
