@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import EditorJS, { OutputData } from '@editorjs/editorjs';
 import EditorJSComponent from 'components/UI/editor/EditorJSComponent';
-import { updateTask } from 'services/tasks';
 import SaveIndicator from 'components/views/project-list-view/components/SaveIndicator';
 import { debounce } from 'lodash';
+import { updateTaskFx } from 'store/tasks';
 
 
 /**
@@ -42,7 +42,7 @@ const TaskContent: React.FC<Props> = ({ data, id }) => {
     const text = JSON.stringify(res);
 
     try {
-      const result = await updateTask({
+      const result = await updateTaskFx({
         _id: id,
         text: text,
       });

@@ -3,12 +3,11 @@ import PopupWrapper from 'components/layouts/popup/PopupWrapper';
 import { OutputData } from '@editorjs/editorjs';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getTaskById } from 'services/tasks';
 import { useStore } from 'effector-react';
 import { $selectedProject } from 'store/projects';
 import TaskContent from 'components/views/project-list-view/components/TaskContent';
 import TaskInfo from 'components/views/project-list-view/components/TaskInfo';
-import { $selectedTask, taskSelected } from 'store/tasks';
+import { $selectedTask, $tasks, taskSelected } from 'store/tasks';
 
 /**
  * Task popup component
@@ -18,6 +17,7 @@ const TaskPopup: React.FC = () => {
   const params = useParams();
   const selectedProject = useStore($selectedProject);
   const task = useStore($selectedTask);
+  const tasks = useStore($tasks);
   const id = params.task_id;
 
   const onClose = (): void => {
@@ -34,9 +34,9 @@ const TaskPopup: React.FC = () => {
 
     const exec = async (): Promise<void> => {
       if (!task) {
-        const response = await getTaskById(id);
+        const t = tasks.find(item => item._id === id);
 
-        taskSelected(response.task);
+        taskSelected(t);
 
         return;
       }
@@ -46,7 +46,7 @@ const TaskPopup: React.FC = () => {
     };
 
     exec();
-  }, [task, id]);
+  }, [task, tasks, id]);
 
   return (
     <PopupWrapper backDropClick={ onClose } isPopupVisible={ true }>
