@@ -4,10 +4,16 @@ import { ScheduledReport, statuses } from 'components/views/project-form/compone
 
 const onSubmit = (report: ScheduledReport): void => (console.log(report));
 
+const onCancel = (): void => (console.log('Cancel event'));
+
 export default {
   component: CreateReportForm,
 } as ComponentMeta<typeof CreateReportForm>;
 
-const Template: ComponentStory<typeof CreateReportForm> = () => <CreateReportForm statuses={ statuses } onSubmit={ onSubmit }/>;
+const Template: ComponentStory<typeof CreateReportForm> = () => <CreateReportForm
+  statuses={ statuses }
+  onSubmit={ onSubmit }
+  onCancel={ onCancel }
+/>;
 
 export const Default = Template.bind({});

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { MouseEvent, useState } from 'react';
+import styled, { css } from 'styled-components';
 import Button, { StyleType } from '../../../../UI/button/Button';
 import CreateReportForm from './CreateReportForm/CreateReportForm';
 import { DropdownItem } from '../../../../UI/dropdown/DropdownItem';
+import Icon from '../../../../UI/icon/Icon';
 
 export interface ScheduledReport {
   statusId: number,
@@ -76,19 +77,39 @@ const ReportManager: React.FC = () => {
   };
 
   const onFormCancel = (): void => {
+    setSelectedReport(undefined);
     setEditingSchedule(false);
   };
 
-  const onReportSelect = (index: number): void => {
-    setSelectedReport(index);
-    setEditingSchedule(true);
-  };
-
   const ListOfReports = reports.map(({ statusId, schedule }, index) => {
+    const onReportSelect = (): void => {
+      setSelectedReport(index);
+      setEditingSchedule(true);
+    };
+
+    const onRemoveReport = (event: MouseEvent): void => {
+      event.stopPropagation();
+
+      setReports(prevState => {
+        const stateCopy = [ ...prevState ];
+
+        return [
+          ...stateCopy.slice(0, index),
+          ...stateCopy.slice(index + 1),
+        ];
+      });
+
+      setSelectedReport(undefined);
+      setEditingSchedule(false);
+    };
+
     return (
-      <ReportWrapper key={ index } onClick={ () => onReportSelect(index) }>
-        <p>{ parseStatusLabel(statusId) }</p>
-        <p>{ schedule }</p>
+      <ReportWrapper key={ index } onClick={ onReportSelect } selected={ index === selectedReport }>
+        <div>
+          <p>{ parseStatusLabel(statusId) }</p>
+          <p>{ schedule }</p>
+        </div>
+        <RemoveReportButton name='close' onClick={ onRemoveReport }/>
       </ReportWrapper>
     );
   });
@@ -99,7 +120,7 @@ const ReportManager: React.FC = () => {
       { editingSchedule &&
         <StyledCreateReportForm
           statuses={ statuses }
-          editedReport={ selectedReport !== undefined && reports[selectedReport] }
+          editedReport={ selectedReport !== undefined ? reports[selectedReport] : undefined }
           onSubmit={ selectedReport !== undefined ? onEditReport : onAddReport }
           onCancel={ onFormCancel }
         />
@@ -122,7 +143,17 @@ const Wrapper = styled.div`
   width: 309px;
 `;
 
-const ReportWrapper = styled.div`
+const RemoveReportButton = styled(Icon)`
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+`;
+
+const ReportWrapper = styled.div<{ selected: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   padding: 7px 12px;
   margin-bottom: 4px;
   border-radius: 12px;
@@ -135,11 +166,27 @@ const ReportWrapper = styled.div`
   &:hover {
     background: var(--color-bg-hover);
     cursor: pointer;
+
+    ${RemoveReportButton} {
+      opacity: 1;
+    }
   }
 
   &:last-of-type {
     margin-bottom: 12px;
   }
+
+  ${({ selected }) => {
+    if (selected) {
+      return css`
+        background: var(--color-bg-hover);
+
+        ${RemoveReportButton} {
+          opacity: 1;
+        }
+      `;
+    }
+  }}
 `;
 
 const StyledCreateReportForm = styled(CreateReportForm)`

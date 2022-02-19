@@ -35,8 +35,10 @@ const CreateReportForm: React.FC<Props> = ({ statuses, className, onSubmit, onCa
     setSchedule(editedReport.schedule);
   }, [ editedReport ]);
 
-  const onChangeStatus = (value: number): void => {
-    setStatusId(value);
+  const onChangeStatus = (value: string | number | null | undefined): void => {
+    if (typeof value === 'number') {
+      setStatusId(value);
+    }
   };
 
   const onChangeSchedule = (value: string): void => {
