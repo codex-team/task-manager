@@ -2,6 +2,11 @@ import { NewMessage } from 'ctproto';
 
 export interface CreateProjectMessagePayload {
   /**
+   * Workspace id which this project relies on
+   */
+  workspaceId: string;
+
+  /**
    * Title of creating project
    */
   title: string;

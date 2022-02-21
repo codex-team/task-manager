@@ -1,5 +1,6 @@
 import { Project } from 'types/entities';
 import ProjectSchema from 'database/models/project';
+import mongoose from '../../../src/database/index';
 
 /**
  * Returns list of stored projects
@@ -10,9 +11,9 @@ import ProjectSchema from 'database/models/project';
 export async function getProjects(workspaceId?: string): Promise<Project[]> {
   return ProjectSchema
     .aggregate([
-      // { $match: {
-      //   workspaceId,
-      // } },
+      { $match: {
+        workspaceId: new mongoose.Types.ObjectId(workspaceId),
+      } },
       // Add expanded statuses data (if any) to result object
       { $lookup: {
         from: 'statuses',

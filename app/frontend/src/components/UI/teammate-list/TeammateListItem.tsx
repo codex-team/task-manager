@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { ReactComponent as Avatar } from 'icons/DefaultAvatar.svg';
 import Icon from '../icon/Icon';
 

@@ -1,7 +1,10 @@
 import { ApiRequest, ApiResponse } from 'types/transport';
 import { MessageHandler } from './handlers/messageHandler';
 
-import { CreateProjectHandler } from './handlers/project/create';
+import { GetWorkspaceHandler } from './handlers/workspace/get-workspace';
+import { UpdateWorkspaceHandler } from './handlers/workspace/update-workspace';
+
+import { CreateProjectHandler } from './handlers/project/create-project';
 import { GetProjectsHandler } from './handlers/project/get-projects';
 
 import { GetStatusesHandler } from './handlers/status/get-statuses';
@@ -20,6 +23,10 @@ import { UpdateTeammateHandler } from './handlers/teammate/update-teammate';
  * Map of message types and associated handlers
  */
 const handlers = new Map<string, MessageHandler>([
+  /** ./workspace */
+  ['get-workspace', new GetWorkspaceHandler()],
+  ['update-workspace', new UpdateWorkspaceHandler()],
+
   /** ./project */
   ['create-project', new CreateProjectHandler()],
   ['get-projects', new GetProjectsHandler()],

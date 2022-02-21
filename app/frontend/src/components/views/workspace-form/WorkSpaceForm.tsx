@@ -4,25 +4,41 @@ import PageTitle from '../../layouts/base/PageTitle';
 import labeled from '../../UI/labeled/Labeled';
 import Input from '../../UI/input/Input';
 import Button, { StyleType } from '../../UI/button/Button';
-import { createProjectFx } from 'store/projects';
 import TeammateList from '../../UI/teammate-list/TeammateList';
-import { Link } from 'react-router-dom';
 import { UiComponentText } from 'styles/Mixins';
+import { updateWorkspaceFx } from 'store/workspaces';
+import TeammateForm from '../teammate-form/TeammateForm';
 
 /**
  * WorkspaceForm component props model
  */
-interface Props { }
+interface Props {
+  /**
+   * Workspace id
+   */
+  id: string;
+  /**
+   * Workspace name
+   */
+  name: string;
+}
 
 /**
  * WorkspaceForm component
+ *
+ * @param props - props of component
  */
-const WorkspaceForm: React.FC<Props> = () => {
-  const [title, setTitle] = useState('');
+const WorkspaceForm: React.FC<Props> = (props) => {
+  const [name, setTitle] = useState(props.name);
+
+  const handleNewTeamMember = (e: any):void => {
+    console.log(e);
+  };
 
   const submit = async (): Promise<void> => {
-    await createProjectFx({
-      title,
+    await updateWorkspaceFx({
+      _id: props.id,
+      name: name,
     });
   };
 
@@ -34,18 +50,18 @@ const WorkspaceForm: React.FC<Props> = () => {
           label='Workspace'
           placeholder='Workspace title'
           id='title'
-          value={ title }
-          onChange={ e => setTitle(e) } />
+          value={ name }
+          onChange={ setTitle }
+        />
         <LabelWrapper>
           <label>Team management</label>
           <Description>Current users in your team</Description>
         </LabelWrapper>
         <TeammateList>
-          <StyledLink to=''>
-            <StyledButton icon='plus'>Add new team member</StyledButton>
-          </StyledLink>
+          <StyledButton icon='plus' onClick={ handleNewTeamMember }>Add new team member</StyledButton>
+          <TeammateForm workspaceId={ props.id } />
         </TeammateList>
-        <Button styleType={ StyleType.Primary } onClick={ () => submit() }>Update workspace</Button>
+        <Button styleType={ StyleType.Primary } onClick={ submit }>Update workspace</Button>
       </Wrapper>
     </div>
   );
@@ -88,13 +104,6 @@ const LabelWrapper = styled.div`
 const Description = styled.p`
   color: var(--color-text-secondary);
   margin-top: 4px;
-`;
-
-/**
- * Link component with overridden styles
- */
-const StyledLink = styled(Link)`
-  text-decoration: unset;
 `;
 
 /**

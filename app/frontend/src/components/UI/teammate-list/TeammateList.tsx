@@ -19,7 +19,7 @@ const TeammateList: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     getTeammatesFx({});
-  });
+  }, []);
 
   return (
     <StyledTeammateList>

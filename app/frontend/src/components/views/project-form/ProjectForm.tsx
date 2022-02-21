@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PageTitle from 'components/layouts/base/PageTitle';
 import Input from 'components/UI/input/Input';
@@ -10,19 +10,33 @@ import { createProjectFx } from 'store/projects';
 /**
  * ProjectForm component props model
  */
-interface Props { }
+interface Props {
+  /**
+   * Workspace id which this project relies on
+   */
+  workspaceId: string;
+
+  /**
+   * Link to project's picture
+   */
+  picture?: string;
+}
 
 /**
  * ProjectForm component
+ *
+ * @param props - props of component
  */
-const ProjectForm: React.FC<Props> = () => {
+const ProjectForm: React.FC<Props> = (props) => {
   const [title, setTitle] = useState('');
   const [messengerChannelUrl, setMessengerChannelUrl] = useState('');
 
   const submit = async (): Promise<void> => {
     await createProjectFx({
-      title,
-      messengerChannelUrl,
+      workspaceId: props.workspaceId,
+      title: title,
+      picture: props.picture,
+      messengerChannelUrl: messengerChannelUrl,
     });
   };
 
