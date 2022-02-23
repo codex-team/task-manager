@@ -14,6 +14,11 @@ interface Props {
    * Teammate's workspace id
    */
   workspaceId: string;
+
+  /**
+   * Cancel button handler
+   */
+  handleCancel: () => void;
 }
 
 /**
@@ -60,7 +65,7 @@ const TeammateForm: React.FC<Props> = (props) => {
         promptEmpty='Upload picture for your member'
         promptHasValue='Change picture for your member' />
       <ButtonWrapper>
-        <Button styleType={ StyleType.Secondary }>Cancel</Button>
+        <Button styleType={ StyleType.Secondary } onClick={ props.handleCancel }>Cancel</Button>
         <Button styleType={ StyleType.Primary } onClick={ submit }>Add member</Button>
       </ButtonWrapper>
     </Wrapper>

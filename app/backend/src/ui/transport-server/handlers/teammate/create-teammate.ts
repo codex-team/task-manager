@@ -15,6 +15,7 @@ export class CreateTeammateHandler implements MessageHandler {
   public async handle(payload: CreateTeammateMessagePayload): Promise<CreateTeammateResponsePayload> {
     return {
       teammate: await createTeammate(
+        payload.workspaceId,
         payload.name,
         payload.photo,
         payload.contacts
