@@ -16,7 +16,7 @@ interface Props {}
 
 const WorkspaceForm: React.FC<Props> = () => {
   const workspace = useStore($workspace);
-  const [name, setTitle] = useState(workspace.name);
+  const [title, setTitle] = useState(workspace.name);
   const [isFormDisplayed, setIsFormDisplayed] = useState(false);
   const [teammateList, setTeammateList] = useState(<TeammateList workspaceId={ workspace._id } />);
 
@@ -36,7 +36,7 @@ const WorkspaceForm: React.FC<Props> = () => {
   const submit = async (): Promise<void> => {
     await updateWorkspaceFx({
       _id: workspace._id,
-      name: name,
+      name: title,
     });
   };
 
@@ -48,7 +48,7 @@ const WorkspaceForm: React.FC<Props> = () => {
           label='Workspace'
           placeholder='Workspace title'
           id='title'
-          value={ name }
+          value={ title }
           onChange={ setTitle }
         />
         { teammateList }
