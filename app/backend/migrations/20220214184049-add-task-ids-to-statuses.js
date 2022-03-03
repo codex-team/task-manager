@@ -1,3 +1,7 @@
+/**
+ * Adds tasks ids list to each status document. The list contains ids of all tasks that have this status.
+ * Order of values in the list corresponds to sort order of tasks in status column.
+ */
 module.exports = {
   async up(db) {
     // Get all the statuses persisted in db
