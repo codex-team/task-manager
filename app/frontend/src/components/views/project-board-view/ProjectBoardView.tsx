@@ -9,6 +9,7 @@ import { Status, Task } from 'types/entities';
 import CardLink from '../project-list-view/components/CardLink';
 import getTaskTitle from 'helpers/get-task-title';
 import prepareTaskContent from 'helpers/prepare-task-content';
+import { SubtitleText, SubtitleTextSmall } from 'styles/Mixins';
 
 
 const UNSORTED_COLUMN_ID = 'unsorted-column';
@@ -80,6 +81,12 @@ const ProjectBoardView: React.FC<Props> = () => {
     changeTaskStatusFx(updateParams);
   };
 
+  /**
+   * Creates new task
+   *
+   * @param statusId - new task status
+   * @param text - new task text
+   */
   const createNewTask = (statusId: string, text: string): void => {
     if (!currentProject) {
       return;
@@ -95,6 +102,11 @@ const ProjectBoardView: React.FC<Props> = () => {
     createTaskFx(taskData);
   };
 
+  /**
+   * Reacts to task card click
+   *
+   * @param task - task data
+   */
   const handleCardClick = (task: Task): void => {
     taskSelected(task);
   };
@@ -153,24 +165,18 @@ const ProjectBoardView: React.FC<Props> = () => {
  * Styled component for displaying count of tasks in column
  */
 const CountLabel = styled.span`
-  font-size: 12px;
-  font-weight: 600;
   color: var(--color-text-secondary);
   margin-left: 6px;
   vertical-align: top;
-  line-height: 120%;
+  ${ SubtitleTextSmall }
 `;
 
 /**
  * Styled component for displaying column label
  */
 const ColumnLabel = styled.h2`
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--color-text-primary);
   margin-bottom: 12px;
-  letter-spacing: -0.005em;
-  line-height: 120%;
+  ${ SubtitleText }
 `;
 
 /**

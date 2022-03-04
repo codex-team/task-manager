@@ -32,7 +32,7 @@ export interface Props {
   projectInfo?: {
     title: string,
     picture?: string
-  } | null
+  }
 
   /**
    * Task status
