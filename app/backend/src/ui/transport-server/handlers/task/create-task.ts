@@ -13,13 +13,15 @@ export class CreateTaskHandler implements MessageHandler {
    * @param payload - payload from message to parse
    */
   public async handle(payload: CreateTaskMessagePayload): Promise<CreateTaskResponsePayload> {
-    return createTask(
-      payload.text,
-      payload.orderScore,
-      payload.projectId,
-      payload.parentId,
-      payload.assignees,
-      payload.statusId
-    );
+    return {
+      task: await createTask(
+        payload.text,
+        payload.orderScore,
+        payload.projectId,
+        payload.parentId,
+        payload.assignees,
+        payload.statusId
+      ),
+    };
   }
 }

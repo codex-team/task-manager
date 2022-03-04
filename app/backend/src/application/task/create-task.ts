@@ -1,22 +1,7 @@
 import TaskModel from 'database/models/task';
 import StatusModel from 'database/models/status';
-import { Status, Task } from 'types/entities';
+import { Task } from 'types/entities';
 
-
-/**
- * Create task operation result
- */
-interface CreateTaskResult {
-  /**
-   * Response sample
-   */
-  task: Task;
-
-  /**
-   * Updated status object in case task was created with statusId specified
-   */
-  status?: Status | null;
-}
 
 /**
  * Creates new task
@@ -28,8 +13,7 @@ interface CreateTaskResult {
  * @param [assignees] - an array of task assignees
  * @param statusId - id of the status the task has
  */
-export async function createTask(text: string, orderScore: number, projectId?: string, parentId?: string, assignees?: string[], statusId?: string | null): Promise<CreateTaskResult> {
-  const result = { } as CreateTaskResult;
+export async function createTask(text: string, orderScore: number, projectId?: string, parentId?: string, assignees?: string[], statusId?: string | null): Promise<Task> {
   const task = await TaskModel.create({
     text,
     orderScore,
@@ -38,8 +22,6 @@ export async function createTask(text: string, orderScore: number, projectId?: s
     assignees,
     statusId,
   });
-
-  result.task = task;
 
   if (statusId) {
     const status = await StatusModel.findById(statusId);
@@ -50,10 +32,8 @@ export async function createTask(text: string, orderScore: number, projectId?: s
       newStatusTasks.push(task._id);
       status.tasks = newStatusTasks;
       await status.save();
-
-      result.status = status;
     }
   }
 
-  return result;
+  return task;
 }

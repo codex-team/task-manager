@@ -2,7 +2,7 @@ import TaskInput from 'components/UI/task-input/TaskInput';
 import { useStore } from 'effector-react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { Outlet } from 'react-router';
-import { $selectedProject, taskMoved, TaskMoveData } from 'store/projects';
+import { $selectedProject, taskCreated, taskMoved, TaskMoveData } from 'store/projects';
 import { $tasks, changeTaskStatusFx, createTaskFx, taskSelected } from 'store/tasks';
 import styled from 'styled-components';
 import { Status, Task } from 'types/entities';
@@ -87,19 +87,25 @@ const ProjectBoardView: React.FC<Props> = () => {
    * @param statusId - new task status
    * @param text - new task text
    */
-  const createNewTask = (statusId: string, text: string): void => {
+  const createNewTask = async (statusId: string, text: string): Promise<void> => {
     if (!currentProject) {
       return;
     }
     const orderScore = tasksList.length ? (tasksList[0].orderScore + 1) : 1;
+    const actualStatusId = statusId !== UNSORTED_COLUMN_ID ? statusId : null;
     const taskData = {
       text: prepareTaskContent(text),
       projectId: currentProject._id,
-      statusId: statusId !== UNSORTED_COLUMN_ID ? statusId : null,
+      statusId: actualStatusId,
       orderScore,
     };
 
-    createTaskFx(taskData);
+    const result = await createTaskFx(taskData);
+
+    taskCreated({
+      taskId: result.task._id,
+      statusId: actualStatusId,
+    });
   };
 
   /**

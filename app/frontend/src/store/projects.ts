@@ -43,6 +43,11 @@ export const createProjectFx = createEffect(createProject);
 export const taskMoved = createEvent<TaskMoveData>();
 
 /**
+ * Event to be called when task created
+ */
+export const taskCreated = createEvent<{taskId: string, statusId?: string | null}>();
+
+/**
  * State changes based on effects results
  */
 $projects.on(getProjectsFx.done, (_, { result }) => result.projects);
@@ -72,18 +77,18 @@ $selectedProject.on(changeTaskStatusFx.done, (state, { result }) => {
 });
 
 /**
- * Update project statuses once new task with specified status added
+ * Updates status once new task is created
  */
-$selectedProject.on(createTaskFx.done, (state, { result }) => {
-  if (!state || !result.status) {
+$selectedProject.on(taskCreated, (state, data) => {
+  if (!state || !data.statusId) {
     return state;
   }
   const statuses = state?.taskStatuses || [];
+  const statusToUpdate = statuses.find(item => item._id === data.statusId);
 
-  return {
-    ...state,
-    taskStatuses: getListWithItemReplaced(statuses, result.status),
-  };
+  statusToUpdate?.tasks.push(data.taskId);
+
+  return { ...state };
 });
 
 
