@@ -29,7 +29,7 @@ export interface CreateTaskMessagePayload {
   /**
    * Id of the status the task has
    */
-  statusId?: string
+  statusId?: string | null
 }
 
 /**

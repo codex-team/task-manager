@@ -13,6 +13,6 @@ export class ChangeTaskStatusHandler implements MessageHandler {
    * @param payload - payload from message to parse
    */
   public async handle(payload: ChangeTaskStatusPayload): Promise<ChangeTaskStatusResponsePayload> {
-    return changeTaskStatus(payload);
+    return changeTaskStatus(payload.taskId, payload.newStatusId, payload.newIndex);
   }
 }

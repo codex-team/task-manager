@@ -2,15 +2,13 @@ import TaskInput from 'components/UI/task-input/TaskInput';
 import { useStore } from 'effector-react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { Outlet } from 'react-router';
-import { $selectedProject, taskMoved } from 'store/projects';
+import { $selectedProject, taskMoved, TaskMoveData } from 'store/projects';
 import { $tasks, changeTaskStatusFx, createTaskFx, taskSelected } from 'store/tasks';
 import styled from 'styled-components';
 import { Status, Task } from 'types/entities';
 import CardLink from '../project-list-view/components/CardLink';
 import getTaskTitle from 'helpers/get-task-title';
-import { ChangeTaskStatusPayload } from 'types/transport/requests/task/change-task-status';
 import prepareTaskContent from 'helpers/prepare-task-content';
-import { CreateTaskMessagePayload } from 'types/transport/requests/task/create-task';
 
 
 const UNSORTED_COLUMN_ID = 'unsorted-column';
@@ -43,6 +41,11 @@ const ProjectBoardView: React.FC<Props> = () => {
   const currentProject = useStore($selectedProject);
   const tasksList = useStore($tasks);
 
+  /**
+   * Handles card drag end
+   *
+   * @param result - card drop result
+   */
   const onDragEnd = async (result: DropResult): Promise<void> => {
     const { destination, source, draggableId } = result;
 
@@ -57,7 +60,7 @@ const ProjectBoardView: React.FC<Props> = () => {
     }
 
 
-    const updateParams: ChangeTaskStatusPayload = {
+    const updateParams: TaskMoveData = {
       taskId: draggableId,
     };
 
@@ -82,15 +85,13 @@ const ProjectBoardView: React.FC<Props> = () => {
       return;
     }
     const orderScore = tasksList.length ? (tasksList[0].orderScore + 1) : 1;
-    const taskData: CreateTaskMessagePayload = {
+    const taskData = {
       text: prepareTaskContent(text),
       projectId: currentProject._id,
+      statusId: statusId !== UNSORTED_COLUMN_ID ? statusId : null,
       orderScore,
     };
 
-    if (statusId !== UNSORTED_COLUMN_ID) {
-      taskData.statusId = statusId;
-    }
     createTaskFx(taskData);
   };
 

@@ -25,11 +25,11 @@ const ProjectRootView: React.FC<Props> = () => {
     if (params.id && !currentProject) {
       // Handle page reload, when there is no data about selected project in store
       // though url contains project id
-      const selectedProject = projects.find(project => project._id === params.id);
+      const selectedProject = projects.find(project => project._id === params.id) || null;
 
       projectSelected(selectedProject);
     }
-    getTasksFx(params.id ? { projectId: params.id } : {});
+    getTasksFx(params.id);
   }, [params.id, currentProject, projects]);
 
   return (

@@ -1,55 +1,92 @@
 
 import StatusModel from 'database/models/status';
 import TaskModel from 'database/models/task';
-import { ChangeTaskStatusPayload } from 'types/transport/requests/task/change-task-status';
-import { ChangeTaskStatusResponsePayload } from 'types/transport/responses/task/change-task-status';
-import Mongoose from 'mongoose';
+import { Types } from 'mongoose';
+import { Status, Task } from 'types/entities';
+
+
+/**
+ * Change task status operation result
+ */
+interface ChangeTaskStatusResult {
+  /**
+   * Updated task data
+   */
+  task?: Task | null
+
+  /**
+   * Updated previous status object (if not moved from unsorted column)
+   */
+  prevStatus?: Status | null
+
+  /**
+   * Updated new status object (if not moved to unsorted column)
+   */
+  newStatus?: Status | null
+}
+
+/**
+ * Returns list without item specified
+ *
+ * @param list - list to filter out item from
+ * @param item - item to filter out
+ */
+function getListWithoutItem(list: Types.ObjectId[], item: Types.ObjectId): Types.ObjectId[] {
+  return list.filter(id => !id.equals(item));
+}
 
 /**
  * Updates task status
  *
- * @param params - data required to change task status
+ * @param taskId - Id of the task status of which should be updated
+ * @param newStatusId - New task status if exists
+ * @param newIndex - Index of the task in new status tasks array
  */
-export async function changeTaskStatus(params: ChangeTaskStatusPayload): Promise<ChangeTaskStatusResponsePayload> {
-  const response: ChangeTaskStatusResponsePayload = { };
-  const task = await TaskModel.findById(params.taskId);
+export async function changeTaskStatus(taskId: string, newStatusId?: string, newIndex?: number): Promise<ChangeTaskStatusResult> {
+  const result: ChangeTaskStatusResult = { };
+  const task = await TaskModel.findById(taskId);
 
   if (!task) {
-    return response;
+    throw new Error(`Task not found: ${taskId}`);
   }
 
   // Remove taskId from previous status tasks array
   if (task.statusId) {
     const prevStatus = await StatusModel.findById(task.statusId);
-    const prevStatusTasks = (prevStatus?.tasks || []).filter(id => !(id as unknown as Mongoose.Types.ObjectId).equals(new Mongoose.Types.ObjectId(params.taskId)));
-    const prevStatusUpdated = await StatusModel.findOneAndUpdate({ _id: task.statusId }, { tasks: prevStatusTasks }, { new: true }).exec();
 
-    response.prevStatus = prevStatusUpdated;
+    if (!prevStatus) {
+      throw new Error(`Status not found: ${task.statusId}`);
+    }
+    const prevStatusTasks = getListWithoutItem(prevStatus?.tasks as unknown as Types.ObjectId[], new Types.ObjectId(taskId));
+    const prevStatusUpdated = await StatusModel.findOneAndUpdate({ _id: task.statusId }, { tasks: prevStatusTasks as unknown as string[] }, { new: true }).exec();
+
+    result.prevStatus = prevStatusUpdated;
   }
 
   // Update task status id
-  task.statusId = params.newStatusId;
+  task.statusId = newStatusId;
   await task.save();
-  response.task = task;
+  result.task = task;
 
   // Push task id to new status tasks array
-  if (params.newStatusId) {
-    const newStatus = await StatusModel.findById(params.newStatusId);
+  if (newStatusId) {
+    const newStatus = await StatusModel.findById(newStatusId);
 
-    if (newStatus) {
-      const newStatusTasks = newStatus.tasks || [];
-
-      if (params.newIndex !== null && params.newIndex !== undefined) {
-        newStatusTasks.splice(params.newIndex, 0, params.taskId);
-      } else {
-        newStatusTasks.push(params.taskId);
-      }
-      newStatus.tasks = newStatusTasks;
-      await newStatus.save();
-
-      response.newStatus = newStatus;
+    if (!newStatus) {
+      throw new Error(`Status not found: ${newStatusId}`);
     }
+    const newStatusTasks = newStatus.tasks || [];
+
+    if (newIndex !== null && newIndex !== undefined) {
+      newStatusTasks.splice(newIndex, 0, taskId);
+    } else {
+      newStatusTasks.push(taskId);
+    }
+    newStatus.tasks = newStatusTasks;
+    await newStatus.save();
+
+    result.newStatus = newStatus;
   }
 
-  return response;
+  return result;
 }

@@ -1,6 +1,22 @@
 import TaskModel from 'database/models/task';
 import StatusModel from 'database/models/status';
-import { CreateTaskResponsePayload } from 'types/transport/responses/task/create-task';
+import { Status, Task } from 'types/entities';
+
+
+/**
+ * Create task operation result
+ */
+interface CreateTaskResult {
+  /**
+   * Response sample
+   */
+  task: Task;
+
+  /**
+   * Updated status object in case task was created with statusId specified
+   */
+  status?: Status | null;
+}
 
 /**
  * Creates new task
@@ -12,8 +28,8 @@ import { CreateTaskResponsePayload } from 'types/transport/responses/task/create
  * @param [assignees] - an array of task assignees
  * @param statusId - id of the status the task has
  */
-export async function createTask(text: string, orderScore: number, projectId?: string, parentId?: string, assignees?: string[], statusId?: string): Promise<CreateTaskResponsePayload> {
-  const response = {} as CreateTaskResponsePayload;
+export async function createTask(text: string, orderScore: number, projectId?: string, parentId?: string, assignees?: string[], statusId?: string | null): Promise<CreateTaskResult> {
+  const result = { } as CreateTaskResult;
   const task = await TaskModel.create({
     text,
     orderScore,
@@ -23,7 +39,7 @@ export async function createTask(text: string, orderScore: number, projectId?: s
     statusId,
   });
 
-  response.task = task;
+  result.task = task;
 
   if (statusId) {
     const status = await StatusModel.findById(statusId);
@@ -35,9 +51,9 @@ export async function createTask(text: string, orderScore: number, projectId?: s
       status.tasks = newStatusTasks;
       await status.save();
 
-      response.status = status;
+      result.status = status;
     }
   }
 
-  return response;
+  return result;
 }

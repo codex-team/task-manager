@@ -5,19 +5,30 @@ import { changeTaskStatusFx, createTaskFx } from './tasks';
 import getListWithItemReplaced from 'helpers/get-list-with-item-replaced';
 
 /**
+ * Describes data needed to move task from one column to another
+ */
+export interface TaskMoveData {
+  taskId: string,
+  prevStatusId?: string | null,
+  newStatusId?: string,
+  newIndex?: number
+}
+
+/**
  * Stores list of all projects
  */
 export const $projects = createStore<Project[]>([]);
 
 /**
  * Stores selected project
+ * Equals null in case no project is selected
  */
 export const $selectedProject = createStore<Project | null>(null);
 
 /**
  * Event to be called when selected project state should be updated
  */
-export const projectSelected = createEvent<Project | null | undefined>();
+export const projectSelected = createEvent<Project | null>();
 
 /**
  * Projects effects
@@ -29,7 +40,8 @@ export const createProjectFx = createEffect(createProject);
 /**
  * Event to be called when task moved
  */
-export const taskMoved = createEvent<{ taskId: string, prevStatusId?: string | null, newStatusId?: string | null, newIndex?: number }>();
+export const taskMoved = createEvent<TaskMoveData>();
+
 /**
  * State changes based on effects results
  */
