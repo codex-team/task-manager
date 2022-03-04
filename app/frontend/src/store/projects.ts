@@ -55,28 +55,6 @@ $projects.on(createProjectFx.done, (state, { result }) => [...state, result.proj
 $selectedProject.on(projectSelected, (_, value) => value);
 
 /**
- * Update project statuses once some task status changed
- */
-$selectedProject.on(changeTaskStatusFx.done, (state, { result }) => {
-  if (!state) {
-    return;
-  }
-  let statuses = state?.taskStatuses || [];
-
-  if (result.prevStatus) {
-    statuses = getListWithItemReplaced(statuses, result.prevStatus);
-  }
-  if (result.newStatus) {
-    statuses = getListWithItemReplaced(statuses, result.newStatus);
-  }
-
-  return {
-    ...state,
-    taskStatuses: statuses,
-  };
-});
-
-/**
  * Updates status once new task is created
  */
 $selectedProject.on(taskCreated, (state, data) => {

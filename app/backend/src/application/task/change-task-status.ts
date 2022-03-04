@@ -2,28 +2,8 @@
 import StatusModel from 'database/models/status';
 import TaskModel from 'database/models/task';
 import { Types } from 'mongoose';
-import { Status, Task } from 'types/entities';
+import { Task } from 'types/entities';
 
-
-/**
- * Change task status operation result
- */
-interface ChangeTaskStatusResult {
-  /**
-   * Updated task data
-   */
-  task?: Task | null
-
-  /**
-   * Updated previous status object (if not moved from unsorted column)
-   */
-  prevStatus?: Status | null
-
-  /**
-   * Updated new status object (if not moved to unsorted column)
-   */
-  newStatus?: Status | null
-}
 
 /**
  * Returns list without item specified
@@ -42,8 +22,7 @@ function getListWithoutItem(list: Types.ObjectId[], item: Types.ObjectId): Types
  * @param newStatusId - New task status if exists
  * @param newIndex - Index of the task in new status tasks array
  */
-export async function changeTaskStatus(taskId: string, newStatusId?: string, newIndex?: number): Promise<ChangeTaskStatusResult> {
-  const result: ChangeTaskStatusResult = { };
+export async function changeTaskStatus(taskId: string, newStatusId?: string, newIndex?: number): Promise<Task> {
   const task = await TaskModel.findById(taskId);
 
   if (!task) {
@@ -58,15 +37,13 @@ export async function changeTaskStatus(taskId: string, newStatusId?: string, new
       throw new Error(`Status not found: ${task.statusId}`);
     }
     const prevStatusTasks = getListWithoutItem(prevStatus?.tasks as unknown as Types.ObjectId[], new Types.ObjectId(taskId));
-    const prevStatusUpdated = await StatusModel.findOneAndUpdate({ _id: task.statusId }, { tasks: prevStatusTasks as unknown as string[] }, { new: true }).exec();
 
-    result.prevStatus = prevStatusUpdated;
+    await StatusModel.findOneAndUpdate({ _id: task.statusId }, { tasks: prevStatusTasks as unknown as string[] }).exec();
   }
 
   // Update task status id
   task.statusId = newStatusId;
   await task.save();
-  result.task = task;
 
   // Push task id to new status tasks array
   if (newStatusId) {
@@ -84,9 +61,7 @@ export async function changeTaskStatus(taskId: string, newStatusId?: string, new
     }
     newStatus.tasks = newStatusTasks;
     await newStatus.save();
-
-    result.newStatus = newStatus;
   }
 
-  return result;
+  return task;
 }
