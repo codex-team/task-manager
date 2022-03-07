@@ -5,6 +5,7 @@ import { CreateProjectHandler } from './handlers/project/create';
 import { GetProjectsHandler } from './handlers/project/get-projects';
 
 import { GetStatusesHandler } from './handlers/status/get-statuses';
+import { ChangeTaskStatusHandler } from './handlers/task/change-task-status';
 
 import { CreateTaskHandler } from './handlers/task/create-task';
 import { GetTaskByIdHandler } from './handlers/task/get-task-by-id';
@@ -32,6 +33,7 @@ const handlers = new Map<string, MessageHandler>([
   ['get-task-by-id', new GetTaskByIdHandler()],
   ['get-tasks', new GetTasksHandler()],
   ['update-task', new UpdateTaskHandler()],
+  ['change-task-status', new ChangeTaskStatusHandler()],
 
   /** ./teammate */
   ['create-teammate', new CreateTeammateHandler()],

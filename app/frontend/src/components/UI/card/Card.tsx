@@ -43,6 +43,11 @@ export interface Props {
    * True if card is active
    */
   isActive?: boolean;
+
+  /**
+   * True if task status should be displayed
+   */
+  showStatus?: boolean;
 }
 
 
@@ -76,9 +81,11 @@ const Card: React.FC<Props> = (props) => {
           </Progress>
         }
       </TaskInfo>
-      <Status>
-        { props.status || 'Unsorted' }
-      </Status>
+      { props.showStatus &&
+        <Status>
+          { props.status || 'Unsorted' }
+        </Status>
+      }
       <Assignees>
         <Icon name='DefaultAvatar' width={ 18 } height={ 18 }/>
         { (isShownAssigneesNumber && props.assigneesNumber) &&

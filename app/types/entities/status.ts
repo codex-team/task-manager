@@ -17,7 +17,7 @@ export default interface Status {
 
   /**
    * Ids of the tasks that have this status in board view.
-   * Order of the ids in the list effects cards sort order
+   * Order of the ids in the list affects cards sort order
    */
   tasks: string[]
 }

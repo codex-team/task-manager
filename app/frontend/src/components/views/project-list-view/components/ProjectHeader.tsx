@@ -1,25 +1,23 @@
 import styled from 'styled-components';
 import Button from 'components/UI/button/Button';
 import PageTitle from 'components/layouts/base/PageTitle';
+import ProjectViewSwitcher from 'components/UI/project-view-switcher/ProjectViewSwitcher';
+import { Project } from 'types/entities';
 
 /**
  * Project header props model
  */
 interface Props {
   /**
-   * Title of the project to be displayed
+   * Selected project if exists
    */
-  title: string
-
-  /**
-   * True if project header should contain settings button
-   */
-  hasSettingsButton?: boolean
+  project?: Project|null
 
   /**
    * CSS class name
    */
   className?: string
+
 }
 
 /**
@@ -27,12 +25,26 @@ interface Props {
  *
  * @param props - props of the component
  */
-const ProjectHeader: React.FC<Props> = ({ className, title, hasSettingsButton }: Props) => {
+const ProjectHeader: React.FC<Props> = ({ className, project }: Props) => {
+  const viewOptions = [
+    {
+      icon: 'list',
+      url: `list`,
+    },
+    {
+      icon: 'kanban',
+      url: `board`,
+    },
+  ];
+
   return (
     <Container className={ className }>
-      <PageTitle>{ title }</PageTitle>
-      { hasSettingsButton &&
+      <PageTitle>{ project?.title || 'All projects' }</PageTitle>
+      { !!project &&
         <Button>Project settings</Button>
+      }
+      { !!project &&
+        <ProjectViewSwitcher items={ viewOptions } />
       }
     </Container>
   );

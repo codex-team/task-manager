@@ -3,11 +3,17 @@ import { Link, LinkProps, useMatch, useResolvedPath } from 'react-router-dom';
 import Card, { Props as CardProps } from 'components/UI/card/Card';
 import { ForwardedRef, forwardRef } from 'react';
 
-/**
- * Type for card forwarded ref
- */
-export type CardLinkRefType = {
-  ref: ForwardedRef<HTMLDivElement>
+
+export type CardLinkProps = {
+  /**
+   * Card forwarded ref
+   */
+  ref?: ForwardedRef<HTMLDivElement>
+
+  /**
+   * CSS class name
+   */
+  className?: string
 };
 
 /**
@@ -16,7 +22,7 @@ export type CardLinkRefType = {
  *
  * @param props - props of the component
  */
-const CardLink: React.FC<LinkProps & CardProps & CardLinkRefType> = forwardRef<HTMLDivElement, LinkProps & CardProps>(({ children, to, projectInfo, taskTitle, status, ...props }, ref) => {
+const CardLink: React.FC<LinkProps & CardProps & CardLinkProps> = forwardRef<HTMLDivElement, LinkProps & CardProps>(({ children, to, projectInfo, taskTitle, status, showStatus, className, ...props }, ref) => {
   const resolved = useResolvedPath(to);
   const match = useMatch({
     path: resolved.pathname,
@@ -24,12 +30,12 @@ const CardLink: React.FC<LinkProps & CardProps & CardLinkRefType> = forwardRef<H
   });
 
   return (
-    <div ref={ ref }>
+    <div ref={ ref } className={ className }>
       <StyledLink
         to={ to }
         { ...props }
       >
-        <Card projectInfo={ projectInfo } status={ status } taskTitle={ taskTitle } isActive={ !!match }/>
+        <Card projectInfo={ projectInfo } status={ status } taskTitle={ taskTitle } isActive={ !!match } showStatus={ showStatus }/>
       </StyledLink>
     </div>
   );
