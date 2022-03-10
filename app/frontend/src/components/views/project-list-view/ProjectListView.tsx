@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import { Route, Routes, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import ProjectHeader from './components/ProjectHeader';
+import { useParams, Outlet } from 'react-router-dom';
 import TaskInput from 'components/UI/task-input/TaskInput';
 import { useStore } from 'effector-react';
-import { $projects } from 'store/projects';
-import CardLink from 'components/views/project-view/components/CardLink';
-import TaskPopup from 'components/views/project-view/components/TaskPopup';
+import { $projects, $selectedProject } from 'store/projects';
+import CardLink from 'components/views/project-list-view/components/CardLink';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 import { getOrderScoreDesc } from 'helpers/get-order-score';
-import { Task } from 'types/entities';
-import { $tasks, createTaskFx, getTasksFx, listUpdated, updateTaskFx } from 'store/tasks';
+import { Project, Task } from 'types/entities';
+import { $tasks, createTaskFx, listUpdated, taskSelected, updateTaskFx } from 'store/tasks';
+import getTaskTitle from 'helpers/get-task-title';
+import prepareTaskContent from 'helpers/prepare-task-content';
 
 /**
  * Props of the component
@@ -18,39 +17,21 @@ import { $tasks, createTaskFx, getTasksFx, listUpdated, updateTaskFx } from 'sto
 interface Props { }
 
 /**
- * ProjectView component
+ * Project View allowing to see all the tasks as a list.
  */
-const ProjectView: React.FC<Props> = () => {
+const ProjectListView: React.FC<Props> = () => {
   const params = useParams();
-  const projects = useStore($projects);
   const tasksList = useStore($tasks);
-  const currentProject = projects.find((project) => params.id === project._id);
-  const title = currentProject?.title || 'All projects';
-
-
-  useEffect(() => {
-    getTasksFx(params.id ? { projectId: params.id } : {});
-  }, [ params.id ]);
+  const currentProject = useStore($selectedProject);
+  const projects = useStore($projects);
 
   const createNewTask = async (value: string): Promise<void> => {
-    const taskContent = {
-      blocks: [
-        {
-          type: 'header',
-          data: {
-            text: value,
-            level: 1,
-          },
-        },
-      ],
-    };
-
     /* eslint-disable @typescript-eslint/no-magic-numbers */
     const newTaskOrderScore = !tasksList.length ? 1 : (tasksList[0].orderScore + 1);
     /* eslint-enable @typescript-eslint/no-magic-numbers */
 
     createTaskFx({
-      text: JSON.stringify(taskContent),
+      text: prepareTaskContent(value),
       projectId: params.id,
       orderScore: newTaskOrderScore,
     });
@@ -84,19 +65,30 @@ const ProjectView: React.FC<Props> = () => {
    * @param task - task that needs label displayed
    */
   const getTaskStatusLabel = (task: Task): string|undefined => {
-    if (!currentProject) {
+    const project = projects.find(p => p._id === task.projectId);
+
+    if (!project) {
       return;
     }
 
-    return currentProject.taskStatuses?.find(status => status._id === task.statusId)?.label;
+    return project.taskStatuses?.find(status => status._id === task.statusId)?.label;
+  };
+
+  const getTaskProjectInfo = (task: Task): Project | undefined => {
+    if (currentProject) {
+      return;
+    }
+
+    return projects.find(project => project._id === task.projectId);
+  };
+
+  const handleCardClick = (task: Task): void => {
+    taskSelected(task);
   };
 
   return (
     <Wrapper>
-      <Routes>
-        <Route path={ ':task_id' } element={ <TaskPopup/> }/>
-      </Routes>
-      <StyledProjectHeader title={ title } hasSettingsButton={ !!currentProject }/>
+      <Outlet />
       <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
       <DragDropContext onDragEnd={ onDragEnd }>
         <Droppable droppableId='0'>
@@ -116,9 +108,11 @@ const ProjectView: React.FC<Props> = () => {
                       to={ task._id }
                       key={ task._id }
                       taskTitle={ getTaskTitle(task.text) }
-                      projectInfo={ !currentProject ? projects.find(project => project._id === task.projectId) : undefined }
+                      projectInfo={ getTaskProjectInfo(task) }
                       status={ getTaskStatusLabel(task) }
                       ref={ draggableProvided.innerRef }
+                      showStatus={ true }
+                      onClick={ () => handleCardClick(task) }
                     />
                   )}
                 </Draggable>
@@ -133,33 +127,13 @@ const ProjectView: React.FC<Props> = () => {
 };
 
 /**
- * Extracts task title text from first block of task content
- *
- * @param taskText - string containing task content in editor.js format
- */
-const getTaskTitle = (taskText: string): string => {
-  try {
-    return JSON.parse(taskText).blocks[0].data.text;
-  } catch {
-    return '';
-  }
-};
-
-/**
- * Styled project header component
- */
-const StyledProjectHeader = styled(ProjectHeader)``;
-
-/**
  * Tasks list styled wrapper
  */
 const Wrapper = styled.div`
+  padding-right: 16px;
+  
   & > *:not(:last-child) {
     margin-bottom: 3px;
-  }
-
-  ${ StyledProjectHeader } {
-    margin-bottom: 16px;
   }
 `;
 
@@ -172,4 +146,4 @@ const TasksContainer = styled.div`
 }
 `;
 
-export default ProjectView;
+export default ProjectListView;

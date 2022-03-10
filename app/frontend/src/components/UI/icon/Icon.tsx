@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC, SVGProps, useEffect, useRef } from 'react';
 
 /**
  * Icon component props
  */
-export interface IconProps extends React.SVGProps<SVGSVGElement> {
+export interface IconProps extends SVGProps<SVGSVGElement> {
   /**
    * Name of the file containing svg icon
    */
@@ -20,13 +20,11 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {
  *
  * @param props - props of the component
  */
-const Icon: React.FC<IconProps> = ({ name, ...rest }): JSX.Element | null => {
-  const ImportedIconRef = React.useRef<
-    React.FC<React.SVGProps<SVGSVGElement>>
-  >();
+const Icon: FC<IconProps> = ({ name, ...rest }): JSX.Element | null => {
+  const ImportedIconRef = useRef<FC<SVGProps<SVGSVGElement>>>();
   const [loading, setLoading] = React.useState(false);
 
-  React.useEffect((): void => {
+  useEffect((): () => void => {
     setLoading(true);
     const importIcon = async (): Promise<void> => {
       try {
@@ -39,6 +37,10 @@ const Icon: React.FC<IconProps> = ({ name, ...rest }): JSX.Element | null => {
     };
 
     importIcon();
+
+    return () => {
+      setLoading(false);
+    };
   }, [ name ]);
 
   if (!loading && ImportedIconRef.current) {

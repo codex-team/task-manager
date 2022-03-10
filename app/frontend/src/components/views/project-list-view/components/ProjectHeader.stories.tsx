@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import ProjectHeader from 'components/views/project-view/components/ProjectHeader';
+import ProjectHeader from 'components/views/project-list-view/components/ProjectHeader';
 
 export default {
   component: ProjectHeader,
@@ -14,6 +14,4 @@ const Template: ComponentStory<typeof ProjectHeader> = (args) =>
   <ProjectHeader { ...args }/>;
 
 export const Header = Template.bind({});
-Header.args = {
-  title: 'CodeX Project',
-};
+Header.args = {};

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { EDITOR_JS_TOOLS, EDITOR_JS_HOLDER_NAME } from 'tools';
 import EditorJS from '@editorjs/editorjs';
 import { OutputData } from '@editorjs/editorjs';
@@ -26,16 +26,23 @@ interface Props {
  * @param Props.changeData - function for editor OnChange
  */
 const EditorJSComponent: React.FC<Props> = ({ data, onDataChange }) => {
+  const [editor, setEditor] = useState<EditorJS | null>(null);
+
   useEffect(() => {
-    const editor = new EditorJS({
+    if (editor) {
+      return;
+    }
+    const e = new EditorJS({
       holder: EDITOR_JS_HOLDER_NAME,
       tools: EDITOR_JS_TOOLS,
       data: data,
       onChange: () => {
-        onDataChange(editor);
+        onDataChange(e);
       },
     });
-  }, [ data ]);
+
+    setEditor(e);
+  }, [data, editor, onDataChange]);
 
   return (
     <div id={ EDITOR_JS_HOLDER_NAME }/>

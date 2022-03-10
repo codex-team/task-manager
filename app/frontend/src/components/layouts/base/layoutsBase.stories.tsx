@@ -3,7 +3,7 @@ import Container from 'components/layouts/base/Container';
 import Content from 'components/layouts/base/Content';
 import Sidebar from 'components/layouts/base/Sidebar';
 import ColorVariables from 'styles/Colors';
-import ProjectHeader from 'components/views/project-view/components/ProjectHeader';
+import ProjectHeader from 'components/views/project-list-view/components/ProjectHeader';
 
 export default {
   component: Container,
@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof Container> = (args) =>
     <ColorVariables/>
     <Sidebar/>
     <Content>
-      <ProjectHeader title={ 'CodeX Project' }/>
+      <ProjectHeader />
     </Content>
   </Container>;
 

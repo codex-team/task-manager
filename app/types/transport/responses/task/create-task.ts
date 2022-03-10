@@ -1,5 +1,5 @@
 import { ResponseMessage } from 'ctproto';
-import Task from '../../../entities/task';
+import { Status, Task } from 'types/entities';
 
 /**
  * Response for 'create-task' message
@@ -10,6 +10,11 @@ export interface CreateTaskResponsePayload {
    * Response sample
    */
   task: Task;
+
+  /**
+   * Updated status object in case task was created with statusId specified
+   */
+  status?: Status | null;
 }
 
 /**

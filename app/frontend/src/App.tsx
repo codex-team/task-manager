@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import WorkspaceView from './components/views/workspace-view/WorkspaceView';
-import ColorVariables from 'styles/Colors';
-import GlobalStyles from 'styles/Global';
-import { Route, Routes } from 'react-router-dom';
-import Content from './components/layouts/base/Content';
 import WorkspaceForm from './components/views/workspace-form/WorkSpaceForm';
-import ProjectForm from './components/views/project-form/ProjectForm';
-import ProjectView from './components/views/project-view/ProjectView';
-import Container from './components/layouts/base/Container';
-import { $workspace, getWorkspaceFx } from 'store/workspaces';
+import Container from 'components/layouts/base/Container';
+import Content from 'components/layouts/base/Content';
+import ColorVariables from './styles/Colors';
+import GlobalStyles from './styles/Global';
+import ProjectForm from 'components/views/project-form/ProjectForm';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import ProjectListView from 'components/views/project-list-view/ProjectListView';
+import ProjectRootView from 'components/views/project-root-view/ProjectRootView';
+import TaskPopup from 'components/views/project-list-view/components/TaskPopup';
+import ProjectBoardView from 'components/views/project-board-view/ProjectBoardView';
 import { useStore } from 'effector-react';
+import { $workspace, getWorkspaceFx } from 'store/workspaces';
 
 /**
  * Makes the main page
@@ -33,8 +36,20 @@ function App(): React.ReactElement {
           <Route path="workspace/edit" element={ <WorkspaceForm/> }/>
           <Route path="projects/new" element={ <ProjectForm workspaceId={ workspace._id }/> }/>
           <Route path="projects/:id/edit" element={ <ProjectForm workspaceId={ workspace._id }/> }/>
-          <Route path="projects/all/*" element={ <ProjectView/> }/>
-          <Route path="projects/:id/*" element={ <ProjectView/> }/>
+          <Route path="projects/all/*" element={ <ProjectRootView/> }>
+            <Route path="*" element={ <ProjectListView/> }>
+              <Route path=":task_id" element={ <TaskPopup/> }/>
+            </Route>
+          </Route>
+          <Route path="projects/:id/*" element={ <ProjectRootView/> }>
+            <Route path="list/*" element={ <ProjectListView/> }>
+              <Route path=":task_id" element={ <TaskPopup/> }/>
+            </Route>
+            <Route path="board/*" element={ <ProjectBoardView/> }>
+              <Route path=":task_id" element={ <TaskPopup/> }/>
+            </Route>
+            <Route path="*" element={ <Navigate replace to="list"/> }/>
+          </Route>
         </Route>
       </Routes>
     </Container>
