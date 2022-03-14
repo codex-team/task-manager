@@ -7,7 +7,7 @@ import { GetWorkspaceMessagePayload } from 'types/transport/requests/workspace/g
  * Get workspace handler
  */
 export class GetWorkspaceHandler implements MessageHandler {
-  public type = 'get-projects';
+  public type = 'get-workspace';
 
   /**
    * @param payload - payload from message to parse
