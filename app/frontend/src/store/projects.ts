@@ -84,7 +84,7 @@ $selectedProject.on(taskMoved, (state, data) => {
   if (!state || !state.taskStatuses) {
     return;
   }
-  const statuses = [...state?.taskStatuses];
+  const statuses = [ ...state?.taskStatuses ];
 
   if (!statuses) {
     return state;

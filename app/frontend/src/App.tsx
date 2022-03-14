@@ -46,30 +46,30 @@ function App(): React.ReactElement {
       <ColorVariables />
       <GlobalStyles />
       <Sidebar>
-        <SidebarHeader sidebarTitle={'CodeX Tasks'} />
-        <ProjectList workspaceId={''}>
+        <SidebarHeader sidebarTitle={ 'CodeX Tasks' } />
+        <ProjectList workspaceId={ '' }>
           <StyledLink to='/projects/new'>
             <StyledButton icon='plus'>Add new project</StyledButton>
           </StyledLink>
         </ProjectList>
       </Sidebar>
       <Routes>
-        <Route path="/" element={<Content />}>
-          <Route path="projects/new" element={<ProjectForm />} />
-          <Route path="projects/:id/edit" element={<ProjectForm />} />
-          <Route path="projects/all/*" element={<ProjectRootView />}>
-            <Route path="*" element={<ProjectListView />}>
-              <Route path=":task_id" element={<TaskPopup />} />
+        <Route path="/" element={ <Content /> }>
+          <Route path="projects/new" element={ <ProjectForm /> } />
+          <Route path="projects/:id/edit" element={ <ProjectForm /> } />
+          <Route path="projects/all/*" element={ <ProjectRootView /> }>
+            <Route path="*" element={ <ProjectListView /> }>
+              <Route path=":task_id" element={ <TaskPopup /> } />
             </Route>
           </Route>
-          <Route path="projects/:id/*" element={<ProjectRootView />}>
-            <Route path="list/*" element={<ProjectListView />}>
-              <Route path=":task_id" element={<TaskPopup />} />
+          <Route path="projects/:id/*" element={ <ProjectRootView /> }>
+            <Route path="list/*" element={ <ProjectListView /> }>
+              <Route path=":task_id" element={ <TaskPopup /> } />
             </Route>
-            <Route path="board/*" element={<ProjectBoardView />}>
-              <Route path=":task_id" element={<TaskPopup />} />
+            <Route path="board/*" element={ <ProjectBoardView /> }>
+              <Route path=":task_id" element={ <TaskPopup /> } />
             </Route>
-            <Route path="*" element={<Navigate replace to="list" />} />
+            <Route path="*" element={ <Navigate replace to="list" /> } />
           </Route>
         </Route>
       </Routes>

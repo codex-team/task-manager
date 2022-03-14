@@ -89,30 +89,30 @@ const ProjectListView: React.FC<Props> = () => {
   return (
     <Wrapper>
       <Outlet />
-      <TaskInput placeholder='Add new task' onChange={createNewTask} />
-      <DragDropContext onDragEnd={onDragEnd}>
+      <TaskInput placeholder='Add new task' onChange={ createNewTask } />
+      <DragDropContext onDragEnd={ onDragEnd }>
         <Droppable droppableId='0'>
           {provided => (
-            <TasksContainer {...provided.droppableProps} ref={provided.innerRef}>
+            <TasksContainer { ...provided.droppableProps } ref={ provided.innerRef }>
               {tasksList.map((task, index) =>
                 <Draggable
-                  draggableId={task._id}
-                  index={index}
-                  key={task._id}
-                  isDragDisabled={!currentProject}
+                  draggableId={ task._id }
+                  index={ index }
+                  key={ task._id }
+                  isDragDisabled={ !currentProject }
                 >
                   {draggableProvided => (
                     <CardLink
-                      {...draggableProvided.draggableProps}
-                      {...draggableProvided.dragHandleProps}
-                      to={task._id}
-                      key={task._id}
-                      taskTitle={getTaskTitle(task.text)}
-                      projectInfo={getTaskProjectInfo(task)}
-                      status={getTaskStatusLabel(task)}
-                      ref={draggableProvided.innerRef}
-                      showStatus={true}
-                      onClick={() => handleCardClick(task)}
+                      { ...draggableProvided.draggableProps }
+                      { ...draggableProvided.dragHandleProps }
+                      to={ task._id }
+                      key={ task._id }
+                      taskTitle={ getTaskTitle(task.text) }
+                      projectInfo={ getTaskProjectInfo(task) }
+                      status={ getTaskStatusLabel(task) }
+                      ref={ draggableProvided.innerRef }
+                      showStatus={ true }
+                      onClick={ () => handleCardClick(task) }
                     />
                   )}
                 </Draggable>
