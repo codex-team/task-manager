@@ -1,11 +1,10 @@
 import mongoose from '../index';
-import { WorkspaceDocument, WorkspaceModel } from '../interfaces/workspace';
-import { ContactTypes } from '../interfaces/teammate';
+import { Workspace } from 'types/entities';
 
 /**
  * Workspace schema
  */
-const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema ({
+const WorkspaceSchema: mongoose.Schema<Workspace> = new mongoose.Schema ({
   /**
    * Workspace name
    */
@@ -13,35 +12,7 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
     type: mongoose.Schema.Types.String,
     required: true,
   },
-  /**
-   * List of teammates in workspace
-   */
-  team: [ {
-    /**
-     * Teammate name
-     */
-    name: {
-      type: mongoose.Schema.Types.String,
-    },
-    /**
-     * List of teammate's contacts
-     */
-    contacts: [ {
-      /**
-       * Contact type
-       */
-      type: {
-        type: mongoose.Schema.Types.String,
-        default: ContactTypes.Telegram,
-      },
-      /**
-       * Contact value(username or email address)
-       */
-      value: {
-        type: mongoose.Schema.Types.String,
-      },
-    } ],
-  } ],
+
   /**
    * List of projects in workspace
    */
@@ -49,6 +20,14 @@ const WorkspaceSchema: mongoose.Schema<WorkspaceDocument> = new mongoose.Schema 
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project',
   } ],
+
+  /**
+   * List of teammates in workspace
+   */
+  teammates: [ {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Teammate',
+  } ],
 });
 
-export default mongoose.model<WorkspaceDocument, WorkspaceModel>('Workspace', WorkspaceSchema);
+export default mongoose.model<Workspace>('Workspace', WorkspaceSchema);
