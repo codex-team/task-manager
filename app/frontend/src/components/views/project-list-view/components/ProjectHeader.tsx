@@ -43,13 +43,13 @@ const ProjectHeader: React.FC<Props> = ({ className, project }: Props) => {
   ];
 
   return (
-    <Container className={className}>
+    <Container className={ className }>
       <PageTitle>{project?.title || 'All projects'}</PageTitle>
       {!!project &&
         <Button>Project settings</Button>
       }
       {!!project &&
-        <ProjectViewSwitcher items={viewOptions} />
+        <ProjectViewSwitcher items={ viewOptions } />
       }
     </Container>
   );
