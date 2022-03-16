@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 /**
  * Interface for sidebar title props
@@ -24,7 +25,7 @@ const HeadingStyled = styled.h1<Props>`
  */
 const SidebarTitle: React.FC<Props> = ({ ...props }) => {
   return (
-    <HeadingStyled { ...props }/>
+    <HeadingStyled { ...props } />
   );
 };
 

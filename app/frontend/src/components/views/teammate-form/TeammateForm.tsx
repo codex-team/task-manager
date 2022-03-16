@@ -31,6 +31,14 @@ const TeammateForm: React.FC<Props> = (props) => {
   const [photo, setPhoto] = useState('');
   const [contact, setContact] = useState('');
 
+  const cleanup = (): void => {
+    setUsername('');
+    setPhoto('');
+    setContact('');
+
+    props.handleCancel();
+  };
+
   const submit = async (): Promise<void> => {
     await createTeammateFx({
       workspaceId: props.workspaceId,
@@ -40,6 +48,8 @@ const TeammateForm: React.FC<Props> = (props) => {
         value: contact,
       } ],
     });
+
+    cleanup();
   };
 
   return (

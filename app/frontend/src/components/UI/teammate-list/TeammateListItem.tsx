@@ -2,11 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Avatar } from 'icons/DefaultAvatar.svg';
 import Icon from '../icon/Icon';
+import { removeTeammateFx } from 'store/teammates';
 
 /**
  * Interface for teammate component props
  */
 export interface Props {
+  /**
+   * Teammate identifier
+   */
+  key: string
+
   /**
    * Teammate name
    */
@@ -102,6 +108,11 @@ const StyledSpan = styled.span`
  * @param props - props of component
  */
 const TeammateListItem: React.FC<Props> = (props) => {
+
+  const removeTeammate = (): void => {
+    removeTeammateFx(props.key);
+  };
+
   return (
     <StyledTeammateListItem { ...props }>
       <TeammateAvatar>
@@ -114,7 +125,7 @@ const TeammateListItem: React.FC<Props> = (props) => {
         {props.name}
       </TeammateName>
       <StyledSpan>
-        <Icon name='close' width={ 10 } height={ 10 }/>
+        <Icon name='close' width={ 10 } height={ 10 } onClick={ removeTeammate }/>
       </StyledSpan>
     </StyledTeammateListItem>
   );

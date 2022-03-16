@@ -1,6 +1,6 @@
 import Teammate from 'types/entities/teammate';
 import { createStore, createEffect } from 'effector';
-import { createTeammate, getTeammates } from 'services/teammates';
+import { createTeammate, getTeammates, removeTeammateById } from 'services/teammates';
 
 /**
  * Teammates store
@@ -12,6 +12,7 @@ export const $teammates = createStore<Teammate[]>([]);
  */
 export const getTeammatesFx = createEffect(getTeammates);
 export const createTeammateFx = createEffect(createTeammate);
+export const removeTeammateFx = createEffect(removeTeammateById);
 
 /**
  * State changes based on effects results

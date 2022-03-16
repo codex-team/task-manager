@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import WorkspaceForm from './components/views/workspace-form/WorkSpaceForm';
 import Container from 'components/layouts/base/Container';
 import Content from 'components/layouts/base/Content';
@@ -25,17 +25,19 @@ import Button from './components/UI/button/Button';
  */
 function App(): React.ReactElement {
   const workspace = useStore($workspace);
+  const [sidebarTitle, setSidebarTitle] = useState(workspace.name);
 
   useEffect(() => {
     getWorkspaceFx({});
-  }, [ workspace.name ]);
+    setSidebarTitle(workspace.name);
+  }, [ workspace ]);
 
   return (
     <Container>
       <ColorVariables/>
       <GlobalStyles/>
       <Sidebar>
-        <SidebarHeader sidebarTitle={ workspace.name !== null ? workspace.name : '' }/>
+        <SidebarHeader sidebarTitle={ sidebarTitle !== null ? sidebarTitle : '' }/>
         <ProjectList workspaceId={ workspace._id !== null ? workspace._id : '' }>
           <StyledLink to="/projects/new">
             <StyledButton icon="plus">Add new project</StyledButton>

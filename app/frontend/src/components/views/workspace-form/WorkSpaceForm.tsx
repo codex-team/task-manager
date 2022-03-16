@@ -22,8 +22,9 @@ const WorkspaceForm: React.FC<Props> = () => {
 
   useEffect(() => {
     getWorkspaceFx({});
+    setTitle(workspace.name);
     setTeammateList(<TeammateList workspaceId={ workspace._id } />);
-  }, [ workspace._id ]);
+  }, [workspace._id, workspace.name]);
 
   const handleNewMemberForm = (): void => {
     setIsFormDisplayed(current => !current);
