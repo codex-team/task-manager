@@ -52,7 +52,6 @@ export const taskCreated = createEvent<{ taskId: string, statusId?: string | nul
 $projects.on(getProjectsFx.done, (_, { result }) => result.projects);
 $projects.on(createProjectFx.done, (state, { result }) => [...state, result.project]);
 $projects.on(updateProjectFx.done, (state, { result }) => {
-
   if (!state || !result.project) {
     return state;
   }
@@ -60,10 +59,10 @@ $projects.on(updateProjectFx.done, (state, { result }) => {
   // get index of the project
   const projectIndex = state.findIndex((project) => resposeProject._id === project._id);
 
-  if (projectIndex == -1) {
+  if (projectIndex === -1) {
     return state;
   }
-  
+
   // replace with updated project data
   state[projectIndex] = resposeProject;
 
@@ -91,7 +90,7 @@ $selectedProject.on(taskMoved, (state, data) => {
   if (!state || !state.taskStatuses) {
     return;
   }
-  const statuses = [...state?.taskStatuses];
+  const statuses = [ ...state?.taskStatuses ];
 
   if (!statuses) {
     return state;
