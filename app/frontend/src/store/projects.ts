@@ -1,8 +1,6 @@
 import { createStore, createEffect, createEvent } from 'effector';
 import { createProject, getProjects, updateProject } from 'services/projects';
 import { Project } from 'types/entities';
-import { changeTaskStatusFx, createTaskFx } from './tasks';
-import getListWithItemReplaced from 'helpers/get-list-with-item-replaced';
 
 /**
  * Describes data needed to move task from one column to another
@@ -54,11 +52,20 @@ export const taskCreated = createEvent<{ taskId: string, statusId?: string | nul
 $projects.on(getProjectsFx.done, (_, { result }) => result.projects);
 $projects.on(createProjectFx.done, (state, { result }) => [...state, result.project]);
 $projects.on(updateProjectFx.done, (state, { result }) => {
-  // get index of the project
-  const projectIndex = state.findIndex((project) => result.project._id === project._id);
 
+  if (!state || !result.project) {
+    return state;
+  }
+  const resposeProject = result.project;
+  // get index of the project
+  const projectIndex = state.findIndex((project) => resposeProject._id === project._id);
+
+  if (projectIndex == -1) {
+    return state;
+  }
+  
   // replace with updated project data
-  state[projectIndex] = result.project;
+  state[projectIndex] = resposeProject;
 
   return state;
 });
@@ -84,7 +91,7 @@ $selectedProject.on(taskMoved, (state, data) => {
   if (!state || !state.taskStatuses) {
     return;
   }
-  const statuses = [ ...state?.taskStatuses ];
+  const statuses = [...state?.taskStatuses];
 
   if (!statuses) {
     return state;
