@@ -1,6 +1,6 @@
 import { NewMessage } from 'ctproto';
 
-export interface UpdateProjectPayload {
+export interface UpdateProjectMessagePayload {
   /**
    * Id of project to be updated
    */
@@ -22,6 +22,6 @@ export interface UpdateProjectPayload {
 /**
  * Describes the request for updating project
  */
-export default interface UpdateProjectMessage extends NewMessage<UpdateProjectPayload> {
+export default interface UpdateProjectMessage extends NewMessage<UpdateProjectMessagePayload> {
   type: 'update-project';
 }
