@@ -3,6 +3,7 @@ import fastifyStatic from 'fastify-static';
 import path from 'path';
 import { createTransportServer } from 'ui/transport-server';
 import { Config } from 'config/config';
+import scheduler from 'application/scheduler';
 
 const server = fastify();
 
@@ -47,7 +48,7 @@ server.route({
 
 
 /**
- * Define server init params
+ * Define server initial params
  */
 const SERVER_HOST = '0.0.0.0';
 const SERVER_PORT = Config.SERVER_PORT;
@@ -66,3 +67,8 @@ server.listen(SERVER_PORT, SERVER_HOST, (err, address) => {
 createTransportServer({
   authToken: Config.CTPROTO_TOKEN,
 });
+
+/**
+ * Start scheduler
+ */
+scheduler().start();
