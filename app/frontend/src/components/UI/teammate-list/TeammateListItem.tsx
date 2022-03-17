@@ -9,9 +9,9 @@ import { removeTeammateFx } from 'store/teammates';
  */
 export interface Props {
   /**
-   * Teammate identifier
+   * Teammate id
    */
-  key: string
+  _id: string
 
   /**
    * Teammate name
@@ -109,7 +109,7 @@ const StyledSpan = styled.span`
  */
 const TeammateListItem: React.FC<Props> = (props) => {
   const removeTeammate = (): void => {
-    removeTeammateFx(props.key);
+    removeTeammateFx(props._id);
   };
 
   return (

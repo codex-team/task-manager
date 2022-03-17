@@ -27,7 +27,7 @@ const TeammateList: React.FC<Props> = (props) => {
     getTeammatesFx({
       workspaceId: props.workspaceId,
     });
-  }, [ props.workspaceId ]);
+  }, [teammates.length, props.workspaceId]);
 
   return (
     <div>
@@ -42,7 +42,7 @@ const TeammateList: React.FC<Props> = (props) => {
       </LabelWrapper>
       <StyledTeammateList>
         { teammates.map((teammate) =>
-          <TeammateListItem key={ teammate._id } name={ teammate.name } photo={ teammate.photo }/>
+          <TeammateListItem key={ teammate._id } _id={ teammate._id } name={ teammate.name } photo={ teammate.photo }/>
         ) }
       </StyledTeammateList>
     </div>

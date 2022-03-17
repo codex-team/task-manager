@@ -29,6 +29,7 @@ import GetWorkspaceResponse from './responses/workspace/get-workspace';
 import UpdateWorkspaceResponse from './responses/workspace/update-workspace';
 import ChangeTaskStatusMessage from './requests/task/change-task-status';
 import ChangeTaskStatusResponse from './responses/task/change-task-status';
+import RemoveTeammateByIdResponse from './responses/teammate/remove-teammate-by-id';
 
 /**
  * The type described all available outgoing messages that can be sent by API
@@ -76,5 +77,6 @@ export type ApiResponse =
   | GetTeammatesResponse
   | GetTeammateByIdResponse
   | UpdateTeammateResponse
+  | RemoveTeammateByIdResponse
   | ChangeTaskStatusResponse
 ;

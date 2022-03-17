@@ -19,6 +19,7 @@ import { CreateTeammateHandler } from './handlers/teammate/create-teammate';
 import { GetTeammateByIdHandler } from './handlers/teammate/get-teammate-by-id';
 import { GetTeammatesHandler } from './handlers/teammate/get-teammates';
 import { UpdateTeammateHandler } from './handlers/teammate/update-teammate';
+import { RemoveTeammateByIdHandler } from './handlers/teammate/remove-teammate-by-id';
 
 /**
  * Map of message types and associated handlers
@@ -47,6 +48,7 @@ const handlers = new Map<string, MessageHandler>([
   ['get-teammate-by-id', new GetTeammateByIdHandler()],
   ['get-teammates', new GetTeammatesHandler()],
   ['update-teammate', new UpdateTeammateHandler()],
+  ['remove-teammate-by-id', new RemoveTeammateByIdHandler()],
 ]);
 
 /**
