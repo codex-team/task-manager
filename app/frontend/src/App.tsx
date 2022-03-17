@@ -30,7 +30,7 @@ function App(): React.ReactElement {
   useEffect(() => {
     getWorkspaceFx({});
     setSidebarTitle(workspace.name);
-  }, [ workspace ]);
+  }, [ workspace.name ]);
 
   return (
     <Container>

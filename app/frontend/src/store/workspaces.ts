@@ -23,4 +23,3 @@ export const updateWorkspaceFx = createEffect(updateWorkspace);
  */
 $workspace.on(getWorkspaceFx.done, (state, { result }) => result.workspace);
 $workspace.on(updateWorkspaceFx.done, (state, { result }) => result.workspace);
-

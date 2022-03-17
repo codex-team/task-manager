@@ -108,7 +108,6 @@ const StyledSpan = styled.span`
  * @param props - props of component
  */
 const TeammateListItem: React.FC<Props> = (props) => {
-
   const removeTeammate = (): void => {
     removeTeammateFx(props.key);
   };

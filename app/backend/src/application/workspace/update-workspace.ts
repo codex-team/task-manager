@@ -15,6 +15,9 @@ export async function updateWorkspace(_id: string, name?: string, teammates?: st
     name,
     teammates,
   };
+  const options = {
+    returnDocument: 'after',
+  };
 
-  return WorkspaceModel.findOneAndUpdate(query, data).exec();
+  return WorkspaceModel.findOneAndUpdate(query, data, options).exec();
 }
