@@ -3,7 +3,7 @@
 Manager for scheduled jobs. It stores jobs in the database
 and restarts them on app reloading.
 
-## What is a Job
+## What is a job
 
 > Job is an action which runs according to its schedule.
 
