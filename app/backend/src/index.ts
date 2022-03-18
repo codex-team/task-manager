@@ -73,6 +73,3 @@ createTransportServer({
  * Start scheduler
  */
 scheduler().start();
-
-scheduler().addJob(JobType.REPORT_PROJECT_LABEL, { pr: 1 }, '*/1 * * * * *');
-scheduler().addJob(JobType.REPORT_PROJECT_LABEL, { pr: 2 }, '*/2 * * * * *');

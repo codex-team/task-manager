@@ -1,6 +1,7 @@
 import { Job } from 'types/entities';
 import { ScheduledJob } from './scheduled-job';
 import { JobId, JobPayload, JobSchedule, JobType } from 'types/entities/job';
+import { createJob, getJobs, removeJobById, updateJobSchedule } from './database';
 
 /**
  * Scheduled Jobs controller
@@ -45,71 +46,89 @@ class Scheduler {
   }
 
   /**
-   * @param type
-   * @param payload
-   * @param schedule
+   * Add new job
+   *
+   * @param type — job's type
+   * @param payload — job resolver's payload
+   * @param schedule — job's schedule
    */
   public async addJob(type: JobType, payload: JobPayload, schedule: JobSchedule): Promise<void> {
     /**
+     * Check for a correct schedule
+     */
+    this.checkSchedule(schedule);
+
+    /**
      * Create job data object
      */
-    const job = {
-      type,
-      payload,
-      schedule,
-    };
+    const job: Job = await createJob(type, payload, schedule);
 
     /**
      * Compose scheduled job object
      */
-    const scheduledJob = this.composeScheduledJob(job.type, job.payload, job.schedule);
+    const scheduledJob = this.composeScheduledJob(job);
 
     /**
      * Run this job
      */
     scheduledJob.start();
-
-    // todo: save job to db
   }
 
   /**
-   * @param jobId
+   * Remove job ny id
+   *
+   * @param jobId — job's id
    */
   public async removeJob(jobId: JobId): Promise<void> {
     const scheduledJob = this.jobs.get(jobId);
 
     if (!scheduledJob) {
-      return;
+      throw Error(`Cannot remove job because job with id ${jobId} is missing`);
     }
 
+    /**
+     * Stop running job
+     */
     scheduledJob.stop();
 
+    /**
+     * Remove job from jobs maps
+     */
     this.jobs.delete(jobId);
 
-    // todo: remove job from db
+    /**
+     * Remove job from database
+     */
+    await removeJobById(jobId);
   }
 
-  // /**
-  //  *
-  //  */
-  // private async saveJob() {
-  //
-  // }
-  //
-  // /**
-  //  *
-  //  */
-  // private async removeJob() {
-  //
-  // }
-  //
-  // /**
-  //  *
-  //  */
-  // private async getJob() {
-  //
-  // }
+  /**
+   * Reschedule job
+   *
+   * @param jobId — job's id
+   * @param newSchedule — new cron-link schedule
+   */
+  public async rescheduleJob(jobId: JobId, newSchedule: JobSchedule): Promise<void> {
+    /**
+     * Get scheduled job object
+     */
+    const scheduledJob = this.getScheduledJobById(jobId);
 
+    /**
+     * Check for a correct schedule
+     */
+    this.checkSchedule(newSchedule);
+
+    /**
+     * Update job data in database
+     */
+    await updateJobSchedule(jobId, newSchedule);
+
+    /**
+     * Reschedule and restart job
+     */
+    scheduledJob.reschedule(newSchedule);
+  }
 
   /**
    * Pull saved jobs from database
@@ -118,33 +137,15 @@ class Scheduler {
     console.log('load jobs');
 
     /**
-     * Get saved jobs from DB
+     * Get jobs from DB
      */
-    // todo: get jobs from db
-    const jobs: Job[] = [
-      {
-        _id: '123',
-        type: JobType.REPORT_PROJECT_LABEL,
-        payload: {
-          projectId: 100,
-        },
-        schedule: '*/7 * * * * *',
-      },
-      {
-        _id: '123',
-        type: JobType.REPORT_PROJECT_LABEL,
-        payload: {
-          projectId: 200,
-        },
-        schedule: '*/5 * * * * *',
-      },
-    ];
+    const jobs: Job[] = await getJobs();
 
     /**
      * Process loaded jobs
      */
     jobs.forEach(job => {
-      const scheduledJob = this.composeScheduledJob(job.type, job.payload, job.schedule);
+      const scheduledJob = this.composeScheduledJob(job);
 
       /**
        * Run loaded job
@@ -161,16 +162,39 @@ class Scheduler {
   /**
    * Initialize Scheduled Job from Job data
    *
-   * @param type
-   * @param payload
-   * @param schedule
+   * @param job — job data
    */
-  private composeScheduledJob(type: JobType, payload: JobPayload, schedule: JobSchedule): ScheduledJob {
-    if (!ScheduledJob.validateSchedule(schedule)) {
-      throw Error('Schedule string is invalid');
+  private composeScheduledJob(job: Job): ScheduledJob {
+    return new ScheduledJob(job.type, job.payload, job.schedule);
+  }
+
+  /**
+   * Find Scheduled Job object
+   *
+   * @param jobId — job's id
+   */
+  private getScheduledJobById(jobId: JobId): ScheduledJob {
+    const scheduledJob = this.jobs.get(jobId);
+
+    if (!scheduledJob) {
+      throw Error(`Job with id ${jobId} is missing`);
     }
 
-    return new ScheduledJob(type, payload, schedule);
+    return scheduledJob;
+  }
+
+  /**
+   * Check passed schedule string for a validness
+   *
+   * @param schedule — cron-like string to be checked
+   * @private
+   */
+  private checkSchedule(schedule: JobSchedule): void {
+    if (ScheduledJob.validateSchedule(schedule)) {
+      return;
+    }
+
+    throw Error('Schedule is not valid');
   }
 }
 

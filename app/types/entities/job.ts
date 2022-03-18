@@ -11,7 +11,7 @@ export enum JobType {
 export type JobId = string;
 
 /**
- * Job's payload
+ * Job resolver's payload
  */
 export type JobPayload = Record<string, unknown>;
 
@@ -40,7 +40,7 @@ export default interface Job {
   type: JobType;
 
   /**
-   * Job's payload
+   * Job resolver's payload
    */
   payload: JobPayload;
 
