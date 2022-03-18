@@ -13,14 +13,14 @@ export class ScheduledJob {
   private readonly type: JobType;
 
   /**
-   * Job payload to be passed to resolver
-   */
-  private readonly payload: JobPayload;
-
-  /**
    * Cron-like schedule string
    */
   private schedule: JobSchedule;
+
+  /**
+   * Job payload to be passed to resolver
+   */
+  private readonly payload: JobPayload;
 
   /**
    * Scheduled Job class created by NodeCron library
@@ -31,13 +31,13 @@ export class ScheduledJob {
 
   /**
    * @param type — job's type
-   * @param payload — job's payload
    * @param schedule — job's schedule
+   * @param payload — job's payload
    */
-  constructor(type: JobType, payload: JobPayload, schedule: JobSchedule) {
+  constructor(type: JobType, schedule: JobSchedule, payload: JobPayload) {
     this.type = type;
-    this.payload = payload;
     this.schedule = schedule;
+    this.payload = payload;
   }
 
   /**

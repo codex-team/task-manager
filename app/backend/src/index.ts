@@ -3,8 +3,7 @@ import fastifyStatic from 'fastify-static';
 import path from 'path';
 import { createTransportServer } from 'ui/transport-server';
 import { Config } from 'config/config';
-import scheduler from './application/scheduler';
-import { JobType } from 'types/entities/job';
+import scheduler from 'application/scheduler';
 
 const server = fastify();
 

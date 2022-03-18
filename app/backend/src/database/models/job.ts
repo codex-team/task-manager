@@ -14,18 +14,18 @@ const JobSchema: mongoose.Schema<Job> = new mongoose.Schema({
   },
 
   /**
-   * Job's payload
-   */
-  payload: {
-    type: mongoose.Schema.Types.Mixed,
-    required: true,
-  },
-
-  /**
    * Job's schedule
    */
   schedule: {
     type: mongoose.Schema.Types.String,
+    required: true,
+  },
+
+  /**
+   * Job's payload
+   */
+  payload: {
+    type: mongoose.Schema.Types.Mixed,
     required: true,
   },
 });

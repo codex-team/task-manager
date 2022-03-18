@@ -1,7 +1,6 @@
 import JobSchema from 'database/models/job';
 import Job, { JobId, JobPayload, JobSchedule, JobType } from 'types/entities/job';
 
-
 /**
  * Create a new Job
  *
@@ -9,11 +8,11 @@ import Job, { JobId, JobPayload, JobSchedule, JobType } from 'types/entities/job
  * @param payload — Job resolver's payload
  * @param schedule — Job's schedule
  */
-export async function createJob(type: JobType, payload: JobPayload, schedule: JobSchedule): Promise<Job> {
+export async function createJob(type: JobType, schedule: JobSchedule, payload: JobPayload): Promise<Job> {
   const data = {
     type,
-    payload,
     schedule,
+    payload,
   };
 
   return await JobSchema.create(data);

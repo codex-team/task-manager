@@ -49,10 +49,11 @@ class Scheduler {
    * Add new job
    *
    * @param type — job's type
-   * @param payload — job resolver's payload
    * @param schedule — job's schedule
+   * @param payload — job resolver's payload
+   * @returns {JobId} JobId — id of the saved job
    */
-  public async addJob(type: JobType, payload: JobPayload, schedule: JobSchedule): Promise<void> {
+  public async addJob(type: JobType, schedule: JobSchedule, payload: JobPayload = {}): Promise<JobId> {
     /**
      * Check for a correct schedule
      */
@@ -61,7 +62,7 @@ class Scheduler {
     /**
      * Create job data object
      */
-    const job: Job = await createJob(type, payload, schedule);
+    const job: Job = await createJob(type, schedule, payload);
 
     /**
      * Compose scheduled job object
@@ -72,6 +73,11 @@ class Scheduler {
      * Run this job
      */
     scheduledJob.start();
+
+    /**
+     * Return Job's id
+     */
+    return job._id;
   }
 
   /**
@@ -165,7 +171,7 @@ class Scheduler {
    * @param job — job data
    */
   private composeScheduledJob(job: Job): ScheduledJob {
-    return new ScheduledJob(job.type, job.payload, job.schedule);
+    return new ScheduledJob(job.type, job.schedule, job.payload);
   }
 
   /**
