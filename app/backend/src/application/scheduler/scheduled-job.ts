@@ -1,39 +1,68 @@
 import * as NodeCron from 'node-cron';
 import { ScheduledTask } from 'node-cron';
+import { JobResolversMap } from './resolvers';
+import { JobPayload, JobResolver, JobSchedule, JobType } from 'types/entities/job';
 
 /**
- *
+ * Class provides an ability to start and stop a job
  */
 export class ScheduledJob {
-  public action: () => Promise<void>;
+  /**
+   * Job type to choose the right resolver
+   */
+  private readonly type: JobType;
 
-  public schedule: string;
+  /**
+   * Job payload to be passed to resolver
+   */
+  private readonly payload: JobPayload;
 
-  public id: string;
+  /**
+   * Cron-like schedule string
+   */
+  private schedule: JobSchedule;
 
+  /**
+   * Scheduled Job class created by NodeCron library
+   *
+   * @private
+   */
   private job?: ScheduledTask;
 
   /**
-   * @param action
-   * @param type
-   * @param schedule
-   * @param id
+   * @param type — job's type
+   * @param payload — job's payload
+   * @param schedule — job's schedule
    */
-  constructor(type, schedule?: string, id?: string) {
-    // this.action = action;
-    // this.schedule = schedule;
-    // this.id = id;
+  constructor(type: JobType, payload: JobPayload, schedule: JobSchedule) {
+    this.type = type;
+    this.payload = payload;
+    this.schedule = schedule;
   }
 
   /**
+   * Validate cron-schedule string
    *
+   * @param schedule — cron-like settings string
    */
-  public run(): void {
-    this.job = NodeCron.schedule(this.schedule, this.action);
+  public static validateSchedule(schedule: JobSchedule): boolean {
+    return NodeCron.validate(schedule);
   }
 
   /**
-   *
+   * Add the job to the schedule
+   */
+  public start(): void {
+    const resolver = this.getResolver();
+    const payload = this.payload;
+
+    this.job = NodeCron.schedule(this.schedule, () => {
+      resolver(payload);
+    });
+  }
+
+  /**
+   * Remove the job from the schedule
    */
   public stop(): void {
     if (this.job) {
@@ -42,9 +71,28 @@ export class ScheduledJob {
   }
 
   /**
+   * Restart the job with a new schedule
    *
+   * @param newSchedule — new schedule for the job
    */
-  private getResolver() {
+  public reschedule(newSchedule: JobSchedule): void {
+    this.stop();
 
+    this.schedule = newSchedule;
+
+    this.start();
+  }
+
+  /**
+   * Get the job resolver by its type
+   */
+  private getResolver(): JobResolver {
+    const resolver = JobResolversMap.get(this.type);
+
+    if (!resolver) {
+      throw Error(`Job resolver for type ${this.type} is missing.`);
+    }
+
+    return resolver;
   }
 }

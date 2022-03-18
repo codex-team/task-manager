@@ -2,13 +2,13 @@
  * List of available job types
  */
 export enum JobType {
-  ReportProjectLabel = 'REPORT_PROJECT_LABEL'
+  REPORT_PROJECT_LABEL = 'REPORT_PROJECT_LABEL'
 }
 
 /**
- * Job resolver method
+ * Job's id
  */
-export type JobResolver = (payload: JobPayload) => Promise<void>;
+export type JobId = string;
 
 /**
  * Job's payload
@@ -16,13 +16,23 @@ export type JobResolver = (payload: JobPayload) => Promise<void>;
 export type JobPayload = Record<string, unknown>;
 
 /**
+ * Job's schedule
+ */
+export type JobSchedule = string;
+
+/**
+ * Job resolver method
+ */
+export type JobResolver = (payload: JobPayload) => Promise<void>;
+
+/**
  * This interface represents the Job entity
  */
 export default interface Job {
   /**
-   * Job's unique identity
+   * Job's identifier
    */
-  _id: string;
+  _id: JobId;
 
   /**
    * Job's type
@@ -37,5 +47,5 @@ export default interface Job {
   /**
    * Job's schedule
    */
-  schedule: string;
+  schedule: JobSchedule;
 }

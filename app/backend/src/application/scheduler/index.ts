@@ -1,25 +1,33 @@
-/**
- *
- */
 import { Job } from 'types/entities';
 import { ScheduledJob } from './scheduled-job';
+import { JobId, JobPayload, JobSchedule, JobType } from 'types/entities/job';
 
 /**
- *
+ * Scheduled Jobs controller
  */
 class Scheduler {
+  /**
+   * Scheduler instance itself
+   *
+   * @private
+   */
   private static instance: Scheduler;
 
-  private jobs: ScheduledJob[] = [];
+  /**
+   * Map of jobs
+   *
+   * @private
+   */
+  private jobs: Map<string, ScheduledJob> = new Map();
 
   /**
-   *
+   * Private constructor
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
 
   /**
-   *
+   * Instance getter to provide singleton pattern
    */
   public static getInstance(): Scheduler {
     if (!Scheduler.instance) {
@@ -30,71 +38,139 @@ class Scheduler {
   }
 
   /**
-   *
+   * Scheduler's initializer
    */
   public async start(): Promise<void> {
-    await this.loadJobs();
-    this.runJobs();
+    await this.runSavedJobs();
+  }
+
+  /**
+   * @param type
+   * @param payload
+   * @param schedule
+   */
+  public async addJob(type: JobType, payload: JobPayload, schedule: JobSchedule): Promise<void> {
+    /**
+     * Create job data object
+     */
+    const job = {
+      type,
+      payload,
+      schedule,
+    };
+
+    /**
+     * Compose scheduled job object
+     */
+    const scheduledJob = this.composeScheduledJob(job.type, job.payload, job.schedule);
+
+    /**
+     * Run this job
+     */
+    scheduledJob.start();
+
+    // todo: save job to db
+  }
+
+  /**
+   * @param jobId
+   */
+  public async removeJob(jobId: JobId): Promise<void> {
+    const scheduledJob = this.jobs.get(jobId);
+
+    if (!scheduledJob) {
+      return;
+    }
+
+    scheduledJob.stop();
+
+    this.jobs.delete(jobId);
+
+    // todo: remove job from db
   }
 
   // /**
-  //  * @param action
-  //  * @param schedule
-  //  * @param id
+  //  *
   //  */
-  // public static addJob(action: () => void, schedule: string, id: string): void {
-  //   // create a new job
+  // private async saveJob() {
   //
-  //   // save job to db
   // }
   //
   // /**
   //  *
   //  */
-  // public static removeJob(): void {
-  //   const job: ScheduledJob;
+  // private async removeJob() {
   //
-  //   // remove job
-  //   job.stop();
-  //
-  //   // remove job from db
   // }
+  //
+  // /**
+  //  *
+  //  */
+  // private async getJob() {
+  //
+  // }
+
 
   /**
    * Pull saved jobs from database
    */
-  private async loadJobs(): Promise<void> {
+  private async runSavedJobs(): Promise<void> {
     console.log('load jobs');
 
     /**
      * Get saved jobs from DB
      */
-    const jobs: Job[] = [];
+    // todo: get jobs from db
+    const jobs: Job[] = [
+      {
+        _id: '123',
+        type: JobType.REPORT_PROJECT_LABEL,
+        payload: {
+          projectId: 100,
+        },
+        schedule: '*/7 * * * * *',
+      },
+      {
+        _id: '123',
+        type: JobType.REPORT_PROJECT_LABEL,
+        payload: {
+          projectId: 200,
+        },
+        schedule: '*/5 * * * * *',
+      },
+    ];
 
     /**
-     * Fill scheduled jobs array
+     * Process loaded jobs
      */
-    this.jobs = jobs.map(this.createScheduledJob);
-  }
+    jobs.forEach(job => {
+      const scheduledJob = this.composeScheduledJob(job.type, job.payload, job.schedule);
 
-  /**
-   * Run all loaded jobs
-   */
-  private runJobs(): void {
-    this.jobs.forEach(job => {
-      job.run();
+      /**
+       * Run loaded job
+       */
+      scheduledJob.start();
+
+      /**
+       * Add job to array
+       */
+      this.jobs.set(job._id, scheduledJob);
     });
   }
 
   /**
    * Initialize Scheduled Job from Job data
    *
-   * @param job
+   * @param type
+   * @param payload
+   * @param schedule
    */
-  private createScheduledJob(job: Job): ScheduledJob {
-    const scheduledJob = new ScheduledJob();
+  private composeScheduledJob(type: JobType, payload: JobPayload, schedule: JobSchedule): ScheduledJob {
+    if (!ScheduledJob.validateSchedule(schedule)) {
+      throw Error('Schedule string is invalid');
+    }
 
-    return scheduledJob;
+    return new ScheduledJob(type, payload, schedule);
   }
 }
 

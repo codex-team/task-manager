@@ -3,7 +3,8 @@ import fastifyStatic from 'fastify-static';
 import path from 'path';
 import { createTransportServer } from 'ui/transport-server';
 import { Config } from 'config/config';
-import scheduler from 'application/scheduler';
+import scheduler from './application/scheduler';
+import { JobType } from 'types/entities/job';
 
 const server = fastify();
 
@@ -72,3 +73,6 @@ createTransportServer({
  * Start scheduler
  */
 scheduler().start();
+
+scheduler().addJob(JobType.REPORT_PROJECT_LABEL, { pr: 1 }, '*/1 * * * * *');
+scheduler().addJob(JobType.REPORT_PROJECT_LABEL, { pr: 2 }, '*/2 * * * * *');
