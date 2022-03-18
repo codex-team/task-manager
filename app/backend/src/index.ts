@@ -48,7 +48,7 @@ server.route({
 
 
 /**
- * Define server initial params
+ * Define server init params
  */
 const SERVER_HOST = '0.0.0.0';
 const SERVER_PORT = Config.SERVER_PORT;
