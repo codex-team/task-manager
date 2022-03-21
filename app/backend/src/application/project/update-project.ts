@@ -10,7 +10,7 @@ import ProjectSchema from 'database/models/project';
  * @param messengerChannelUrl - project messenger channel url
  */
 export async function updateProject(_id: string, title: string, picture?: string, messengerChannelUrl?: string): Promise<Project | null> {
-  return await ProjectSchema.findOneAndUpdate({ _id },
+  return ProjectSchema.findOneAndUpdate({ _id },
     {
       $set: {
         title,
