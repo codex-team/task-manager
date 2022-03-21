@@ -64,9 +64,10 @@ $projects.on(updateProjectFx.done, (state, { result }) => {
   }
 
   // replace with updated project data
-  state[projectIndex] = resposeProject;
+  state[projectIndex] = { ...state[projectIndex],
+    ...resposeProject };
 
-  return state;
+  return [ ...state ];
 });
 $selectedProject.on(projectSelected, (_, value) => value);
 
