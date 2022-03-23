@@ -22,7 +22,7 @@ const ProjectForm: React.FC<Props> = () => {
   const params = useParams();
   const projects = useStore($projects);
   const currentProject = projects.find((project) => params.id === project._id);
-  const projectFormTitle = `${currentProject?.title} Settings` || 'Add new project';
+  const projectFormTitle = currentProject?.title ? `${currentProject.title} Settings` : 'Add new project';
 
   const [title, setTitle] = useState('');
   const [messengerChannelUrl, setMessengerChannelUrl] = useState('');
@@ -47,25 +47,25 @@ const ProjectForm: React.FC<Props> = () => {
       setTitle(currentProject.title || '');
       setMessengerChannelUrl(currentProject.messengerChannelUrl || '');
     }
-  }, [title, messengerChannelUrl, currentProject]);
+  }, [ currentProject ]);
 
   return (
     <div>
-      <PageTitle>{ projectFormTitle }</PageTitle>
+      <PageTitle>{projectFormTitle}</PageTitle>
       <Wrapper>
         <LabeledInput
           label='Project title'
           placeholder='New project title'
           id='title'
           value={ title }
-          onChange={ e =>  setTitle(e) } />
+          onChange={ e => setTitle(e) } />
         <LabeledInput
           label='Messenger channel webhook'
           placeholder='Webhook URL'
           id='webhook-url'
           value={ messengerChannelUrl }
-          onChange={ e =>  setMessengerChannelUrl(e) }>
-            Read more about <a href="/">Working Channel</a> integrations
+          onChange={ e => setMessengerChannelUrl(e) }>
+          Read more about <a href="/">Working Channel</a> integrations
         </LabeledInput>
         <ImageUploaderForm
           label="Project picture"
@@ -74,7 +74,7 @@ const ProjectForm: React.FC<Props> = () => {
           promptEmpty='Upload picture for your project'
           promptHasValue='Change picture for your project' />
         <Button styleType={ StyleType.Primary } onClick={ () => submit() }>
-          { currentProject?.title?'Edit Project': 'Create project' }
+          {currentProject?.title ? 'Edit Project' : 'Create project'}
         </Button>
       </Wrapper>
     </div>
