@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PageTitle from 'components/layouts/base/PageTitle';
 import Input from 'components/UI/input/Input';
@@ -24,8 +24,8 @@ const ProjectForm: React.FC<Props> = () => {
   const currentProject = projects.find((project) => params.id === project._id);
   const projectFormTitle = `${currentProject?.title} Settings` || 'Add new project';
 
-  const [title, setTitle] = useState(currentProject?.title || '');
-  const [messengerChannelUrl, setMessengerChannelUrl] = useState(currentProject?.messengerChannelUrl || '');
+  const [title, setTitle] = useState('');
+  const [messengerChannelUrl, setMessengerChannelUrl] = useState('');
 
   const submit = async (): Promise<void> => {
     if (currentProject) {
@@ -41,6 +41,13 @@ const ProjectForm: React.FC<Props> = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (currentProject) {
+      setTitle(currentProject.title || '');
+      setMessengerChannelUrl(currentProject.messengerChannelUrl || '');
+    }
+  }, [title, messengerChannelUrl, currentProject]);
 
   return (
     <div>
