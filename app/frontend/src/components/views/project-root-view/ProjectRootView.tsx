@@ -34,7 +34,7 @@ const ProjectRootView: React.FC<Props> = () => {
 
   return (
     <Wrapper>
-      <StyledProjectHeader project={ currentProject } />
+      <StyledProjectHeader project={ currentProject } to={ `/projects/${params.id}/edit` } />
       <Outlet />
     </Wrapper>
   );

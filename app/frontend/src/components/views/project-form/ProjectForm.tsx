@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PageTitle from 'components/layouts/base/PageTitle';
 import Input from 'components/UI/input/Input';
 import labeled from 'components/UI/labeled/Labeled';
 import ImageUploaderForm from 'components/UI/image-uploader-form/ImageUploaderForm';
 import Button, { StyleType } from 'components/UI/button/Button';
-import { createProjectFx } from 'store/projects';
+import { createProjectFx, updateProjectFx } from 'store/projects';
+import { useParams } from 'react-router-dom';
+import { $projects } from 'store/projects';
+import { useStore } from 'effector-react';
 
 /**
  * ProjectForm component props model
@@ -16,33 +19,53 @@ interface Props { }
  * ProjectForm component
  */
 const ProjectForm: React.FC<Props> = () => {
+  const params = useParams();
+  const projects = useStore($projects);
+  const currentProject = projects.find((project) => params.id === project._id);
+  const projectFormTitle = currentProject?.title ? `${currentProject.title} Settings` : 'Add new project';
+
   const [title, setTitle] = useState('');
   const [messengerChannelUrl, setMessengerChannelUrl] = useState('');
 
   const submit = async (): Promise<void> => {
-    await createProjectFx({
-      title,
-      messengerChannelUrl,
-    });
+    if (currentProject) {
+      await updateProjectFx({
+        id: currentProject._id,
+        title,
+        messengerChannelUrl,
+      });
+    } else {
+      await createProjectFx({
+        title,
+        messengerChannelUrl,
+      });
+    }
   };
+
+  useEffect(() => {
+    if (currentProject) {
+      setTitle(currentProject.title || '');
+      setMessengerChannelUrl(currentProject.messengerChannelUrl || '');
+    }
+  }, [ currentProject ]);
 
   return (
     <div>
-      <PageTitle>Add new project</PageTitle>
+      <PageTitle>{projectFormTitle}</PageTitle>
       <Wrapper>
         <LabeledInput
           label='Project title'
           placeholder='New project title'
           id='title'
           value={ title }
-          onChange={ e =>  setTitle(e) } />
+          onChange={ e => setTitle(e) } />
         <LabeledInput
           label='Messenger channel webhook'
           placeholder='Webhook URL'
           id='webhook-url'
           value={ messengerChannelUrl }
-          onChange={ e =>  setMessengerChannelUrl(e) }>
-            Read more about <a href="/">Working Channel</a> integrations
+          onChange={ e => setMessengerChannelUrl(e) }>
+          Read more about <a href="/">Working Channel</a> integrations
         </LabeledInput>
         <ImageUploaderForm
           label="Project picture"
@@ -50,7 +73,9 @@ const ProjectForm: React.FC<Props> = () => {
           onChange={ e => console.log(e) }
           promptEmpty='Upload picture for your project'
           promptHasValue='Change picture for your project' />
-        <Button styleType={ StyleType.Primary } onClick={ () => submit() }>Create project</Button>
+        <Button styleType={ StyleType.Primary } onClick={ () => submit() }>
+          {currentProject?.title ? 'Edit Project' : 'Create project'}
+        </Button>
       </Wrapper>
     </div>
   );

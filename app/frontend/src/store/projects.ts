@@ -1,8 +1,6 @@
 import { createStore, createEffect, createEvent } from 'effector';
-import { createProject, getProjects } from 'services/projects';
+import { createProject, getProjects, updateProject } from 'services/projects';
 import { Project } from 'types/entities';
-import { changeTaskStatusFx, createTaskFx } from './tasks';
-import getListWithItemReplaced from 'helpers/get-list-with-item-replaced';
 
 /**
  * Describes data needed to move task from one column to another
@@ -35,6 +33,7 @@ export const projectSelected = createEvent<Project | null>();
  */
 export const getProjectsFx = createEffect(getProjects);
 export const createProjectFx = createEffect(createProject);
+export const updateProjectFx = createEffect(updateProject);
 
 
 /**
@@ -45,13 +44,31 @@ export const taskMoved = createEvent<TaskMoveData>();
 /**
  * Event to be called when task created
  */
-export const taskCreated = createEvent<{taskId: string, statusId?: string | null}>();
+export const taskCreated = createEvent<{ taskId: string, statusId?: string | null }>();
 
 /**
  * State changes based on effects results
  */
 $projects.on(getProjectsFx.done, (_, { result }) => result.projects);
 $projects.on(createProjectFx.done, (state, { result }) => [...state, result.project]);
+$projects.on(updateProjectFx.done, (state, { result }) => {
+  if (!state || !result.project) {
+    return state;
+  }
+  const resposeProject = result.project;
+  // get index of the project
+  const projectIndex = state.findIndex((project) => resposeProject._id === project._id);
+
+  if (projectIndex === -1) {
+    return state;
+  }
+
+  // replace with updated project data
+  state[projectIndex] = { ...state[projectIndex],
+    ...resposeProject };
+
+  return [ ...state ];
+});
 $selectedProject.on(projectSelected, (_, value) => value);
 
 /**
