@@ -24,6 +24,6 @@ $teammates.on(removeTeammateFx.done, (state, { result }) => {
   const deletedTeammate = result.teammate;
 
   if (isDeleted && deletedTeammate !== null) {
-    return state.splice(state.findIndex(e => e._id === deletedTeammate._id), 1);
+    return state.filter(teammate => teammate._id !== deletedTeammate._id);
   }
 });
