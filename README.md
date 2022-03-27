@@ -1,6 +1,6 @@
 # CodeX Task Manager
 
-Task management system for teams.
+Task management system for teams
 
 - Stores tasks
 - Promotes their implementation
