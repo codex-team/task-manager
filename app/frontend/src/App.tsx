@@ -14,15 +14,11 @@ import {
 import ProjectList from 'components/UI/project-list/ProjectList';
 import SidebarHeader from 'components/layouts/base/SidebarHeader';
 import ProjectListView from 'components/views/project-list-view/ProjectListView';
-import Button from 'components/UI/button/Button';
-import styled from 'styled-components';
 import ProjectRootView from 'components/views/project-root-view/ProjectRootView';
 import TaskPopup from 'components/views/project-list-view/components/TaskPopup';
 import ProjectBoardView from 'components/views/project-board-view/ProjectBoardView';
 import { useStore } from 'effector-react';
 import { $workspace, getWorkspaceFx } from 'store/workspaces';
-import SidebarHeader from './components/layouts/base/SidebarHeader';
-import ProjectList from './components/UI/project-list/ProjectList';
 import Sidebar from './components/layouts/base/Sidebar';
 import styled from 'styled-components';
 import Button from './components/UI/button/Button';

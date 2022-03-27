@@ -30,7 +30,7 @@ interface Props {
  *
  * @param props - props of component
  */
-const ProjectForm: React.FC<Props> = () => {
+const ProjectForm: React.FC<Props> = (props) => {
   const params = useParams();
   const projects = useStore($projects);
   const currentProject = projects.find((project) => params.id === project._id);
@@ -48,6 +48,7 @@ const ProjectForm: React.FC<Props> = () => {
       });
     } else {
       await createProjectFx({
+        workspaceId: props.workspaceId,
         title,
         messengerChannelUrl,
       });
