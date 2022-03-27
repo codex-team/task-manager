@@ -3,6 +3,14 @@ import Button from 'components/UI/button/Button';
 import PageTitle from 'components/layouts/base/PageTitle';
 import ProjectViewSwitcher from 'components/UI/project-view-switcher/ProjectViewSwitcher';
 import { Project } from 'types/entities';
+import { Link } from 'react-router-dom';
+
+/**
+ * Link component with overriden styles
+ */
+const StyledLink = styled(Link)`
+  text-decoration: unset;
+`;
 
 /**
  * Project header props model
@@ -11,7 +19,12 @@ interface Props {
   /**
    * Selected project if exists
    */
-  project?: Project|null
+  project?: Project | null
+
+  /**
+   * Link of the project settings page.
+   */
+  to?: string
 
   /**
    * CSS class name
@@ -25,7 +38,7 @@ interface Props {
  *
  * @param props - props of the component
  */
-const ProjectHeader: React.FC<Props> = ({ className, project }: Props) => {
+const ProjectHeader: React.FC<Props> = ({ className, project, to }: Props) => {
   const viewOptions = [
     {
       icon: 'list',
@@ -39,11 +52,13 @@ const ProjectHeader: React.FC<Props> = ({ className, project }: Props) => {
 
   return (
     <Container className={ className }>
-      <PageTitle>{ project?.title || 'All projects' }</PageTitle>
-      { !!project &&
-        <Button>Project settings</Button>
+      <PageTitle>{project?.title || 'All projects'}</PageTitle>
+      {!!project &&
+        <StyledLink to={ to ?? `/` }>
+          <Button>Project settings</Button>
+        </StyledLink>
       }
-      { !!project &&
+      {!!project &&
         <ProjectViewSwitcher items={ viewOptions } />
       }
     </Container>

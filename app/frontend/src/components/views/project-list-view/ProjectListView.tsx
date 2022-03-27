@@ -64,7 +64,7 @@ const ProjectListView: React.FC<Props> = () => {
    *
    * @param task - task that needs label displayed
    */
-  const getTaskStatusLabel = (task: Task): string|undefined => {
+  const getTaskStatusLabel = (task: Task): string | undefined => {
     const project = projects.find(p => p._id === task.projectId);
 
     if (!project) {
@@ -89,19 +89,19 @@ const ProjectListView: React.FC<Props> = () => {
   return (
     <Wrapper>
       <Outlet />
-      <TaskInput placeholder='Add new task' onChange={ createNewTask }/>
+      <TaskInput placeholder='Add new task' onChange={ createNewTask } />
       <DragDropContext onDragEnd={ onDragEnd }>
         <Droppable droppableId='0'>
-          { provided => (
+          {provided => (
             <TasksContainer { ...provided.droppableProps } ref={ provided.innerRef }>
-              { tasksList.map((task, index) =>
+              {tasksList.map((task, index) =>
                 <Draggable
                   draggableId={ task._id }
                   index={ index }
                   key={ task._id }
                   isDragDisabled={ !currentProject }
                 >
-                  { draggableProvided => (
+                  {draggableProvided => (
                     <CardLink
                       { ...draggableProvided.draggableProps }
                       { ...draggableProvided.dragHandleProps }
@@ -117,7 +117,7 @@ const ProjectListView: React.FC<Props> = () => {
                   )}
                 </Draggable>
               )}
-              { provided.placeholder }
+              {provided.placeholder}
             </TasksContainer>
           )}
         </Droppable>

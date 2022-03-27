@@ -5,8 +5,17 @@ import Content from 'components/layouts/base/Content';
 import ColorVariables from './styles/Colors';
 import GlobalStyles from './styles/Global';
 import ProjectForm from 'components/views/project-form/ProjectForm';
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Link,
+  Navigate
+} from 'react-router-dom';
+import ProjectList from 'components/UI/project-list/ProjectList';
+import SidebarHeader from 'components/layouts/base/SidebarHeader';
 import ProjectListView from 'components/views/project-list-view/ProjectListView';
+import Button from 'components/UI/button/Button';
+import styled from 'styled-components';
 import ProjectRootView from 'components/views/project-root-view/ProjectRootView';
 import TaskPopup from 'components/views/project-list-view/components/TaskPopup';
 import ProjectBoardView from 'components/views/project-board-view/ProjectBoardView';
@@ -34,8 +43,8 @@ function App(): React.ReactElement {
 
   return (
     <Container>
-      <ColorVariables/>
-      <GlobalStyles/>
+      <ColorVariables />
+      <GlobalStyles />
       <Sidebar>
         <SidebarHeader sidebarTitle={ sidebarTitle !== null ? sidebarTitle : '' }/>
         <ProjectList workspaceId={ workspace._id !== null ? workspace._id : '' }>

@@ -6,6 +6,7 @@ import { UpdateWorkspaceHandler } from './handlers/workspace/update-workspace';
 
 import { CreateProjectHandler } from './handlers/project/create-project';
 import { GetProjectsHandler } from './handlers/project/get-projects';
+import { UpdateProjectHandler } from './handlers/project/update';
 
 import { GetStatusesHandler } from './handlers/status/get-statuses';
 import { ChangeTaskStatusHandler } from './handlers/task/change-task-status';
@@ -32,6 +33,7 @@ const handlers = new Map<string, MessageHandler>([
   /** ./project */
   ['create-project', new CreateProjectHandler()],
   ['get-projects', new GetProjectsHandler()],
+  ['update-project', new UpdateProjectHandler()],
 
   /** ./status */
   ['get-statuses', new GetStatusesHandler()],

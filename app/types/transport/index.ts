@@ -3,10 +3,12 @@ import Authorize from './requests/authorize';
 import GetProjectsMessage from './requests/project/get-projects';
 import AuthorizeResponse from './responses/authorize';
 import GetProjectsResponse from './responses/project/get-projects';
-import CreateProjectMessage from './requests/project/create-project';
-import CreateProjectResponse from './responses/project/create-project';
-import CreateTaskMessage from './requests/task/create-task';
-import CreateTaskResponse from './responses/task/create-task';
+import CreateProjectMessage from './requests/project/create';
+import CreateProjectResponse from './responses/project/create';
+import UpdateProjectMessage from './requests/project/update-project'
+import UpdateProjectResponse from './responses/project/update-project'
+import CreateTaskMessage from './requests/task/create';
+import CreateTaskResponse from './responses/task/create';
 import GetTasksMessage from './requests/task/get-tasks';
 import GetTasksResponse from './responses/task/get-tasks';
 import GetTaskByIdResponse from './responses/task/get-task-by-id';
@@ -36,7 +38,7 @@ import RemoveTeammateByIdResponse from './responses/teammate/remove-teammate-by-
  */
 export type ApiUpdate =
   | TaskCreatedMessage
-;
+  ;
 
 /**
  * The type described all available API request messages
@@ -46,6 +48,7 @@ export type ApiRequest =
   | GetWorkspaceMessage
   | UpdateWorkspaceMessage
   | CreateProjectMessage
+  | UpdateProjectMessage
   | GetProjectsMessage
   | CreateTaskMessage
   | GetTasksMessage
@@ -58,7 +61,7 @@ export type ApiRequest =
   | UpdateTeammateMessage
   | RemoveTeammateByIdMessage
   | ChangeTaskStatusMessage
-;
+  ;
 
 /**
  * The type described all available API response messages
@@ -68,6 +71,7 @@ export type ApiResponse =
   | GetWorkspaceResponse
   | UpdateWorkspaceResponse
   | CreateProjectResponse
+  | UpdateProjectResponse
   | GetProjectsResponse
   | CreateTaskResponse
   | GetTasksResponse
@@ -79,4 +83,4 @@ export type ApiResponse =
   | UpdateTeammateResponse
   | RemoveTeammateByIdResponse
   | ChangeTaskStatusResponse
-;
+  ;
