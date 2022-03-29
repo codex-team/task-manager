@@ -12,6 +12,11 @@ module.exports = {
       files: '**/*.stories.*',
       titlePrefix: 'Layout'
     },
+    {
+      directory: '../src/components/views',
+      files: '**/*.stories.*',
+      titlePrefix: 'View'
+    },
   ],
   "addons": [
     "@storybook/addon-links",
