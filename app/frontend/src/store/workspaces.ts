@@ -21,5 +21,5 @@ export const updateWorkspaceFx = createEffect(updateWorkspace);
 /**
  * state changes based on effects results
  */
-$workspace.on(getWorkspaceFx.done, (state, { result }) => result.workspace);
+$workspace.on(getWorkspaceFx.done, (state, { result }) => result.workspace === null ? state : result.workspace);
 $workspace.on(updateWorkspaceFx.done, (state, { result }) => result.workspace);

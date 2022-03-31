@@ -42,8 +42,8 @@ function App(): React.ReactElement {
       <ColorVariables />
       <GlobalStyles />
       <Sidebar>
-        <SidebarHeader sidebarTitle={ sidebarTitle !== null ? sidebarTitle : '' }/>
-        <ProjectList workspaceId={ workspace._id !== null ? workspace._id : '' }>
+        <SidebarHeader sidebarTitle={ sidebarTitle }/>
+        <ProjectList workspaceId={ workspace._id }>
           <StyledLink to="/projects/new">
             <StyledButton icon="plus">Add new project</StyledButton>
           </StyledLink>
