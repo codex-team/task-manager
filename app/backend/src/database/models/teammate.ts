@@ -7,14 +7,6 @@ import ContactType from 'types/entities/contactType';
  */
 const TeammateSchema: mongoose.Schema<Teammate> = new mongoose.Schema({
   /**
-   * Teammate's workspace id
-   */
-  workspaceId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Workspace',
-    required: true,
-  },
-  /**
    * Teammate name
    */
   name: {

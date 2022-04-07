@@ -15,7 +15,6 @@ export class CreateProjectHandler implements MessageHandler {
   public async handle(payload: CreateProjectMessagePayload): Promise<CreateProjectResponsePayload> {
     return {
       project: await createProject(
-        payload.workspaceId,
         payload.title,
         payload.picture,
         payload.messengerChannelUrl

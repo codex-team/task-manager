@@ -28,6 +28,6 @@ const WorkspaceSchema: mongoose.Schema<Workspace> = new mongoose.Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Teammate',
   } ],
-});
+}, { collection: 'workspace' });
 
 export default mongoose.model<Workspace>('Workspace', WorkspaceSchema);
