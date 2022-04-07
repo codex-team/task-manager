@@ -10,11 +10,6 @@ export default interface Project {
   _id: string;
 
   /**
-   * Project's workspace unique identity
-   */
-  workspaceId?: string;
-
-  /**
    * Project's visible title
    */
   title: string;

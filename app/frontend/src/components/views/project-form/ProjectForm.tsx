@@ -15,11 +15,6 @@ import { useStore } from 'effector-react';
  */
 interface Props {
   /**
-   * Workspace id which this project relies on
-   */
-  workspaceId: string;
-
-  /**
    * Link to project's picture
    */
   picture?: string;
@@ -48,7 +43,6 @@ const ProjectForm: React.FC<Props> = (props) => {
       });
     } else {
       await createProjectFx({
-        workspaceId: props.workspaceId,
         title,
         messengerChannelUrl,
       });

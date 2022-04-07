@@ -3,11 +3,6 @@ import ContactType from "../../../entities/contactType";
 
 export interface CreateTeammateMessagePayload {
   /**
-   * Workspace id that this teammate relies on
-   */
-  workspaceId: string;
-
-  /**
    * Name of creating teammate
    */
   name: string;

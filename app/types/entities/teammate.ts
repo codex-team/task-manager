@@ -8,11 +8,6 @@ export default interface Teammate {
   _id: string;
 
   /**
-   * Teammate's workspace unique identity
-   */
-  workspaceId?: string;
-
-  /**
    * Teammate's visible name
    */
   name: string;

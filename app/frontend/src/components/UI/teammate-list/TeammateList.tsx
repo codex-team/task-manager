@@ -8,12 +8,7 @@ import { UiComponentText } from 'styles/Mixins';
 /**
  * Interface for teammate list component props
  */
-interface Props {
-  /**
-   * workspaceId which teammate relies on
-   */
-  workspaceId: string
-}
+interface Props {}
 
 /**
  * Teammate list component
@@ -24,10 +19,8 @@ const TeammateList: React.FC<Props> = (props) => {
   const teammates = useStore($teammates);
 
   useEffect(() => {
-    getTeammatesFx({
-      workspaceId: props.workspaceId,
-    });
-  }, [teammates.length, props.workspaceId]);
+    getTeammatesFx({});
+  }, [ teammates.length ]);
 
   return (
     <div>

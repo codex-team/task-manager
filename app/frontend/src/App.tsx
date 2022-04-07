@@ -43,7 +43,7 @@ function App(): React.ReactElement {
       <GlobalStyles />
       <Sidebar>
         <SidebarHeader sidebarTitle={ sidebarTitle }/>
-        <ProjectList workspaceId={ workspace._id }>
+        <ProjectList>
           <StyledLink to="/projects/new">
             <StyledButton icon="plus">Add new project</StyledButton>
           </StyledLink>
@@ -52,8 +52,8 @@ function App(): React.ReactElement {
       <Routes>
         <Route path="/" element={ <Content/> }>
           <Route path="workspace/edit" element={ <WorkspaceForm/> }/>
-          <Route path="projects/new" element={ <ProjectForm workspaceId={ workspace._id }/> }/>
-          <Route path="projects/:id/edit" element={ <ProjectForm workspaceId={ workspace._id }/> }/>
+          <Route path="projects/new" element={ <ProjectForm/> }/>
+          <Route path="projects/:id/edit" element={ <ProjectForm/> }/>
           <Route path="projects/all/*" element={ <ProjectRootView/> }>
             <Route path="*" element={ <ProjectListView/> }>
               <Route path=":task_id" element={ <TaskPopup/> }/>

@@ -18,12 +18,12 @@ const WorkspaceForm: React.FC<Props> = () => {
   const workspace = useStore($workspace);
   const [title, setTitle] = useState(workspace.name);
   const [isFormDisplayed, setIsFormDisplayed] = useState(false);
-  const [teammateList, setTeammateList] = useState(<TeammateList workspaceId={ workspace._id } />);
+  const [teammateList, setTeammateList] = useState(<TeammateList/>);
 
   useEffect(() => {
     getWorkspaceFx({});
     setTitle(workspace.name);
-    setTeammateList(<TeammateList workspaceId={ workspace._id } />);
+    setTeammateList(<TeammateList/>);
   }, [workspace._id, workspace.name]);
 
   const handleNewMemberForm = (): void => {
@@ -60,7 +60,7 @@ const WorkspaceForm: React.FC<Props> = () => {
           <Button styleType={ StyleType.Primary } onClick={ submit }>Update workspace</Button>
         }
         { isFormDisplayed &&
-          <TeammateForm workspaceId={ workspace._id } handleCancel={ handleCancel }/>
+          <TeammateForm handleCancel={ handleCancel }/>
         }
       </Wrapper>
     </div>

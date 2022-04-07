@@ -11,11 +11,6 @@ import ImageUploaderForm from '../../UI/image-uploader-form/ImageUploaderForm';
  */
 interface Props {
   /**
-   * Teammate's workspace id
-   */
-  workspaceId: string;
-
-  /**
    * Cancel button handler
    */
   handleCancel: () => void;
@@ -41,7 +36,6 @@ const TeammateForm: React.FC<Props> = (props) => {
 
   const submit = async (): Promise<void> => {
     await createTeammateFx({
-      workspaceId: props.workspaceId,
       name: username,
       photo: photo,
       contacts: [ {

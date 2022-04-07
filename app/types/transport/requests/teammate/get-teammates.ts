@@ -1,10 +1,6 @@
 import { NewMessage } from 'ctproto';
 
 export interface GetTeammatesMessagePayload {
-  /**
-   * Id of the workspace where we need to get teammates
-   */
-  workspaceId?: string;
 }
 
 /**
