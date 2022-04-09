@@ -9,6 +9,6 @@ module.exports = {
 
   async down(db) {
     // Remove a sample workspace
-    await db.collection('workspaces').findOneAndDelete({});
+    await db.collection('workspace').findOneAndDelete({});
   },
 };

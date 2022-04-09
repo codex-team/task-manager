@@ -5,7 +5,7 @@ import labeled from '../../UI/labeled/Labeled';
 import Input from '../../UI/input/Input';
 import Button, { StyleType } from '../../UI/button/Button';
 import TeammateList from '../../UI/teammate-list/TeammateList';
-import { $workspace, getWorkspaceFx, updateWorkspaceFx } from 'store/workspaces';
+import { $workspace, getWorkspaceFx, updateWorkspaceFx } from 'store/workspace';
 import TeammateForm from '../teammate-form/TeammateForm';
 import { useStore } from 'effector-react';
 

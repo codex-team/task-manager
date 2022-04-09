@@ -1,6 +1,6 @@
 import { Workspace } from 'types/entities';
 import { createEffect, createStore } from 'effector';
-import { getWorkspace, updateWorkspace } from 'services/workspaces';
+import { getWorkspace, updateWorkspace } from 'services/workspace';
 
 /**
  * workspaces store

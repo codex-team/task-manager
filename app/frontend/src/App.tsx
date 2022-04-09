@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import WorkspaceForm from './components/views/workspace-form/WorkSpaceForm';
+import WorkspaceForm from './components/views/workspace-form/WorkspaceForm';
 import Container from 'components/layouts/base/Container';
 import Content from 'components/layouts/base/Content';
 import ColorVariables from './styles/Colors';
@@ -18,7 +18,7 @@ import ProjectRootView from 'components/views/project-root-view/ProjectRootView'
 import TaskPopup from 'components/views/project-list-view/components/TaskPopup';
 import ProjectBoardView from 'components/views/project-board-view/ProjectBoardView';
 import { useStore } from 'effector-react';
-import { $workspace, getWorkspaceFx } from 'store/workspaces';
+import { $workspace, getWorkspaceFx } from 'store/workspace';
 import Sidebar from './components/layouts/base/Sidebar';
 import styled from 'styled-components';
 import Button from './components/UI/button/Button';

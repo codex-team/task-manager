@@ -3,12 +3,12 @@ import Authorize from './requests/authorize';
 import GetProjectsMessage from './requests/project/get-projects';
 import AuthorizeResponse from './responses/authorize';
 import GetProjectsResponse from './responses/project/get-projects';
-import CreateProjectMessage from './requests/project/create';
-import CreateProjectResponse from './responses/project/create';
+import CreateProjectMessage from './requests/project/create-project';
+import CreateProjectResponse from './responses/project/create-project';
 import UpdateProjectMessage from './requests/project/update-project'
 import UpdateProjectResponse from './responses/project/update-project'
-import CreateTaskMessage from './requests/task/create';
-import CreateTaskResponse from './responses/task/create';
+import CreateTaskMessage from './requests/task/create-task';
+import CreateTaskResponse from './responses/task/create-task';
 import GetTasksMessage from './requests/task/get-tasks';
 import GetTasksResponse from './responses/task/get-tasks';
 import GetTaskByIdResponse from './responses/task/get-task-by-id';

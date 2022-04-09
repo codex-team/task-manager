@@ -8,7 +8,7 @@ import WorkspaceModel from 'database/models/workspace';
  * @param [name] - name of workspace
  * @param [teammates] - list of teammates
  */
-export async function updateWorkspace(_id: string, name?: string, teammates?: string[]): Promise<Workspace | any> {
+export async function updateWorkspace(_id: string, name?: string, teammates?: string[]): Promise<Workspace | null> {
   const query = { _id };
   const data = {
     _id,

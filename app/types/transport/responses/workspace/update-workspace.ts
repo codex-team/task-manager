@@ -7,7 +7,7 @@ import { Workspace } from '../../../entities';
 
 export interface UpdateWorkspaceResponsePayload {
   /**
-   * Response sample
+   * Updated workspace data
    */
   workspace: Workspace;
 }

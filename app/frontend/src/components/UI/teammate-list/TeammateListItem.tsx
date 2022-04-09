@@ -51,13 +51,13 @@ const StyledTeammateListItem = styled.li<Props>`
     span {
       display: block;
     }
+  }
 `;
 
 /**
  * Styled teammate avatar
  */
 const TeammateAvatar = styled.div`
-  height: 24px;
   width: 24px;
   margin: 7px 8px 7px 7px;
 `;

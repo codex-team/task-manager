@@ -8,7 +8,6 @@ import ProjectSchema from 'database/models/project';
 export async function getProjects(): Promise<Project[]> {
   return ProjectSchema
     .aggregate([
-      { $match: {} },
       // Add expanded statuses data (if any) to result object
       { $lookup: {
         from: 'statuses',
