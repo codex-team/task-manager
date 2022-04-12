@@ -9,7 +9,7 @@ export interface UpdateWorkspaceResponsePayload {
   /**
    * Updated workspace data
    */
-  workspace: Workspace;
+  workspace: Workspace | null;
 }
 
 /**

@@ -12,10 +12,8 @@ interface Props {}
 
 /**
  * Teammate list component
- *
- * @param props - props of component
  */
-const TeammateList: React.FC<Props> = (props) => {
+const TeammateList: React.FC<Props> = () => {
   const teammates = useStore($teammates);
 
   useEffect(() => {

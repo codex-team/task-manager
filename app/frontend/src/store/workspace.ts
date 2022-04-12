@@ -3,7 +3,7 @@ import { createEffect, createStore } from 'effector';
 import { getWorkspace, updateWorkspace } from 'services/workspace';
 
 /**
- * workspaces store
+ * workspace store
  */
 export const $workspace = createStore<Workspace>({
   _id: '',
@@ -13,7 +13,7 @@ export const $workspace = createStore<Workspace>({
 });
 
 /**
- * workspaces effects
+ * workspace effects
  */
 export const getWorkspaceFx = createEffect(getWorkspace);
 export const updateWorkspaceFx = createEffect(updateWorkspace);
@@ -22,4 +22,4 @@ export const updateWorkspaceFx = createEffect(updateWorkspace);
  * state changes based on effects results
  */
 $workspace.on(getWorkspaceFx.done, (state, { result }) => result.workspace === null ? state : result.workspace);
-$workspace.on(updateWorkspaceFx.done, (state, { result }) => result.workspace);
+$workspace.on(updateWorkspaceFx.done, (state, { result }) => result.workspace === null ? state: result.workspace);
