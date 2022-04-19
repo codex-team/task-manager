@@ -9,7 +9,7 @@ export interface GetTeammatesResponsePayload {
   /**
    * List of Teammates in a workspace
    */
-  teammates: Teammate[] | null;
+  teammates: Teammate[];
 }
 
 /**

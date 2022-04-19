@@ -16,7 +16,7 @@ export interface CreateTeammateMessagePayload {
    * Contact of creating teammate
    */
   contacts?: [ {
-    type: ContactType,
+    type?: ContactType,
     value: string,
   } ];
 }

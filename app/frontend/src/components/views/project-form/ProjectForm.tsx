@@ -13,12 +13,19 @@ import { useStore } from 'effector-react';
 /**
  * ProjectForm component props model
  */
-interface Props { }
+interface Props {
+  /**
+   * Link to project's picture
+   */
+  picture?: string;
+}
 
 /**
  * ProjectForm component
+ *
+ * @param props - props of component
  */
-const ProjectForm: React.FC<Props> = () => {
+const ProjectForm: React.FC<Props> = (props) => {
   const params = useParams();
   const projects = useStore($projects);
   const currentProject = projects.find((project) => params.id === project._id);

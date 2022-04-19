@@ -1,10 +1,6 @@
 import { NewMessage } from 'ctproto';
 
 export interface GetProjectsMessagePayload {
-  /**
-   * Id of the Workspace in where we need to get Projects
-   */
-  workspaceId?: string;
 }
 
 /**

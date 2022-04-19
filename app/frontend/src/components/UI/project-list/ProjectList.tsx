@@ -8,26 +8,19 @@ import { Project } from 'types/entities';
 /**
  * Interface for project list component props
  */
-interface Props{
-  /**
-   * Project workspace id
-   */
-  workspaceId: string;
-}
+interface Props{}
 
 /**
  * Project list component
  *
  * @param props - props of component
  */
-const ProjectList: React.FC<Props> = ({ workspaceId, children }) => {
+const ProjectList: React.FC<Props> = ({ children }) => {
   const projects = useStore($projects);
 
   useEffect(() => {
-    getProjectsFx({
-      workspaceId: workspaceId,
-    });
-  }, [ workspaceId ]);
+    getProjectsFx({});
+  }, [ projects.length ]);
 
   /**
    * Updates selected project data in store

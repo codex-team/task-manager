@@ -3,12 +3,12 @@ import Authorize from './requests/authorize';
 import GetProjectsMessage from './requests/project/get-projects';
 import AuthorizeResponse from './responses/authorize';
 import GetProjectsResponse from './responses/project/get-projects';
-import CreateProjectMessage from './requests/project/create';
-import CreateProjectResponse from './responses/project/create';
+import CreateProjectMessage from './requests/project/create-project';
+import CreateProjectResponse from './responses/project/create-project';
 import UpdateProjectMessage from './requests/project/update-project'
 import UpdateProjectResponse from './responses/project/update-project'
-import CreateTaskMessage from './requests/task/create';
-import CreateTaskResponse from './responses/task/create';
+import CreateTaskMessage from './requests/task/create-task';
+import CreateTaskResponse from './responses/task/create-task';
 import GetTasksMessage from './requests/task/get-tasks';
 import GetTasksResponse from './responses/task/get-tasks';
 import GetTaskByIdResponse from './responses/task/get-task-by-id';
@@ -17,7 +17,7 @@ import UpdateTaskMessage from './requests/task/update-task';
 import UpdateTaskResponse from './responses/task/update-task'
 import GetStatusesMessage from './requests/status/get-statuses'
 import GetStatusesResponse from './responses/status/get-statuses'
-import CreateTeammateMessage from "./requests/teammate/create";
+import CreateTeammateMessage from "./requests/teammate/create-teammate";
 import GetTeammatesMessage from "./requests/teammate/get-teammates";
 import GetTeammateByIdMessage from "./requests/teammate/get-teammate-by-id";
 import UpdateTeammateMessage from "./requests/teammate/update-teammate";
@@ -25,8 +25,13 @@ import GetTeammatesResponse from "./responses/teammate/get-teammates";
 import GetTeammateByIdResponse from "./responses/teammate/get-teammate-by-id";
 import UpdateTeammateResponse from "./responses/teammate/update-teammate";
 import RemoveTeammateByIdMessage from "./requests/teammate/remove-teammate-by-id";
+import GetWorkspaceMessage from './requests/workspace/get-workspace';
+import UpdateWorkspaceMessage from './requests/workspace/update-workspace';
+import GetWorkspaceResponse from './responses/workspace/get-workspace';
+import UpdateWorkspaceResponse from './responses/workspace/update-workspace';
 import ChangeTaskStatusMessage from './requests/task/change-task-status';
 import ChangeTaskStatusResponse from './responses/task/change-task-status';
+import RemoveTeammateByIdResponse from './responses/teammate/remove-teammate-by-id';
 
 /**
  * The type described all available outgoing messages that can be sent by API
@@ -40,6 +45,8 @@ export type ApiUpdate =
  */
 export type ApiRequest =
   | Authorize
+  | GetWorkspaceMessage
+  | UpdateWorkspaceMessage
   | CreateProjectMessage
   | UpdateProjectMessage
   | GetProjectsMessage
@@ -61,6 +68,8 @@ export type ApiRequest =
  */
 export type ApiResponse =
   | AuthorizeResponse
+  | GetWorkspaceResponse
+  | UpdateWorkspaceResponse
   | CreateProjectResponse
   | UpdateProjectResponse
   | GetProjectsResponse
@@ -72,5 +81,6 @@ export type ApiResponse =
   | GetTeammatesResponse
   | GetTeammateByIdResponse
   | UpdateTeammateResponse
+  | RemoveTeammateByIdResponse
   | ChangeTaskStatusResponse
   ;

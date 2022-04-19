@@ -9,7 +9,7 @@ import TeammateSchema from 'database/models/teammate';
  * @param [photo] - link to teammate's photo
  * @param [contacts] - list of contacts
  */
-export async function createTeammate(name: string, photo?: string, contacts?: [{type: ContactType, value: string}]): Promise<Teammate> {
+export async function createTeammate(name: string, photo?: string, contacts?: [{type?: ContactType, value: string}]): Promise<Teammate> {
   return await TeammateSchema.create({
     name,
     photo,

@@ -1,7 +1,10 @@
 import { ApiRequest, ApiResponse } from 'types/transport';
 import { MessageHandler } from './handlers/messageHandler';
 
-import { CreateProjectHandler } from './handlers/project/create';
+import { GetWorkspaceHandler } from './handlers/workspace/get-workspace';
+import { UpdateWorkspaceHandler } from './handlers/workspace/update-workspace';
+
+import { CreateProjectHandler } from './handlers/project/create-project';
 import { GetProjectsHandler } from './handlers/project/get-projects';
 import { UpdateProjectHandler } from './handlers/project/update';
 
@@ -17,11 +20,16 @@ import { CreateTeammateHandler } from './handlers/teammate/create-teammate';
 import { GetTeammateByIdHandler } from './handlers/teammate/get-teammate-by-id';
 import { GetTeammatesHandler } from './handlers/teammate/get-teammates';
 import { UpdateTeammateHandler } from './handlers/teammate/update-teammate';
+import { RemoveTeammateByIdHandler } from './handlers/teammate/remove-teammate-by-id';
 
 /**
  * Map of message types and associated handlers
  */
 const handlers = new Map<string, MessageHandler>([
+  /** ./workspace */
+  ['get-workspace', new GetWorkspaceHandler()],
+  ['update-workspace', new UpdateWorkspaceHandler()],
+
   /** ./project */
   ['create-project', new CreateProjectHandler()],
   ['get-projects', new GetProjectsHandler()],
@@ -42,6 +50,7 @@ const handlers = new Map<string, MessageHandler>([
   ['get-teammate-by-id', new GetTeammateByIdHandler()],
   ['get-teammates', new GetTeammatesHandler()],
   ['update-teammate', new UpdateTeammateHandler()],
+  ['remove-teammate-by-id', new RemoveTeammateByIdHandler()],
 ]);
 
 /**

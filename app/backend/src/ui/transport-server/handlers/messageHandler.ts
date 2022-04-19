@@ -14,5 +14,5 @@ export interface MessageHandler {
    *
    * @param payload - message's payload
    */
-  handle(payload: ApiRequest['payload']): Promise<ApiResponse['payload'] | void>;
+  handle(payload?: ApiRequest['payload']): Promise<ApiResponse['payload'] | void>;
 }

@@ -24,7 +24,7 @@ const HeadingStyled = styled.h1<Props>`
  */
 const SidebarTitle: React.FC<Props> = ({ ...props }) => {
   return (
-    <HeadingStyled { ...props }/>
+    <HeadingStyled { ...props } />
   );
 };
 

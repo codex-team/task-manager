@@ -1,4 +1,5 @@
 import {ResponseMessage} from 'ctproto';
+import { Teammate } from '../../../entities';
 
 /**
  * Response for 'remove-teammate' message
@@ -6,9 +7,9 @@ import {ResponseMessage} from 'ctproto';
  */
 export interface RemoveTeammateByIdResponsePayload {
   /**
-   * Result of removing
+   * Removed teammate
    */
-  result: boolean;
+  teammate: Teammate | null;
 }
 
 /**

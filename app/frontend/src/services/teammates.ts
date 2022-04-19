@@ -63,7 +63,7 @@ export async function updateTeammate(data: UpdateTeammateMessagePayload): Promis
  *
  * @param id - teammate id
  */
-export async function RemoveTeammateById(id: string): Promise<RemoveTeammateByIdResponsePayload> {
+export async function removeTeammateById(id: string): Promise<RemoveTeammateByIdResponsePayload> {
   const data: RemoveTeammateByIdMessagePayload = {
     teammateId: id,
   };
