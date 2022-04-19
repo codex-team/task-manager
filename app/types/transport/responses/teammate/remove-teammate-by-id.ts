@@ -10,10 +10,6 @@ export interface RemoveTeammateByIdResponsePayload {
    * Removed teammate
    */
   teammate: Teammate | null;
-  /**
-   * Result of removing
-   */
-  result: boolean;
 }
 
 /**

@@ -14,11 +14,9 @@ export class RemoveTeammateByIdHandler implements MessageHandler {
    */
   public async handle(payload: RemoveTeammateByIdMessagePayload): Promise<RemoveTeammateByIdResponsePayload> {
     const deletedDocument = await removeTeammateById(payload.teammateId);
-    const result = deletedDocument !== null ? deletedDocument._id.toString() === payload.teammateId : false;
 
     return {
       teammate: deletedDocument,
-      result: result,
     };
   }
 }

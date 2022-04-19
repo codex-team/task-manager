@@ -20,10 +20,9 @@ export const removeTeammateFx = createEffect(removeTeammateById);
 $teammates.on(getTeammatesFx.done, (state, { result }) => result.teammates);
 $teammates.on(createTeammateFx.done, (state, { result }) => [...state, result.teammate]);
 $teammates.on(removeTeammateFx.done, (state, { result }) => {
-  const isDeleted = result.result;
   const deletedTeammate = result.teammate;
 
-  if (isDeleted && deletedTeammate !== null) {
+  if (deletedTeammate !== null) {
     return state.filter(teammate => teammate._id !== deletedTeammate._id);
   }
 });

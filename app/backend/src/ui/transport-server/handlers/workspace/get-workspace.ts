@@ -1,7 +1,6 @@
 import { MessageHandler } from '../messageHandler';
 import { getWorkspace } from 'application/workspace/get-workspace';
 import { GetWorkspaceResponsePayload } from 'types/transport/responses/workspace/get-workspace';
-import { GetWorkspaceMessagePayload } from 'types/transport/requests/workspace/get-workspace';
 
 /**
  * Get workspace handler
@@ -10,10 +9,9 @@ export class GetWorkspaceHandler implements MessageHandler {
   public type = 'get-workspace';
 
   /**
-   * @param payload - payload from message to parse
+   * This method doesn't take any payload since there is the only workspace at this time.
    */
-  // eslint-disable-next-line no-unused-vars
-  public async handle(payload: GetWorkspaceMessagePayload | ''): Promise<GetWorkspaceResponsePayload> {
+  public async handle(): Promise<GetWorkspaceResponsePayload> {
     return {
       workspace: await getWorkspace(),
     };
