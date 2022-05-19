@@ -27,7 +27,7 @@ server.setNotFoundHandler(function (request, reply) {
  */
 server.route({
   method: 'GET',
-  url: '/public-env.js',
+  url: '/dotenv.js',
   handler: function (request, reply) {
     /**
      * Define list of public env vars to be available on the frontend side
@@ -39,9 +39,13 @@ server.route({
     };
 
     /**
-     * Assign envs object to window.config variable
+     * Assign env object to window.config variable
      */
-    reply.send(`window.config = ${JSON.stringify(ENV_FRONTEND)};`);
+    const scriptContent = `window.config = ${JSON.stringify(ENV_FRONTEND)}`;
+
+    reply
+      .header('Content-Type', 'application/javascript')
+      .send(scriptContent);
   },
 });
 

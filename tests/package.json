@@ -3,7 +3,8 @@
     "cypress": "cypress run",
     "cypress:open": "cypress open"
   },
-  "devDependencies": {
-    "cypress": "9.1.0"
+  "dependencies": {
+    "ctproto": "^0.0.13",
+    "cypress": "^9.2.0"
   }
 }
